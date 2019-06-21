@@ -17,7 +17,7 @@
       <a class="navbar-brand pl-5" href="#">
         <%= image_tag "logo-transparent.png", size: "64x32", alt: "WeFit" %>
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarLinks">
@@ -45,8 +45,16 @@
       <%= yield %>
     </div>
     <!-- NavBar bottom -->
-    <nav class="navbar fixed-bottom navbar-light bg-pink">
+    <nav class="navbar navbar-expand-sm fixed-bottom navbar-light bg-pink">
       <a class="navbar-brand text-white" href="#">wefit.</a>
+      <div class="mx-auto order-0 order-md-0">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item"><a class="nav-link" href="#">FB</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">IG</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">YT</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">TWTR</a></li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Bootrap JS -->
