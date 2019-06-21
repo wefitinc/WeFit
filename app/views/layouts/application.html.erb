@@ -5,19 +5,40 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag asset_path('square-logo.png') %>
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_link_tag    ''%>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <!-- Bootstrap CSS-->
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- App CSS -->
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-light bg-pink">
-      <a class="navbar-brand" href="#">
+    <nav class="navbar navbar-expand-lg navbar-light bg-pink">
+      <a class="navbar-brand pl-5" href="#">
         <%= image_tag "logo-transparent.png", size: "64x32", alt: "WeFit" %>
       </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarLinks">
+        <ul class="navbar-nav pr-5 ml-auto">
+          <li class="nav-item">
+	    <a class="nav-link text-white" href="#">About</a>
+	  </li>
+          <li class="nav-item">
+	    <a class="nav-link text-white" href="#">Billing</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link text-white" href="#">Ad Manager</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link text-white" href="#">Professionals</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" href="#">Log In</a>
+	  </li>
+	</ul>
+      </div>
     </nav>
     <!-- Main content -->
     <div class="container">
