@@ -45,15 +45,22 @@
       <%= yield %>
     </div>
     <!-- NavBar bottom -->
-    <nav class="navbar navbar-expand-sm fixed-bottom navbar-light bg-pink">
-      <a class="navbar-brand text-white" href="#">wefit.</a>
-      <div class="mx-auto order-0 order-md-0">
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item"><a class="nav-link" href="#">FB</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">IG</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">YT</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">TWTR</a></li>
+    <nav class="navbar navbar-expand-md fixed-bottom navbar-light bg-pink">
+      <a class="navbar-brand text-white mr-auto" href="#">wefit.</a>
+      <div class="mx-auto">
+        <ul class="navbar-nav">
+	  <li class="nav-item"><a class="nav-link" href="https://facebook.com/WeFitHQ"><%= image_tag "facebook-3-24.png", alt: "FB" %></a></li>
+	  <li class="nav-item"><a class="nav-link" href="https://instagram.com/wefit.us"><%= image_tag "instagram-24.png", alt: "IG" %></a></li>
+	  <li class="nav-item"><a class="nav-link" href="https://youtube.com/channel/UCuMcN15thVjRN5g1tq3k6dg?view_as=subscriber"><%= image_tag "youtube-3-24.png", alt: "YT" %></a></li>
+	  <li class="nav-item"><a class="nav-link" href="https://twitter.com/wefit_us"><%= image_tag "twitter-24.png", alt: "TWTR" %></a></li>
         </ul>
+      </div>
+      <div class="order-3">
+	<ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link text-white" href="#">Terms of service</a></li>
+	  <li class="nav-item"><a class="nav-link text-white" href="#">Privacy Policy</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+	</ul>
       </div>
     </nav>
 
