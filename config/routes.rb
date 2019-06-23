@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'professionals/index'
-  get 'welcome/index'
+  get '/professionals', :to => 'professionals#index', :as => :professionals
 
   get '/login', :to => 'sessions#new', :as => :login
   match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
