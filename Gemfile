@@ -16,6 +16,9 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# Inline SVG for SVG processing
+gem 'inline_svg'
+
 # Omniauth for facebook/google authentication
 gem 'omniauth'
 gem 'omniauth-facebook'
