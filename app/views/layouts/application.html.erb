@@ -12,6 +12,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
+    <!--[if lte IE 8]>
+      <div class="alert alert-danger">Please don't use internet explorer, <a href="https://browsehappy.com/">upgrade to something modern</a>!</div>		      
+    <![endif]-->
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-pink">
       <a class="navbar-brand pl-5" href="/">
