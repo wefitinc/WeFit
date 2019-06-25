@@ -2,10 +2,17 @@ class SessionsController < ApplicationController
   def new
   end
 
+  # Login controller action
   def create
-    auth_hash = request.env['omniauth.auth']
-    @authorization = Authorization.find_user_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-    
+  	@user = User.find_or_create_from_auth_hash(env['omniauth.auth'])
+  	session[:user_id] = @user.id
+  	redirect_to root_path
+  end
+
+  # Logout controller action
+  def destroy
+  	session[:user_id] = nil
+  	redirect_to root_path
   end
 
   def failure

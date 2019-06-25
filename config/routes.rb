@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   get '/professionals', :to => 'professionals#index', :as => :professionals
   # Session routing
   get '/login', :to => 'sessions#new', :as => :login
-  match '/auth/:provider/callback', :to => 'sessions#create', :via => [:get, :post]
+  get '/logout', :to => 'sessions#destroy'
+  get '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', :to => 'sessions#failure'
 
   root 'welcome#index'

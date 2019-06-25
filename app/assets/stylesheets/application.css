@@ -58,8 +58,4 @@ body
 }
 @media only screen and (max-width: 1000px)
 {
-	.navbar-bottom
-	{
-		display: none;
-	}
 }
