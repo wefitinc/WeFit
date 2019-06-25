@@ -15,7 +15,11 @@
  */
 body
 {
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Didact Gothic', sans-serif;
+}
+.container-fluid
+{
+	padding-bottom: 25px;
 }
 .bg-pink
 {
@@ -40,6 +44,6 @@ body
 .btn-green:hover
 {
 	color: #fff;
-	outline-color: #009912;
-	background-color: #009912;
+	outline-color: #008809;
+	background-color: #008809;
 }

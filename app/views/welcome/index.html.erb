@@ -1,10 +1,10 @@
 <div class="row vertical-center">
-	<div class="col-8 my-auto">
+	<div class="col-7 my-auto">
 		<div class="embed-responsive embed-responsive-16by9 rounded-big">
 		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/t97VaPZT2hc" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen wmode="transparent"></iframe>
-		</div>  
+		</div>
 	</div>
-	<div class="col-3 px-4 py-5 mx-auto my-auto bg-light border rounded-big shadow">
+	<div class="col-4 px-4 py-5 mx-auto my-auto bg-light border rounded-big shadow">
 		<h3 class="text-center">Join today, <b>FREE</b> forever.</h3>
 		<p class="text-center"><a href="#"><%= image_tag "f_logo_RGB-Blue_58.png", size: "24x24", class: "mr-1" %><span class="align-middle">Sign up with Facebook</span></a></p>
 		<p class="text-center"><a href="#">Sign up with Google</a></p>
@@ -12,17 +12,17 @@
 		<form>
 			<div class="form-group row">
 				<div class="col">
-					<input type="text" class="form-control" placeholder="First Name">
+					<input type="text" class="form-control" placeholder="First Name" required>
 				</div>
 				<div class="col">
-					<input type="text" class="form-control" placeholder="Last Name">
+					<input type="text" class="form-control" placeholder="Last Name" required>
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Email">
+				<input type="text" class="form-control" placeholder="Email" required>
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Password">
+				<input type="password" class="form-control" placeholder="Password" required>
 			</div>
 			<div class="form-group row">
 				<div class="col">
@@ -34,8 +34,12 @@
 					</select>
 				</div>
 				<div class="col">
-					<input type="date" class="form-control" placeholder="Birthdate">
+					<input type="date" class="form-control" placeholder="Birthdate" required>
 				</div>
+			</div>
+			<div class="form-group text-center col-sm">
+				<input type="checkbox" class="form-check-input" id="agreeTerms" required>
+				<label class="form-check-label" for="agreeTerms">By checking this box you agree to WeFit's terms and conditions</label>
 			</div>
 			<div class="form-group text-center">
 				<button type="submit" class="btn btn-green btn-lg w-50">Submit</button>
