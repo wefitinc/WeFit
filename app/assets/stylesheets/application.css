@@ -47,3 +47,19 @@ body
 	outline-color: #008809;
 	background-color: #008809;
 }
+
+.navbar-bottom
+{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1030;
+}
+@media only screen and (max-width: 1000px)
+{
+	.navbar-bottom
+	{
+		display: none;
+	}
+}
