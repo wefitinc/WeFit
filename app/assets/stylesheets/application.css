@@ -21,3 +21,9 @@
 {
 	border-radius: 2.5rem !important;
 }
+.abs-center-x
+{
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+}
