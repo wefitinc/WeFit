@@ -1,6 +1,21 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.vertical-center
+{
+	width: 100%;
+	height: 100%;
+
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	position: absolute;
+
+	padding: 8%;
+}
+
 .bg-circle
 {
 	z-index: -1000;
