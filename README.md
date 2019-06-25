@@ -6,11 +6,10 @@ application up and running.
 Things you may want to cover:
 
 * Ruby version
-	* Make sure Ruby 2.5.1 is installed
+	* Make sure Ruby 2.5.5 is installed
 
 * System dependencies
 	* sqlite3 3.22.0
-	* NodeJS 8.10.0
 
 * Configuration
 
