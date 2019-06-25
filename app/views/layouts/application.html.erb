@@ -26,9 +26,8 @@
       <div class="collapse navbar-collapse" id="navbarLinks">
         <ul class="navbar-nav pr-5 ml-auto">
           <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-white" %></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#">Billing</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">Ad Manager</a></li>
-	  <li class="nav-item"><%= link_to "Professionals", professionals_path, class:"nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "Professionals", professionals_path, class:"nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "Log In", login_path, class:"nav-link" %></li>
 	      </ul>
       </div>
@@ -38,8 +37,8 @@
       <%= yield %>
     </div>
     <!-- NavBar bottom -->
-    <nav class="navbar navbar-expand-md navbar-light bg-pink fixed-bottom">
-      <a class="navbar-brand text-white" href="/">wefit.</a>
+    <nav class="navbar navbar-expand-md navbar-light bg-pink fixed-bottom px-5">
+      <a class="navbar-brand text-white" href="/"><h3>wefit.</h3></a>
       <ul class="navbar-nav abs-center-x">
         <li class="nav-item"><a class="nav-link" href="https://facebook.com/WeFitHQ"><%= image_tag "facebook-3-24.png", alt: "FB" %></a></li>
         <li class="nav-item"><a class="nav-link" href="https://instagram.com/wefit.us"><%= image_tag "instagram-24.png", alt: "IG" %></a></li>
@@ -47,7 +46,7 @@
         <li class="nav-item"><a class="nav-link" href="https://twitter.com/wefit_us"><%= image_tag "twitter-24.png", alt: "TWTR" %></a></li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link text-white" href="#">Terms of service</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#">Terms of use</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="#">Privacy Policy</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
       </ul>

@@ -27,3 +27,15 @@
 	position: absolute;
 	transform: translateX(-50%);
 }
+.btn-green
+{
+	color: #fff;
+	outline-color: #009912;
+	background-color: #009912;
+}
+.btn-green:hover
+{
+	color: #fff;
+	outline-color: #009912;
+	background-color: #009912;
+}
