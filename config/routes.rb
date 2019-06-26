@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    get '/terms_of_use', :to => 'terms_of_use#index', :as => :terms_of_use
     get 'privacy_policy/', :to => 'privacy_policy#index', :as => :privacy_policy
   # Static page routing
   get '/about', :to => 'about#index', :as => :about
