@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get 'contact/index'
+  get 'contact', :to => 'contact#index', :as => :contact
+    get '/terms_of_use', :to => 'terms_of_use#index', :as => :terms_of_use
+    get 'privacy_policy/', :to => 'privacy_policy#index', :as => :privacy_policy
   # Static page routing
   get '/about', :to => 'about#index', :as => :about
   get '/professionals', :to => 'professionals#index', :as => :professionals

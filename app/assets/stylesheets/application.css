@@ -19,7 +19,7 @@ body
 }
 .container-fluid
 {
-	padding-bottom: 25px;
+	padding-bottom: 50px;
 }
 .bg-pink
 {
@@ -46,6 +46,11 @@ body
 	color: #fff;
 	outline-color: #008809;
 	background-color: #008809;
+}
+
+.modal-header
+{
+	border-bottom: none;
 }
 
 .navbar-bottom
