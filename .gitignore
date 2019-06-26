@@ -32,3 +32,6 @@
 
 # Ignore Gemfile.lock
 Gemfile.lock
+
+# Ignore mac file system metadata
+*.DS_Store
