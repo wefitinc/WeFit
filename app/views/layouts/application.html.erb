@@ -29,13 +29,27 @@
           <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-white" %></li>
           <li class="nav-item"><a class="nav-link text-white" href="#">Ad Manager</a></li>
           <li class="nav-item"><%= link_to "Professionals", professionals_path, class:"nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "Log In", login_path, class:"nav-link text-white" %></li>
+          <li class="nav-item"><a class="nav-link text-white" href="#" data-toggle="modal" data-target="#loginModal">Log In</a><%# <%= link_to "Log In", login_path, class:"nav-link text-white" %></li>
 	      </ul>
       </div>
     </nav>
     <!-- Main content -->
     <div class="container-fluid">
       <%= yield %>
+    </div>
+    <!-- Login modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="loginModal">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Log In</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body">
+            <p>Login form goes here</p>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- NavBar bottom -->
     <nav class="navbar navbar-bottom navbar-expand-md navbar-light bg-pink px-5">

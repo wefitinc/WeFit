@@ -48,6 +48,11 @@ body
 	background-color: #008809;
 }
 
+.modal-header
+{
+	border-bottom: none;
+}
+
 .navbar-bottom
 {
 	position: fixed;
