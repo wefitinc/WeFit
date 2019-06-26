@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'contact/index'
   # Static page routing
   get '/about', :to => 'about#index', :as => :about
   get '/professionals', :to => 'professionals#index', :as => :professionals
