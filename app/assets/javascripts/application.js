@@ -14,3 +14,14 @@
 //= require activestorage
 //= require turbolinks
 // require_tree .
+
+// Facebook JS Init
+window.fbAsyncInit = function()
+{
+	FB.init({
+		appId            : '2383595921758644',
+		autoLogAppEvents : true,
+		xfbml            : true,
+		version          : 'v3.3'
+	});
+};
