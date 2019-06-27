@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag asset_path('square-logo.png'), :rel => 'icon', :type =>  'image/png' %>
+    <!-- Google API -->
+    <meta name="google-signin-client_id" content="997965127714-86jhvdo0b7hvf5maf52b6vm6o1uttunu.apps.googleusercontent.com">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- App CSS -->
@@ -61,7 +63,7 @@
         <li class="nav-item"><a class="nav-link" href="https://twitter.com/wefit_us"><%= inline_svg "twitter-icon.svg", size: "24px*24px", alt: "TWTR" %></a></li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><%= link_to "Terms of use", terms_of_use_path, class: "nav-link text-white" %></li>
+        <li class="nav-item"><%= link_to "Terms of Use", terms_of_use_path, class: "nav-link text-white" %></li>
         <li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link text-white" %></li>
         <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link text-white" %></li>
       </ul>

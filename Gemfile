@@ -22,6 +22,7 @@ gem 'inline_svg'
 # Omniauth for facebook/google authentication
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
