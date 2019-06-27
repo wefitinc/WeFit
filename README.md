@@ -12,6 +12,8 @@ Things you may want to cover:
 	* sqlite3 3.22.0
 
 * Configuration
+	* Oauth2 configuration is in config/initializers/omniauth.rb
+		* The App IDs and Secrets should eventually be moved to an environment variable
 
 * Database creation
 
