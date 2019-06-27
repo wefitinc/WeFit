@@ -61,9 +61,9 @@
         <li class="nav-item"><a class="nav-link" href="https://twitter.com/wefit_us"><%= inline_svg "twitter-icon.svg", size: "24px*24px", alt: "TWTR" %></a></li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link text-white" href="/terms_of_use">Terms of use</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="/privacy_policy">Privacy Policy</a></li>
-        <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+        <li class="nav-item"><%= link_to "Terms of use", terms_of_use_path, class: "nav-link text-white" %></li>
+        <li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link text-white" %></li>
+        <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link text-white" %></li>
       </ul>
     </nav>
 
