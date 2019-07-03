@@ -36,7 +36,15 @@ class SessionsController < ApplicationController
         redirect_to root_url, notice: "Invalid email or password"
       end
     else
-      # TODO: Add ommiauth 
+      # Get from OmniAuth
+      @user = User.find_or_create_from_auth_hash(env["omniauth.auth"])
+      if @user
+        # Set the user id in the session
+        session[:user_id] = @user.id
+        redirect_to root_url
+      else
+        redirect_to root_url, notice: "Failed to authenticate" 
+      end
     end
   end
 
