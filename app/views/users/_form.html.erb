@@ -27,16 +27,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :provider %>
-    <%= form.text_field :provider %>
-  </div>
-
-  <div class="field">
-    <%= form.label :uid %>
-    <%= form.text_field :uid %>
-  </div>
-
-  <div class="field">
     <%= form.label :first_name %>
     <%= form.text_field :first_name %>
   </div>
@@ -44,6 +34,16 @@
   <div class="field">
     <%= form.label :last_name %>
     <%= form.text_field :last_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender %>
+    <%= form.select :gender, ["Male", "Female", "Other"] %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birthdate %>
+    <%= form.date_field :birthdate %>
   </div>
 
   <div class="actions">
