@@ -51,6 +51,13 @@ body
 .modal-header
 {
 	border-bottom: none;
+	border-top: none
+	text-center: 0px;
+	padding-bottom: 0px;
+}
+.modal-close
+{
+	text-align: center;
 }
 
 .navbar-bottom
@@ -61,6 +68,7 @@ body
 	left: 0;
 	z-index: 1030;
 }
+
 @media only screen and (max-width: 1000px)
 {
 }
