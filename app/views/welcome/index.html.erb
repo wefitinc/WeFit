@@ -37,7 +37,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="col">
-					<%= f.select :gender, ["Male", "Female", "Other"], { prompt: "Gender" }, { class: "form-control", required: '' } %>
+					<%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: '' } %>
 				</div>
 				<div class="col">
 					<%= f.date_field :birthdate, class: "form-control", required: '', placeholder: "Birthdate" %>

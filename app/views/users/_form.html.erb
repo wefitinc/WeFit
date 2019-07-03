@@ -38,7 +38,7 @@
 
   <div class="field">
     <%= form.label :gender %>
-    <%= form.select :gender, ["Male", "Female", "Other"] %>
+    <%= form.select :gender, ActsAsGendered::GENDERS %>
   </div>
 
   <div class="field">
