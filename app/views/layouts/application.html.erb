@@ -39,7 +39,7 @@
           <% else %>
             <%# Else show the current user name %>
             <%# TODO: Show a logout dropdown %>
-            <li class="nav-item"><span class="text-white"><% current_user.first_name %> <% current_user.last_name %></span></li>
+            <li class="nav-item"><a class="nav-link text-white" href="/logout"><%= current_user.first_name %> <%= current_user.last_name %></a></li>
           <% end %>
 	      </ul>
       </div>
@@ -61,23 +61,7 @@
             <h5 class="modal-title mx-auto">Log In</h5>
           </div>
           <div class="modal-body text-center">
-            <form>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Email" required>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Password" required>
-              </div>
-
-              <div class="form-group">
-                <p>
-                  <font size="3">Forgot password? </font>
-                  <a href=""=>Click here</a></p>
-              </div>
-              
-              <div class="form-group">
-                <button type="Login" class="btn btn-green btn-sm w-1">Login</button>
-              </div>  
+            <%= render 'layouts/login_form' %>
           </div>
         </div>
       </div>
