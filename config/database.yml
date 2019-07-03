@@ -22,7 +22,7 @@ test:
 
 # In production, we want to use the PostgreSQL database given to us by AWS
 production:
-  adapter: pg
+  adapter: postgresql
   encoding: utf8
   database: <%= ENV['RDS_DB_NAME'] %>
   username: <%= ENV['RDS_USERNAME'] %>
