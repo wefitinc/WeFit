@@ -51,8 +51,8 @@ body
 .modal-header
 {
 	border-bottom: none;
-	border-top: none
-	text-center: 0px;
+	border-top: none;
+	text-align: center;
 	padding-bottom: 0px;
 }
 .modal-close
