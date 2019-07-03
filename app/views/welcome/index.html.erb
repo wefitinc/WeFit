@@ -21,7 +21,7 @@
 			<div class="g-signin2" data-onsuccess="onSignIn" data-width="300" data-longtitle="true"></div>
 		</div>
 		<p class="text-center">or</p>
-		<%= form_for(:user) do |f| %>
+		<%= form_for User.new do |f| %>
 			<div class="form-group row">
 				<div class="col"><%= f.text_field :first_name, class: 'form-control', required: '', placeholder: 'First Name' %></div>
 				<div class="col"><%= f.text_field :last_name, class: 'form-control', required: '', placeholder: 'Last Name' %></div>
@@ -32,6 +32,9 @@
 			<div class="form-group">
 				<%= f.password_field :password, class: 'form-control', required: '', placeholder: 'Password' %>
 			</div>
+			<div class="form-group">
+				<%= f.password_field :password_confirmation, class: 'form-control', required: '', placeholder: 'Confirm Password' %>
+			</div>
 			<div class="form-group row">
 				<div class="col">
 					<%= f.select :gender, ["Male", "Female", "Other"], { prompt: "Gender" }, { class: "form-control", required: '' } %>
@@ -41,8 +44,8 @@
 				</div>
 			</div>
 			<div class="form-group text-center col-sm">
-				<%= f.check_box :agree, class: "form-check-input", required: '' %>
-				<%= f.label :agree, "By checking this box you agree to WeFit's #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
+				<%= f.check_box :terms_of_use, class: "form-check-input", required: '' %>
+				<%= f.label :terms_of_use, "By checking this box you agree to WeFit's #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
 			</div>
 			<div class="form-group text-center">
 				<%= f.submit :Submit, class: "btn btn-green btn-lg w-50" %>
