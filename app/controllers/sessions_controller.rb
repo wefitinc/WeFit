@@ -1,14 +1,15 @@
 class SessionsController < ApplicationController
-  # before_action :set_user, only: [ :update ]
-  
   # Create new user
   def new
+    # Make a new user based on the user parameters
     @user = User.new(user_params)
-
+    # Generate a response
     respond_to do |format|
+      # If the user was successfully created
       if @user.save
+        # Make the user automatically logged in
         session[:user_id] = @user.id
-
+        # Redirect to root
         format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: root_path }
       else
@@ -24,11 +25,11 @@ class SessionsController < ApplicationController
     # If there isn't a provider, this is not an Omniauth login
     if not params[:provider] 
       # Get the user from the DB by the email
-    	user = User.find_by_email(params[:email])
+    	@user = User.find_by_email(params[:email])
       # If the user exists and the password is correct
-      if user && user.authenticate(params[:password])
+      if @user && @user.authenticate(params[:password])
         # Set the user id in the session
-        session[:user_id] = user.id
+        session[:user_id] = @user.id
         redirect_to root_url
       else
         # TODO: Flash invalid email and password or something
@@ -51,17 +52,11 @@ class SessionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(
         :email, 
-        :password, 
-        :password_confirmation, 
+        :password,  
         :provider, 
         :uid, 
         :first_name, 

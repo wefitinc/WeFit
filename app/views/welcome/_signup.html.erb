@@ -22,6 +22,6 @@
 		<%= f.label :terms_of_use, "By checking this box you agree to WeFit's #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
 	</div>
 	<div class="form-group text-center">
-		<%= f.submit :submit, class: "btn btn-green btn-lg w-50" %>
+		<%= f.submit "Submit", class: "btn btn-green btn-lg w-50" %>
 	</div>
 <% end %>
