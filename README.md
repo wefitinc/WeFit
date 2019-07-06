@@ -1,10 +1,5 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
 	* Make sure Ruby 2.5.5 is installed
 
@@ -15,14 +10,4 @@ Things you may want to cover:
 	* Oauth2 configuration is in config/initializers/omniauth.rb
 		* The App IDs and Secrets should eventually be moved to an environment variable
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* See the Wiki for more info

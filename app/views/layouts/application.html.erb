@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>WeFit</title>
+    <meta name="theme-color" content="#ff7878">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= favicon_link_tag asset_path('square-logo.png'), :rel => 'icon', :type =>  'image/png' %>
@@ -31,7 +32,15 @@
           <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "Ad Manager", ad_manager_path, class:"nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "Professionals", professionals_path, class:"nav-link text-white" %></li>
-          <li class="nav-item"><a class="nav-link text-white" href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
+
+          <% if not current_user %>
+            <%# Show a login modal link if not logged in %>
+            <li class="nav-item"><a class="nav-link text-white" href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
+          <% else %>
+            <%# Else show the current user name %>
+            <%# TODO: Show a logout dropdown %>
+            <li class="nav-item"><a class="nav-link text-white" href="/logout"><%= current_user.first_name %> <%= current_user.last_name %></a></li>
+          <% end %>
 	      </ul>
       </div>
     </nav>
@@ -39,20 +48,25 @@
     <div class="container-fluid">
       <%= yield %>
     </div>
+    <%# Only show the login modal if the user isn't logged in %>
+    <% if not current_user %>
     <!-- Login modal -->
     <div class="modal" tabindex="-1" role="dialog" id="loginModal">
       <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Log In</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="modal-content w-50 mx-auto my-auto bg-light border shadow">
+          <div class="modal-close col-2">
+            <button type="button" class="close"data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
           </div>
-          <div class="modal-body">
-            <p>Login form goes here</p>
+          <div class="modal-header row">
+            <h5 class="modal-title mx-auto">Log In</h5>
+          </div>
+          <div class="modal-body text-center">
+            <%= render 'layouts/login_form' %>
           </div>
         </div>
       </div>
     </div>
+    <% end %>
     <!-- NavBar bottom -->
     <nav class="navbar navbar-bottom navbar-expand-md navbar-light bg-pink px-5">
       <a class="navbar-brand text-white" href="/"><%= image_tag "text-transparent-white.png", size: "112x34" %></a>
