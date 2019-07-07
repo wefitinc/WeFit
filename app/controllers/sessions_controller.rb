@@ -22,28 +22,35 @@ class SessionsController < ApplicationController
 
   # Login controller action
   def create
-    # If there isn't a provider, this is not an Omniauth login
-    if not params[:provider] 
-      # Get the user from the DB by the email
-    	@user = User.find_by_email(params[:email])
-      # If the user exists and the password is correct
-      if @user && @user.authenticate(params[:password])
-        # Set the user id in the session
-        session[:user_id] = @user.id
-        redirect_to root_url
+    # Generate a response
+    respond_to do |format|
+      # If there isn't a provider, this is not an Omniauth login
+      if not user_params[:provider] 
+        # Get the user from the DB by the email
+      	@user = User.find_by_email(user_params[:email])
+        # If the user exists and the password is correct
+        if @user && @user.authenticate(user_params[:password])
+          # Set the user id in the session
+          session[:user_id] = @user.id
+          format.html { redirect_to root_url }
+          format.json { render :show, status: :created, location: root_path }
+        else
+          # TODO: Flash invalid email and password or something
+          format.html { redirect_to root_url, notice: "Invalid email or password" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       else
-        # TODO: Flash invalid email and password or something
-        redirect_to root_url, notice: "Invalid email or password"
-      end
-    else
-      # Get from OmniAuth
-      @user = User.find_or_create_from_auth_hash(env["omniauth.auth"])
-      if @user
-        # Set the user id in the session
-        session[:user_id] = @user.id
-        redirect_to root_url
-      else
-        redirect_to root_url, notice: "Failed to authenticate" 
+        # Get from OmniAuth
+        @user = User.find_or_create_from_auth_hash(env["omniauth.auth"])
+        if @user
+          # Set the user id in the session
+          session[:user_id] = @user.id
+          format.html { redirect_to root_url }
+          format.json { render :show, status: :created, location: root_path }
+        else
+          format.html { redirect_to root_url, notice: "Failed to authenticate" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
