@@ -25,18 +25,19 @@ class SessionsController < ApplicationController
     # Generate a response
     respond_to do |format|
       # If there isn't a provider, this is not an Omniauth login
-      if not user_params[:provider] 
+      if not params[:provider] 
         # Get the user from the DB by the email
-      	@user = User.find_by_email(user_params[:email])
+      	@user = User.find_by_email(params[:email])
         # If the user exists and the password is correct
-        if @user && @user.authenticate(user_params[:password])
+        if @user && @user.authenticate(params[:password])
           # Set the user id in the session
           session[:user_id] = @user.id
           format.html { redirect_to root_url }
           format.json { render :show, status: :created, location: root_path }
         else
           # TODO: Flash invalid email and password or something
-          format.html { redirect_to root_url, notice: "Invalid email or password" }
+          flash[:login_notice] = "Invalid email or password"
+          format.html { redirect_to root_url }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       else

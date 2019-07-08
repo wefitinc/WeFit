@@ -73,3 +73,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Rails yelled at me til it added this for windows
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+
+# GNU Terry Pratchett
+gem 'rack-pratchett'
