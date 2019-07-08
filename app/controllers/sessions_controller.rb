@@ -34,16 +34,16 @@ class SessionsController < ApplicationController
           if @user.authenticate(params[:password])
             # Set the user id in the session
             session[:user_id] = @user.id
-            format.html { redirect_back(fallback_location: root_path) }
+            format.html { redirect_back fallback_location: root_path }
             format.json { render :show, status: :created, location: root_path }
           else
             flash[:login_notice] = "Invalid email or password"
-            format.html { redirect_back(fallback_location: root_path) }
+            format.html { redirect_back fallback_location: root_path }
             format.json { render json: @user.errors, status: :unprocessable_entity }
           end
         else
           flash[:login_notice] = "Email not registered"
-          format.html { redirect_back(fallback_location: root_path) }
+          format.html { redirect_back fallback_location: root_path }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       else
@@ -52,10 +52,10 @@ class SessionsController < ApplicationController
         if @user
           # Set the user id in the session
           session[:user_id] = @user.id
-          format.html { redirect_back(fallback_location: root_path) }
+          format.html { redirect_back fallback_location: root_path }
           format.json { render :show, status: :created, location: root_path }
         else
-          format.html { redirect_back(fallback_location: root_path), notice: "Failed to authenticate" }
+          format.html { redirect_back fallback_location: root_path, notice: "Failed to authenticate" }
           format.json { render json: @user.errors, status: :unprocessable_entity }
         end
       end
