@@ -41,7 +41,12 @@
           <% else %>
             <%# Else show the current user name %>
             <%# TODO: Show a logout dropdown %>
-            <li class="nav-item"><a class="nav-link text-white" href="/logout"><%= current_user.first_name %> <%= current_user.last_name %></a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-white" href="#" id="userActions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %></a>
+              <div class="dropdown-menu" aria-labelledby="userActions">
+                <a class="dropdown-item" href="/logout">Logout</a>
+              </div>
+            </li>
           <% end %>
 	      </ul>
       </div>
