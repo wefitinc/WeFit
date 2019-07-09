@@ -87,10 +87,7 @@
       <%# Show the login modal by default if there was an error logging in %>
       <% if flash[:login_notice] %>
         <script type="text/javascript">
-        $(document).ready(function()
-        {
-          $("#loginModal").modal('show');
-        }); 
+        $(document).ready(function(){$("#loginModal").modal('show');}); 
         </script>
       <% end %>
     <% end %>
