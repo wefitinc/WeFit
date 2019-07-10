@@ -1,48 +1,30 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  	<!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-KWKKSWG');</script>
-    <!-- End Google Tag Manager -->
-  </head>
-  <body>
-  	<!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWKKSWG"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-	<div class="about-top">
-		<h3 class="text-white text-center">About</h3>
-		<h4 class="w-50 mx-auto text-white text-center"><b>WeFit</b> is a social platform for all things health. We combine the entertainment of social media, with the encouragement of support groups, and the wisdom of licensed health professionals to create a well rounded user experience for you. Give us a try, it's FREE!</h4>
-	</div>
-	<div class="about-middle">
-		<h3 class="text-center">WeFit Features</h3>
-		<div class="row">
-			<div class="col px-5">
-		 		<%= inline_svg "about_notes.svg", size: "80px*80px" %>
-				<h5><b>Posts</b></h5>
-				<p>Post pictures, videos, written content, or local activity meetups such as hikes, yoga, and gym sessions.</p>
-			</div>
-			<div class="col px-5">
-				<%= inline_svg "about_group.svg", size: "80px*80px" %>
-				<h5><b>Support Groups</b></h5>
-				<p>Pick from a wide variety of support groups or create your own to give support, get support, and ask questions.</p>
-			</div>
-			<div class="col px-5">
-				<%= inline_svg "about_heart.svg", size: "80px*80px" %>
-				<h5><b>Professionals</b></h5>
-				<p>Ask questions, or meet with local, licensed, health professionals ready to help take your health to the next level.</p>
-			</div>
+<div class="about-top">
+	<h3 class="text-white text-center">About</h3>
+	<h4 class="w-50 mx-auto text-white text-center"><b>WeFit</b> is a social platform for all things health. We combine the entertainment of social media, with the encouragement of support groups, and the wisdom of licensed health professionals to create a well rounded user experience for you. Give us a try, it's FREE!</h4>
+</div>
+<div class="about-middle">
+	<h3 class="text-center">WeFit Features</h3>
+	<div class="row">
+		<div class="col px-5">
+	 		<%= inline_svg "about_notes.svg", size: "80px*80px" %>
+			<h5><b>Posts</b></h5>
+			<p>Post pictures, videos, written content, or local activity meetups such as hikes, yoga, and gym sessions.</p>
+		</div>
+		<div class="col px-5">
+			<%= inline_svg "about_group.svg", size: "80px*80px" %>
+			<h5><b>Support Groups</b></h5>
+			<p>Pick from a wide variety of support groups or create your own to give support, get support, and ask questions.</p>
+		</div>
+		<div class="col px-5">
+			<%= inline_svg "about_heart.svg", size: "80px*80px" %>
+			<h5><b>Professionals</b></h5>
+			<p>Ask questions, or meet with local, licensed, health professionals ready to help take your health to the next level.</p>
 		</div>
 	</div>
-	<div class="about-bottom">
-		<h3 class="text-center">Join today, FREE forever.</h3>
-		<div class="text-center">
-			<%= link_to "Sign Up", root_path, class: "btn btn-green btn-lg w-25", role: "button" %>
-		</div>	
-	</div>
-  </body>
-</html>
+</div>
+<div class="about-bottom">
+	<h3 class="text-center">Join today, FREE forever.</h3>
+	<div class="text-center">
+		<%= link_to "Sign Up", root_path, class: "btn btn-green btn-lg w-25", role: "button" %>
+	</div>	
+</div>
