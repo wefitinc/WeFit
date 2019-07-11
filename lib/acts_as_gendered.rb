@@ -1,5 +1,5 @@
 module ActsAsGendered
-  GENDERS = ['Male','Female','Other']
+  GENDERS = ['Male','Female']
   
   def self.included(base)
     base.extend(ActsAsGenderedMethods)
@@ -25,10 +25,6 @@ module ActsAsGendered
       gender = 'Male'
     end
 
-    def is_other
-      gender = 'Other'
-    end
-
     def is_female
       gender = 'Female'
     end
@@ -39,10 +35,6 @@ module ActsAsGendered
 
     def is_female?
       gender == 'Female'
-    end
-
-    def is_other?
-      gender == 'Other'
     end
   end
 end
