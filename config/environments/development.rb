@@ -1,6 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Development mailer method
+  config.action_mailer.delivery_method = :smtp
   # Development host
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
