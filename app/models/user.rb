@@ -1,9 +1,13 @@
 class User < ApplicationRecord
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
+  attr_accessor :reset_token
+
   acts_as_gendered
   has_secure_password
   
   validates :terms_of_use, acceptance: true
-  validates :email, presence: true, uniqueness: true
+  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: true
 
   def self.find_or_create_from_auth_hash(auth)
   	where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
@@ -15,5 +19,23 @@ class User < ApplicationRecord
   		user.gender = auth.raw_info.gender.upcase_first
   		user.save!
   	end
+  end
+
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest, User.digest(reset_token))
+    update_attribute(:reset_sent_at, Time.zone.now)
+  end
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+
+
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
   end
 end
