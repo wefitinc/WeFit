@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get '/logout', :to => 'sessions#destroy'
   get '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', :to => 'sessions#failure'
+  # Password reset routing
+  resources :password_resets, only: [:new, :create, :edit, :update]
   # Root controller
   root 'welcome#index'
 end
