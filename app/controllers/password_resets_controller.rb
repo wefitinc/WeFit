@@ -1,10 +1,10 @@
 class PasswordResetsController < ApplicationController
-  # Before updating the password, check for:
-  #   Getting the user
+  # Before updating the password:
+  #   Get the user
   before_action :get_user,   only: [:edit, :update]
-  #   User is valid (and reset token matches)
+  #   Check the user is valid (and reset token matches)
   before_action :valid_user, only: [:edit, :update]
-  #   The reset is not expired
+  #   Check the reset is not expired
   before_action :check_expiration, only: [:edit, :update]
 
   def new
@@ -26,11 +26,11 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    # Password field was empty
     if params[:user][:password].empty?
+      # Password field was empty
       render 'edit'
-    # Success, password updated
     elsif @user.update_attributes(user_params)
+      # Success, password updated
       session[:user_id] = @user.id
       redirect_to root_url
     else
