@@ -1,24 +1,26 @@
-<div class="row vertical-center">
-	<div class="col-7 my-auto mx-auto">
-		<div class="embed-responsive embed-responsive-16by9 rounded-big">
-			<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OWlLx0ITCh4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen wmode="transparent"></iframe>
-		</div>
-		<div class="mt-3 rounded-big bg-light border shadow mx-auto w-50 px-2 py-2">
-			<h4 class="text-center">Share with Friends!</h4>
-			<div class="share-icons">
-				<a href="https://www.facebook.com/sharer/sharer.php?u=http://wefit.us" style="text-decoration: none !important"><%= inline_svg "facebook-icon.svg", size: "60px*60px", class: "share-icon" %></a>
-				<a href="http://twitter.com/share?text=WeFit&url=http://wefit.us" style="text-decoration: none !important"><%= inline_svg "twitter-icon.svg", size: "60px*60px", class: "share-icon" %></a>
-				<a href="mailto:?subject=Check out WeFit&amp;body=Check out this site http://wefit.us" style="text-decoration: none !important"><%= inline_svg "gmail-icon.svg", size: "60px*60px", class: "share-icon" %></a>
+<div class="vertical-center">
+	<div class="row">
+		<div class="col-7 my-auto mx-auto" style="min-width: 600px">
+			<div class="embed-responsive embed-responsive-16by9 rounded-big">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OWlLx0ITCh4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen wmode="transparent"></iframe>
+			</div>
+			<div class="mt-3 rounded-big bg-light border shadow mx-auto w-50 px-2 py-2">
+				<h4 class="text-center">Share with Friends!</h4>
+				<div class="share-icons">
+					<a href="https://www.facebook.com/sharer/sharer.php?u=http://wefit.us" style="text-decoration: none !important"><%= inline_svg "facebook-icon.svg", size: "60px*60px", class: "share-icon" %></a>
+					<a href="http://twitter.com/share?text=WeFit&url=http://wefit.us" style="text-decoration: none !important"><%= inline_svg "twitter-icon.svg", size: "60px*60px", class: "share-icon" %></a>
+					<a href="mailto:?subject=Check out WeFit&amp;body=Check out this site http://wefit.us" style="text-decoration: none !important"><%= inline_svg "gmail-icon.svg", size: "60px*60px", class: "share-icon" %></a>
+				</div>
 			</div>
 		</div>
+		<% if current_user? %>
+			<%# If the user is logged in, render the countdown timer %>
+			<%= render 'logged_in' %>
+		<% else %>
+			<%# Render the sign up form %>
+			<%= render 'signup' %>
+		<% end %>
 	</div>
-	<% if current_user? %>
-		<%# If the user is logged in, render the countdown timer %>
-		<%= render 'logged_in' %>
-	<% else %>
-		<%# Render the sign up form %>
-		<%= render 'signup' %>
-	<% end %>
 </div>
 <div class="circles">
 	<div class="bg-circle bg-circle-1"></div>
