@@ -1,6 +1,11 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Development mailer method
+  config.action_mailer.delivery_method = :smtp
+  # Development host
+  config.action_mailer.default_url_options = { :host => "http://wefit-env-3.kp7bb62b8d.us-east-2.elasticbeanstalk.com/" }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
