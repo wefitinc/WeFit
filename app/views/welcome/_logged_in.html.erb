@@ -1,40 +1,43 @@
 <div class="col-4 px-4 py-5 mx-auto my-auto text-center" style="min-width: 350px">
 	<h2 class="py-3">Welcome <span class="pink font-weight-bold"><%= current_user.first_name %> <%= current_user.last_name %></span>!</h2>
-
-	<h3>Wefit launch countdown</h3>
+	<h3>WeFit Launch Countdown</h3>
 	<div class="row">
 		<div class="col">
-			<h3 id='days' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">178</h3>
+			<h1 id='days' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">178</h1>
 			<p>Days</p>
 		</div>
 		<div class="col">
-			<h3 id='hours' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">24</h3>
+			<h1 id='hours' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">24</h1>
 			<p>Hours</p>
 		</div>
 		<div class="col">
-			<h3 id='minutes' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h3>
+			<h1 id='minutes' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h1>
 			<p>Minutes</p>
 		</div>
 		<div class="col">
-			<h3 id='seconds' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h3>
+			<h1 id='seconds' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h1>
 			<p>Seconds</p>
 		</div>
 	</div>
 </div>
+<%# TODO: Move this to the welcome.js file what for minification and whatnot %>
 <script type="text/javascript">
+	// The date we're hurdling inexorably towards
 	var to_date = new Date("Jan 5, 2021").getTime();
-	var fn = setInterval(function()
+	// Update the timer
+	function update_timer()
 	{
+		// Get the delta
 		var now = new Date().getTime();
 		var delta = to_date - now;
-		var d = Math.floor(delta / (1000*60*60*24));
-		var h = Math.floor((delta % (1000*60*60*24)) / (1000*60*60));
-		var m = Math.floor((delta % (1000*60*60)) / (1000*60));
-		var s = Math.floor((delta % (1000*60)) / (1000));
-
-		$("#days").text(d);
-		$("#hours").text(h);
-		$("#minutes").text(m);
-		$("#seconds").text(s);
-	}, 1000);
+		// Update the counter with magic math
+		$("#days").text(Math.floor(delta / (1000*60*60*24)));
+		$("#hours").text(Math.floor((delta % (1000*60*60*24)) / (1000*60*60)));
+		$("#minutes").text(Math.floor((delta % (1000*60*60)) / (1000*60)));
+		$("#seconds").text(Math.floor((delta % (1000*60)) / (1000)));
+	};
+	// Update every second
+	setInterval(update_timer, 1000);
+	// Call on load too
+	update_timer();
 </script>
