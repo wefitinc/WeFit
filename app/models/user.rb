@@ -10,15 +10,15 @@ class User < ApplicationRecord
   validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: true
 
   def self.find_or_create_from_auth_hash(auth)
-  	where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
-  		user.uid = auth.uid
-  		user.provider = auth.provider
-  		user.email = auth.info.email
-  		user.first_name = auth.info.first_name
-  		user.last_name = auth.info.last_name
-  		user.gender = auth.raw_info.gender.upcase_first
-  		user.save!
-  	end
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+      user.uid = auth.uid
+      user.provider = auth.provider
+      user.email = auth.info.email
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      user.gender = auth.raw_info.gender.upcase_first
+      user.save!
+    end
   end
 
   def create_reset_digest
@@ -44,9 +44,8 @@ class User < ApplicationRecord
 
   # Returns true if the given token matches the digest.
   def authenticated?(attribute, token)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
     string = send("#{attribute}_digest")
     return false if string.nil?
-    BCrypt::Password.create(string, cost: cost).is_password?(token)
+    BCrypt::Password.new(string).is_password?(token)
   end
 end
