@@ -7,4 +7,8 @@ class StaticController < ApplicationController
 	end
 	def ad_manager
 	end
+	def professionals
+	end
+	def contact
+	end
 end
