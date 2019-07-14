@@ -1,29 +1,29 @@
-<div class="col-4 px-4 py-5 mx-auto my-auto text-center" style="min-width: 350px">
+<div class="col-4 px-4 py-5 mx-auto text-center" style="min-width: 350px">
 	<h2 class="py-3">Welcome <span class="pink font-weight-bold"><%= current_user.first_name %> <%= current_user.last_name %></span>!</h2>
 	<h3>WeFit Launch Countdown</h3>
 	<div class="row">
 		<div class="col">
 			<h1 id='days' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">178</h1>
-			<p>Days</p>
+			<p class="font-weight-bold">Days</p>
 		</div>
 		<div class="col">
 			<h1 id='hours' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">24</h1>
-			<p>Hours</p>
+			<p class="font-weight-bold">Hours</p>
 		</div>
 		<div class="col">
 			<h1 id='minutes' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h1>
-			<p>Minutes</p>
+			<p class="font-weight-bold">Minutes</p>
 		</div>
 		<div class="col">
 			<h1 id='seconds' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h1>
-			<p>Seconds</p>
+			<p class="font-weight-bold">Seconds</p>
 		</div>
 	</div>
 </div>
 <%# TODO: Move this to the welcome.js file what for minification and whatnot %>
 <script type="text/javascript">
 	// The date we're hurdling inexorably towards
-	var to_date = new Date("Jan 8, 2021").getTime();
+	var to_date = new Date("Jan 8, 2020").getTime();
 	// Update the timer
 	function update_timer()
 	{
