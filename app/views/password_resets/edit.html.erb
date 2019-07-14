@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-6 px-5 mx-auto text-center">
 			<h1>Set new password</h1>
-			<%= form_for(@user, url: password_resets_path(params[:id])) do |f| %>
+			<%= form_for(@user, url: password_reset_path(params[:id])) do |f| %>
 				<%= hidden_field_tag :email, @user.email %>
 				<div class="form-group"><%= f.password_field :password, class: 'form-control', required: '', placeholder: 'New password' %></div>
 				<div class="form-group"><%= f.submit "Update Password", class: 'btn btn-green btn-large w-50 py-3' %></div>
