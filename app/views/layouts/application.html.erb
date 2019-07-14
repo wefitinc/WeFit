@@ -48,18 +48,17 @@
           <li class="nav-item"><%= link_to "Ad Manager", ad_manager_path, class:"nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "Professionals", professionals_path, class:"nav-link text-white" %></li>
 
-          <% if not current_user %>
-            <%# Show a login modal link if not logged in %>
-            <li class="nav-item"><a class="nav-link text-white" href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
-          <% else %>
-            <%# Else show the current user name %>
-            <%# TODO: Show a logout dropdown %>
+          <% if current_user? %>
+            <%# Show the current user name %>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle text-white" href="#" id="userActions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %></a>
               <div class="dropdown-menu" aria-labelledby="userActions">
                 <a class="dropdown-item" href="/logout">Logout</a>
               </div>
             </li>
+          <% else %>
+            <%# Show a login modal link if not logged in %>
+            <li class="nav-item"><a class="nav-link text-white" href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
           <% end %>
 	      </ul>
       </div>
@@ -69,7 +68,7 @@
       <%= yield %>
     </div>
     <%# Only show the login modal if the user isn't logged in %>
-    <% if not current_user %>
+    <% if not current_user? %>
       <!-- Login modal -->
       <div class="modal show" tabindex="-1" role="dialog" id="loginModal" >
         <div class="modal-dialog modal-dialog-centered" role="document">

@@ -1,0 +1,40 @@
+<div class="col-4 px-4 py-5 mx-auto my-auto text-center" style="min-width: 350px">
+	<h2 class="py-3">Welcome <span class="pink font-weight-bold"><%= current_user.first_name %> <%= current_user.last_name %></span>!</h2>
+
+	<h3>Wefit launch countdown</h3>
+	<div class="row">
+		<div class="col">
+			<h3 id='days' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">178</h3>
+			<p>Days</p>
+		</div>
+		<div class="col">
+			<h3 id='hours' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">24</h3>
+			<p>Hours</p>
+		</div>
+		<div class="col">
+			<h3 id='minutes' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h3>
+			<p>Minutes</p>
+		</div>
+		<div class="col">
+			<h3 id='seconds' class="rounded-big bg-pink px-4 py-5 font-weight-bold text-white">60</h3>
+			<p>Seconds</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var to_date = new Date("Jan 5, 2021").getTime();
+	var fn = setInterval(function()
+	{
+		var now = new Date().getTime();
+		var delta = to_date - now;
+		var d = Math.floor(delta / (1000*60*60*24));
+		var h = Math.floor((delta % (1000*60*60*24)) / (1000*60*60));
+		var m = Math.floor((delta % (1000*60*60)) / (1000*60));
+		var s = Math.floor((delta % (1000*60)) / (1000));
+
+		$("#days").text(d);
+		$("#hours").text(h);
+		$("#minutes").text(m);
+		$("#seconds").text(s);
+	}, 1000);
+</script>

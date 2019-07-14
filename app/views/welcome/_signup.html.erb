@@ -1,30 +1,40 @@
-<%= form_for User.new, :url => url_for(:controller => 'sessions', :action => 'new') do |f| %>
-	<div class="form-group row">
-		<div class="col"><%= f.text_field :first_name, class: 'form-control', required: '', placeholder: 'First Name' %></div>
-		<div class="col"><%= f.text_field :last_name, class: 'form-control', required: '', placeholder: 'Last Name' %></div>
+<div class="col-4 px-4 py-5 mx-auto my-auto bg-light border rounded-big shadow" style="min-width: 350px">
+	<h3 class="text-center">Join today, <b>FREE</b> forever.</h3>
+	<div class="text-center mx-auto w-100">
+		<div class="fb-login-button" data-size="large" data-width="300" data-button-type="login_with" data-auto-logout-link="false" data-use-continue-as="true"></div>
 	</div>
-	<div class="form-group">
-		<%= f.email_field :email, class: 'form-control', required: '', placeholder: 'Email' %>
+	<div class="text-center mx-auto w-100 pt-2">
+		<div class="g-signin2" data-onsuccess="onSignIn" data-width="300" data-longtitle="true"></div>
 	</div>
-	<div class="form-group">
-		<%= f.password_field :password, class: 'form-control', required: '', placeholder: 'Password' %>
-	</div>
-	<div class="form-group row">
-		<div class="col">
-			<%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: '' } %>
+	<p class="text-center">or</p>
+	<%= form_for User.new, :url => url_for(:controller => 'sessions', :action => 'new') do |f| %>
+		<div class="form-group row">
+			<div class="col"><%= f.text_field :first_name, class: 'form-control', required: '', placeholder: 'First Name' %></div>
+			<div class="col"><%= f.text_field :last_name, class: 'form-control', required: '', placeholder: 'Last Name' %></div>
 		</div>
-		<div class="col">
-			<%= f.date_field :birthdate, class: "form-control", required: '', placeholder: "Birthdate" %>
+		<div class="form-group">
+			<%= f.email_field :email, class: 'form-control', required: '', placeholder: 'Email' %>
 		</div>
-	</div>
-	<div class="form-group text-center col-sm">
-		<%= f.check_box :terms_of_use, class: "form-check-input", required: '' %>
-		<%= f.label :terms_of_use, "By checking this box you agree to WeFit's #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
-	</div>
-	<div class="form-group text-center">
-		<%= f.submit "Sign Up", class: "btn btn-green btn-lg w-50" %>
-	</div>
-<% end %>
+		<div class="form-group">
+			<%= f.password_field :password, class: 'form-control', required: '', placeholder: 'Password' %>
+		</div>
+		<div class="form-group row">
+			<div class="col">
+				<%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: '' } %>
+			</div>
+			<div class="col">
+				<%= f.date_field :birthdate, class: "form-control", required: '', placeholder: "Birthdate" %>
+			</div>
+		</div>
+		<div class="form-group text-center col-sm">
+			<%= f.check_box :terms_of_use, class: "form-check-input", required: '' %>
+			<%= f.label :terms_of_use, "By checking this box you agree to WeFit's #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
+		</div>
+		<div class="form-group text-center">
+			<%= f.submit "Sign Up", class: "btn btn-green btn-lg w-50" %>
+		</div>
+	<% end %>
+</div>
 <script type="text/javascript">
   // Auto focus on the form on page load
   $(document).ready(function()
