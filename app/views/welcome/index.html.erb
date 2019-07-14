@@ -13,8 +13,10 @@
 		</div>
 	</div>
 	<% if current_user? %>
+		<%# If the user is logged in, render the countdown timer %>
 		<%= render 'logged_in' %>
 	<% else %>
+		<%# Render the sign up form %>
 		<%= render 'signup' %>
 	<% end %>
 </div>
