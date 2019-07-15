@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'WefitTest@gmail.com'
+  default from: 'noreply@wefit.us'
   layout 'mailer'
 end

@@ -3,8 +3,10 @@ Rails.application.configure do
 
   # Development mailer method
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   # Development host
-  config.action_mailer.default_url_options = { :host => "http://wefit-env-3.kp7bb62b8d.us-east-2.elasticbeanstalk.com/" }
+  config.action_mailer.default_url_options = { :host => "http://wefit.us/" }
 
   # Code is not reloaded between requests.
   config.cache_classes = true
