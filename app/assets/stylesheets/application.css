@@ -25,10 +25,19 @@ body
 {
 	color: #ff7878 !important;
 }
+.light-blue
+{
+	color: #00aeff !important;
+}
 .bg-pink
 {
 	background-color: #ff7878 !important;
 }
+.bg-dark-grey
+{
+	background-color: #333 !important;
+}
+
 .rounded-big
 {
 	border-radius: 2.5rem !important;
