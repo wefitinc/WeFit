@@ -33,6 +33,10 @@ body
 {
 	border-radius: 2.5rem !important;
 }
+.nounderline
+{
+	text-decoration: none !important
+}
 .abs-center-x
 {
 	left: 50%;
