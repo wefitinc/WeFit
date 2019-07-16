@@ -15,8 +15,11 @@
 		<div class="form-group">
 			<%= f.email_field :email, class: 'form-control', required: '', placeholder: 'Email' %>
 		</div>
-		<div class="form-group">
+		<div class="form-group input-group">
 			<%= f.password_field :password, class: 'form-control', required: '', placeholder: 'Password' %>
+			<div class="input-group-append" onclick='toggle_password()'>
+				<div class="input-group-text"><%= image_tag "eye.png", size: "16x16", alt: "WeFit" %></div>
+			</div>
 		</div>
 		<div class="form-group row">
 			<div class="col">
@@ -27,7 +30,6 @@
 			</div>
 		</div>
 		<div class="form-group text-center col-sm">
-			
 			<%= f.label :terms_of_use, "By signing up, you agree to WeFit's #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
 		</div>
 		<div class="form-group text-center">
@@ -36,9 +38,13 @@
 	<% end %>
 </div>
 <script type="text/javascript">
-  // Auto focus on the form on page load
   $(document).ready(function()
   {
     $("#user_first_name").select();
   });
+  function toggle_password()
+  {
+  	var field = document.getElementById('user_password');
+  	field.type = (field.type === 'password') ? "text" : "password";
+  };
 </script>
