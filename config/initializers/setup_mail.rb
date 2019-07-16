@@ -1,6 +1,6 @@
 ActionMailer::Base.smtp_settings =
 {
-  :address              => "smtp.mail.us-west-2.awsapps.com",
+  :address              => "email-smtp.us-west-2.amazonaws.com",
   :port                 => 587,
   :domain               => "wefit.us",
   :user_name            => "AKIAUSVCBYR7MJ4Q4E4N",
