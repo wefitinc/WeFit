@@ -1,36 +1,61 @@
+
+
 <div class="professional-top">
-	<h2 class = "col-8 px-5 py-5 mx-auto text-center">Grow your reach and sales with WeFit Health Professional!</h1>
+	<h2 class = "col-8 px-5 py-5 mx-auto text-center ">Grow your reach and sales with WeFit Health Professional!</h1>
 </div>
-<div class="col-8 px-5 py-5 mx-auto my-auto bg-light rounded-big shadow border" style="min-width: 350px">
-	<div class="row">
-		<!-- Left side -->
-		<div class="col-md-6 px-5 mx-auto text-center">
-			<h2><b>Standard</b></h2>
-			<h2>$19.99/month</h2>
-			<ul>
-				<li>Interact with up to 20 users per month</li>
-				<li>25 mile radius</li>
-			</ul>
-			<div class="py-4">
-				<button class="btn btn-green btn-lg w-50 "  href="#" data-toggle="modal" data-target="#registerModal">Register</button>
-			</div>
-		</div>
-		<!-- Right side -->
-		<div class="col-md-6 px-5 mx-auto border-left text-center font-weight-bold">
-			<h2><b>Plus</b></h2>
-			<h2>$29.99/month</h2>
-			<ul>
-				<li>Interact with an unlimited number of users</li>
-				<li>Rank higher on the professionals page</li>
-				<li>50 mile radius</li>
-			</ul>
-			<div class="professionals-register-plus py-1">
-				<%= link_to "Register", root_path, class: "btn btn-green btn-lg w-50 ", role: "button" %>
-			</div>
-		</div>
-	</div>
-	<h5 class= "mx-auto col-10 px-100 pb-3 pt-5 text-center">Get your first month completely FREE when you sign up before WeFit's launch</h1>
+
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 rounded shadow-sm " >
+
+      <div class="card-header rounded shadow-sm">
+        <h4 class="my-0 font-weight-normal">Standard</h4>
+      </div>
+
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">$19.99<small class="text-muted">/month</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+        	
+          <li>-Interact with up to 20 users per month</li>
+          <li>-25 miles radius</li> 
+          
+        </ul>
+
+        <button class="btn btn-green btn-lg w-50 mt-4"  href="#" data-toggle="modal" data-target="#registerModal">Register</button>
+      </div>
+
+    </div>
+
+    <div class="card mb-4 shadow-sm rounded ">
+      <div class="card-header rounded shadow-sm">
+        <h4 class="my-0 font-weight-normal">Plus</h4>
+      </div>
+
+      <div class="card-body">
+        <h1 class="card-title pricing-card-title">$29.99<small class="text-muted">/month</small></h1>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>-Interact with an unlimited number of users</li>
+          <li>-Rank higher on the progessionals page</li>
+          <li>-50 miles radius</li>
+          
+        </ul>
+        <%= link_to "Register", root_path, class: "btn btn-green btn-lg w-50 ", role: "button" %>
+      </div>
+    </div>
+
 </div>
+<h5 class= "mx-auto col-10 px-100 pb-1 pt-2 text-center">Get your first month completely 	FREE when you sign up before WeFit's launch!</h5>
+
+</div>
+
+
+
+
+
+
+
+
+
 
 <!-- Register modal -->
 <div class="modal" tabindex="-1" role="dialog" id="registerModal">
