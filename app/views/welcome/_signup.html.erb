@@ -38,6 +38,8 @@
   $(document).ready(function()
   {
     $("#user_first_name").select();
+    // Fix a bug with FB button not rendering
+    FB.XFBML.parse();
   });
   function toggle_password()
   {
