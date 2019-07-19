@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # Static page routing
   get '/about', :to => 'static#about', :as => :about
   get '/contact', :to => 'static#contact', :as => :contact
-  get '/ad_manager', :to => 'static#ad_manager', :as => :ad_manager
+  get '/advertising', :to => 'static#advertising', :as => :advertising
   get '/terms_of_use', :to => 'static#terms_of_use', :as => :terms_of_use
   get '/professionals', :to => 'static#professionals', :as => :professionals
   get '/privacy_policy', :to => 'static#privacy_policy', :as => :privacy_policy

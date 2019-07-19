@@ -5,7 +5,7 @@ class StaticController < ApplicationController
 	end
 	def privacy_policy
 	end
-	def ad_manager
+	def advertising
 	end
 	def professionals
 	end
