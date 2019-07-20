@@ -97,5 +97,10 @@ body
 
 @media only screen and (max-width: 1000px)
 {
+	#main-page
+	{
+		padding-top: 50px;
+	}
+	.hide-mobile { display: none; }
 }
 
