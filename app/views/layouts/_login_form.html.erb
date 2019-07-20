@@ -1,7 +1,7 @@
 <% if flash[:login_notice] %>
   <div class="alert alert-danger" role="alert"><%= flash[:login_notice] %></div>
 <% end %> 
-<%= form_tag('/login', method: 'post') do |f| %>
+<%= form_for(:session, url: login_path) do |f| %>
   <div class="form-group">
     <%= text_field_tag :email, nil, class: 'form-control', required: '', placeholder: 'Email' %>
   </div>

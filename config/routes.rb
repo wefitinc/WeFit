@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get '/terms_of_use', :to => 'static#terms_of_use', :as => :terms_of_use
   get '/professionals', :to => 'static#professionals', :as => :professionals
   get '/privacy_policy', :to => 'static#privacy_policy', :as => :privacy_policy
-  # Session routing
+  # User routing
   post '/signup', :to => 'users#create'
+  # Session routing
   post '/login', :to => 'sessions#create'
   get '/logout', :to => 'sessions#destroy'
   get '/auth/:provider/callback', :to => 'sessions#create'

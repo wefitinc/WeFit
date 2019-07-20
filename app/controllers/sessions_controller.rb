@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   # Login controller action
   def create
     # Generate a response
@@ -12,8 +11,9 @@ class SessionsController < ApplicationController
         if @user
           # If the password is correct
           if @user.authenticate(params[:password])
-            # Set the user id in the session
+            # Log in the user
             session[:user_id] = @user.id
+            # Respond
             format.html { redirect_back fallback_location: root_path }
             format.json { render :show, status: :created, location: root_path }
           else
@@ -30,8 +30,9 @@ class SessionsController < ApplicationController
         # Get from OmniAuth
         @user = User.find_or_create_from_auth_hash(env["omniauth.auth"])
         if @user
-          # Set the user id in the session
+          # Log in the user
           session[:user_id] = @user.id
+          # Respond
           format.html { redirect_back fallback_location: root_path }
           format.json { render :show, status: :created, location: root_path }
         else
@@ -44,8 +45,8 @@ class SessionsController < ApplicationController
 
   # Logout controller action
   def destroy
-    # Set the session user id to nil
-  	session[:user_id] = nil
+    # Log out the current user
+    session[:user_id] = nil
     # Go back home
   	redirect_to root_path
   end
