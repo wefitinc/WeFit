@@ -100,7 +100,20 @@ body
 	#main-page
 	{
 		padding-top: 50px;
+		padding-bottom: 50px;
 	}
 	.hide-mobile { display: none; }
+
+	input[type="date"]:before
+	{
+		content: attr(placeholder) !important;
+		color: #aaa;
+		margin-right: 0.5em;
+	}
+	input[type="date"]:focus:before,
+	input[type="date"]:valid:before
+	{
+		content: "";
+	}
 }
 
