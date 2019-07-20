@@ -104,6 +104,11 @@ body
 	}
 	.hide-mobile { display: none; }
 
+	#signup
+	{
+		margin-top: 20px !important;
+	}
+
 	#bottom-icon
 	{
 		width: 56px;
@@ -111,7 +116,8 @@ body
 	}
 	#tos-bottom
 	{
-		width: 50%;
+		width: 60%;
+		margin-left: auto;
 		flex-direction: row;
 	}
 	#tos-bottom .nav-item
@@ -136,4 +142,3 @@ body
 		content: "" !important;
 	}
 }
-
