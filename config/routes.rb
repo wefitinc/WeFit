@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   get '/professionals', :to => 'static#professionals', :as => :professionals
   get '/privacy_policy', :to => 'static#privacy_policy', :as => :privacy_policy
   # Session routing
+  post '/signup', :to => 'users#create'
   post '/login', :to => 'sessions#create'
-  post '/signup', :to => 'sessions#new'
   get '/logout', :to => 'sessions#destroy'
   get '/auth/:provider/callback', :to => 'sessions#create'
   get '/auth/failure', :to => 'sessions#failure'
