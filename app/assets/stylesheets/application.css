@@ -95,14 +95,34 @@ body
 	z-index: 1030;
 }
 
-@media only screen and (max-width: 1000px)
+@media only screen and (max-width: 800px)
 {
 	#main-page
 	{
 		padding-top: 50px;
-		padding-bottom: 50px;
+		padding-bottom: 120px;
 	}
 	.hide-mobile { display: none; }
+
+	#bottom-icon
+	{
+		width: 56px;
+		height: 17px;
+	}
+	#tos-bottom
+	{
+		width: 50%;
+		flex-direction: row;
+	}
+	#tos-bottom .nav-item
+	{
+		text-align: center;
+		padding-right: 0.5em;
+	}
+	.navbar-bottom
+	{
+		position: fixed;
+	}
 
 	input[type="date"]:before
 	{
@@ -113,7 +133,7 @@ body
 	input[type="date"]:focus:before,
 	input[type="date"]:valid:before
 	{
-		content: "";
+		content: "" !important;
 	}
 }
 
