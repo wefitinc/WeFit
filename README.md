@@ -10,4 +10,8 @@
 	* Oauth2 configuration is in config/initializers/omniauth.rb
 		* The App IDs and Secrets should eventually be moved to an environment variable
 
+* Deployment
+	* Run `deploy.py` to generate a deployment zip
+	* Upload to AWS
+
 * See the Wiki for more info
