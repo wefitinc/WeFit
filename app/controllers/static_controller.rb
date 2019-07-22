@@ -9,6 +9,4 @@ class StaticController < ApplicationController
 	end
 	def professionals
 	end
-	def contact
-	end
 end
