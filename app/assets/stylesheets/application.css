@@ -93,6 +93,9 @@ body
 	bottom: 0;
 	left: 0;
 	z-index: 1030;
+
+	padding-left: 3rem !important;
+	padding-right: 3rem !important;
 }
 
 @media only screen and (max-width: 800px)
@@ -116,8 +119,6 @@ body
 	}
 	#tos-bottom
 	{
-		width: 60%;
-		margin-left: auto;
 		flex-direction: row;
 	}
 	#tos-bottom .nav-item
@@ -127,7 +128,8 @@ body
 	}
 	.navbar-bottom
 	{
-		position: fixed;
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
 	}
 
 	input[type="date"]:before
