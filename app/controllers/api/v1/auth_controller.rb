@@ -1,4 +1,5 @@
 require 'json_web_token'
+
 class Api::V1::AuthController < Api::V1::BaseController
   before_action :authorize, except: :login
 
@@ -21,7 +22,7 @@ private
   	begin
   		@decoded = JsonWebToken.decode(header)
   		@current_user = User.find(@decoded[:user_id])
-      render json: { errors: "User not found" }, status: :unauthorized if @current_user == nil
+      render json: { errors: "User not found" }, status: :not_found if @current_user == nil
   	rescue JWT::DecodeError => e
   		render json: { errors: e.message }, status: :unauthorized
   	end 
