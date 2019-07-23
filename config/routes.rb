@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       post '/auth/login', :to => 'auth#login'
     end
   end
+
+  # Website
   # Static page routing
   get '/about', :to => 'static#about', :as => :about
   get '/advertising', :to => 'static#advertising', :as => :advertising

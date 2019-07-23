@@ -8,8 +8,7 @@ class Api::V1::AuthController < Api::V1::BaseController
     if @user&.authenticate(params[:password])
       token = JsonWebToken.encode(user_id: @user.id)
       time = Time.now + 24.hours.to_i
-      render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M"),
-                     email: @user.email }, status: :ok
+      render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M") }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
@@ -22,8 +21,7 @@ private
   	begin
   		@decoded = JsonWebToken.decode(header)
   		@current_user = User.find(@decoded[:user_id])
-  	rescue ActiveRectord::RecordNotFound => e
-  		render json: { errors: e.message }, status: :unauthorized
+      render json: { errors: "User not found" }, status: :unauthorized if @current_user == nil
   	rescue JWT::DecodeError => e
   		render json: { errors: e.message }, status: :unauthorized
   	end 
