@@ -13,7 +13,7 @@ def login(email, password):
 	return None
 
 def auth_test(token):
-	headers = { 'Authorization': token}
+	headers = { 'Authorization': token }
 	r = requests.get(url+'/api/v1/auth/test', headers=headers)
 	if r.status_code == 200:
 		print("Authorized")
