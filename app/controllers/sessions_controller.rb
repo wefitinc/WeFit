@@ -1,44 +1,36 @@
 class SessionsController < ApplicationController
   # Login controller action
   def create
-    # Generate a response
-    respond_to do |format|
-      # If there isn't a provider, this is not an Omniauth login
-      if not params[:provider] 
-        # Get the user from the DB by the email
-      	@user = User.find_by_email(params[:email])
-        # If the user exists 
-        if @user
-          # If the password is correct
-          if @user.authenticate(params[:password])
-            # Log in the user
-            session[:user_id] = @user.id
-            # Respond
-            format.html { redirect_back fallback_location: root_path }
-            format.json { render :show, status: :created, location: root_path }
-          else
-            flash[:login_notice] = "Invalid email or password"
-            format.html { redirect_back fallback_location: root_path }
-            format.json { render json: @user.errors, status: :unprocessable_entity }
-          end
-        else
-          flash[:login_notice] = "Email not registered"
-          format.html { redirect_back fallback_location: root_path }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
-      else
-        # Get from OmniAuth
-        @user = User.find_or_create_from_auth_hash(env["omniauth.auth"])
-        if @user
+    # If there isn't a provider, this is not an Omniauth login
+    if not params[:provider] 
+      # Get the user from the DB by the email
+    	@user = User.find_by_email(params[:email])
+      # If the user exists 
+      if @user
+        # If the password is correct
+        if @user.authenticate(params[:password])
           # Log in the user
           session[:user_id] = @user.id
           # Respond
-          format.html { redirect_back fallback_location: root_path }
-          format.json { render :show, status: :created, location: root_path }
+          edirect_back fallback_location: root_path
         else
-          format.html { redirect_back fallback_location: root_path, notice: "Failed to authenticate" }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+          flash[:login_notice] = "Invalid email or password"
+          redirect_back fallback_location: root_path
         end
+      else
+        flash[:login_notice] = "Email not registered"
+        redirect_back fallback_location: root_path
+      end
+    else
+      # Get from OmniAuth
+      @user = User.find_or_create_from_auth_hash(env["omniauth.auth"])
+      if @user
+        # Log in the user
+        session[:user_id] = @user.id
+        # Respond
+        redirect_back fallback_location: root_path
+      else
+        redirect_back fallback_location: root_path, notice: "Failed to authenticate"
       end
     end
   end
