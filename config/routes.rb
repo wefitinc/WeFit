@@ -1,5 +1,11 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  # API
+  namespace :api do
+    namespace :v1 do
+      get '/test', :to => 'base#test'
+    end
+  end
   # Static page routing
   get '/about', :to => 'static#about', :as => :about
   get '/advertising', :to => 'static#advertising', :as => :advertising
