@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     namespace :v1 do
-      get '/test', :to => 'base#test'
+      get  '/test', :to => 'base#test'
+      post '/auth/login', :to => 'auth#login'
     end
   end
   # Static page routing
