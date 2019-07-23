@@ -22,7 +22,7 @@ def login(email, password):
 	print('Failed to login, status code ['+str(r.status_code)+']')
 	return None
 
-# Send an authorization test for eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE1NjQwMDkxODl9.8bfqYQKbDvHIrQQrSnNI_oLKuGnqAWBP_3dPSYOQaDca token
+# Send an authorization test for the token
 def auth_test(token):
 	# Test path
 	path = '/api/v1/auth/test'
