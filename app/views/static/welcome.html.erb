@@ -1,0 +1,123 @@
+<div class="vertical-center">
+	<div id="main-page" class="row">
+		<!-- YouTube video -->
+		<div class="col-7 my-auto mx-auto mobile-min-width">
+			<div class="embed-responsive embed-responsive-16by9 rounded-big">
+				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OWlLx0ITCh4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen wmode="transparent"></iframe>
+			</div>
+			<div class="my-4 rounded-big bg-light border shadow mx-auto w-50 px-2 py-2 hide-mobile">
+				<h4 class="text-center">Share with Friends!</h4>
+				<div class="share-icons">
+					<a class="nounderline" href="https://www.facebook.com/sharer/sharer.php?u=http://wefit.us" ><%= inline_svg "facebook-icon.svg", size: "60px*60px", class: "share-icon" %></a>
+					<a class="nounderline" href="http://twitter.com/share?text=WeFit&url=http://wefit.us" ><%= inline_svg "twitter-icon.svg", size: "60px*60px", class: "share-icon" %></a>
+					<a class="nounderline" href="mailto:?subject=Check out WeFit&amp;body=Check out this site http://wefit.us" ><%= inline_svg "gmail-icon.svg", size: "60px*60px", class: "share-icon" %></a>
+				</div>
+			</div>
+		</div>
+		<!-- Signup/countdown -->
+		<div id="signup" class="col-4 px-4 py-5 mx-auto my-auto bg-light border rounded-big shadow mobile-min-width">
+		<% if current_user? %>
+			<h2 class="py-3">Welcome <span class="light-blue font-weight-bold"><%= current_user.first_name %> <%= current_user.last_name %></span>!</h2>
+			<h3>WeFit Launch Countdown</h3>
+			<div class="row">
+				<div class="col">
+					<h1 id='days' class="rounded-big bg-blue px-3 py-5 font-weight-bold text-white">178</h1>
+					<p class="font-weight-bold">Days</p>
+				</div>
+				<div class="col">
+					<h1 id='hours' class="rounded-big bg-blue px-3 py-5 font-weight-bold text-white">24</h1>
+					<p class="font-weight-bold">Hours</p>
+				</div>
+				<div class="col">
+					<h1 id='minutes' class="rounded-big bg-blue px-3 py-5 font-weight-bold text-white">60</h1>
+					<p class="font-weight-bold">Minutes</p>
+				</div>
+				<div class="col">
+					<h1 id='seconds' class="rounded-big bg-blue px-3 py-5 font-weight-bold text-white">60</h1>
+					<p class="font-weight-bold">Seconds</p>
+				</div>
+			</div>
+			<%# TODO: Move this to the welcome.js file what for minification and whatnot %>
+			<script type="text/javascript">
+				// The date we're hurdling inexorably towards
+				var to_date = new Date("Dec 20, 2019").getTime();
+				// Update the timer
+				function update_timer()
+				{
+					// Get the delta
+					var now = new Date().getTime();
+					var delta = to_date - now;
+					// Update the counter with magic math
+					$("#days").text(Math.floor(delta / (1000*60*60*24)));
+					$("#hours").text(Math.floor((delta % (1000*60*60*24)) / (1000*60*60)));
+					$("#minutes").text(Math.floor((delta % (1000*60*60)) / (1000*60)));
+					$("#seconds").text(Math.floor((delta % (1000*60)) / (1000)));
+				};
+				// Update every second
+				setInterval(update_timer, 1000);
+				// Call on load too
+				update_timer();
+			</script>
+		<% else %>
+			<h3 class="text-center">Join today, <b>FREE</b> forever.</h3>
+			<div class="text-center mx-auto w-100">
+				<div class="fb-login-button" data-size="large" data-width="300" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="true"></div>
+			</div>
+			<p class="text-center">or</p>
+			<%= form_for User.new, :url => '/signup' do |f| %>
+				<div class="form-group row">
+					<div class="col"><%= f.text_field :first_name, class: 'form-control', required: '', placeholder: 'First Name' %></div>
+					<div class="col"><%= f.text_field :last_name, class: 'form-control', required: '', placeholder: 'Last Name' %></div>
+				</div>
+				<div class="form-group">
+					<%= f.email_field :email, class: 'form-control', required: '', placeholder: 'Email' %>
+				</div>
+				<div class="form-group input-group">
+					<%= f.password_field :password, class: 'form-control', required: '', placeholder: 'Password' %>
+					<div class="input-group-append" onclick='toggle_password()'>
+						<div class="input-group-text"><%= image_tag "eye.png", size: "16x16", alt: "WeFit" %></div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col">
+						<%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: '' } %>
+					</div>
+					<div class="col">
+						<%= f.date_field :birthdate, class: "form-control", required: '', placeholder: "Birthdate" %>
+					</div>
+				</div>
+				<div class="form-group text-center col-sm">
+					<%= f.label :terms_of_use, "By signing up, you agree to WeFit's #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
+				</div>
+				<div class="form-group text-center">
+					<%= f.submit "Sign Up", class: "btn btn-green btn-lg w-50" %>
+				</div>
+			<% end %>
+			<script type="text/javascript">
+			  $(document).ready(function()
+			  {
+			    $("#user_first_name").select();
+			    // Fix a bug with FB button not rendering
+			    FB.XFBML.parse();
+			  });
+			  function toggle_password()
+			  {
+			  	var field = document.getElementById('user_password');
+			  	field.type = (field.type === 'password') ? "text" : "password";
+			  };
+			</script>
+		<% end %>
+		</div>
+	</div>
+</div>
+<div class="circles hide-mobile">
+	<div class="bg-circle bg-circle-1"></div>
+	<div class="bg-circle bg-circle-2"></div>
+	<div class="bg-circle bg-circle-3"></div>
+
+	<div class="bg-circle bg-circle-4"></div>
+	<div class="bg-circle bg-circle-5"></div>
+
+	<div class="bg-circle bg-circle-6"></div>
+	<div class="bg-circle bg-circle-7"></div>
+</div>

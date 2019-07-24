@@ -30,5 +30,5 @@ Rails.application.routes.draw do
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
   # Root controller
-  root 'welcome#index'
+  root 'static#welcome'
 end
