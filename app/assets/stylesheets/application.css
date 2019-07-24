@@ -123,8 +123,8 @@ body
 	}
 	.navbar-bottom
 	{
-		padding-left: 1rem !important;
-		padding-right: 1rem !important;
+		padding-left: 0.6rem !important;
+		padding-right: 0.6rem !important;
 	}
 
 	input[type="date"]:before
