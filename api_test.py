@@ -17,7 +17,7 @@ def login(email, password):
 	if r.status_code == 200:
 		# Log and return the data
 		print("Logged in")
-		return r.json()['token']
+		return r.json()
 	# Failed, dont return data
 	print('Failed to login, status code ['+str(r.status_code)+']')
 	return None
@@ -38,14 +38,14 @@ def auth_test(token):
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
 
-def get_user(token):
+def get_user(user_id):
 	# User path
-	path = '/api/v1/auth/user'
+	path = '/api/v1/users/'+str(user_id)
 	print('Contacting '+url+path+'...', end ="")
 	# Make sure the headers contain the authorization token
-	headers = { 'Authorization': token }
+	# headers = { 'Authorization': token }
 	# Make the request (GET)
-	r = requests.get(url+path, headers=headers)
+	r = requests.get(url+path)
 	# If the request was successful
 	if r.status_code == 200:
 		print("Got user data")
@@ -59,10 +59,10 @@ if __name__ == '__main__':
 	email    = 'test@test.com'
 	# password = 'SuperSecretTestPassword'
 	password = 'test'
-	token = login(email, password)
+	data = login(email, password)
 	# If login successful
-	if token:
+	if data:
 		# Run an authorization test
-		auth_test(token)
-		data = get_user(token)
-		print("Hello "+data['first_name']+" "+data['last_name']+", the API works!")
+		auth_test(data['token'])
+		user_data = get_user(data['user_id'])
+		print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")

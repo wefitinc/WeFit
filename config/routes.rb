@@ -5,7 +5,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/auth/login', :to => 'auth#login'
       get  '/auth/test', :to => 'auth#test'
-      get  '/auth/user', :to => 'auth#user'
+      
+      resources :users, only: [:show]
     end
   end
 
