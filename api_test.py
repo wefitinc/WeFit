@@ -1,8 +1,8 @@
 import requests
 
 # Base URL to contact
-# url = 'https://wefit.us'
-url = 'http://localhost:3000'
+url = 'https://wefit.us'
+# url = 'http://localhost:3000'
 
 # Send a login request with the email and password
 def login(email, password):
@@ -57,8 +57,8 @@ def get_user(user_id):
 if __name__ == '__main__':
 	# Try and log in as the test user
 	email    = 'test@test.com'
-	# password = 'SuperSecretTestPassword'
-	password = 'test'
+	password = 'SuperSecretTestPassword'
+	# password = 'test'
 	data = login(email, password)
 	# If login successful
 	if data:
