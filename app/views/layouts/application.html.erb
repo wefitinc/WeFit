@@ -10,7 +10,7 @@
     <%= csp_meta_tag %>
     <%# SEO Stuff %>
     <title>WeFit <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
-    <meta name='description' content='<%= yield_meta_tag(:description, 'Default description') %>' />
+    <meta name='description' content='<%= yield_meta_tag(:description, 'WeFit, the Social network for all things health') %>' />
     <meta name='keywords' content='<%= yield_meta_tag(:keywords, 'wefit,wefit.us,fitness,health') %>' />
     <%# Favicon %>
     <%= favicon_link_tag asset_path('square-logo.png'), :rel => 'icon', :type =>  'image/png' %>
