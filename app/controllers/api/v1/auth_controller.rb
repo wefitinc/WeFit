@@ -19,15 +19,24 @@ class Api::V1::AuthController < Api::V1::BaseController
     end
   end
 
-  # GET /auth/test
-  def test
+  # GET /auth/check
+  def check
     render json: { status: 'ok' }, status: :ok
   end
 
-  # GET /auth/user
-  def user
-    # Strip out some sensitive user data and return as JSON 
-    render json: @current_user, except: [:created_at, :updated_at, :password_digest, :reset_digest, :reset_sent_at]
+  # GET /auth/me
+  def me
+    render json: @current_user, except: [
+      # Strip the user id, it's internal
+      :id, 
+      # Do NOT include the password digest or anything related to it!
+      :password_digest, 
+      # Strip the database timestamps
+      # NOTE: No security reason, they're just not useful
+      :created_at, :updated_at, 
+      # Strip reset data
+      # NOTE: Not a huge security risk, but nothing would need it
+      :reset_digest, :reset_sent_at]
   end
 
   private
