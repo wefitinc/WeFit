@@ -3,12 +3,22 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   # GET /users/:id
   def show
-    render json: @user, except: [:created_at, :updated_at, :password_digest, :reset_digest, :reset_sent_at]
+    render json: @user, except: [
+    	# Strip the user id, it's internal
+    	:id, 
+    	# Do NOT include the password digest or anything related to it!
+    	:password_digest, 
+    	# Strip the database timestamps
+    	# NOTE: No security reason, they're just not usefull
+    	:created_at, :updated_at, 
+    	# Strip reset data, not a huge security risk, but nothing would need it
+    	:reset_digest, :reset_sent_at]
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      # Use find_by_hashid to not allow sequential ID lookups
+      @user = User.find_by_hashid(params[:id])
     end
 end

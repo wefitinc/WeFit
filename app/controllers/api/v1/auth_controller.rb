@@ -13,7 +13,7 @@ class Api::V1::AuthController < Api::V1::BaseController
       @token = JsonWebToken.encode(user_id: @user.id)
       @time = Time.now + 24.hours.to_i
       # Send the token as a response
-      render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.id }, status: :ok
+      render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end
