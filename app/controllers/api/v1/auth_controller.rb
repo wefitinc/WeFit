@@ -10,7 +10,7 @@ class Api::V1::AuthController < Api::V1::BaseController
     # If the user exists and the password matches
     if @user&.authenticate(login_params[:password])
       # Encode a new token with their user ID
-      @token = JsonWebToken.encode(user_id: @user.id)
+      @token = JsonWebToken.encode(user_id: @user.hashid)
       @time = Time.now + 24.hours.to_i
       # Send the token as a response
       render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
@@ -39,7 +39,7 @@ class Api::V1::AuthController < Api::V1::BaseController
         # Try and decode the token
     		@decoded = JsonWebToken.decode(header)
         # Get the user by the user ID from the token
-    		@current_user = User.find(@decoded[:user_id])
+    		@current_user = User.find_by_hashid(@decoded[:user_id])
         # Return an error if the user doesn't exist 
         # NOTE: This should not happen, the token is encoded and signed with the secret key
         # But just incase theres a server error or something
