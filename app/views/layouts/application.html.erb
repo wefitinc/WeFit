@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <%# Device meta stuff %>
     <meta charset="utf-8">
-    <title>WeFit</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="theme-color" content="#ff7878">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%# SEO Stuff %>
+    <title>WeFit <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
+    <meta name='description' content='<%= yield_meta_tag(:description, 'Default description') %>' />
+    <meta name='keywords' content='<%= yield_meta_tag(:keywords, 'wefit,wefit.us,fitness,health') %>' />
+    <%# Favicon %>
     <%= favicon_link_tag asset_path('square-logo.png'), :rel => 'icon', :type =>  'image/png' %>
+
     <!-- Google API -->
     <meta name="google-signin-client_id" content="997965127714-86jhvdo0b7hvf5maf52b6vm6o1uttunu.apps.googleusercontent.com">
     <!-- Bootstrap CSS -->
@@ -39,7 +45,7 @@
       <a class="navbar-brand pl-5" href="/">
         <%= image_tag "logo-transparent.png", size: "64x32", alt: "WeFit" %>
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarLinks">
