@@ -23,6 +23,14 @@
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap" rel="stylesheet"> 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
+    <!-- Facebook JS -->
+    <script crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Bootrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -30,18 +38,9 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-KWKKSWG');</script>
     <!-- End Google Tag Manager -->
-
-    <!-- Facebook JS -->
-    <script crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3"></script>
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Google JS -->
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <!-- Bootrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
+    <!-- FB root -->
     <div id="fb-root"></div>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWKKSWG"
@@ -49,21 +48,19 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!--[if lte IE 8]>
-      <div class="alert alert-danger">Please don't use internet explorer, <a href="https://browsehappy.com/">upgrade to something modern</a>!</div>		      
+      <div class="alert alert-danger">Please don't use internet explorer, <a href="https://browsehappy.com/">upgrade to something modern</a>!</div>
     <![endif]-->
     <!-- NavBar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-pink">
-      <a id="top-logo" class="navbar-brand" href="/">
-        <%= image_tag "logo-transparent.png", size: "64x32", alt: "WeFit" %>
-      </a>
+      <%= link_to image_tag("logo-transparent.png", size: "64x32", alt: "WeFit"), root_path, id: 'top-logo' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarLinks">
         <ul class="navbar-nav pr-5 ml-auto">
           <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "Advertising", advertising_path, class:"nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "Professionals", professionals_path, class:"nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "Advertising", advertising_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "Professionals", professionals_path, class: "nav-link text-white" %></li>
 
           <% if current_user? %>
             <%# Show the current user name %>
@@ -75,7 +72,7 @@
             </li>
           <% else %>
             <%# Show a login modal link if not logged in %>
-            <li class="nav-item"><a class="nav-link text-white" href="#" data-toggle="modal" data-target="#loginModal">Log In</a></li>
+            <li class="nav-item"><%= link_to "Log In", '#', class: 'nav-link text-white', 'data-toggle': 'modal', 'data-target': '#loginModal' %></li>
           <% end %>
 	      </ul>
       </div>
@@ -111,12 +108,12 @@
     <% end %>
     <!-- NavBar bottom -->
     <nav class="navbar navbar-bottom navbar-expand-md navbar-light bg-pink">
-      <a class="navbar-brand text-white" href="/"><%= image_tag "text-transparent-white.png", size: "112x34", id: "bottom-icon" %></a>
+      <%= link_to image_tag("text-transparent-white.png", size: "112x34", id: "bottom-icon"), root_path, class: 'navbar-brand text-white' %>
       <ul class="navbar-nav abs-center-x hide-mobile">
-        <li class="nav-item"><a class="nav-link" href="https://facebook.com/WeFitHQ"><%= inline_svg "facebook-icon.svg", size: "24px*24px", alt: "FB" %></a></li>
-        <li class="nav-item"><a class="nav-link" href="https://instagram.com/wefit.us"><%= inline_svg "instagram-icon.svg", size: "24px*24px", alt: "IG" %></a></li>
-        <li class="nav-item"><a class="nav-link" href="https://youtube.com/channel/UCuMcN15thVjRN5g1tq3k6dg?view_as=subscriber"><%= inline_svg "youtube-icon.svg", size: "24px*24px", alt: "YT" %></a></li>
-        <li class="nav-item"><a class="nav-link" href="https://twitter.com/wefit_us"><%= inline_svg "twitter-icon.svg", size: "24px*24px", alt: "TWTR" %></a></li>
+        <li class="nav-item"><%= link_to inline_svg("facebook-icon.svg", size: "24px*24px", alt: "FB"), "https://facebook.com/WeFitHQ", class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to inline_svg("instagram-icon.svg", size: "24px*24px", alt: "IG"), "https://instagram.com/wefit.us", class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to inline_svg("youtube-icon.svg", size: "24px*24px", alt: "YT"), "https://youtube.com/channel/UCuMcN15thVjRN5g1tq3k6dg?view_as=subscriber", class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to inline_svg("twitter-icon.svg", size: "24px*24px", alt: "TWTR"), "https://twitter.com/wefit_us", class:"nav-link" %></li>
       </ul>
       <ul id="tos-bottom" class="navbar-nav ml-auto">
         <li class="nav-item"><%= link_to "Terms of Use", terms_of_use_path, class: "nav-link text-white" %></li>
