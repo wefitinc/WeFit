@@ -7,7 +7,7 @@ class User < ApplicationRecord
   acts_as_gendered 
   # Implement BCrypt passwords
   has_secure_password
-
+  # Use hashids for more secure lookup
   include Hashid::Rails
   
   # The user needs to have accepted the tos on signup
