@@ -87,7 +87,7 @@
 						<%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: '' } %>
 					</div>
 					<div class="col">
-						<%= f.date_field :birthdate, class: "form-control", required: '', placeholder: "Birthdate" %>
+						<%= f.text_field :birthdate, class: "form-control", required: '', placeholder: "Birthdate", onfocus:"(this.type='date')", onblur:"(this.type='text')" %>
 					</div>
 				</div>
 				<div class="form-group text-center col-sm">
