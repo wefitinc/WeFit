@@ -98,6 +98,11 @@ body
 	padding-right: 3rem !important;
 }
 
+#top-logo
+{
+	padding-left: 3rem;
+}
+
 @media only screen and (max-width: 800px)
 {
 	#main-page
@@ -106,6 +111,11 @@ body
 		padding-bottom: 120px;
 	}
 	.hide-mobile { display: none; }
+
+	#top-logo
+	{
+		padding-left: 0rem;
+	}
 
 	#bottom-icon
 	{
