@@ -37,27 +37,15 @@ body
 .bg-dark-grey { background-color: #333 !important; }
 
 // misc. styles
-.rounded-big
-{
-	border-radius: 2.5rem !important;
-}
-.nounderline
-{
-	text-decoration: none !important
-}
-.abs-center-x
-{
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
-}
+.rounded-big      { border-radius: 2.5rem !important; }
+.nounderline      { text-decoration: none !important }
+.mobile-min-width { min-width: 350px; }
 .big-text
 {
 	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
 }
-.mobile-min-width { min-width: 350px; }
 
 // Button styles
 .btn-green
@@ -77,6 +65,7 @@ body
 	width: 25%;
 }
 
+// Login modal styles
 .modal-header
 {
 	border-bottom: none;
@@ -89,6 +78,7 @@ body
 	text-align: center;
 }
 
+// Navbar styles
 #top-logo
 {
 	padding-left: 3rem;
@@ -97,6 +87,12 @@ body
 {
 	padding-left: 3rem !important;
 	padding-right: 3rem !important;
+}
+.abs-center-x
+{
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
 }
 
 // Homepage styles
@@ -147,18 +143,21 @@ body
 	padding-bottom: 5%;
 }
 
+// Professionals page styles
 .professional-top
 {
 	padding-top: 4%;
 	padding-bottom: 4%;
 }
 
+// Privacy policy/terms of use styles
 #privacy-policy
 {
 	margin-left: 10%;
 	margin-right: 10%;
 }
 
+// Contact page styles
 #contact-page
 {
 	padding-top: 5% !important;
@@ -169,10 +168,21 @@ body
 // Circles for the background
 @import 'circles';
 
+// Mobile styles
 @media only screen and (max-width: 800px)
 {
+	// Msc. styles
 	.hide-mobile { display: none; }
+	.big-text
+	{
+		width: 90%;
+	}
+	.btn-about
+	{
+		width: 50%;
+	}
 
+	// Navbar styles
 	#top-logo
 	{
 		padding-left: 0rem;
@@ -197,20 +207,7 @@ body
 		padding-right: 0.6rem !important;
 	}
 
-	#signup
-	{
-		margin-top: 20px !important;
-	}
-
-	.big-text
-	{
-		width: 90%;
-	}
-	.btn-about
-	{
-		width: 50%;
-	}
-
+	// Home page
 	#homepage
 	{
 		margin-left: 0;
@@ -222,6 +219,7 @@ body
 		margin-right: auto;
 	}
 
+	// Privacy policy/terms of use
 	#privacy-policy
 	{
 		margin-left: 0;
@@ -230,6 +228,7 @@ body
 		padding-right: 1rem;
 	}
 
+	// Contact
 	#contact-page
 	{
 		padding-top: 1rem !important;
