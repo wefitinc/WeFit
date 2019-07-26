@@ -11,4 +11,6 @@ class StaticController < ApplicationController
 	end
 	def welcome
 	end
+	def signup
+	end
 end

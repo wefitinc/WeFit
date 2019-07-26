@@ -1,0 +1,236 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ * require_tree .
+ *= require_self
+ */
+
+// Main body styles
+body
+{
+	font-family: 'Didact Gothic', sans-serif;
+}
+.container-fluid
+{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+// Colors
+.pink         { color: #ff7878 !important; }
+.green        { color:#009912 !important; }
+.light-blue   { color: #00aeff !important; }
+
+// Background colors
+.bg-blue      { background-color: #00aeff !important; }
+.bg-pink      { background-color: #ff7878 !important; }
+.bg-dark-grey { background-color: #333 !important; }
+
+// misc. styles
+.rounded-big
+{
+	border-radius: 2.5rem !important;
+}
+.nounderline
+{
+	text-decoration: none !important
+}
+.abs-center-x
+{
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+}
+.big-text
+{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.mobile-min-width { min-width: 350px; }
+
+// Button styles
+.btn-green
+{
+	color: #fff;
+	outline-color: #009912;
+	background-color: #009912;
+}
+.btn-green:hover
+{
+	color: #fff;
+	outline-color: #008809;
+	background-color: #008809;
+}
+.btn-about
+{
+	width: 25%;
+}
+
+.modal-header
+{
+	border-bottom: none;
+	border-top: none;
+	text-align: center;
+	padding-bottom: 0px;
+}
+.modal-close
+{
+	text-align: center;
+}
+
+#top-logo
+{
+	padding-left: 3rem;
+}
+.navbar-bottom
+{
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1030;
+
+	padding-left: 3rem !important;
+	padding-right: 3rem !important;
+}
+
+// Homepage styles
+.vertical-center
+{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.share-icon
+{
+	padding-left: 2.5%;
+	padding-right: 2.5%;
+	#path2
+	{
+		fill: #333 !important;
+	}
+}
+.share-icons
+{
+	text-align: center;
+}
+.homepage-top
+{
+	padding-top: 2%;
+	padding-bottom: 2%;
+} 
+
+// About page styles
+.about-top
+{
+	background: #00aeff !important;
+	padding-top: 4%;
+	padding-bottom: 4%;
+	margin-top: 2px;
+}
+.about-middle
+{
+	background: #eee !important;
+	padding-top: 3%;
+	padding-bottom: 3%;
+	padding-left: 15%;
+	padding-right: 15%;
+	text-align: center;
+}
+.about-bottom
+{
+	padding-top: 2%;
+	padding-bottom: 5%;
+}
+
+.professional-top
+{
+	padding-top: 4%;
+	padding-bottom: 4%;
+}
+
+#contact-page
+{
+	padding-top: 5% !important;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Circles for the background
+@import 'circles';
+
+@media only screen and (max-width: 800px)
+{
+	.hide-mobile { display: none; }
+
+	.container-fluid
+	{
+		padding-bottom: 80px;
+	}
+
+	#contact-page
+	{
+		padding-top: 1rem !important;
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
+	}
+
+	#top-logo
+	{
+		padding-left: 0rem;
+	}
+
+	.vertical-center
+	{
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	#bottom-icon
+	{
+		width: 84px;
+		height: 25px;
+	}
+	#tos-bottom
+	{
+		flex-direction: row;
+	}
+	#tos-bottom .nav-item
+	{
+		text-align: center;
+		padding-right: 0.5em;
+	}
+	.navbar-bottom
+	{
+		padding-left: 0.6rem !important;
+		padding-right: 0.6rem !important;
+	}
+
+	#homepage-content
+	{
+		padding-bottom: 25%;
+	}
+
+	#signup
+	{
+		margin-top: 20px !important;
+	}
+
+	.big-text
+	{
+		width: 90%;
+	}
+	.btn-about
+	{
+		width: 50%;
+	}
+}
