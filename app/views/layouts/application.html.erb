@@ -30,6 +30,8 @@
     <!-- Bootrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- App JS -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': 'true' %>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -61,7 +63,6 @@
           <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "Advertising", advertising_path, class: "nav-link text-white" %></li>
           <li class="nav-item"><%= link_to "Professionals", professionals_path, class: "nav-link text-white" %></li>
-
           <% if current_user? %>
             <%# Show the current user name %>
             <li class="nav-item dropdown">
@@ -107,7 +108,7 @@
       <% end %>
     <% end %>
     <!-- NavBar bottom -->
-    <nav class="navbar navbar-bottom navbar-expand-md navbar-light bg-pink">
+    <nav class="navbar fixed-bottom navbar-bottom navbar-expand-md navbar-light bg-pink">
       <%= link_to image_tag("text-transparent-white.png", size: "112x34", id: "bottom-icon"), root_path, class: 'navbar-brand text-white' %>
       <ul class="navbar-nav abs-center-x hide-mobile">
         <li class="nav-item"><%= link_to inline_svg("facebook-icon.svg", size: "24px*24px", alt: "FB"), "https://facebook.com/WeFitHQ", class:"nav-link" %></li>
@@ -121,7 +122,5 @@
         <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link text-white" %></li>
       </ul>
     </nav>
-    <!-- App JS -->
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': 'true' %>
   </body>
 </html>
