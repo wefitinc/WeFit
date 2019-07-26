@@ -23,6 +23,7 @@ body
 {
 	padding-left: 0;
 	padding-right: 0;
+	padding-bottom: 80px;
 }
 
 // Colors
@@ -38,27 +39,15 @@ body
 .bg-white     { background-color: #FFFFFF !important;}
 
 // misc. styles
-.rounded-big
-{
-	border-radius: 2.5rem !important;
-}
-.nounderline
-{
-	text-decoration: none !important
-}
-.abs-center-x
-{
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
-}
+.rounded-big      { border-radius: 2.5rem !important; }
+.nounderline      { text-decoration: none !important }
+.mobile-min-width { min-width: 350px; }
 .big-text
 {
 	width: 60%;
 	margin-left: auto;
 	margin-right: auto;
 }
-.mobile-min-width { min-width: 350px; }
 
 // Button styles
 .btn-green
@@ -78,6 +67,7 @@ body
 	width: 25%;
 }
 
+// Login modal styles
 .modal-header
 {
 	border-bottom: none;
@@ -90,28 +80,24 @@ body
 	text-align: center;
 }
 
+// Navbar styles
 #top-logo
 {
 	padding-left: 3rem;
 }
 .navbar-bottom
 {
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 1030;
-
 	padding-left: 3rem !important;
 	padding-right: 3rem !important;
 }
+.abs-center-x
+{
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+}
 
 // Homepage styles
-.vertical-center
-{
-	margin-left: 10%;
-	margin-right: 10%;
-}
 .share-icon
 {
 	padding-left: 2.5%;
@@ -125,7 +111,12 @@ body
 {
 	text-align: center;
 }
-.homepage-top
+#homepage
+{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+#homepage-top
 {
 	padding-top: 2%;
 	padding-bottom: 2%;
@@ -154,12 +145,21 @@ body
 	padding-bottom: 5%;
 }
 
+// Professionals page styles
 .professional-top
 {
 	padding-top: 4%;
 	padding-bottom: 4%;
 }
 
+// Privacy policy/terms of use styles
+#privacy-policy
+{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+// Contact page styles
 #contact-page
 {
 	padding-top: 5% !important;
@@ -170,33 +170,25 @@ body
 // Circles for the background
 @import 'circles';
 
+// Mobile styles
 @media only screen and (max-width: 800px)
 {
+	// Msc. styles
 	.hide-mobile { display: none; }
-
-	.container-fluid
+	.big-text
 	{
-		padding-bottom: 80px;
+		width: 90%;
+	}
+	.btn-about
+	{
+		width: 50%;
 	}
 
-	#contact-page
-	{
-		padding-top: 1rem !important;
-		padding-left: 1rem !important;
-		padding-right: 1rem !important;
-	}
-
+	// Navbar styles
 	#top-logo
 	{
 		padding-left: 0rem;
 	}
-
-	.vertical-center
-	{
-		margin-left: auto;
-		margin-right: auto;
-	}
-
 	#bottom-icon
 	{
 		width: 84px;
@@ -217,22 +209,32 @@ body
 		padding-right: 0.6rem !important;
 	}
 
+	// Home page
+	#homepage
+	{
+		margin-left: 0;
+		margin-right: 0;
+	}
 	#homepage-content
 	{
-		padding-bottom: 25%;
+		margin-left: auto;
+		margin-right: auto;
 	}
 
-	#signup
+	// Privacy policy/terms of use
+	#privacy-policy
 	{
-		margin-top: 20px !important;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 1rem;
+		padding-right: 1rem;
 	}
 
-	.big-text
+	// Contact
+	#contact-page
 	{
-		width: 90%;
-	}
-	.btn-about
-	{
-		width: 50%;
+		padding-top: 1rem !important;
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
 	}
 }
