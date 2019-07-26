@@ -152,6 +152,12 @@ body
 	padding-bottom: 4%;
 }
 
+#privacy-policy
+{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
 #contact-page
 {
 	padding-top: 5% !important;
@@ -218,6 +224,14 @@ body
 	{
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	#privacy-policy
+	{
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
 	}
 
 	#contact-page
