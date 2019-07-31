@@ -19,6 +19,10 @@ class Api::V1::AuthController < Api::V1::BaseController
     end
   end
 
+  # POST /auth/signup
+  def signup
+  end
+
   # GET /auth/check
   def check
     render json: { status: 'ok' }, status: :ok
@@ -62,5 +66,14 @@ class Api::V1::AuthController < Api::V1::BaseController
       params.permit(
           :email, 
           :password)
+    end
+    def signup_params
+      params.permit(
+        :email,
+        :first_name,
+        :last_name,
+        :gender,
+        :birthdate,
+        :password)
     end
 end

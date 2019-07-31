@@ -10,10 +10,27 @@ class User < ApplicationRecord
   # Use hashids for more secure lookup
   include Hashid::Rails
   
-  # The user needs to have accepted the tos on signup
-  validates :terms_of_use, acceptance: true
+  # The user needs a valid name
+  validates :first_name,  
+    presence: true, 
+    length: { maximum: 50 }
+  validates :last_name,  
+    presence: true, 
+    length: { maximum: 50 }
   # The user needs a valid email address, unique within the database
-  validates :email, presence: true, format: {with: VALID_EMAIL_REGEX}, uniqueness: true
+  validates :email, 
+    presence: true, 
+    uniqueness: true,
+    length: { maximum: 255 },
+    format: { with: VALID_EMAIL_REGEX }
+  # Needs a password
+  validates :password,
+    presence: true,
+    length: { minimum: 6 }
+  # Needs a gender
+  validates :gender,
+    presence: true,
+    inclusion: { in: ActsAsGendered::GENDERS }
 
   # Implements the signup/login via the omniauth plugins
   def self.find_or_create_from_auth_hash(auth)
