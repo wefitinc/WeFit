@@ -23,4 +23,13 @@ module ApplicationHelper
   def current_user?
     current_user != nil
   end
+
+  # Log in a user (web only)
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+  # Log the current user out
+  def log_out
+    session[:user_id] = nil
+  end
 end

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       # If the user exists and can be authenticated
       if @user&.authenticate(params[:password])
         # Log in the user
-        session[:user_id] = @user.id
+        log_in @user
         # Respond
         redirect_back fallback_location: root_path
       else
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   # Logout controller action
   def destroy
     # Log out the current user
-    session[:user_id] = nil
+    log_out
     # Go back home
   	redirect_to root_path
   end
