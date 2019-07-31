@@ -1,3 +1,6 @@
+# Require JSON web token code
+require 'json_web_token'
+
 module Api::V1::BaseHelper
   # Check for authorization in the header
   def authorize
