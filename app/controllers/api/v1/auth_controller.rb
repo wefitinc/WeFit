@@ -1,7 +1,7 @@
 require 'json_web_token'
 
 class Api::V1::AuthController < Api::V1::BaseController
-  before_action :authorize, except: :login
+  before_action :authorize, except: [:login, :signup]
 
   # POST /auth/login
   def login 
@@ -21,6 +21,18 @@ class Api::V1::AuthController < Api::V1::BaseController
 
   # POST /auth/signup
   def signup
+    # Try and make a new user
+    @user = User.new(signup_params)
+    if @user.save
+      # Encode a new token with their user ID
+      @token = JsonWebToken.encode(user_id: @user.hashid)
+      @time = Time.now + 24.hours.to_i
+      # Send the token as a response
+      render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
+    else
+      # Signup failed, abort
+      render json: { errors: @user.errors }, status: :unprocessable_entity
+    end
   end
 
   # GET /auth/check

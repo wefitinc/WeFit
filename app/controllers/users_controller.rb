@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     # If the user was successfully created
     if @user.save
       # Make the user automatically logged in
-      session[:user_id] = @user.id
+      log_in @user
       # Redirect to root
       redirect_to root_path, notice: 'User was successfully created.'
     else

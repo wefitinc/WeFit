@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     namespace :v1 do
+      post '/auth/signup', :to => 'auth#signup'
       post '/auth/login', :to => 'auth#login'
       get  '/auth/check', :to => 'auth#check'
       get  '/auth/me', :to => 'auth#me'
