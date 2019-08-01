@@ -6,14 +6,15 @@
     <meta name="theme-color" content="#ff0800">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
     <%# SEO Stuff %>
     <title>WeFit <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
     <meta name='description' content='<%= yield_meta_tag(:description, 'WeFit, the social network for all things health.') %>' />
     <meta name='keywords' content='<%= yield_meta_tag(:keywords, 'wefit,wefit.us,fitness,health') %>' />
     <%# Favicon %>
     <%= favicon_link_tag asset_path('square-logo.png'), :rel => 'icon', :type =>  'image/png' %>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
     <!-- Google API -->
     <meta name="google-signin-client_id" content="997965127714-86jhvdo0b7hvf5maf52b6vm6o1uttunu.apps.googleusercontent.com">
@@ -44,7 +45,7 @@
     })(window,document,'script','dataLayer','GTM-KWKKSWG');</script>
     <!-- End Google Tag Manager -->
   </head>
-  <body>
+  <body class="<%= controller_name %> <%= action_name %> <%= current_user? ? 'logged_in' : 'logged_out' %>">
     <!-- FB root -->
     <div id="fb-root"></div>
     <!-- Google Tag Manager (noscript) -->
