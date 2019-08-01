@@ -5,7 +5,7 @@
 <div id="contact-page">
 	<div class="col-md-4 px-4 py-4 mx-auto my-auto bg-light border rounded-big shadow">
 		<h3 class="text-center">Contact Us</h3>
-		<%= form_tag '/send_contact' do %>
+		<%= form_tag '/contact', method: :post do %>
 			<div class="form-group"><%= text_field_tag :name, '', class: 'form-control', placeholder: 'Name', required: '' %></div>
 			<div class="form-group"><%= email_field_tag :email, '', class: 'form-control', placeholder: 'Email', required: '' %></div>
 			<div class="form-group"><%= text_area_tag :body, '', class: 'form-control', size: '3x4', placeholder: 'Message', required: '' %></div>
