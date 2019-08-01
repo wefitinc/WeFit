@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Basic email REGEX for server side validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_DATE_REGEX = /([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])/
   # Allow the user mailer to access the reset token
   attr_accessor :reset_token
   # Implement the gendered behavior (see lib/acts_as_gendered.rb)
@@ -31,6 +32,10 @@ class User < ApplicationRecord
   validates :gender,
     presence: true,
     inclusion: { in: ActsAsGendered::GENDERS }
+  # Needs a birthdate in YYYY-MM-DD format
+  validates :birthdate,
+    presence: true,
+    format: { with: VALID_DATE_REGEX }
 
   # Implements the signup/login via the omniauth plugins
   def self.find_or_create_from_auth_hash(auth)
