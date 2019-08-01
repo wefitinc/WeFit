@@ -97,9 +97,11 @@
 					</div>
 				<% end %>
 				<script type="text/javascript">
+				  var today = new Date();
 				  var picker = new Pikaday({
 				  	field: document.getElementById('user_birthdate'),
-				  	format: 'YYYY-MM-DD'
+				  	format: 'YYYY-MM-DD',
+				  	yearRange: [today.getFullYear()-100, today.getFullYear()]
 				  });
 				  $(document).ready(function()
 				  {
