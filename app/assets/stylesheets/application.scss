@@ -38,13 +38,13 @@ body
 .white     { background-color: #FFFFFF !important;}
 
 // Background colors
-.bg-blue      { background-color: #00aeff !important; }
-.bg-pink      { background-color: #ff0800 !important; }
-.bg-dark-grey { background-color: #333 !important; }
-.bg-white     { background-color: #FFFFFF !important;}
-.bg-light-grey     { background-color: #F7F7F7 !important;}
-.bg-red 	  {background-color: #ff0800 !important;}
-.bg-black     {background-color:#000000 !important;}
+.bg-blue        { background-color: #00aeff !important; }
+.bg-pink        { background-color: #ff0800 !important; }
+.bg-dark-grey   { background-color: #333 !important; }
+.bg-white       { background-color: #FFFFFF !important;}
+.bg-light-grey  { background-color: #F7F7F7 !important;}
+.bg-red 	    { background-color: #ff0800 !important;}
+.bg-black       { background-color: #000000 !important; }
 
 // misc. styles
 .rounded-big      { border-radius: 2.5rem !important; }
@@ -108,7 +108,7 @@ body
 {
 	.navbar-nav
 	{
-		.nav-link       { color: rgba(255, 255, 255, 0.75); }
+		.nav-link       { color: rgba(255, 255, 255, 0.85); }
 		.nav-link:hover { color: rgba(255, 255, 255, 1.0);  }
 	}
 	.navbar-toggler
