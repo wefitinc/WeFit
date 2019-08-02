@@ -24,6 +24,14 @@ module ApplicationHelper
     current_user != nil
   end
 
+  # Page classes for JS markers
+  def login_status
+    current_user? ? 'logged_in' : 'logged_out'
+  end
+  def login_error
+    flash[:login_notice] ? 'login_error' : ''
+  end
+
   # Log in a user (web only)
   def log_in(user)
     session[:user_id] = user.id
