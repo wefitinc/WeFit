@@ -4,14 +4,20 @@
     <%# Device meta stuff %>
     <meta charset="utf-8">
     <meta name="theme-color" content="#ff0800">
+    <meta name="msapplication-TileColor" content="#ff0800">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%# SEO Stuff %>
     <title>WeFit <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
     <meta name='description' content='<%= yield_meta_tag(:description, 'WeFit, the social network for all things health.') %>' />
     <meta name='keywords' content='<%= yield_meta_tag(:keywords, 'wefit,wefit.us,fitness,health') %>' />
+    
     <%# Favicon %>
-    <%= favicon_link_tag asset_path('square-logo.png'), rel: 'icon', type: 'image/png' %>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff0800">
 
     <%# Rails authenticity stuff %>
     <%= csrf_meta_tags %>
