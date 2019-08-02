@@ -56,20 +56,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarLinks">
         <ul class="navbar-nav pr-5 ml-auto">
-          <li class="nav-item"><%= link_to "About", about_path, class: "nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "Advertising", advertising_path, class: "nav-link text-white" %></li>
-          <li class="nav-item"><%= link_to "Professionals", professionals_path, class: "nav-link text-white" %></li>
+          <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Advertising", advertising_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Professionals", professionals_path, class: "nav-link" %></li>
           <% if current_user? %>
             <%# Show the current user name %>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle text-white" href="#" id="userActions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %></a>
+              <a class="nav-link dropdown-toggle" href="#" id="userActions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %></a>
               <div class="dropdown-menu" aria-labelledby="userActions">
                 <a class="dropdown-item" href="/logout">Logout</a>
               </div>
             </li>
           <% else %>
             <%# Show a login modal link if not logged in %>
-            <li class="nav-item"><%= link_to "Log In", '#', class: 'nav-link text-white', 'data-toggle': 'modal', 'data-target': '#loginModal' %></li>
+            <li class="nav-item"><%= link_to "Log In", '#', class: 'nav-link', 'data-toggle': 'modal', 'data-target': '#loginModal' %></li>
           <% end %>
 	      </ul>
       </div>
@@ -98,8 +98,8 @@
       </div>
     <% end %>
     <!-- NavBar bottom -->
-    <nav class="navbar fixed-bottom navbar-bottom navbar-expand-md navbar-light bg-pink">
-      <%= link_to image_tag("text-transparent-white.png", size: "112x34", id: "bottom-icon"), root_path, class: 'navbar-brand text-white' %>
+    <nav class="navbar fixed-bottom navbar-bottom navbar-expand-md navbar-dark bg-pink">
+      <%= link_to image_tag("text-transparent-white.png", size: "112x34", id: "bottom-icon"), root_path, class: 'navbar-brand' %>
       <ul class="navbar-nav abs-center-x hide-mobile">
         <li class="nav-item"><%= link_to inline_svg("facebook-icon.svg", size: "24px*24px", alt: "FB"), "https://facebook.com/WeFitHQ", class:"nav-link" %></li>
         <li class="nav-item"><%= link_to inline_svg("instagram-icon.svg", size: "24px*24px", alt: "IG"), "https://instagram.com/wefit.us", class:"nav-link" %></li>
@@ -107,9 +107,9 @@
         <li class="nav-item"><%= link_to inline_svg("twitter-icon.svg", size: "24px*24px", alt: "TWTR"), "https://twitter.com/wefit_us", class:"nav-link" %></li>
       </ul>
       <ul id="tos-bottom" class="navbar-nav ml-auto">
-        <li class="nav-item"><%= link_to "Terms of Use", terms_of_use_path, class: "nav-link text-white" %></li>
-        <li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link text-white" %></li>
-        <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link text-white" %></li>
+        <li class="nav-item"><%= link_to "Terms of Use", terms_of_use_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link" %></li>
       </ul>
     </nav>
   </body>
