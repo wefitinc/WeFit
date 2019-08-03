@@ -1,5 +1,9 @@
-class UsersController < ApplicationController
-  # POST /users
+class WelcomeController < ApplicationController
+  # GET /
+  def index
+  	@user = User.new
+  end
+  # POST /
   def create
     # Make a new user based on the user parameters
     @user = User.new(user_params)
@@ -8,9 +12,9 @@ class UsersController < ApplicationController
       # Make the user automatically logged in
       log_in @user
       # Redirect to root
-      redirect_to root_path, notice: 'User was successfully created.'
-    else
       redirect_to root_path
+    else
+      render 'index'
     end
   end
 

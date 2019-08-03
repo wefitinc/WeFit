@@ -9,8 +9,4 @@ class StaticController < ApplicationController
 	end
 	def professionals
 	end
-	def welcome
-	end
-	def signup
-	end
 end

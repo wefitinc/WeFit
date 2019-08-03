@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   # Website
   # Static page routing
   get '/about', to: 'static#about'
-  get '/signup', to: 'static#signup'
   get '/advertising', to: 'static#advertising'
   get '/terms_of_use', to: 'static#terms_of_use'
   get '/professionals', to: 'static#professionals'
@@ -28,10 +27,9 @@ Rails.application.routes.draw do
   get  '/logout', to: 'sessions#destroy'
   get  '/auth/:provider/callback', to: 'sessions#create'
   get  '/auth/failure', to: 'sessions#failure'
-  # User routing
-  resources :users, only: [:create]
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
   # Root controller
-  root 'static#welcome'
+  post '/', to: 'welcome#create'
+  root 'welcome#index'
 end
