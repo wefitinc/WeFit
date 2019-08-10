@@ -22,11 +22,16 @@
 // Main body styles
 html,body
 {
-	margin: 0; padding: 0; height: 100%;
+	// Push the footer to the bottom of the page
+	height: 100%;
+	// Reset margins and padding just in case
+	margin: 0; padding: 0; 
+	// Set the font
 	font-family: 'Didact Gothic', sans-serif;
 }
 #full-page
 {
+	// Push the footer to the bottom
 	min-height: 100%;
 	position: relative;
 }
@@ -48,7 +53,7 @@ footer
 	width: 100%;
 	height: $footer-height;
 	position: absolute;
-
+	// Pad the top and bottom for looks sake
 	padding-top: 1.5em;
 	padding-bottom: 1.5em;
 }
@@ -64,17 +69,15 @@ footer
 
 // Colors
 .pink         { color: #ff0800 !important; }
-.green        { color:#009912 !important; }
+.green        { color: #009912 !important; }
 .light-blue   { color: #00aeff !important; }
-.white     { background-color: #FFFFFF !important;}
 
 // Background colors
 .bg-blue        { background-color: #00aeff !important; }
-.bg-pink        { background-color: #ff0800 !important; }
-.bg-dark-grey   { background-color: #333 !important; }
-.bg-white       { background-color: #FFFFFF !important;}
-.bg-light-grey  { background-color: #F7F7F7 !important;}
-.bg-red 	    { background-color: #ff0800 !important;}
+.bg-dark-grey   { background-color: #333333 !important; }
+.bg-white       { background-color: #FFFFFF !important; }
+.bg-light-grey  { background-color: #F7F7F7 !important; }
+.bg-red 	    { background-color: #ff0800 !important; }
 .bg-black       { background-color: #000000 !important; }
 
 // misc. styles
@@ -149,6 +152,7 @@ footer
 	}
 	.navbar-toggler-icon
 	{
+		// Load up a nice background image to use for the toggler
 		background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 155)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 	}
 }
@@ -229,10 +233,10 @@ footer
 // Mobile styles
 @media only screen and (max-width: 800px)
 {
+	// Add some additional footer padding on mobile
 	$mobile-footer-padding: 60px;
 	.container-fluid
 	{
-		// Pad the bottom of the content to leave room for the footer
 		padding-bottom: $footer-height + $mobile-footer-padding + 20px;
 	}
 	footer
@@ -242,14 +246,9 @@ footer
 
 	// Msc. styles
 	.hide-mobile { display: none; }
-	.big-text
-	{
-		width: 90%;
-	}
-	.btn-about
-	{
-		width: 50%;
-	}
+	
+	.big-text  { width: 90%; }
+	.btn-about { width: 50%; }
 
 	// Navbar styles
 	#top-logo
