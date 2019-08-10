@@ -20,16 +20,47 @@
 @import url(https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap);
 
 // Main body styles
-body
+html,body
 {
+	margin: 0; padding: 0; height: 100%;
 	font-family: 'Didact Gothic', sans-serif;
 }
+#full-page
+{
+	min-height: 100%;
+	position: relative;
+}
+
+// Height of footer to use
+$footer-height: 250px;
 .container-fluid
 {
+	// Make content go edge-to-edge
 	padding-left: 0;
 	padding-right: 0;
-	padding-bottom: 80px;
+	// Pad the bottom of the content to leave room for the footer
+	padding-bottom: $footer-height + 20px;
 }
+footer
+{
+	// Make sure the footer is in place and the correct height
+	bottom: 0;
+	width: 100%;
+	height: $footer-height;
+	position: absolute;
+
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+}
+
+// Footer styles
+.social-icon
+{
+	padding-left: 1%;
+	padding-right: 1%;
+}
+.footer-link       { color: white; }
+.footer-link:hover { color: white; text-decoration: none; }
 
 // Colors
 .pink         { color: #ff0800 !important; }
@@ -198,6 +229,17 @@ body
 // Mobile styles
 @media only screen and (max-width: 800px)
 {
+	$mobile-footer-padding: 60px;
+	.container-fluid
+	{
+		// Pad the bottom of the content to leave room for the footer
+		padding-bottom: $footer-height + $mobile-footer-padding + 20px;
+	}
+	footer
+	{
+		height: $footer-height + $mobile-footer-padding;
+	}
+
 	// Msc. styles
 	.hide-mobile { display: none; }
 	.big-text
@@ -218,20 +260,6 @@ body
 	{
 		width: 84px;
 		height: 25px;
-	}
-	#tos-bottom
-	{
-		flex-direction: row;
-	}
-	#tos-bottom .nav-item
-	{
-		text-align: center;
-		padding-right: 0.5em;
-	}
-	.navbar-bottom
-	{
-		padding-left: 0.6rem !important;
-		padding-right: 0.6rem !important;
 	}
 
 	// Home page

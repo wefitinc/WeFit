@@ -50,39 +50,40 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!--[if lte IE 8]>
-      <div class="alert alert-danger">Please don't use internet explorer, <a href="https://browsehappy.com/">upgrade to something modern</a>!</div>
-    <![endif]-->
-    <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-pink">
-      <%= link_to image_tag("logo-transparent.png", size: "64x32", alt: "WeFit"), root_path, id: 'top-logo' %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarLinks">
-        <ul class="navbar-nav pr-5 ml-auto">
-          <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Advertising", advertising_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "Professionals", professionals_path, class: "nav-link" %></li>
-          <% if current_user? %>
-            <%# Show the current user name %>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="userActions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %></a>
-              <div class="dropdown-menu" aria-labelledby="userActions">
-                <a class="dropdown-item" href="/logout">Logout</a>
-              </div>
-            </li>
-          <% else %>
-            <%# Show a login modal link if not logged in %>
-            <li class="nav-item"><%= link_to "Log In", '#', class: 'nav-link', 'data-toggle': 'modal', 'data-target': '#loginModal' %></li>
-          <% end %>
-	      </ul>
+    <div id="full-page">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-pink">
+        <%= link_to image_tag("logo-transparent.png", size: "64x32", alt: "WeFit"), root_path, id: 'top-logo' %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarLinks" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarLinks">
+          <ul class="navbar-nav pr-5 ml-auto">
+            <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "Advertising", advertising_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "Professionals", professionals_path, class: "nav-link" %></li>
+            <% if current_user? %>
+              <%# Show the current user name %>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userActions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %></a>
+                <div class="dropdown-menu" aria-labelledby="userActions">
+                  <a class="dropdown-item" href="/logout">Logout</a>
+                </div>
+              </li>
+            <% else %>
+              <%# Show a login modal link if not logged in %>
+              <li class="nav-item"><%= link_to "Log In", '#', class: 'nav-link', 'data-toggle': 'modal', 'data-target': '#loginModal' %></li>
+            <% end %>
+  	      </ul>
+        </div>
+      </nav>
+      <!-- Main content -->
+      <div class="container-fluid">
+        <%= yield %>
       </div>
-    </nav>
-    <!-- Main content -->
-    <div class="container-fluid">
-      <%= yield %>
+      <!-- Footer -->
+      <%= render 'layouts/footer' %> 
     </div>
+
     <%# Only show the login modal if the user isn't logged in %>
     <% if not current_user? %>
       <!-- Login modal -->
@@ -102,20 +103,5 @@
         </div>
       </div>
     <% end %>
-    <!-- NavBar bottom -->
-    <nav class="navbar fixed-bottom navbar-bottom navbar-expand-md navbar-dark bg-pink">
-      <%= link_to image_tag("text-transparent-white.png", size: "112x34", id: "bottom-icon"), root_path, class: 'navbar-brand' %>
-      <ul class="navbar-nav abs-center-x hide-mobile">
-        <li class="nav-item"><%= link_to inline_svg("facebook-icon.svg", size: "24px*24px", alt: "FB"), "https://facebook.com/WeFitHQ", class:"nav-link" %></li>
-        <li class="nav-item"><%= link_to inline_svg("instagram-icon.svg", size: "24px*24px", alt: "IG"), "https://instagram.com/wefit.us", class:"nav-link" %></li>
-        <li class="nav-item"><%= link_to inline_svg("youtube-icon.svg", size: "24px*24px", alt: "YT"), "https://youtube.com/channel/UCuMcN15thVjRN5g1tq3k6dg?view_as=subscriber", class:"nav-link" %></li>
-        <li class="nav-item"><%= link_to inline_svg("twitter-icon.svg", size: "24px*24px", alt: "TWTR"), "https://twitter.com/wefit_us", class:"nav-link" %></li>
-      </ul>
-      <ul id="tos-bottom" class="navbar-nav ml-auto">
-        <li class="nav-item"><%= link_to "Terms of Use", terms_of_use_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Privacy Policy", privacy_policy_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Contact", contact_path, class: "nav-link" %></li>
-      </ul>
-    </nav>
   </body>
 </html>
