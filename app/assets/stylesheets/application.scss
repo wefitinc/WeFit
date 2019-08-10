@@ -32,7 +32,7 @@ html,body
 #full-page
 {
 	// Push the footer to the bottom
-	min-height: 100%;
+	min-height: 118%;
 	position: relative;
 }
 
@@ -61,8 +61,14 @@ footer
 // Footer styles
 .social-icon
 {
+	color: white;
 	padding-left: 1%;
 	padding-right: 1%;
+}
+.social-icon:hover
+{
+	color: white;
+	text-decoration: none;
 }
 .footer-link       { color: white; }
 .footer-link:hover { color: white; text-decoration: none; }
