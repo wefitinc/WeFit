@@ -234,14 +234,15 @@ footer
 @media only screen and (max-width: 800px)
 {
 	// Add some additional footer padding on mobile
-	$mobile-footer-padding: 60px;
+	$footer-height: 550px;
 	.container-fluid
 	{
-		padding-bottom: $footer-height + $mobile-footer-padding + 20px;
+		padding-bottom: $footer-height + 20px;
 	}
 	footer
 	{
-		height: $footer-height + $mobile-footer-padding;
+		height: $footer-height;
+		text-align: center;
 	}
 
 	// Msc. styles
