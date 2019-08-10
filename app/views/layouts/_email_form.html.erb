@@ -1,12 +1,10 @@
-<%= form_for(:session, url: login_path) do |f| %>
   <div class="form-group">
     <%= text_field_tag :email, nil, class: 'form-control', required: '', placeholder: 'Email' %>
   </div>
   <div class="form-group">
-    <p hidden="Thank you for your interest, a WeFit representative will be in touch shortly?">Thank you for your interest, a WeFit representative will be in touch shortly? <p>
+    <p hidden="Thank you for your interest, a WeFit representative will be in touch shortly?"><p>
   </div>
   
   <div class="form-group">
-    <%= submit_tag "Register", class: 'btn btn-green btn-md w-25' %>
+    <%= submit_tag "Register",:onclick => ('Thank you for your interest, a WeFit representative will be in touch shortly?'), class: 'btn btn-green btn-md w-25' %>
   </div> 
-<% end %>
