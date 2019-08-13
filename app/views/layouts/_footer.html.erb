@@ -21,7 +21,7 @@
           <li><%= link_to "Contact", contact_path, class: "footer-link" %></li>
           <li>Accont Help</li>
           <li>Billing</li>
-          <li>Community Guidelines</li>
+          <li><%= link_to "Community Guidelines",  community_guidelines_path, class: "footer-link" %></li>
         </ul>
       </div>
       <%# Legal links %>
@@ -30,8 +30,8 @@
         <ul class="list-unstyled">
           <li><%= link_to "Terms of Use", terms_of_use_path, class: "footer-link" %></li>
           <li><%= link_to "Privacy Policy", privacy_policy_path, class: "footer-link" %></li>
-          <li>Cookie Policy</li>
-          <li>Advertising Policy</li>
+          <li><%= link_to "Cookie Policy", cookie_policy_path, class:  "footer-link" %></li>
+          <li><%= link_to "Advertising Policy", advertising_policy_path, class:  "footer-link" %></li>
           <li>Branding Assets</li>
         </ul>
       </div>

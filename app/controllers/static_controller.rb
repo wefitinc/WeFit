@@ -9,4 +9,10 @@ class StaticController < ApplicationController
 	end
 	def professionals
 	end
+	def community_guidelines
+	end
+	def cookie_policy
+	end
+	def advertising_policy
+	end
 end

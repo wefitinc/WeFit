@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   get '/terms_of_use', to: 'static#terms_of_use'
   get '/professionals', to: 'static#professionals'
   get '/privacy_policy', to: 'static#privacy_policy'
+  get '/community_guidelines', to: 'static#community_guidelines'
+  get '/cookie_policy', to: 'static#cookie_policy'
+  get 'advertising_policy', to: 'static#advertising_policy'
   # Contact routing
   get  '/contact', to: 'contact#new'
   post '/contact', to: 'contact#create'
