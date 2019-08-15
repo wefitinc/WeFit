@@ -15,4 +15,9 @@ class StaticController < ApplicationController
 	end
 	def advertising_policy
 	end
+	def branding_assets	
+	end
+	def account_help
+		
+	end
 end

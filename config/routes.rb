@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   # Website
   # Static page routing
   get '/about', to: 'static#about'
+  get '/branding_assets', to: 'static#branding_assets'
   get '/advertising', to: 'static#advertising'
+  get '/account_help', to: 'static#account_help'
   get '/terms_of_use', to: 'static#terms_of_use'
   get '/professionals', to: 'static#professionals'
   get '/privacy_policy', to: 'static#privacy_policy'
