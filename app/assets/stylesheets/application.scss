@@ -37,7 +37,8 @@ html,body
 }
 
 // Height of footer to use
-$footer-height: 250px;
+$footer-height: 300px;
+$header-height: 300px;
 .container-fluid
 {
 	// Make content go edge-to-edge
@@ -179,8 +180,8 @@ footer
 }
 #homepage
 {
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: 5%;
+	margin-right: 5%;
 }
 #homepage-top
 {

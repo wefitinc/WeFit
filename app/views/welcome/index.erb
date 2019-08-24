@@ -3,25 +3,12 @@
 <% meta_tag :description, 'Join WeFit today, it’s free! Post and attend local healthy activities, chat with licensed health professionals, join support groups, or post about health.' %>
 <%# Page content %>
 <div id="homepage">
-	<h1 id="homepage-top" class="text-center big-text">Discover the social network for health</h1>
+	<h1 id="homepage-top" class="text-center big-text">Discover the social community for health</h1>
 	<div id="homepage-content" class="row">
-		<!-- YouTube video -->
-		<div class="col-7 my-auto mx-auto hide-mobile">
-			<div class="embed-responsive embed-responsive-16by9 rounded-big">
-				<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/OWlLx0ITCh4" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen wmode="transparent"></iframe>
-			</div>
-			<div class="my-4 rounded-big bg-light border shadow mx-auto w-50 px-2 py-2 hide-mobile">
-				<h4 class="text-center">Share with Friends!</h4>
-				<div class="share-icons">
-					<a class="nounderline" href="https://www.facebook.com/sharer/sharer.php?u=http://wefit.us" ><%= inline_svg "facebook-icon.svg", size: "60px*60px", class: "share-icon" %></a>
-					<a class="nounderline" href="http://twitter.com/share?text=WeFit&url=http://wefit.us" ><%= inline_svg "twitter-icon.svg", size: "60px*60px", class: "share-icon" %></a>
-					<a class="nounderline" href="mailto:?subject=Check out WeFit&amp;body=Check out this site http://wefit.us" ><%= inline_svg "gmail-icon.svg", size: "60px*60px", class: "share-icon" %></a>
-				</div>
-			</div>
-		</div>
+		
 		<!-- Signup/countdown -->
 		<% if current_user? %>
-			<div id="signup" class="col-4 px-4 py-5 mx-auto text-center mobile-min-width">
+			<div id="signup" class="col-4 px-10 py-5 mx-auto text-center mobile-min-width">
 				<h2 class="py-3">Welcome <span class="light-blue font-weight-bold"><%= current_user.first_name %> <%= current_user.last_name %></span>!</h2>
 				<h3>WeFit Launch Countdown</h3>
 				<div class="row">
