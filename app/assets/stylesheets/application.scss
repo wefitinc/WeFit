@@ -38,7 +38,7 @@ html,body
 
 // Height of footer to use
 $footer-height: 300px;
-$header-height: 300px;
+
 .container-fluid
 {
 	// Make content go edge-to-edge
@@ -236,6 +236,9 @@ footer
 
 // Circles for the background
 @import 'circles';
+
+//background-wrap for the background
+@import 'background-wrap';
 
 // Mobile styles
 @media only screen and (max-width: 800px)
