@@ -20,4 +20,6 @@ class StaticController < ApplicationController
 	def account_help
 		
 	end
+	def what_is_we_fit
+	end
 end
