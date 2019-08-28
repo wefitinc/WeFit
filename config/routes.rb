@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get '/community_guidelines', to: 'static#community_guidelines'
   get '/cookie_policy', to: 'static#cookie_policy'
   get 'advertising_policy', to: 'static#advertising_policy'
+  get 'what_is_we_fit', to: 'static#what_is_WeFit'
   # Contact routing
   get  '/contact', to: 'contact#new'
   post '/contact', to: 'contact#create'

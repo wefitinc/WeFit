@@ -7,13 +7,12 @@
   
   <div class="collapse navbar-collapse" id="navbarLinks">
     <ul class="navbar-nav pr-5 ml-auto">
-      <li class="nav-item"><%= link_to "About", about_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Advertising", advertising_path, class: "nav-link" %></li>
-      <li class="nav-item"><%= link_to "Professionals", professionals_path, class: "nav-link" %></li>
+      <li class="nav-item active"><%= link_to "Advertising", advertising_path, class: "nav-link"%></li>
+      <li class="nav-item active"><%= link_to "Professionals", professionals_path, class: "nav-link" %></li>
       
       <% if current_user? %>
         <%# Show the current user name %>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown activ">
           <a class="nav-link dropdown-toggle" href="#" id="userActions" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %></a>
           <div class="dropdown-menu" aria-labelledby="userActions">
             <a class="dropdown-item" href="/logout">Logout</a>
@@ -21,7 +20,7 @@
         </li>
       <% else %>
         <%# Show a login modal link if not logged in %>
-        <li class="nav-item"><%= link_to "Log In", '#', class: 'nav-link', 'data-toggle': 'modal', 'data-target': '#loginModal' %></li>
+        <li class="nav-item active"><%= link_to "Log In", '#', class: 'nav-link', 'data-toggle': 'modal', 'data-target': '#loginModal' %></li>
       <% end %>
     
     </ul>
