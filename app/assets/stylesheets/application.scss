@@ -32,12 +32,12 @@ html,body
 #full-page
 {
 	// Push the footer to the bottom
-	min-height: 118%;
+	min-height: 110%;
 	position: relative;
 }
 
 // Height of footer to use
-$footer-height: 350px;
+$footer-height: 250px;
 
 .container-fluid
 {
@@ -55,8 +55,8 @@ footer
 	height: $footer-height;
 	position: absolute;
 	// Pad the top and bottom for looks sake
-	padding-top: 2.6em;
-	padding-bottom: 1.1em;
+	padding-top: 2.1em;
+	padding-bottom: 0.8em;
 
 }
 
