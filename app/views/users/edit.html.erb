@@ -17,10 +17,21 @@
     <div class="col-9 py-5 px-5">
       <div class="tab-pane show active" id="account-info" role="tabpanel" aria-labelledby="home-tab">
         <h2>Account Information</h2>
-        <p>Email: <span><%= current_user.email %></span></p>
-        <p>Password: <span><%= '*'*16 %></span></p>
-        <p>Birthdate: <span><%= I18n.l current_user.birthdate %></span></p>
-        <p>Gender: <span><%= current_user.gender %></span></p>
+        <dl class="row">
+          <dt class="col-sm-3">Email</dt>
+          <dd class="col-sm-9"><%= current_user.email %></dd>
+
+          <%# NOTE: DO NOT SHOW THE PASSWORD DIGEST %>
+          <%# Only show a placeholder %>
+          <dt class="col-sm-3">Password</dt>
+          <dd class="col-sm-9"><%= '*'*16 %></dd>
+
+          <dt class="col-sm-3">Birthdate</dt>
+          <dd class="col-sm-9"><%= I18n.l current_user.birthdate %></dd>
+
+          <dt class="col-sm-3">Gender</dt>
+          <dd class="col-sm-9"><%= current_user.gender %></dd>
+        </dl>
       </div>
     </div>
   </div>
