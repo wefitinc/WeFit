@@ -189,11 +189,15 @@ footer
 	.nav-link
 	{
 		color: #333;
-		border-radius: 0rem;
-		padding: 1rem 1.5rem;
+		text-align: right;
+		padding: 1.5rem 1rem;
 		&.active
 		{
 			background-color: #eee;
+		}
+		&:hover
+		{
+			color: #555;
 		}
 	}
 }
