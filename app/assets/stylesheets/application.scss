@@ -57,7 +57,6 @@ footer
 	// Pad the top and bottom for looks sake
 	padding-top: 2.1em;
 	padding-bottom: 0.8em;
-
 }
 
 // Footer styles
@@ -182,6 +181,21 @@ footer
 #homepage-content
 {
 	padding-bottom: 1em;
+}
+
+// Account settings styles
+.nav-blocks
+{
+	.nav-link
+	{
+		color: #333;
+		border-radius: 0rem;
+		padding: 1rem 1.5rem;
+		&.active
+		{
+			background-color: #eee;
+		}
+	}
 }
 
 // About page styles

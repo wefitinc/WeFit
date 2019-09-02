@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :get_user, only: [ :edit, :update ]
+
   # GET /
   def new
     @user = User.new
@@ -14,12 +16,15 @@ class UsersController < ApplicationController
       # Redirect to root
       redirect_to root_path
     else
-      render 'index'
+      render 'new'
     end
   end
 
   # GET /account_settings
   def edit
+  end
+  # POST /account_settings
+  def update
   end
 
   private
@@ -34,5 +39,13 @@ class UsersController < ApplicationController
         :last_name,
         :gender,
         :birthdate)
+    end
+
+    # Make sure we have a logged in user before we allow access to edit/update 
+    def get_user
+      unless current_user?
+        redirect_to root_path
+      end
+      @user = current_user
     end
 end

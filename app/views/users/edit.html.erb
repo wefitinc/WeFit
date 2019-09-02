@@ -1,0 +1,27 @@
+<%# Meta data about the page %>
+<% title 'The Social Network for All Things Health' %>
+<% meta_tag :description, 'Join WeFit today, it’s free! Post and attend local healthy activities, chat with licensed health professionals, join support groups, or post about health.' %>
+<%# Page content %>
+<div class="px-5 mx-auto my-auto" style="max-width: 1000px">
+  <h1 class="text-center big-text py-4">Account Settings</h1>
+  <div class="row bg-light rounded shadow">
+    <!-- Left nav -->
+    <div class="col-3 px-0 py-0 border-right">
+      <nav class="nav flex-column nav-blocks" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" href="#">Account Information</a>
+        <a class="nav-link" href="#">Login Verification</a>
+        <a class="nav-link" href="#">Edit Profile Picture</a>
+      </nav>
+    </div>
+    <!-- Right content -->
+    <div class="col-9 py-5 px-5">
+      <div class="tab-pane show active" id="account-info" role="tabpanel" aria-labelledby="home-tab">
+        <h2>Account Information</h2>
+        <p>Email: <span><%= current_user.email %></span></p>
+        <p>Password: <span><%= '*'*16 %></span></p>
+        <p>Birthdate: <span><%= current_user.birthdate %></span></p>
+        <p>Gender: <span><%= current_user.gender %></span></p>
+      </div>
+    </div>
+  </div>
+</div>
