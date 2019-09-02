@@ -1,9 +1,9 @@
-class WelcomeController < ApplicationController
+class UsersController < ApplicationController
   # GET /
-  def index
-  	@user = User.new
+  def new
+    @user = User.new
   end
-  # POST /
+  # POST /users
   def create
     # Make a new user based on the user parameters
     @user = User.new(user_params)
@@ -16,6 +16,10 @@ class WelcomeController < ApplicationController
     else
       render 'index'
     end
+  end
+
+  # GET /account_settings
+  def edit
   end
 
   private

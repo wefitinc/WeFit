@@ -35,7 +35,8 @@ Rails.application.routes.draw do
   get  '/auth/failure', to: 'sessions#failure'
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
+  # User routing
   # Root controller
-  post '/', to: 'welcome#create'
-  root 'welcome#index'
+  post '/', to: 'users#create'
+  root 'users#new'
 end
