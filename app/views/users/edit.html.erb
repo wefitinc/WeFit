@@ -14,23 +14,43 @@
       </nav>
     </div>
     <!-- Right content -->
-    <div class="col-9 py-5 px-5">
+    <div class="col-9 py-3 px-5">
       <div class="tab-pane show active" id="account-info" role="tabpanel" aria-labelledby="home-tab">
-        <h2>Account Information</h2>
+        <h2 class="py-2">Account Information</h2>
         <dl class="row">
           <dt class="col-sm-3">Email</dt>
-          <dd class="col-sm-9"><%= current_user.email %></dd>
+          <dd class="col-sm-9 mb-0">
+            <dl class="row mb-0">
+              <dd class="col-sm-8 text-truncate"><%= current_user.email %></dd>
+              <dd class="col-sm-4"><%= link_to 'change', '#' %></dd>
+            </dl>
+          </dd>
 
           <%# NOTE: DO NOT SHOW THE PASSWORD DIGEST %>
           <%# Only show a placeholder %>
           <dt class="col-sm-3">Password</dt>
-          <dd class="col-sm-9"><%= '*'*16 %></dd>
+          <dd class="col-sm-9 mb-0">
+            <dl class="row mb-0">
+              <dd class="col-sm-8"><%= '*'*16 %></dd>
+              <dd class="col-sm-4"><%= link_to 'reset', new_password_reset_path %></dd>
+            </dl>
+          </dd>
 
           <dt class="col-sm-3">Birthdate</dt>
-          <dd class="col-sm-9"><%= I18n.l current_user.birthdate %></dd>
+          <dd class="col-sm-9 mb-0">
+            <dl class="row mb-0">
+              <dd class="col-sm-8"><%= I18n.l current_user.birthdate %></dd>
+              <dd class="col-sm-4"><%= link_to 'change', '#' %></dd>
+            </dl>
+          </dd>
 
           <dt class="col-sm-3">Gender</dt>
-          <dd class="col-sm-9"><%= current_user.gender %></dd>
+          <dd class="col-sm-9 mb-0">
+            <dl class="row mb-0">
+              <dd class="col-sm-8"><%= current_user.gender %></dd>
+              <dd class="col-sm-4"><%= link_to 'change', '#' %></dd>
+            </dl>
+          </dd>
         </dl>
       </div>
     </div>
