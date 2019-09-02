@@ -19,7 +19,7 @@
         <h2>Account Information</h2>
         <p>Email: <span><%= current_user.email %></span></p>
         <p>Password: <span><%= '*'*16 %></span></p>
-        <p>Birthdate: <span><%= current_user.birthdate %></span></p>
+        <p>Birthdate: <span><%= I18n.l current_user.birthdate %></span></p>
         <p>Gender: <span><%= current_user.gender %></span></p>
       </div>
     </div>
