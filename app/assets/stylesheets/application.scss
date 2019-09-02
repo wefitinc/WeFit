@@ -133,14 +133,8 @@ footer
 // Navbar styles
 .navbar-top
 {
-	padding-left: 5rem !important;
+	padding-left: 3rem !important;
 	padding-right: 3rem !important;
-}
-.abs-center-x
-{
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
 }
 .navbar-dark
 {
@@ -263,9 +257,10 @@ footer
 	.btn-about { width: 50%; }
 
 	// Navbar styles
-	#top-logo
+	.navbar-top
 	{
-		padding-left: 0rem;
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
 	}
 	#bottom-icon
 	{
