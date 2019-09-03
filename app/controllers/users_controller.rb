@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :get_user, only: [ :edit, :update ]
+  before_action :check_logged_in, only: [ :edit, :update ]
 
   # GET /
   def new
@@ -42,10 +42,9 @@ class UsersController < ApplicationController
     end
 
     # Make sure we have a logged in user before we allow access to edit/update 
-    def get_user
+    def check_logged_in
       unless current_user?
         redirect_to root_path
       end
-      @user = current_user
     end
 end
