@@ -26,14 +26,10 @@ class UsersController < ApplicationController
   # PATCH /account_settings
   def update
     if @user.authenticate(user_params[:password])
-      if @user.update(user_params)
-        logger.info "Updated"
-      else
-        logger.fatal "Failed to update"
+      if not @user.update(user_params)
         @user.errors.add :base, "Failed to update"
       end
     else
-      logger.fatal "Failed to authenticate"
       @user.errors.add :password, "does not match current password"
     end
     render 'edit'
