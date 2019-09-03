@@ -1,0 +1,60 @@
+<%# Meta data about the page %>
+<% title 'The Social Network for All Things Health' %>
+<% meta_tag :description, 'Join WeFit today, it’s free! Post and attend local healthy activities, chat with licensed health professionals, join support groups, or post about health.' %>
+<%# Page content %>
+<div id="homepage">
+  <h1 id="homepage-top" class="text-center big-text">Discover the social community for health</h1>
+  <div id="homepage-content" class="row">
+    <!-- Signup/countdown -->
+    <% if current_user? %>
+      <div id="signup" class="col-4 px-10 py-5 mx-auto text-center mobile-min-width">
+        <h2 class="py-3">Welcome <span class="light-blue font-weight-bold"><%= current_user.first_name %> <%= current_user.last_name %></span>!</h2>
+        <h3>WeFit Launch Countdown</h3>
+        <div class="row">
+          <div class="col">
+            <h1 id='days' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">178</h1>
+            <p class="font-weight-bold">Days</p>
+          </div>
+          <div class="col">
+            <h1 id='hours' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">24</h1>
+            <p class="font-weight-bold">Hours</p>
+          </div>
+          <div class="col">
+            <h1 id='minutes' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">60</h1>
+            <p class="font-weight-bold">Minutes</p>
+          </div>
+          <div class="col">
+            <h1 id='seconds' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">60</h1>
+            <p class="font-weight-bold">Seconds</p>
+          </div>
+        </div>
+        <% if mobile_device? %>
+          <%= image_tag 'Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg', class: 'col-md' %>
+          <%= image_tag 'google-play-badge.png', class: 'col-md' %>
+        <% end %>
+      </div>
+    <% else %>
+      <div id="signup" class="col-3 px-6 py-4 mx-auto my-auto bg-light border rounded-big shadow mobile-min-width">
+        <h3 class="text-center">Join today, <b>FREE</b> forever.</h3>
+        <div class="text-center mx-auto w-80">
+          <div class="fb-login-button" data-size="large" data-width="300" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="true"></div>
+        </div>
+        <p class="text-center">or</p>
+        <%= render 'form' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div id="background-wrap">
+  <div class="hide-mobile bubble x1"></div>
+  <div class="hide-mobile bubble x2"></div>
+  <div class="hide-mobile bubble x3"></div>
+  <div class="hide-mobile bubble x4"></div>
+  <div class="hide-mobile bubble x5"></div>
+  <div class="hide-mobile bubble x6"></div>
+  <div class="hide-mobile bubble x7"></div>
+  <div class="hide-mobile bubble x8"></div>
+  <div class="hide-mobile bubble x9"></div>
+  <div class="hide-mobile bubble x10"></div>
+</div>

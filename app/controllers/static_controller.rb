@@ -1,6 +1,4 @@
 class StaticController < ApplicationController
-	def about
-	end
 	def terms_of_use
 	end
 	def privacy_policy
@@ -16,9 +14,6 @@ class StaticController < ApplicationController
 	def advertising_policy
 	end
 	def branding_assets	
-	end
-	def account_help
-		
 	end
 	def what_is_we_fit
 	end

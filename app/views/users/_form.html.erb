@@ -20,9 +20,18 @@
 			<div class="input-group-text"><%= image_tag "eye.png", size: "16x16", alt: "WeFit" %></div>
 		</div>
 	</div>
+	<div class="form-group">
+		<%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: '' } %>
+	</div>
 	<div class="form-group row">
-		<div class="col"><%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: '' } %></div>
-		<div class="col"><%= f.text_field :birthdate, class: "form-control", required: '', placeholder: "Birthdate" %></div>
+		<%= f.label :birthdate, class: 'col-sm-2 col-form-label' %>
+		<div class="col-sm-10 row mx-0">
+			<%= f.date_select :birthdate, {
+				start_year: Date.current.year,
+				end_year: (Date.current.year - 100),
+				order: [:month, :day, :year]
+			}, class: "form-control col-sm" %>
+		</div>
 	</div>
 	<div class="form-group text-center col-sm">
 		<%= f.label :terms_of_use, "By signing up, you agree to #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>

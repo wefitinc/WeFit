@@ -45,7 +45,7 @@ $(document).on('turbolinks:load', function()
 		$("#loginModal").modal('show');
 	});
 	// Logged in welcome page JS
-	$('.welcome.index.logged_in').ready(function()
+	$('.users.new.logged_in').ready(function()
 	{
 		// The date we're hurdling inexorably towards
 		var to_date = new Date("Dec 20, 2019").getTime();
@@ -67,7 +67,7 @@ $(document).on('turbolinks:load', function()
 		update_timer();
 	});
 	// Logged out welcome page JS
-	$('.welcome.index.logged_out').ready(function()
+	$('.users.new.logged_out').ready(function()
 	{
 		// Fix the FB button
 		FB.XFBML.parse();

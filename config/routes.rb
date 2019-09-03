@@ -14,10 +14,8 @@ Rails.application.routes.draw do
 
   # Website
   # Static page routing
-  get '/about', to: 'static#about'
   get '/branding_assets', to: 'static#branding_assets'
   get '/advertising', to: 'static#advertising'
-  get '/account_help', to: 'static#account_help'
   get '/terms_of_use', to: 'static#terms_of_use'
   get '/professionals', to: 'static#professionals'
   get '/privacy_policy', to: 'static#privacy_policy'
@@ -35,7 +33,10 @@ Rails.application.routes.draw do
   get  '/auth/failure', to: 'sessions#failure'
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
+  # User routing
+  get   'account_settings', to: 'users#edit'
+  patch 'account_settings', to: 'users#update'
   # Root controller
-  post '/', to: 'welcome#create'
-  root 'welcome#index'
+  post '/', to: 'users#create'
+  root 'users#new'
 end
