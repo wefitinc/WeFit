@@ -23,8 +23,20 @@ class UsersController < ApplicationController
   # GET /account_settings
   def edit
   end
-  # POST /account_settings
+  # PATCH /account_settings
   def update
+    if @user.authenticate(user_params[:password])
+      if @user.update(user_params)
+        logger.info "Updated"
+      else
+        logger.fatal "Failed to update"
+        @user.errors.add :base, "Failed to update"
+      end
+    else
+      logger.fatal "Failed to authenticate"
+      @user.errors.add :password, "does not match current password"
+    end
+    render 'edit'
   end
 
   private
@@ -46,5 +58,6 @@ class UsersController < ApplicationController
       unless current_user?
         redirect_to root_path
       end
+      @user = current_user
     end
 end

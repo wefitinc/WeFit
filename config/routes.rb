@@ -34,8 +34,8 @@ Rails.application.routes.draw do
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
   # User routing
-  get  'account_settings', to: 'users#edit'
-  post 'account_settings', to: 'users#update'
+  get   'account_settings', to: 'users#edit'
+  patch 'account_settings', to: 'users#update'
   # Root controller
   post '/', to: 'users#create'
   root 'users#new'

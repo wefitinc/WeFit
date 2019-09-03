@@ -16,7 +16,15 @@
       <!-- Account info panel -->
       <div class="tab-pane show active" id="account-info" role="tabpanel" aria-labelledby="tabs-account-info-tab">
         <h2 class="py-2">Account Information</h2>
-        <%= form_for current_user, url: 'account_settings' do |f| %>
+        <% if @user.errors.any? %>
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">Errors signing up!</h4>
+          <% @user.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+          <% end %>
+        </div>
+        <% end %>
+        <%= form_for @user, url: 'account_settings' do |f| %>
           <div class="form-group row">
             <%= f.label :email, class: 'col-sm-2 col-form-label font-weight-bold' %>
             <div class="col-sm-10">
