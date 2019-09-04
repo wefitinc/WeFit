@@ -48,6 +48,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
+# Stripe for payments
+gem 'stripe'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
