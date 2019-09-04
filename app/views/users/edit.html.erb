@@ -14,50 +14,8 @@
     <!-- Right content -->
     <div class="tab-content col-9 py-3 px-5">
       <!-- Account info panel -->
-      <div class="tab-pane show active" id="account-info" role="tabpanel" aria-labelledby="tabs-account-info-tab">
-        <h2 class="py-2">Account Information</h2>
-        <% if @user.errors.any? %>
-        <div class="alert alert-warning" role="alert">
-          <h4 class="alert-heading">Errors signing up!</h4>
-          <% @user.errors.full_messages.each do |msg| %>
-          <p><%= msg %></p>
-          <% end %>
-        </div>
-        <% end %>
-        <%= form_for @user, url: 'account_settings' do |f| %>
-          <div class="form-group row">
-            <%= f.label :email, class: 'col-sm-2 col-form-label font-weight-bold' %>
-            <div class="col-sm-10">
-              <%= f.email_field :email, class: 'form-control', required: true %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <%= f.label :password, class: 'col-sm-2 col-form-label font-weight-bold' %>
-            <div class="col-sm-10">
-              <%= f.password_field :password, class: 'form-control', required: true, placeholder: 'Password' %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <%= f.label :birthdate, class: 'col-sm-2 col-form-label font-weight-bold' %>
-            <div class="col-sm-10 row mx-0">
-              <%= f.date_select :birthdate, {
-                start_year: Date.current.year,
-                end_year: (Date.current.year - 100),
-                order: [:month, :day, :year],
-                prompt: { day: 'Birth day', month: 'Birth month', year: 'Birth year' }
-              }, class: "form-control col-sm" %>
-            </div>
-          </div>
-          <div class="form-group row">
-            <%= f.label :gender, class: 'col-sm-2 col-form-label font-weight-bold' %>
-            <div class="col-sm-10">
-              <%= f.select :gender, ActsAsGendered::GENDERS, { prompt: "Gender" }, { class: "form-control", required: true } %>
-            </div>
-          </div>
-          <div class="form-group text-center">
-            <%= f.submit 'Update', class: "btn btn-green btn-lg w-75" %>
-          </div>
-        <% end %>
+      <div class="tab-pane active" id="account-info" role="tabpanel" aria-labelledby="tabs-account-info-tab">
+        <%= render 'account_info' %>
       </div>
       <!-- Login verification panel -->
       <div class="tab-pane" id="login-verification" role="tabpanel" aria-labelledby="tabs-account-info-tab">
