@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   get '/branding_assets', to: 'static#branding_assets'
   get '/advertising', to: 'static#advertising'
   get '/terms_of_use', to: 'static#terms_of_use'
-  get '/professionals', to: 'static#professionals'
   get '/privacy_policy', to: 'static#privacy_policy'
   get '/community_guidelines', to: 'static#community_guidelines'
   get '/cookie_policy', to: 'static#cookie_policy'
@@ -33,6 +32,9 @@ Rails.application.routes.draw do
   get  '/auth/failure', to: 'sessions#failure'
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
+  # Professionals routing
+  get '/professionals', to: 'professionals#index'
+  get '/professionals/new/:rate', to: 'professionals#new'
   # User routing
   get   'account_settings', to: 'users#edit'
   patch 'account_settings', to: 'users#update'
