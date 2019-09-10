@@ -22,4 +22,6 @@ class StaticController < ApplicationController
 	end
 	def what_is_we_fit
 	end
+	def billing_page
+	end
 end
