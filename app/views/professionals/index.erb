@@ -8,73 +8,33 @@
 
 <div class="container">
   <div class="card-deck mb-3 text-center">
-    <div class="card mb-4 rounded shadow-sm " >
-
+    <div class="card mb-4 rounded shadow-sm">
       <div class="card-header rounded shadow-sm">
         <h4 class="my-0 font-weight-normal">Standard</h4>
       </div>
-
       <div class="card-body">
         <h1 class="card-title pricing-card-title">$19.99<small class="text-muted">/month</small></h1>
         <ul class="list-unstyled mt-3 mb-4">
-        	
           <li>-Interact with up to 20 users per month</li>
-          <li>-25 mile radius</li> 
-          
+          <li>-25 mile radius</li>
         </ul>
-
-        <button class="btn btn-green btn-lg w-50 mt-4" name="Standard" href="#" data-toggle="modal" data-target="#registerModal">Register</button>
+        <a class="btn btn-green btn-lg w-50 mt-4" href="professionals/new/standard">Register</a>
       </div>
-
     </div>
 
     <div class="card mb-4 shadow-sm rounded ">
       <div class="card-header rounded shadow-sm">
         <h4 class="my-0 font-weight-normal">Plus</h4>
       </div>
-
       <div class="card-body">
         <h1 class="card-title pricing-card-title">$29.99<small class="text-muted">/month</small></h1>
         <ul class="list-unstyled mt-3 mb-4">
           <li>-Interact with an unlimited number of users</li>
           <li>-Rank higher on the professionals page</li>
           <li>-50 mile radius</li>
-          
-        <button class="btn btn-green btn-lg w-50 mt-4" name="Plus" href="#" data-toggle="modal" data-target="#registerModal">Register</button>
+        <a class="btn btn-green btn-lg w-50 mt-4" href="professionals/new/plus">Register</a>
       </div>
     </div>
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-<!-- Register modal -->
-<div class="modal" tabindex="-1" role="dialog" id="registerModal">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content bg-light border shadow">
-			 <div class="modal-close col-1">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span> </button>
-            </div>
-			<div class="modal-header py-3">
-				<h5 class="modal-title mx-auto">Enter Email</h5>
-			</div>
-			<div class="modal-body text-center">
-				<div class="modal-body text-center">
-              		<%= render 'layouts/email_form' %>
-            	</div>
-			</div>
-		</div>
-	</div>
 </div>
 
 <div id="background-wrap">
@@ -89,4 +49,3 @@
     <div class="bubble x9"></div>
     <div class="bubble x10"></div>
 </div>
-

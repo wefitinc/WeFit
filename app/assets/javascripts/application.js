@@ -45,7 +45,7 @@ $(document).on('turbolinks:load', function()
 		$("#loginModal").modal('show');
 	});
 	// Logged in welcome page JS
-	$('.welcome.index.logged_in').ready(function()
+	$('.users.new.logged_in').ready(function()
 	{
 		// The date we're hurdling inexorably towards
 		var to_date = new Date("Dec 20, 2019").getTime();
@@ -67,7 +67,7 @@ $(document).on('turbolinks:load', function()
 		update_timer();
 	});
 	// Logged out welcome page JS
-	$('.welcome.index.logged_out').ready(function()
+	$('.users.new.logged_out').ready(function()
 	{
 		// Fix the FB button
 		FB.XFBML.parse();
@@ -80,5 +80,81 @@ $(document).on('turbolinks:load', function()
 			format: 'YYYY-MM-DD',
 			yearRange: [today.getFullYear()-100, today.getFullYear()]
 		});
+	});
+	$('.professionals.new').ready(function()
+	{
+		// Create a Stripe client.
+		var stripe = Stripe('pk_live_F4uXdKCI6bXQyCu6U88T3hwd00aO6hO8Sp');
+
+		// Create an instance of Elements.
+		var elements = stripe.elements();
+		var style =
+		{
+		  base:
+		  {
+			color: '#495057',
+			fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+			fontSmoothing: 'antialiased',
+			fontSize: '16px',
+			'::placeholder': {
+			  color: '#6c757d'
+			}
+		  },
+		  invalid: {
+			color: '#fa755a',
+			iconColor: '#fa755a'
+		  }
+		};
+
+		// Create an instance of the card Element.
+		var card = elements.create('card', {style: style});
+
+		// Add an instance of the card Element into the `card-element` <div>.
+		card.mount('#card-element');
+
+		// Handle real-time validation errors from the card Element.
+		card.addEventListener('change', function(event)
+		{
+		  var displayError = document.getElementById('card-errors');
+		  if (event.error) {
+			displayError.textContent = event.error.message;
+		  } else {
+			displayError.textContent = '';
+		  }
+		});
+
+		// Handle form submission.
+		var form_id = 'professionals-form';
+		var form = document.getElementById(form_id);
+		form.addEventListener('submit', function(event)
+		{
+		  event.preventDefault();
+
+		  stripe.createToken(card).then(function(result)
+		  {
+			if (result.error) {
+			  // Inform the user if there was an error.
+			  var errorElement = document.getElementById('card-errors');
+			  errorElement.textContent = result.error.message;
+			} else {
+			  // Send the token to your server.
+			  stripeTokenHandler(result.token);
+			}
+		  });
+		});
+
+		// Submit the form with the token ID.
+		function stripeTokenHandler(token)
+		{
+			// Insert the token ID into the form so it gets submitted to the server
+			var form = document.getElementById(form_id);
+			var hiddenInput = document.createElement('input');
+			hiddenInput.setAttribute('type', 'hidden');
+			hiddenInput.setAttribute('name', 'customer_id');
+			hiddenInput.setAttribute('value', token.id);
+			form.appendChild(hiddenInput);
+			// Submit the form
+			form.submit();
+		}
 	});
 });

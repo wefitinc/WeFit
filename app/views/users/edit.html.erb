@@ -1,0 +1,30 @@
+<%# Meta data about the page %>
+<% title 'The Social Network for All Things Health' %>
+<% meta_tag :description, 'Join WeFit today, it’s free! Post and attend local healthy activities, chat with licensed health professionals, join support groups, or post about health.' %>
+<%# Page content %>
+<div class="px-5 mx-auto my-auto" style="max-width: 1000px">
+  <h1 class="text-center big-text py-4">Account Settings</h1>
+  <div class="row bg-light rounded shadow">
+    <!-- Left nav -->
+    <nav class="nav flex-column nav-blocks col-3" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="tabs-account-info-tab" data-toggle="pill" href="#account-info" role="tab" aria-controls="account-info" aria-selected="true">Account Information</a>
+      <a class="nav-link" id="tabs-login-verification-tab" data-toggle="pill" href="#login-verification" role="tab" aria-controls="login-verification" aria-selected="false">Login Verification</a>
+      <a class="nav-link" id="tabs-profile-picture-tab" data-toggle="pill" href="#profile-picture" role="tab" aria-controls="profile-picture" aria-selected="false">Edit Profile Picture</a>
+    </nav>
+    <!-- Right content -->
+    <div class="tab-content col-9 py-3 px-5">
+      <!-- Account info panel -->
+      <div class="tab-pane active" id="account-info" role="tabpanel" aria-labelledby="tabs-account-info-tab">
+        <%= render 'account_info' %>
+      </div>
+      <!-- Login verification panel -->
+      <div class="tab-pane" id="login-verification" role="tabpanel" aria-labelledby="tabs-account-info-tab">
+        <h2 class="py-2">Login Verification</h2>
+      </div>
+      <!-- Profile picture panel -->
+      <div class="tab-pane" id="profile-picture" role="tabpanel" aria-labelledby="tabs-profile-picture-tab">
+        <h2 class="py-2">Change Profile Picture</h2>
+      </div>
+    </div>
+  </div>
+</div>

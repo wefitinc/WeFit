@@ -32,7 +32,7 @@ html,body
 #full-page
 {
 	// Push the footer to the bottom
-	min-height: 118%;
+	min-height: 100%;
 	position: relative;
 }
 
@@ -55,9 +55,8 @@ footer
 	height: $footer-height;
 	position: absolute;
 	// Pad the top and bottom for looks sake
-	padding-top: 2.6em;
-	padding-bottom: 1.1em;
-
+	padding-top: 2.1em;
+	padding-bottom: 0.8em;
 }
 
 // Footer styles
@@ -131,20 +130,10 @@ footer
 }
 
 // Navbar styles
-#top-logo
-{
-	padding-left: 3rem;
-}
-.navbar-bottom
+.navbar-top
 {
 	padding-left: 3rem !important;
 	padding-right: 3rem !important;
-}
-.abs-center-x
-{
-	left: 50%;
-	position: absolute;
-	transform: translateX(-50%);
 }
 .navbar-dark
 {
@@ -189,6 +178,29 @@ footer
 	padding-top: 2%;
 	padding-bottom: 2%;
 } 
+#homepage-content
+{
+	padding-bottom: 1em;
+}
+
+// Account settings styles
+.nav-blocks
+{
+	.nav-link
+	{
+		color: #333;
+		text-align: right;
+		padding: 1.5rem 1rem;
+		&.active
+		{
+			background-color: #eee;
+		}
+		&:hover
+		{
+			color: #555;
+		}
+	}
+}
 
 // About page styles
 .about-top
@@ -219,6 +231,31 @@ footer
 	padding-top: 4%;
 	padding-bottom: 4%;
 }
+.StripeElement
+{
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
 
 // Privacy policy/terms of use styles
 #privacy-policy
@@ -263,9 +300,10 @@ footer
 	.btn-about { width: 50%; }
 
 	// Navbar styles
-	#top-logo
+	.navbar-top
 	{
-		padding-left: 0rem;
+		padding-left: 1rem !important;
+		padding-right: 1rem !important;
 	}
 	#bottom-icon
 	{
@@ -283,6 +321,10 @@ footer
 	{
 		margin-left: auto;
 		margin-right: auto;
+	}
+	#new-user-date
+	{
+		margin-top: -0.8rem;
 	}
 
 	// Privacy policy/terms of use
