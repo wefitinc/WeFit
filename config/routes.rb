@@ -33,8 +33,9 @@ Rails.application.routes.draw do
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
   # Professionals routing
-  get '/professionals', to: 'professionals#index'
-  get '/professionals/new/:rate', to: 'professionals#new'
+  get  '/professionals', to: 'professionals#index'
+  get  '/professionals/new/:rate', to: 'professionals#new'
+  post '/professionals', to: 'professionals#create'
   # User routing
   get   'account_settings', to: 'users#edit'
   patch 'account_settings', to: 'users#update'

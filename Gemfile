@@ -49,7 +49,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 
 # Stripe for payments
-gem 'stripe'
+gem 'stripe-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
