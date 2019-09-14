@@ -73,13 +73,6 @@ $(document).on('turbolinks:load', function()
 		FB.XFBML.parse();
 		// Select the first name by default
 		$("#user_first_name").select();
-
-		var today = new Date();
-		var picker = new Pikaday({
-			field: document.getElementById('user_birthdate'),
-			format: 'YYYY-MM-DD',
-			yearRange: [today.getFullYear()-100, today.getFullYear()]
-		});
 	});
 	$('.professionals.new').ready(function()
 	{
@@ -96,11 +89,13 @@ $(document).on('turbolinks:load', function()
 			fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
 			fontSmoothing: 'antialiased',
 			fontSize: '16px',
-			'::placeholder': {
+			'::placeholder':
+			{
 			  color: '#6c757d'
 			}
 		  },
-		  invalid: {
+		  invalid:
+		  {
 			color: '#fa755a',
 			iconColor: '#fa755a'
 		  }
@@ -137,7 +132,6 @@ $(document).on('turbolinks:load', function()
 			  var errorElement = document.getElementById('card-errors');
 			  errorElement.textContent = result.error.message;
 			} else {
-			  // Send the token to your server.
 			  stripeTokenHandler(result.token);
 			}
 		  });
@@ -150,7 +144,7 @@ $(document).on('turbolinks:load', function()
 			var form = document.getElementById(form_id);
 			var hiddenInput = document.createElement('input');
 			hiddenInput.setAttribute('type', 'hidden');
-			hiddenInput.setAttribute('name', 'customer_id');
+			hiddenInput.setAttribute('name', 'stripe_token');
 			hiddenInput.setAttribute('value', token.id);
 			form.appendChild(hiddenInput);
 			// Submit the form

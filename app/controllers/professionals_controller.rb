@@ -1,3 +1,5 @@
+require 'stripe'
+
 class ProfessionalsController < ApplicationController
   def index
   end
@@ -7,6 +9,10 @@ class ProfessionalsController < ApplicationController
 
   def create
   	@professional = Professional.new(professional_params)
+    @professional.customer_id = Stripe::Customer.create({
+      source: params[:stripe_token],
+      email: @professional.email
+    })
   	if @professional.save
       redirect_to root_path
     else
@@ -22,7 +28,6 @@ class ProfessionalsController < ApplicationController
         :password,
         :first_name, 
         :last_name,
-        :type,
-        :customer_id)
+        :type)
     end
 end

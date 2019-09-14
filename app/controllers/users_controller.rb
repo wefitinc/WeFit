@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_logged_in, only: [ :edit, :update ]
+  skip_before_action :verify_authenticity_token, only: [ :update ]
 
   # GET /
   def new
