@@ -1,5 +1,6 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  get 'billing/billing_page'
   # API
   namespace :api do
     namespace :v1 do
@@ -22,6 +23,7 @@ Rails.application.routes.draw do
   get '/cookie_policy', to: 'static#cookie_policy'
   get 'advertising_policy', to: 'static#advertising_policy'
   get 'what_is_we_fit', to: 'static#what_is_WeFit'
+  get 'billing_page', to: 'static#billing_page'
   # Contact routing
   get  '/contact', to: 'contact#new'
   post '/contact', to: 'contact#create'
