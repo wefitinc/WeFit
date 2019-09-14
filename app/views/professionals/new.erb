@@ -1,6 +1,6 @@
-<div class="px-5 mx-auto my-auto" style="max-width: 1000px">
+<div class="px-2 mx-auto my-auto" style="max-width: 1000px">
   <h1 class="text-center big-text py-4">Professional Signup</h1>
-  <div class="px-5 py-5 bg-light rounded shadow">
+  <div id="professionals-form" class="bg-light rounded shadow">
     <%= form_for @professional, html: { id: 'professionals-form' } do |f| %>
       <%= hidden_field_tag :rate, params[:rate]%>
         <div class="form-group row">
