@@ -50,6 +50,10 @@ class User < ApplicationRecord
     end
   end
 
+  def send_activation_email
+    UserMailer.welcome(self).deliver_now
+  end
+
   # Creates a password reset token for the user and stores the digest in the database
   def create_reset_digest
     self.reset_token = User.new_token

@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     # If the user was successfully created
     if @user.save
+      # Send the welcome email
+      @user.send_activation_email
       # Make the user automatically logged in
       log_in @user
       # Redirect to root
