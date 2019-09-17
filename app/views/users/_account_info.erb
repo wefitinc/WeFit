@@ -1,4 +1,9 @@
 <h2 class="py-2">Account Information</h2>
+<% unless current_user.activated %>
+<div class="alert alert-warning" role="alert">
+  Your account has not been activated yet! Check your email, or <%= link_to "Resend the activation email", new_activation_url(email: current_user.email) %>.
+</div>
+<% end %>
 <%# Error alerts %>
 <% if @user.errors.any? %>
 <div class="alert alert-warning" role="alert">
