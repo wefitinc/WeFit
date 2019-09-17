@@ -2,8 +2,9 @@ class User < ApplicationRecord
   # Basic email REGEX for server side validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_DATE_REGEX = /([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])/
-  # Allow the user mailer to access the reset token
+  # Allow the user mailer to access the tokens
   attr_accessor :reset_token
+  attr_accessor :activation_token
   # Implement the gendered behavior (see lib/acts_as_gendered.rb)
   acts_as_gendered 
   # Implement BCrypt passwords
@@ -50,8 +51,19 @@ class User < ApplicationRecord
     end
   end
 
+  # Create an account activation token in the DB
+  def create_activation_digest
+    self.activation_token = User.new_token
+    update_columns(
+      activation_digest: User.digest(activation_token))
+  end
+  # Send the user a nice welcome/activation email
   def send_activation_email
     UserMailer.welcome(self).deliver_now
+  end
+  # Mark this user as activated
+  def activate!
+    update_columns(activated: true)
   end
 
   # Creates a password reset token for the user and stores the digest in the database

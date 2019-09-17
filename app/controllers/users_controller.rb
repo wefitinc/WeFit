@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     # If the user was successfully created
     if @user.save
       # Send the welcome email
+      @user.create_activation_digest
       @user.send_activation_email
       # Make the user automatically logged in
       log_in @user

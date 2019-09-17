@@ -11,6 +11,7 @@ class UserMailerPreview < ActionMailer::Preview
   # http://localhost:3000/rails/mailers/user_mailer/welcome
   def welcome
     user = User.first
+    user.activation_token = User.new_token
     UserMailer.welcome(user)
   end
 end
