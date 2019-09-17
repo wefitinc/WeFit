@@ -82,3 +82,5 @@ if __name__ == '__main__':
 		user_data = get_me(data['token'])
 		if user_data:
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
+			print("Data received from server:")
+			print(user_data)

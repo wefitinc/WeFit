@@ -4,7 +4,7 @@ class UserMailer < ApplicationMailer
     mail to: user.email, subject: "Password reset"
   end
   def welcome(user)
-  	@user = user
-  	mail to: user.email, subject: "Welcome to Wefit!"
+    @user = user
+    mail to: user.email, subject: "Welcome to Wefit!"
   end
 end

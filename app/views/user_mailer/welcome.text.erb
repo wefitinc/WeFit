@@ -1,0 +1,9 @@
+Hi <%= @user.first_name %> <%= @user.last_name %>,
+
+Thank you so much for joining our community! Please verify your email below for security purposes and to reset your password if necessary.
+
+<%= edit_activation_url(@user.activation_token, email: @user.email) %>
+
+Now that you're officially a member of WeFit (Woohoo!), it's time to invite your friends and start conquering your health journey together, as a community.
+
+This email was sent to <%= @user.email %>. Not you? Contact us immediately.
