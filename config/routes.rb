@@ -34,7 +34,8 @@ Rails.application.routes.draw do
   get  '/auth/failure', to: 'sessions#failure'
   # Password reset routing
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :activations, only: [:edit]
+  # Account activation routing
+  resources :activations, only: [:new, :edit]
   # Professionals routing
   get  '/professionals', to: 'professionals#index'
   get  '/professionals/new/:rate', to: 'professionals#new'

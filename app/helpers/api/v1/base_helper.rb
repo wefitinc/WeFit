@@ -9,8 +9,8 @@ module Api::V1::BaseHelper
       # Strip the database timestamps
       # NOTE: No security reason, they're just not useful
       :created_at, :updated_at, 
-      # Strip reset data
+      # Strip reset and activation data
       # NOTE: Not a huge security risk, but nothing would need it
-      :reset_digest, :reset_sent_at]
+      :activation_digest, :reset_digest, :reset_sent_at]
   end
 end
