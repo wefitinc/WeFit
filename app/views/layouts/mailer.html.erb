@@ -46,6 +46,21 @@
   </head>
 
   <body>
+    <section class="hero bg-red">
+      <div class="container">
+        <%= image_tag 'https://wefit.us/assets/logo-transparent-802daf093f338b47aa1086844eb5361bcc51b728d4206fb03138d800abd62efe.png', size: '200x100', class: 'center' %>
+      </div>
+    </section>
     <%= yield %>
+    <section>
+      <div class="container">
+        <p class="text-center text-small">This email was sent to <b><%= @user.email %></b>. Not you? Contact us immediately.</p>
+      </div>
+    </section>
+    <section class="hero bg-red">
+      <div class="container">
+        <%= image_tag 'https://wefit.us/assets/text-transparent-white-8afdb20c6706ec0bce4a0d325b0ea0c616b7f90900a644b37d9fce3fc4538e2a.png', size: '130x40', class: 'center' %>
+      </div>
+    </section>
   </body>
 </html>

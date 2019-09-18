@@ -1,27 +1,12 @@
-<section class="hero bg-red">
-	<div class="container">
-		<%= image_tag 'https://wefit.us/assets/logo-transparent-802daf093f338b47aa1086844eb5361bcc51b728d4206fb03138d800abd62efe.png', size: '200x100', class: 'center' %>
-	</div>
-</section>
 <section>
-	<div class="container">
-		<h3 class="text-center">Welcome to the Social Network for Health</h3>
-	</div>
-	<div class="container">
-		<p>Hi <b><%= @user.first_name %> <%= @user.last_name %></b>,</p>
-		<p>Thank you so much for joining our community! Please verify your email below for security purposes and to reset your password if necessary.</p>
-		<div class="btn-container"><%= link_to "Verify Email", edit_activation_url(@user.activation_token, email: @user.email), class: 'btn' %></div>
-		<p>Now that you're officially a member of WeFit (Woohoo!), it's time to invite your friends and start conquering your health journey together, as a community.</p>
-		<div class="btn-container"><%= link_to "Invite Friends", '#', class: 'btn' %></div>
-	</div>
-</section>
-<section>
-	<div class="container">
-		<p class="text-center text-small">This email was sent to <b><%= @user.email %></b>. Not you? Contact us immediately.</p>
-	</div>
-</section>
-<section class="hero bg-red">
-	<div class="container">
-		<%= image_tag 'https://wefit.us/assets/text-transparent-white-8afdb20c6706ec0bce4a0d325b0ea0c616b7f90900a644b37d9fce3fc4538e2a.png', size: '130x40', class: 'center' %>
-	</div>
+  <div class="container">
+    <h3 class="text-center">Welcome to the Social Network for Health</h3>
+  </div>
+  <div class="container">
+    <p>Hi <b><%= @user.first_name %> <%= @user.last_name %></b>,</p>
+    <p>Thank you so much for joining our community! Please verify your email below for security purposes and to reset your password if necessary.</p>
+    <div class="btn-container"><%= link_to "Verify Email", edit_activation_url(@user.activation_token, email: @user.email), class: 'btn' %></div>
+    <p>Now that you're officially a member of WeFit (Woohoo!), it's time to invite your friends and start conquering your health journey together, as a community.</p>
+    <div class="btn-container"><%= link_to "Invite Friends", '#', class: 'btn' %></div>
+  </div>
 </section>
