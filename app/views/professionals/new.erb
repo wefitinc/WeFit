@@ -1,6 +1,14 @@
 <div class="px-2 mx-auto my-auto" style="max-width: 1000px">
   <h1 class="text-center big-text py-4">Professional Signup</h1>
   <div id="professionals-form" class="bg-light rounded shadow">
+    <% if @professional.errors.any? %>
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">Errors signing up!</h4>
+      <% @professional.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+      <% end %>
+    </div>
+    <% end %>
     <%= form_for @professional, html: { id: 'professionals-form' } do |f| %>
       <%# Rate (hidden field) %>
       <%= hidden_field_tag :rate, params[:rate]%>
