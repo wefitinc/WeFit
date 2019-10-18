@@ -1,7 +1,7 @@
 class Professional < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
-  RATES = ['standard', 'plus']
+  RATES = ['Standard', 'Plus']
   TYPES = ["Personal Trainer", "Dietitian", "Primary Care Physician", "Psychiatrist", "Naturopath", "Dentist/Orthodontist", "Chiropractor"]
 
   # Implement BCrypt passwords
@@ -35,4 +35,7 @@ class Professional < ApplicationRecord
   validates :rate,
     presence: true,
     inclusion: { in: RATES }
+  validates :prices,
+    presence: true
+   
 end
