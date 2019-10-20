@@ -3,8 +3,18 @@ require 'stripe'
 class ProfessionalsController < ApplicationController
   def index
   end
+  def checkout
+  end
+
   def new
     @professional = Professional.new
+
+    if params[:rate] == "Standard"
+      prices = '19.99'
+    else
+      prices = '29.99'
+    end
+
   end
 
   def create
@@ -56,6 +66,7 @@ class ProfessionalsController < ApplicationController
         :first_name, 
         :last_name,
         :type, 
+        :prices,
         :rate)
     end
 end
