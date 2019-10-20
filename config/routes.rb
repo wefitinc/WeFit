@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   # Professionals routing
   get  '/professionals', to: 'professionals#index'
   get  '/professionals/new/:rate', to: 'professionals#new'
-  get  '/professionals/checkout', to: 'professionals#checkout'
+  get  '/professionals/new/:rate/checkout', to: 'professionals#checkout'
   post '/professionals', to: 'professionals#create'
   # User routing
   get   'account_settings', to: 'users#edit'
