@@ -221,9 +221,29 @@ footer
 }
 .about-bottom
 {
-	padding-top: 2%;
-	padding-bottom: 5%;
+	padding-top: 4%;
+	padding-bottom: 4%;
 }
+
+
+//help center page style
+.help-top
+{
+	background: #6666FF !important;
+	padding-top: 4%;
+	padding-bottom: 5%;
+	margin-top: 2px;
+}
+.help-bottom
+{
+	background: #FCF8F8  !important;
+	padding-top: 4%;
+	padding-bottom: 4%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+
 
 // Professionals page styles
 .professional-top
@@ -410,3 +430,8 @@ input.invalid {
 		padding-right: 1rem !important;
 	}
 }
+
+
+
+
+
