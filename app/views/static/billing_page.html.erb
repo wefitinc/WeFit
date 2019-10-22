@@ -2,8 +2,9 @@
 <% title 'help center'%>
 <% meta_tag :description, 'View your recent account statements here. Have any questions? Head over to our content page to get in touch with a WeFit representative.' %>
 <%# Page content %>
-<div class="help-top">
-  <div class="col-md-4 px-4 py-4 mx-auto my-auto bg-light border rounded-big shadow">
+
+<div class="help-top">	
+  	<div class="col-md-4 px-4 py-4 mx-auto my-auto bg-light border rounded-big shadow">
 		<h3 class="text-center">Henlp Center</h3>
 		<%= form_tag '/contact', method: :post do %>
 			<div class="form-group"><%= text_area_tag :body, '', class: 'form-control', placeholder: 'Message', required: '' %></div>
@@ -26,7 +27,7 @@
       </div>
 
       <div class="col-lg-4">
-        <%= link_to image_tag("Health Professionals-icon.png", size: "90*90", alt: "WeFit"), root_path%>
+        <%= link_to image_tag("Health Professionals-icon.png", size: "90*90", alt: "Professionals"), root_path%>
         <h2>Account</h2>
         <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
       </div>
