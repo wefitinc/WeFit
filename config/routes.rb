@@ -9,7 +9,11 @@ Rails.application.routes.draw do
       get  '/auth/check', to: 'auth#check'
       get  '/auth/me', to: 'auth#me'
       
+      # TODO find a better routing for this
+      get '/users/:id/posts', to: 'posts#for_user'
+
       resources :users, only: [:show]
+      resources :posts, only: [:index, :show, :create]
     end
   end
 

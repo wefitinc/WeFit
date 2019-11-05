@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
+# Geocoding for posts
+gem 'geocoder'
+
 # Use Json Web Token (JWT) for token based authentication
 gem 'jwt'
 # Use hashids for better security

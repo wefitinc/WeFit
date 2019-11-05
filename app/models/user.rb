@@ -11,7 +11,11 @@ class User < ApplicationRecord
   has_secure_password
   # Use hashids for more secure lookup
   include Hashid::Rails
-  
+
+  # Associate posts with users
+  has_many :posts, dependent: :destroy
+  accepts_nested_attributes_for :posts
+
   # The user needs a valid name
   validates :first_name,  
     presence: true, 

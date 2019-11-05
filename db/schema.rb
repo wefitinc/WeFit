@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_17_230627) do
+ActiveRecord::Schema.define(version: 2019_11_05_220226) do
+
+  create_table "posts", force: :cascade do |t|
+    t.string "background"
+    t.text "text"
+    t.string "font"
+    t.string "color"
+    t.float "position_x"
+    t.float "position_y"
+    t.float "rotation"
+    t.string "latitude"
+    t.string "longitude"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["latitude", "longitude"], name: "index_posts_on_latitude_and_longitude"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
 
   create_table "professionals", force: :cascade do |t|
     t.string "first_name"

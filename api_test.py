@@ -1,8 +1,8 @@
 import requests
 
 # Base URL to contact
-url = 'https://wefit.us'
-# url = 'http://localhost:3000'
+# url = 'https://wefit.us'
+url = 'http://localhost:3000'
 
 # Send a login request with the email and password
 def login(email, password):
@@ -69,11 +69,45 @@ def get_user(user_id):
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
 	return None
 
+def post(token):
+	# Test post data
+	json = { 
+		# White text
+		'color': "#ffffff",
+		# Eye-rape background
+		'background': "#ff00ff",
+		# Basic text
+		'text': "This is a test post",
+		'font': 'Consolas',
+		# Top left
+		'position_x': 0.0, 
+		'position_y': 0.0, 
+		'rotation': 0.0,
+		# Tempe, Az coordinates
+		'latitude': '33.4255',
+		'longitude': '111.9400'
+	}
+
+	# Post path
+	path = '/api/v1/posts'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	# Make the request (GET)
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Made a post")
+		print(r.json())
+		return
+	print('Failed to create a post, status code ['+str(r.status_code)+']')
+
+
 if __name__ == '__main__':
 	# Try and log in as the test user
-	email    = 'test@test.com'
+	# email    = 'test@test.us'
+	# password = 'SuperSecretTestPassword'
+	email    = 'test@wefit.us'
 	password = 'SuperSecretTestPassword'
-	# password = 'test'
 	data = login(email, password)
 	# If login successful
 	if data:
@@ -84,3 +118,4 @@ if __name__ == '__main__':
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			print("Data received from server:")
 			print(user_data)
+			post(data['token'])
