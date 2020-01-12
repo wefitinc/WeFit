@@ -70,36 +70,43 @@ def get_user(user_id):
 	return None
 
 def post(token):
-	# Test post data
-	json = { 
-		# White text
-		'color': "#ffffff",
-		# Eye-rape background
-		'background': "#ff00ff",
-		# Basic text
-		'text': "This is a test post",
-		'font': 'Consolas',
-		# Top left
-		'position_x': 0.0, 
-		'position_y': 0.0, 
-		'rotation': 0.0,
-		# Tempe, Az coordinates
-		'latitude': '33.4255',
-		'longitude': '111.9400'
-	}
+	# Base64 image data
+	with open('test_base64.txt', 'r') as image_file:
+		image = image_file.read()
+		# Test post data
+		json = {
+			'post': {
+				# White text
+				'color': "#ffffff",
+				# Eye-rape background
+				'background': "#ff00ff",
+				# Basic text
+				'text': "This is a test post",
+				'font': 'Consolas',
+				# Top left
+				'position_x': 0.0, 
+				'position_y': 0.0, 
+				'rotation': 0.0,
+				# Tempe, Az coordinates
+				'latitude': '33.4255',
+				'longitude': '111.9400',
+			},
+			# Image
+			'image': image
+		}
 
-	# Post path
-	path = '/api/v1/posts'
-	print('Contacting '+url+path+'...', end ="")
-	# Make sure the headers contain the authorization token
-	headers = { 'Authorization': token }
-	# Make the request (GET)
-	r = requests.post(url+path, json=json, headers=headers)
-	if r.status_code == 200:
-		print("Made a post")
-		print(r.json())
-		return
-	print('Failed to create a post, status code ['+str(r.status_code)+']')
+		# Post path
+		path = '/api/v1/posts'
+		print('Contacting '+url+path+'...', end ="")
+		# Make sure the headers contain the authorization token
+		headers = { 'Authorization': token }
+		# Make the request (GET)
+		r = requests.post(url+path, json=json, headers=headers)
+		if r.status_code == 200:
+			print("Made a post")
+			print(r.json())
+			return
+		print('Failed to create a post, status code ['+str(r.status_code)+']')
 
 
 if __name__ == '__main__':

@@ -23,9 +23,11 @@ class Api::V1::PostsController < Api::V1::BaseController
     @post = Post.new(post_params)
     # Set the owner to the logged in user
     @post.user_id = @current_user.id
+    # Attach the image to the post
+    @post.image.attach(data: params[:image])
     # Save to DB
     if @post.save
-      render json: @post
+      render_post @post
     else
       render json: { errors: @post.errors }, status: :unprocessable_entity
     end
@@ -65,7 +67,7 @@ class Api::V1::PostsController < Api::V1::BaseController
       end 
     end
     def post_params
-      params.permit(
+      params.require(:post).permit(
         :background,
         :text,
         :font,

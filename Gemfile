@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 # Geocoding for posts
 gem 'geocoder'
 
+# ActiveStorage stuff 
+gem "aws-sdk-s3", require: false
+gem 'active_storage_base64'
+
 # Use Json Web Token (JWT) for token based authentication
 gem 'jwt'
 # Use hashids for better security

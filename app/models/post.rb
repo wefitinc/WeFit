@@ -1,9 +1,14 @@
 class Post < ApplicationRecord
+  include Rails.application.routes.url_helpers
+  
   # REGEX defining a valid color in HTML hex format (#ffffff)
   VALID_COLOR_REGEX = /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/
 
   # Associate every post with a user
   belongs_to :user
+
+  # Associate an image with each post
+  has_one_base64_attached :image
 
   # Make sure to allow for reverse geocoding
   reverse_geocoded_by :latitude, :longitude
@@ -26,4 +31,12 @@ class Post < ApplicationRecord
   # TODO Validate the coordinates
   validates :latitude, presence: true
   validates :longitude, presence: true
+  # Validate image presence, what's a post without an image?
+  validates :image, presence: true
+
+  # Helper
+  def get_image_url
+    url_for(self.image)
+  end
+
 end
