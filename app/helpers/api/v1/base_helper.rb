@@ -15,7 +15,10 @@ module Api::V1::BaseHelper
   end
 
   def render_post(post)
+    @user = User.find_by_id! post.user_id
     render json: {
+      user_id: @user.hashid,
+      tag_list: post.tag_list,
       color: post.color,
       background: post.background,
       text: post.text,

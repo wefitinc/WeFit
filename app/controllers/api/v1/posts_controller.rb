@@ -68,6 +68,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     end
     def post_params
       params.require(:post).permit(
+        :tag_list,
         :background,
         :text,
         :font,

@@ -29,6 +29,8 @@ gem 'jbuilder', '~> 2.5'
 
 # Geocoding for posts
 gem 'geocoder'
+# Taggable posts
+gem 'acts-as-taggable-on', '~> 6.0'
 
 # ActiveStorage stuff 
 gem "aws-sdk-s3", require: false

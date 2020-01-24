@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   # Associate every post with a user
   belongs_to :user
 
+  # Add a tag list
+  acts_as_taggable
+
   # Associate an image with each post
   has_one_base64_attached :image
 

@@ -1,4 +1,6 @@
+import base64
 import requests
+import mimetypes
 
 # Base URL to contact
 # url = 'https://wefit.us'
@@ -69,10 +71,15 @@ def get_user(user_id):
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
 	return None
 
-def post(token):
-	# Base64 image data
-	with open('test_base64.txt', 'r') as image_file:
+def post(token, image_filename):
+	# Get the mimetype of the file
+	mime_type = mimetypes.guess_type(image_filename)[0]
+	# Load image data
+	with open(image_filename, 'rb') as image_file:
+		# Read image
 		image = image_file.read()
+		# Base64 encode
+		image_b64 = base64.b64encode(image)
 		# Test post data
 		json = {
 			'post': {
@@ -90,9 +97,11 @@ def post(token):
 				# Tempe, Az coordinates
 				'latitude': '33.4255',
 				'longitude': '111.9400',
+				# Add a tag list
+				'tag_list': "fitness",
 			},
 			# Image
-			'image': image
+			'image': "data:"+mime_type+";base64,"+str(image_b64)
 		}
 
 		# Post path
@@ -125,4 +134,6 @@ if __name__ == '__main__':
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			print("Data received from server:")
 			print(user_data)
-			post(data['token'])
+			# Image filename
+			image = 'red-suspension-bridge-3493772.jpg'
+			post(data['token'], image)
