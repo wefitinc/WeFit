@@ -20,7 +20,7 @@ if __name__ == '__main__':
 	add_dir(z, 'lib/')
 	add_dummy_dir(z, 'log/')
 	add_dir(z, 'public/')
-	add_dir(z, 'storage/')
+	add_dummy_dir(z, 'storage/')
 	add_dir(z, 'test/')
 	add_dummy_dir(z, 'tmp/')
 	add_dir(z, 'vendor/')
