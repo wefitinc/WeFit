@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
+# Invisible captcha for spam prevention
+gem 'invisible_captcha'
+
 # Geocoding for posts
 gem 'geocoder'
 # Taggable posts

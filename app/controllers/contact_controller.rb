@@ -1,4 +1,6 @@
 class ContactController < ApplicationController
+	invisible_captcha only: [:create], honeypot: :subtitle
+
 	def new
 	end
 	def create
