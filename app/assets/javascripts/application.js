@@ -19,17 +19,6 @@
 //= require jquery-readyselector
 // require_tree .
 
-// Facebook JS Init
-window.fbAsyncInit = function()
-{
-	FB.init({
-		appId            : '2383595921758644',
-		autoLogAppEvents : true,
-		xfbml            : true,
-		version          : 'v3.3'
-	});
-};
-
 function toggle_password()
 {
 	var field = document.getElementById('user_password');
@@ -69,8 +58,6 @@ $(document).on('turbolinks:load', function()
 	// Logged out welcome page JS
 	$('.users.new.logged_out').ready(function()
 	{
-		// Fix the FB button
-		FB.XFBML.parse();
 		// Select the first name by default
 		$("#user_first_name").select();
 	});
