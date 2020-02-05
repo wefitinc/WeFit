@@ -3,11 +3,13 @@
 import os
 import zipfile
 
+# Add all files in a directory
 def add_dir(z, path):
 	for root, dires, files in os.walk(path):
 		for file in files:
 			z.write(os.path.join(root, file))
 
+# Add a directory with only a dummy file in it
 def add_dummy_dir(z, path):
 	z.write(path+'/.keep')
 
