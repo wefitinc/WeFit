@@ -26,8 +26,6 @@
     <!-- App CSS -->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <!-- Facebook JS -->
-    <script crossorigin="anonymous" src="https://connect.facebook.net/en_US/all.js#xfbml=1&version=v3.3"></script>
     <!-- App JS -->
     <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': 'true' %>
@@ -41,8 +39,6 @@
     <!-- End Google Tag Manager -->
   </head>
   <body class="<%= controller_name %> <%= action_name %> <%= login_status %> <%= login_error %>">
-    <!-- FB root -->
-    <div id="fb-root"></div>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWKKSWG"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

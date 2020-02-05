@@ -7,7 +7,6 @@
 </div>
 <% end %>
 <%= form_for @user, url: root_path do |f| %>
-	<%= f.invisible_captcha :phonenumber %>
 	<div class="form-group row">
 		<div class="col"><%= f.text_field :first_name, class: 'form-control', required: true, placeholder: 'First Name' %></div>
 		<div class="col"><%= f.text_field :last_name, class: 'form-control', required: true, placeholder: 'Last Name' %></div>
@@ -38,6 +37,9 @@
 	<div class="form-group text-center col-sm">
 		<%= f.label :terms_of_use, "By signing up, you agree to #{link_to 'Terms of Use', terms_of_use_path} and #{link_to 'Privacy Policy', privacy_policy_path}.".html_safe, class: "form-check-label" %>
 	</div>
+	<%# NOTE: This is an invisible "honeypot" field that causes the server to reject the request if it is filled %>
+	<%# This is done to prevent spam from bots that try and sign up stolen email addresses %>
+	<%= f.invisible_captcha :phonenumber %>
 	<div class="form-group text-center">
 		<%= f.submit "Sign Up", class: "btn btn-green btn-lg w-50" %>
 	</div>
