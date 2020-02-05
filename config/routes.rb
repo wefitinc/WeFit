@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       get '/users/:id/posts', to: 'posts#for_user'
 
       resources :users, only: [:show]
-      resources :posts, only: [:index, :show, :create]
+      resources :posts, only: [:index, :show, :create, :destroy]
     end
   end
 

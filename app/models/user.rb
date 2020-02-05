@@ -102,4 +102,17 @@ class User < ApplicationRecord
     return false if string.nil?
     BCrypt::Password.new(string).is_password?(token)
   end
+
+  # JSON serializer
+  def as_json(*)
+    super.except(
+      "id",
+      "password_digest", 
+      "activation_digest",
+      "created_at", "updated_at",  
+      "reset_digest", "reset_sent_at",
+      "provider", "uid").tap do |hash|
+        hash["id"] = hashid
+      end
+  end
 end

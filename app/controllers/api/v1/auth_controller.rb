@@ -45,7 +45,7 @@ class Api::V1::AuthController < Api::V1::BaseController
 
   # GET /auth/me
   def me
-    render_user @current_user
+    render json: @current_user
   end
 
   private

@@ -113,10 +113,22 @@ def post(token, image_filename):
 		r = requests.post(url+path, json=json, headers=headers)
 		if r.status_code == 200:
 			print("Made a post")
-			print(r.json())
-			return
+			r_data = r.json()
+			print(r_data)
+			return r_data['id']
 		print('Failed to create a post, status code ['+str(r.status_code)+']')
 
+def delete_post(token, post_id):
+	# Post path
+	path = '/api/v1/posts/'+str(post_id)
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.delete(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Deleted post")
+		print(r.json())
+	print('Failed to delete post, status code ['+str(r.status_code)+']')
 
 if __name__ == '__main__':
 	# Try and log in as the test user
@@ -136,4 +148,6 @@ if __name__ == '__main__':
 			print(user_data)
 			# Image filename
 			image = 'red-suspension-bridge-3493772.jpg'
-			post(data['token'], image)
+			post_id = post(data['token'], image)
+			if post_id:
+				delete_post(data['token'], post_id)

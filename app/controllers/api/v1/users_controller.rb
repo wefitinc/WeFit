@@ -4,7 +4,7 @@ class Api::V1::UsersController < Api::V1::BaseController
   # GET /users/:id
   def show
     # Render the user
-    render_user @user
+    render json: @user
   end
 
   private

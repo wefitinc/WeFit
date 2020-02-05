@@ -1,7 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
   # Authorize the user before posting
-  before_action :authorize, only: [:create]
-
+  before_action :authorize, only: [:create, :destroy]
 
   # GET /posts
   def index
@@ -17,6 +16,17 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: @post
   end
 
+  # DELETE /posts/:id
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    if @post.destroyed?
+      render json: { message: "Post destroyed" }, status: :okay
+    else
+      render json: { message: "Failed to destroy post" }, status: :internal_server_error
+    end
+  end
+
   # POST /posts
   def create
     # Create the new post
@@ -27,7 +37,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     @post.image.attach(data: params[:image])
     # Save to DB
     if @post.save
-      render_post @post
+      render json: @post
     else
       render json: { errors: @post.errors }, status: :unprocessable_entity
     end
