@@ -3,8 +3,8 @@ import requests
 import mimetypes
 
 # Base URL to contact
-url = 'https://wefit.us'
-# url = 'http://localhost:3000'
+# url = 'https://wefit.us'
+url = 'http://localhost:3000'
 
 # Send a login request with the email and password
 def login(email, password):
@@ -98,7 +98,7 @@ def post(token, image_filename):
 				'latitude': '33.4255',
 				'longitude': '111.9400',
 				# Add a tag list
-				'tag_list': "fitness",
+				'tag_list': [ "fitness", "outdoors" ],
 			},
 			# Image
 			'image': "data:"+mime_type+";base64,"+str(image_b64)
@@ -132,22 +132,23 @@ def delete_post(token, post_id):
 
 if __name__ == '__main__':
 	# Try and log in as the test user
-	email    = 'test@test.com'
-	password = 'SuperSecretTestPassword'
-	# email    = 'test@wefit.us'
+	# email    = 'test@test.com'
 	# password = 'SuperSecretTestPassword'
+	email    = 'test@wefit.us'
+	password = 'SuperSecretTestPassword'
 	data = login(email, password)
 	# If login successful
 	if data:
 		# Run an authorization test
 		auth_check(data['token'])
+		print(data['token'])
 		user_data = get_me(data['token'])
 		if user_data:
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			print("Data received from server:")
 			print(user_data)
 			# Image filename
-			# image = 'red-suspension-bridge-3493772.jpg'
-			# post_id = post(data['token'], image)
+			image = 'red-suspension-bridge-3493772.jpg'
+			post_id = post(data['token'], image)
 			# if post_id:
-				# delete_post(data['token'], post_id)
+			# 	delete_post(data['token'], post_id)

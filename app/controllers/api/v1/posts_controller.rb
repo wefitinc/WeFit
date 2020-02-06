@@ -33,6 +33,11 @@ class Api::V1::PostsController < Api::V1::BaseController
     @post = Post.new(post_params)
     # Set the owner to the logged in user
     @post.user_id = @current_user.id
+    # Set the tag list to the proper tag format
+    @tag_list = params["post"]["tag_list"]
+    if @tag_list and @tag_list.kind_of?(Array)
+      @post.tag_list = @tag_list.join(', ')
+    end
     # Attach the image to the post
     @post.image.attach(data: params[:image])
     # Save to DB
@@ -78,7 +83,6 @@ class Api::V1::PostsController < Api::V1::BaseController
     end
     def post_params
       params.require(:post).permit(
-        :tag_list,
         :background,
         :text,
         :font,
@@ -87,5 +91,8 @@ class Api::V1::PostsController < Api::V1::BaseController
         :position_y,
         :rotation,
         :latitude, :longitude)
+    end
+    def tag_list_param
+      params.require(:post).permit(tag_list: [])
     end
 end
