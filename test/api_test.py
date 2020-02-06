@@ -3,8 +3,8 @@ import requests
 import mimetypes
 
 # Base URL to contact
-# url = 'https://wefit.us'
-url = 'http://localhost:3000'
+url = 'https://wefit.us'
+# url = 'http://localhost:3000'
 
 # Send a login request with the email and password
 def login(email, password):
@@ -88,7 +88,7 @@ def post(token, image_filename):
 				# Eye-rape background
 				'background': "#ff00ff",
 				# Basic text
-				'text': "This is a test post",
+				'text': "Test 🔥🔥🔥🔥🔥🔥",
 				'font': 'Consolas',
 				# Top left
 				'position_x': 0.0, 
@@ -132,10 +132,10 @@ def delete_post(token, post_id):
 
 if __name__ == '__main__':
 	# Try and log in as the test user
-	# email    = 'test@test.com'
-	# password = 'SuperSecretTestPassword'
-	email    = 'test@wefit.us'
+	email    = 'test@test.com'
 	password = 'SuperSecretTestPassword'
+	# email    = 'test@wefit.us'
+	# password = 'SuperSecretTestPassword'
 	data = login(email, password)
 	# If login successful
 	if data:
