@@ -21,7 +21,7 @@ class Api::V1::PostsController < Api::V1::BaseController
     @post = Post.find(params[:id])
     @post.destroy
     if @post.destroyed?
-      render json: { message: "Post destroyed" }, status: :okay
+      render json: { message: "Post destroyed" }
     else
       render json: { message: "Failed to destroy post" }, status: :internal_server_error
     end

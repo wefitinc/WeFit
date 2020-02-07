@@ -22,6 +22,7 @@ def login(email, password):
 		return r.json()
 	# Failed, dont return data# 
 	print('Failed to login, status code ['+str(r.status_code)+']')
+	print(r.json())
 	return None
 
 # Send an authorization test for the token
@@ -39,6 +40,7 @@ def auth_check(token):
 		return
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
+	print(r.json())
 
 def get_me(token):
 	# User path
@@ -54,6 +56,7 @@ def get_me(token):
 		return r.json()
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
+	print(r.json())
 
 def get_user(user_id):
 	# User path
@@ -69,6 +72,7 @@ def get_user(user_id):
 		return r.json()
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
+	print(r.json())
 	return None
 
 def create_post(token, image_filename):
@@ -117,6 +121,7 @@ def create_post(token, image_filename):
 			print(r_data)
 			return r_data['id']
 		print('Failed to create a post, status code ['+str(r.status_code)+']')
+		print(r.json())
 
 def delete_post(token, post_id):
 	# Post path
@@ -128,7 +133,9 @@ def delete_post(token, post_id):
 	if r.status_code == 200:
 		print("Deleted post")
 		print(r.json())
+		return
 	print('Failed to delete post, status code ['+str(r.status_code)+']')
+	print(r.json())
 
 if __name__ == '__main__':
 	# Try and log in as the test user
@@ -150,5 +157,5 @@ if __name__ == '__main__':
 			# Image filename
 			image = 'red-suspension-bridge-3493772.jpg'
 			post_id = create_post(data['token'], image)
-			# if post_id:
-			# 	delete_post(data['token'], post_id)
+			if post_id:
+				delete_post(data['token'], post_id)
