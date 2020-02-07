@@ -40,7 +40,7 @@ class Api::V1::AuthController < Api::V1::BaseController
 
   # GET /auth/check
   def check
-    render json: { status: 'ok' }, status: :ok
+    render json: { status: 'Authorization token valid' }, status: :ok
   end
 
   # GET /auth/me
