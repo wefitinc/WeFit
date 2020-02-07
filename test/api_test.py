@@ -3,8 +3,8 @@ import requests
 import mimetypes
 
 # Base URL to contact
-url = 'https://wefit.us'
-# url = 'http://localhost:3000'
+# url = 'https://wefit.us'
+url = 'http://localhost:3000'
 
 # Send a login request with the email and password
 def login(email, password):
@@ -20,7 +20,7 @@ def login(email, password):
 		# Log and return the data
 		print("Logged in")
 		return r.json()
-	# Failed, dont return data
+	# Failed, dont return data# 
 	print('Failed to login, status code ['+str(r.status_code)+']')
 	return None
 
@@ -71,7 +71,7 @@ def get_user(user_id):
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
 	return None
 
-def post(token, image_filename):
+def create_post(token, image_filename):
 	# Get the mimetype of the file
 	mime_type = mimetypes.guess_type(image_filename)[0]
 	# Load image data
@@ -132,10 +132,10 @@ def delete_post(token, post_id):
 
 if __name__ == '__main__':
 	# Try and log in as the test user
-	email    = 'test@test.com'
-	password = 'SuperSecretTestPassword'
-	# email    = 'test@wefit.us'
+	# email    = 'test@test.com'
 	# password = 'SuperSecretTestPassword'
+	email    = 'test@wefit.us'
+	password = 'SuperSecretTestPassword'
 	data = login(email, password)
 	# If login successful
 	if data:
@@ -149,6 +149,6 @@ if __name__ == '__main__':
 			print(user_data)
 			# Image filename
 			image = 'red-suspension-bridge-3493772.jpg'
-			post_id = post(data['token'], image)
+			post_id = create_post(data['token'], image)
 			# if post_id:
 			# 	delete_post(data['token'], post_id)

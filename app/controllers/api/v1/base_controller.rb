@@ -4,6 +4,10 @@ class Api::V1::BaseController < ActionController::API
 
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
  
+  rescue_from Exception do |exception|
+    render json: { error: exception }, status: 500
+  end
+
   private
     def record_not_found
       render json: { error: "404 Not Found", status: 404 }, status: 404

@@ -25,6 +25,8 @@ class Api::V1::PostsController < Api::V1::BaseController
     else
       render json: { message: "Failed to destroy post" }, status: :internal_server_error
     end
+    rescue ActiveRecord::RecordNotFound
+      render json: { message: "Post not found or already destroyed" }, status: :not_found
   end
 
   # POST /posts
