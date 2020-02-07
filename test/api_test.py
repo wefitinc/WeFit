@@ -2,9 +2,15 @@ import base64
 import requests
 import mimetypes
 
-# Base URL to contact
-url = 'https://wefit.us'
-# url = 'http://localhost:3000'
+# Production testing
+# url      = 'https://wefit.us'
+# email    = 'test@test.com'
+# password = 'SuperSecretTestPassword'
+
+# Development testing
+url      = 'http://localhost:3000'
+email    = 'test@wefit.us'
+password = 'SuperSecretTestPassword'
 
 # Send a login request with the email and password
 def login(email, password):
@@ -19,10 +25,11 @@ def login(email, password):
 	if r.status_code == 200:
 		# Log and return the data
 		print("Logged in")
+		print('\t'+str(r.json()))
 		return r.json()
 	# Failed, dont return data# 
 	print('Failed to login, status code ['+str(r.status_code)+']')
-	print(r.json())
+	print('\t'+str(r.json()))
 	return None
 
 # Send an authorization test for the token
@@ -37,10 +44,11 @@ def auth_check(token):
 	# If the request was successful
 	if r.status_code == 200:
 		print("Authorized")
+		print('\t'+str(r.json()))
 		return
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
-	print(r.json())
+	print('\t'+str(r.json()))
 
 def get_me(token):
 	# User path
@@ -53,10 +61,11 @@ def get_me(token):
 	# If the request was successful
 	if r.status_code == 200:
 		print("Got my user data")
+		print('\t'+str(r.json()))
 		return r.json()
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
-	print(r.json())
+	print('\t'+str(r.json()))
 
 def get_user(user_id):
 	# User path
@@ -69,10 +78,11 @@ def get_user(user_id):
 	# If the request was successful
 	if r.status_code == 200:
 		print("Got user data")
+		print('\t'+str(r.json()))
 		return r.json()
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
-	print(r.json())
+	print('\t'+str(r.json()))
 	return None
 
 def create_post(token, image_filename):
@@ -117,11 +127,12 @@ def create_post(token, image_filename):
 		r = requests.post(url+path, json=json, headers=headers)
 		if r.status_code == 200:
 			print("Made a post")
-			r_data = r.json()
-			print(r_data)
-			return r_data['id']
+			print('\t'+str(r.json()))
+			return r.json()
 		print('Failed to create a post, status code ['+str(r.status_code)+']')
-		print(r.json())
+		print('\t'+str(r.json()))
+		return
+	print('Failed to load image \"'+image_filename+'\"')
 
 def delete_post(token, post_id):
 	# Post path
@@ -132,30 +143,23 @@ def delete_post(token, post_id):
 	r = requests.delete(url+path, headers=headers)
 	if r.status_code == 200:
 		print("Deleted post")
-		print(r.json())
+		print('\t'+str(r.json()))
 		return
 	print('Failed to delete post, status code ['+str(r.status_code)+']')
-	print(r.json())
+	print('\t'+str(r.json()))
 
 if __name__ == '__main__':
 	# Try and log in as the test user
-	email    = 'test@test.com'
-	password = 'SuperSecretTestPassword'
-	# email    = 'test@wefit.us'
-	# password = 'SuperSecretTestPassword'
 	data = login(email, password)
 	# If login successful
 	if data:
 		# Run an authorization test
 		auth_check(data['token'])
-		print(data['token'])
 		user_data = get_me(data['token'])
 		if user_data:
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
-			print("Data received from server:")
-			print(user_data)
 			# Image filename
-			# image = 'red-suspension-bridge-3493772.jpg'
-			# post_id = create_post(data['token'], image)
-			# if post_id:
-			# 	delete_post(data['token'], post_id)
+			image = 'red-suspension-bridge-3493772.jpg'
+			post_data = create_post(data['token'], image)
+			if post_data:
+				delete_post(data['token'], post_data['id'])
