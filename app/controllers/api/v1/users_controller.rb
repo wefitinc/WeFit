@@ -8,11 +8,9 @@ class Api::V1::UsersController < Api::V1::BaseController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       # Use find_by_hashid to not allow sequential ID lookups
       @user = User.find_by_hashid(params[:id])
-      # Return a not found error if the user doesnt exist
-      render json: { error: 'User not found' }, status: :not_found if @user.nil?
+      render json: { error: "Not found" }, status: 404 if @user.nil?
     end
 end
