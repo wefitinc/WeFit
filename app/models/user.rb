@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # Allow the user mailer to access the tokens
   attr_accessor :reset_token
   attr_accessor :activation_token
+  attr_accessor :unlock_token
   # Implement the gendered behavior (see lib/acts_as_gendered.rb)
   acts_as_gendered 
   # Implement BCrypt passwords
@@ -58,8 +59,7 @@ class User < ApplicationRecord
   # Create an account activation token in the DB
   def create_activation_digest
     self.activation_token = User.new_token
-    update_columns(
-      activation_digest: User.digest(activation_token))
+    update_columns(activation_digest: User.digest(activation_token))
   end
   # Send the user a nice welcome/activation email
   def send_activation_email
@@ -68,6 +68,14 @@ class User < ApplicationRecord
   # Mark this user as activated
   def activate!
     update_columns(activated: true)
+  end
+
+  # Create an unlock token
+  def create_unlock_digest
+    self.unlock_token = User.new_token
+    update_columns(
+      unlock_digest: User.digest(unlock_token),
+      locked_at: Time.zone.now)
   end
 
   # Creates a password reset token for the user and stores the digest in the database
