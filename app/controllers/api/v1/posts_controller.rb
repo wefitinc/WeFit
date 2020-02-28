@@ -88,6 +88,7 @@ class Api::V1::PostsController < Api::V1::BaseController
         :background,
         :text,
         :font,
+        :font_size,
         :color,
         :position_x,
         :position_y,

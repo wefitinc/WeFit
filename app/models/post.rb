@@ -23,6 +23,7 @@ class Post < ApplicationRecord
   validates :background, presence: true
   validates :text, presence: true
   validates :font, presence: true
+  validates :font_size, presence: true
   # Color has to fit the color regex
   validates :color, 
     presence: true, 

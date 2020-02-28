@@ -104,6 +104,7 @@ def create_post(token, image_filename):
 				# Basic text
 				'text': "Test 🔥🔥🔥🔥🔥🔥",
 				'font': 'Consolas',
+				'font_size': 8.0,
 				# Top left
 				'position_x': 0.0, 
 				'position_y': 0.0, 
