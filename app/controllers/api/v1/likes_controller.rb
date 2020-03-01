@@ -3,6 +3,7 @@ class Api::V1::LikesController < Api::V1::BaseController
 
   # GET /api/v1/posts/:id/likes
   def index
+    @post = Post.find(params[:post_id])
     render json: @post.likes
   end
   # POST /api/v1/posts/:id/likes
