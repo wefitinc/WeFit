@@ -1,6 +1,12 @@
-class Like < ApplicationRecord
-  belongs_to :post
+class Comment < ApplicationRecord
   belongs_to :user
+  belongs_to :post
+
+  # Validate the comment body
+  validates :body, 
+  	presence: true, 
+  	allow_blank: false, 
+  	length: { maximum: 128 }
 
   # JSON serializer
   def as_json(*)

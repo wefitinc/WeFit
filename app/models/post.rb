@@ -7,8 +7,9 @@ class Post < ApplicationRecord
   # Associate every post with a user
   belongs_to :user
 
-  # Add in the likes
+  # Add in the likes and comments
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   # Add a tag list
   acts_as_taggable
@@ -52,6 +53,7 @@ class Post < ApplicationRecord
         hash["user_id"] = user.hashid
         hash["image_url"] = get_image_url
         hash["likes"] = likes.count
+        hash["comments"] = comments.count
       end
   end
 
