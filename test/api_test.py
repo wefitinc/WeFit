@@ -180,6 +180,25 @@ def delete_post(token, post_id):
 	print('Failed to delete post, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
+def get_posts(tags):
+	json = {
+		'filters': 
+		{
+			"match_all": True,
+			"tag_list": ["fitness"],
+		}
+	}
+	# Post path
+	path = '/api/v1/posts/'
+	print('Contacting '+url+path+'...', end ="")
+	r = requests.get(url+path, json=json)
+	if r.status_code == 200:
+		print("Got posts")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get posts, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 if __name__ == '__main__':
 	# Try and log in as the test user
 	data = login(email, password)
@@ -196,4 +215,5 @@ if __name__ == '__main__':
 			if post_data:
 				like_post(data['token'], post_data['id'])
 				comment_on_post(data['token'], post_data['id'])
-				# delete_post(data['token'], post_data['id'])
+				delete_post(data['token'], post_data['id'])	
+			get_posts('fitness')
