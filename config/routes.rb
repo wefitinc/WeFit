@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       get '/users/:id/posts', to: 'posts#for_user'
 
       resources :users, only: [:show]
-      resources :posts, only: [:index, :show, :create, :destroy]
+      resources :posts, only: [:index, :show, :create, :destroy] do
+        resources :likes, only: [:index, :create]
+      end
     end
   end
 

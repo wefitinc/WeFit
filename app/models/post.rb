@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   # Associate every post with a user
   belongs_to :user
 
+  # Add in the likes
+  has_many :likes, dependent: :destroy
+
   # Add a tag list
   acts_as_taggable
 
@@ -48,6 +51,7 @@ class Post < ApplicationRecord
     super.tap do |hash|
         hash["user_id"] = user.hashid
         hash["image_url"] = get_image_url
+        hash["likes"] = likes.count
       end
   end
 
