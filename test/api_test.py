@@ -104,6 +104,7 @@ def create_post(token, image_filename):
 				# Basic text
 				'text': "Test 🔥🔥🔥🔥🔥🔥",
 				'font': 'Consolas',
+				'font_size': 8.0,
 				# Top left
 				'position_x': 0.0, 
 				'position_y': 0.0, 
@@ -134,6 +135,37 @@ def create_post(token, image_filename):
 		return
 	print('Failed to load image \"'+image_filename+'\"')
 
+def like_post(token, post_id):
+	# Post path
+	path = '/api/v1/posts/'+str(post_id)+'/likes'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Liked post")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to like post, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def comment_on_post(token, post_id):
+	json = {
+		'body': "Test comment! 🔥🔥🔥"
+	}
+	# Post path
+	path = '/api/v1/posts/'+str(post_id)+'/comments'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Commented on post")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to comment on post, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 def delete_post(token, post_id):
 	# Post path
 	path = '/api/v1/posts/'+str(post_id)
@@ -162,4 +194,6 @@ if __name__ == '__main__':
 			image = 'red-suspension-bridge-3493772.jpg'
 			post_data = create_post(data['token'], image)
 			if post_data:
-				delete_post(data['token'], post_data['id'])
+				like_post(data['token'], post_data['id'])
+				comment_on_post(data['token'], post_data['id'])
+				# delete_post(data['token'], post_data['id'])

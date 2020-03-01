@@ -7,6 +7,10 @@ class Post < ApplicationRecord
   # Associate every post with a user
   belongs_to :user
 
+  # Add in the likes and comments
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
+
   # Add a tag list
   acts_as_taggable
 
@@ -23,6 +27,7 @@ class Post < ApplicationRecord
   validates :background, presence: true
   validates :text, presence: true
   validates :font, presence: true
+  validates :font_size, presence: true
   # Color has to fit the color regex
   validates :color, 
     presence: true, 
@@ -47,6 +52,8 @@ class Post < ApplicationRecord
     super.tap do |hash|
         hash["user_id"] = user.hashid
         hash["image_url"] = get_image_url
+        hash["likes"] = likes.count
+        hash["comments"] = comments.count
       end
   end
 
