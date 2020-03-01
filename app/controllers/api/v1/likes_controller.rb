@@ -1,6 +1,5 @@
 class Api::V1::LikesController < Api::V1::BaseController
   before_action :authorize, only: [:create]
-  before_action :find_post
 
   # GET /api/v1/posts/:id/likes
   def index
@@ -8,8 +7,12 @@ class Api::V1::LikesController < Api::V1::BaseController
   end
   # POST /api/v1/posts/:id/likes
   def create
-    @post.likes.where(user_id: @current_user.id).first_or_create
-    render json: { message: "Liked" }
+    @like = Like.where(post_id: params[:post_id], user_id: @current_user.id).first_or_initialize
+    if @like.save
+      render json: { message: "Liked post"}
+    else
+      render json: { errors: @like.errors }, status: :unprocessable_entity
+    end
   end
 
 private
@@ -31,9 +34,5 @@ private
       # If theres an error decoding the token, respond with the error and a 401 status
       render json: { errors: e.message }, status: :unauthorized
     end 
-  end
-  # Find the post for this like
-  def find_post
-  	@post = Post.find(params[:post_id])
   end
 end

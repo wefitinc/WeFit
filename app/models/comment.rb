@@ -4,9 +4,9 @@ class Comment < ApplicationRecord
 
   # Validate the comment body
   validates :body, 
-  	presence: true, 
-  	allow_blank: false, 
-  	length: { maximum: 128 }
+    presence: true, 
+    allow_blank: false, 
+    length: { maximum: 128 }
 
   # JSON serializer
   def as_json(*)

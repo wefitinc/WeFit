@@ -20,27 +20,33 @@ class User < ApplicationRecord
   # The user needs a valid name
   validates :first_name,  
     presence: true, 
+    allow_blank: false, 
     length: { maximum: 50 }
   validates :last_name,  
     presence: true, 
+    allow_blank: false, 
     length: { maximum: 50 }
   # The user needs a valid email address, unique within the database
   validates :email, 
     presence: true, 
     uniqueness: true,
+    allow_blank: false, 
     length: { maximum: 255 },
     format: { with: VALID_EMAIL_REGEX }
   # Needs a password
   validates :password,
     presence: true,
+    allow_blank: false, 
     length: { minimum: 6 }
   # Needs a gender
   validates :gender,
     presence: true,
+    allow_blank: false, 
     inclusion: { in: ActsAsGendered::GENDERS }
   # Needs a birthdate in YYYY-MM-DD format
   validates :birthdate,
     presence: true,
+    allow_blank: false, 
     format: { with: VALID_DATE_REGEX }
 
   # Implements the signup/login via the omniauth plugins
@@ -114,13 +120,22 @@ class User < ApplicationRecord
   # JSON serializer
   def as_json(*)
     super.except(
+      # Strip internal id
       "id",
+      # Strip OAuth2 stuff
+      "provider", "uid",
+      # Strip password/activation digests
       "password_digest", 
       "activation_digest",
-      "created_at", "updated_at",  
+      # Strip DB timestamps 
+      "created_at", "updated_at",
+      # Strip reset stuff  
       "reset_digest", "reset_sent_at",
-      "provider", "uid").tap do |hash|
-        hash["id"] = hashid
-      end
+      # Strip auth stuff
+      "failed_attempts", "unlock_digest", "locked_at"
+    ).tap do |hash|
+      # Insert the hashid
+      hash["id"] = hashid
+    end
   end
 end
