@@ -4,7 +4,18 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # GET /posts
   def index
-    @posts = Post.all
+    # Is this a request with filters?
+    if params[:filters]
+      # Get the filtering parameters
+      @tags = tag_filter_params[:tag_list]
+      @match_all = tag_filter_params[:match_all]
+      # Get the posts that match
+      @posts = Post.tagged_with(@tags, match_all: @match_all)
+    else
+      # Get all posts
+      @posts = Post.all
+    end
+    # Render the posts
     render json: @posts
   end
 
@@ -97,5 +108,10 @@ class Api::V1::PostsController < Api::V1::BaseController
     end
     def tag_list_param
       params.require(:post).permit(tag_list: [])
+    end
+    def tag_filter_params
+      params.require(:filters).permit(
+        :match_all, 
+        tag_list: [])
     end
 end
