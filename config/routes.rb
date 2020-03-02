@@ -11,7 +11,12 @@ Rails.application.routes.draw do
       # TODO find a better routing for this
       get '/users/:id/posts', to: 'posts#for_user'
 
-      resources :users, only: [:show]
+      resources :users, only: [:index, :show] do
+        get    'follows', to: 'follows#index_follows'
+        get    'followers', to: 'follows#index_followers'
+        post   'followers', to: 'follows#create'
+        delete 'followers', to: 'follows#destroy'
+      end
       resources :posts, only: [:index, :show, :create, :destroy] do
         resources :likes, only: [:index, :create]
         resources :comments, only: [:index, :create]

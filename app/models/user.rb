@@ -17,6 +17,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   accepts_nested_attributes_for :posts
 
+  # Create relationships for following users
+  has_many :follows
+  has_many :followers, through: :follows
+
   # The user needs a valid name
   validates :first_name,  
     presence: true, 
@@ -136,6 +140,9 @@ class User < ApplicationRecord
     ).tap do |hash|
       # Insert the hashid
       hash["id"] = hashid
+      # Insert followers/follows count
+      hash["follows"] = follows.count
+      hash["followers"] = followers.count
     end
   end
 end
