@@ -2,9 +2,9 @@ class Api::V1::FollowsController < Api::V1::BaseController
   before_action :find_user
   before_action :authorize, only: [:create, :destroy]
 
-  # GET /users/:user_id/follows
-  def index_follows
-    render json: @user.follows
+  # GET /users/:user_id/followed
+  def index_followed
+    render json: @user.followed
   end
   # GET /users/:user_id/followers
   def index_followers
@@ -13,8 +13,8 @@ class Api::V1::FollowsController < Api::V1::BaseController
 
   # POST /users/:user_id/followers
   def create
-    @follow = Follow.where(user_id: @user.id, follower_id: @current_user.id).first_or_initialize
-    if @follow.save
+    @follow = @user.follows.where(follower_id: @current_user.id).first_or_create
+    if @follow.valid?
       render json: { message: "Followed" }
     else
       render json: { errors: @follow.errors }, status: :unprocessable_entity
@@ -23,8 +23,8 @@ class Api::V1::FollowsController < Api::V1::BaseController
 
   # DESTROY /users/:user_id/followers
   def destroy
-    @follow = Follow.where(user_id: @user.id, follower_id: @current_user.id)
-    @follow.destroy if @follow
+    @follow = @user.follows.where(follower_id: @current_user.id).first
+    @follow.destroy if !@follow.nil?
     render json: { message: "Unfollowed" }
   end
 

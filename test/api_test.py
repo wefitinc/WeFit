@@ -199,6 +199,34 @@ def get_posts(tags):
 	print('Failed to get posts, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
+def follow_user(token, user_id):
+	# Follow path
+	path = '/api/v1/users/'+str(user_id)+'/followers'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Followed user")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to follow user, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def unfollow_user(token, user_id):
+	# Follow path
+	path = '/api/v1/users/'+str(user_id)+'/followers'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.delete(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Unfollowed user")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to unfollow user, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 if __name__ == '__main__':
 	# Try and log in as the test user
 	data = login(email, password)
@@ -218,3 +246,5 @@ if __name__ == '__main__':
 				comment_on_post(data['token'], post_data['id'])
 				delete_post(data['token'], post_data['id'])	
 			get_posts('fitness')
+			follow_user(data['token'], 'qN4tOb')
+			unfollow_user(data['token'], 'qN4tOb')

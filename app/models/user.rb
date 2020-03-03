@@ -18,8 +18,17 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :posts
 
   # Create relationships for following users
+  # Follows = The record of follows
   has_many :follows
-  has_many :followers, through: :follows
+  # NOTE: Follows only go one way:
+  # Follower -> Followed
+  has_many :follower_relationships, foreign_key: :user_id, class_name: 'Follow'
+  has_many :followed_relationships, foreign_key: :follower_id, class_name: 'Follow'
+  # Alias for relations
+  # Followers = people following this user
+  # Followed = people this user has followed
+  has_many :followers, through: :follower_relationships, source: :follower
+  has_many :followed, through: :followed_relationships, source: :user
 
   # The user needs a valid name
   validates :first_name,  
@@ -141,7 +150,7 @@ class User < ApplicationRecord
       # Insert the hashid
       hash["id"] = hashid
       # Insert followers/follows count
-      hash["follows"] = follows.count
+      hash["followed"] = followed.count
       hash["followers"] = followers.count
     end
   end
