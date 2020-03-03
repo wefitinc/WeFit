@@ -27,15 +27,17 @@ class Post < ApplicationRecord
   validates :background, presence: true
   validates :text, presence: true
   validates :font, presence: true
-  validates :font_size, presence: true
+  validates :font_size, 
+    presence: true,
+    numericality: { only_integer: true, greater_than: 0 }
   # Color has to fit the color regex
   validates :color, 
     presence: true, 
     format: { with: VALID_COLOR_REGEX }
   # TODO: Maybe these should just be default 0 with no required presence?
-  validates :position_x, presence: true
-  validates :position_y, presence: true
-  validates :rotation, presence: true
+  validates :rotation, presence: true, numericality: true
+  validates :position_x, presence: true, numericality: true
+  validates :position_y, presence: true, numericality: true
   # TODO Validate the coordinates
   validates :latitude, presence: true
   validates :longitude, presence: true
