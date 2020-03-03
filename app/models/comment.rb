@@ -1,7 +1,12 @@
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
-
+    # The post must exist
+  validates :post,
+    presence: true
+  # Users must exist
+  validates :user,
+    presence: true
   # Validate the comment body
   validates :body, 
     presence: true, 

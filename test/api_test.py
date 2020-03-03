@@ -184,7 +184,7 @@ def get_posts(tags):
 	json = {
 		'filters': 
 		{
-			"match_all": True,
+			"match_all": False,
 			"tag_list": ["fitness"],
 		}
 	}
@@ -213,6 +213,7 @@ if __name__ == '__main__':
 			image = 'red-suspension-bridge-3493772.jpg'
 			post_data = create_post(data['token'], image)
 			if post_data:
+				like_post(data['token'], post_data['id'])
 				like_post(data['token'], post_data['id'])
 				comment_on_post(data['token'], post_data['id'])
 				delete_post(data['token'], post_data['id'])	

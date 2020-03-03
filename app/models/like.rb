@@ -1,6 +1,14 @@
 class Like < ApplicationRecord
+  # Likes are on posts and have users
   belongs_to :post
   belongs_to :user
+  # The post must exist
+  validates :post,
+    presence: true
+  # Users must exist and be unique
+  validates :user,
+    presence: true,
+    uniqueness: { scope: :post }
 
   # JSON serializer
   def as_json(*)
