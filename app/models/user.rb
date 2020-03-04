@@ -150,7 +150,7 @@ class User < ApplicationRecord
       # Insert the hashid
       hash["id"] = hashid
       # Insert followers/follows count
-      hash["followed"] = followed.count
+      hash["following"] = following.count
       hash["followers"] = followers.count
     end
   end
