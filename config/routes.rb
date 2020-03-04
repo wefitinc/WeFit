@@ -12,8 +12,9 @@ Rails.application.routes.draw do
       get '/users/:id/posts', to: 'posts#for_user'
 
       resources :users, only: [:show] do
-        get    'followed', to: 'follows#index_followed'
+        get    'following', to: 'follows#index_following'
         get    'followers', to: 'follows#index_followers'
+        
         post   'followers', to: 'follows#create'
         delete 'followers', to: 'follows#destroy'
       end

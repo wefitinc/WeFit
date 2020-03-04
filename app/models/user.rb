@@ -26,9 +26,9 @@ class User < ApplicationRecord
   has_many :followed_relationships, foreign_key: :follower_id, class_name: 'Follow'
   # Alias for relations
   # Followers = people following this user
-  # Followed = people this user has followed
+  # Following = people this user has followed
   has_many :followers, through: :follower_relationships, source: :follower
-  has_many :followed, through: :followed_relationships, source: :user
+  has_many :following, through: :followed_relationships, source: :user
 
   # The user needs a valid name
   validates :first_name,  

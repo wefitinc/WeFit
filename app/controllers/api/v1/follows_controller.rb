@@ -2,9 +2,9 @@ class Api::V1::FollowsController < Api::V1::BaseController
   before_action :find_user
   before_action :authorize, only: [:create, :destroy]
 
-  # GET /users/:user_id/followed
-  def index_followed
-    render json: @user.followed
+  # GET /users/:user_id/following
+  def index_following
+    render json: @user.following
   end
   # GET /users/:user_id/followers
   def index_followers
