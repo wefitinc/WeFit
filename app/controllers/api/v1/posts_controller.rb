@@ -85,6 +85,8 @@ private
       :position_x,
       :position_y,
       :rotation,
+      :textview_width, :textview_height,
+      :header_color,
       :latitude, :longitude)
   end
   def tag_list_param

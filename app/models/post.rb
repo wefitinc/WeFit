@@ -31,6 +31,14 @@ class Post < ApplicationRecord
   validates :font_size, 
     presence: true,
     numericality: { only_integer: false, greater_than: 0 }
+
+  validates :textview_width, :textview_height,
+    presence: true,
+    numericality: { only_integer: false, greater_than: 0 }
+
+  validates :header_color,
+    presence: true,
+    format: { with: VALID_COLOR_REGEX }
   # Color has to fit the color regex
   validates :color, 
     presence: true, 
