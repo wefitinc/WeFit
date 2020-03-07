@@ -30,7 +30,7 @@ class Post < ApplicationRecord
   validates :font, presence: true
   validates :font_size, 
     presence: true,
-    numericality: { only_integer: true, greater_than: 0 }
+    numericality: { only_integer: false, greater_than: 0 }
   # Color has to fit the color regex
   validates :color, 
     presence: true, 
