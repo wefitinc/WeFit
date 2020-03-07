@@ -31,6 +31,6 @@ class Api::V1::FollowsController < Api::V1::BaseController
 private
   def find_user
     @user = User.find_by_hashid(params[:user_id])
-    render json: { error: "Not found" }, status: 404 if @user.nil?
+    render json: { errors: "Not found" }, status: 404 if @user.nil?
   end
 end

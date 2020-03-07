@@ -18,7 +18,7 @@ class Api::V1::AuthController < Api::V1::BaseController
       render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
     else
       # Login failed, send an error message
-      render json: { error: 'Email or password incorrect' }, status: :unauthorized
+      render json: { errors: 'Email or password incorrect' }, status: :unauthorized
     end
   end
 

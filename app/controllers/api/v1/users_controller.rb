@@ -11,6 +11,6 @@ private
   def set_user
     # Use find_by_hashid to not allow sequential ID lookups
     @user = User.find_by_hashid(params[:id])
-    render json: { error: "Not found" }, status: 404 if @user.nil?
+    render json: { errors: "Not found" }, status: 404 if @user.nil?
   end
 end
