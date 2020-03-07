@@ -38,6 +38,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 # ActiveStorage stuff 
 gem "aws-sdk-s3", require: false
 gem 'active_storage_base64'
+gem 'active_storage_validations'
 
 # Use Json Web Token (JWT) for token based authentication
 gem 'jwt'

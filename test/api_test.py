@@ -116,8 +116,7 @@ def create_post(token, image_filename):
 				'tag_list': [ "fitness", "outdoors" ],
 			},
 			# Image
-			# 'image': "data:"+mime_type+";base64,"+str(image_b64)
-			'image': None
+			'image': "data:"+mime_type+";base64,"+str(image_b64)
 		}
 
 		# Post path

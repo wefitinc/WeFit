@@ -42,8 +42,10 @@ class Post < ApplicationRecord
   # TODO Validate the coordinates
   validates :latitude, presence: true
   validates :longitude, presence: true
-  # Validate image presence, what's a post without an image?
-  validates :image, presence: true
+  # Validate image properties
+  validates :image,
+    size: { less_than: 4.megabytes },
+    content_type: ['image/png', 'image/jpg', 'image/jpeg']
 
   # Helper
   def get_image_url
