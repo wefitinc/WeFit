@@ -41,8 +41,8 @@ class Api::V1::AuthController < Api::V1::BaseController
   # GET /auth/check
   def check
     header = request.headers['Authorization']
-    header = header.split(' ').last 
-    render json: { message: 'Authorization token valid', token: header }, status: :ok
+    token = header.split(' ').last 
+    render json: { message: 'Authorization token valid', token: token }, status: :ok
   end
 
   # GET /auth/me

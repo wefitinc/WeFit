@@ -7,8 +7,9 @@ class Post < ApplicationRecord
   # Associate every post with a user
   belongs_to :user
 
-  # Add in the likes and comments
+  # Add in the likes, views, and comments
   has_many :likes, dependent: :destroy
+  has_many :views, dependent: :destroy
   has_many :comments, dependent: :destroy
 
   # Add a tag list
@@ -53,9 +54,10 @@ class Post < ApplicationRecord
   def as_json(*)
     super.tap do |hash|
         hash["user_id"] = user.hashid
-        hash["image_url"] = get_image_url
         hash["likes"] = likes.count
+        hash["views"] = views.count
         hash["comments"] = comments.count
+        hash["image_url"] = get_image_url
       end
   end
 

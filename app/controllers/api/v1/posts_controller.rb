@@ -52,7 +52,7 @@ class Api::V1::PostsController < Api::V1::BaseController
       @post.tag_list = @tag_list.join(', ')
     end
     # Attach the image to the post
-    @post.image.attach(data: params[:image])
+    @post.image.attach(data: params[:image]) if !params[:image].nil?
     # Save to DB
     if @post.save
       render json: @post

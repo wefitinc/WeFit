@@ -104,7 +104,7 @@ def create_post(token, image_filename):
 				# Basic text
 				'text': "Test 🔥🔥🔥🔥🔥🔥",
 				'font': 'Consolas',
-				'font_size': 8.0,
+				'font_size': 8,
 				# Top left
 				'position_x': 0.0, 
 				'position_y': 0.0, 
@@ -116,7 +116,8 @@ def create_post(token, image_filename):
 				'tag_list': [ "fitness", "outdoors" ],
 			},
 			# Image
-			'image': "data:"+mime_type+";base64,"+str(image_b64)
+			# 'image': "data:"+mime_type+";base64,"+str(image_b64)
+			'image': None
 		}
 
 		# Post path
@@ -244,7 +245,7 @@ if __name__ == '__main__':
 				like_post(data['token'], post_data['id'])
 				like_post(data['token'], post_data['id'])
 				comment_on_post(data['token'], post_data['id'])
-				delete_post(data['token'], post_data['id'])	
+				# delete_post(data['token'], post_data['id'])	
 			get_posts('fitness')
 			follow_user(data['token'], 'qN4tOb')
-			unfollow_user(data['token'], 'qN4tOb')
+			# unfollow_user(data['token'], 'qN4tOb')
