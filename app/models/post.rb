@@ -45,7 +45,7 @@ class Post < ApplicationRecord
   # Validate image properties
   validates :image,
     size: { less_than: 4.megabytes },
-    content_type: ['image/png', 'image/jpg', 'image/jpeg']
+    content_type: ['image/png', 'image/jpg', 'image/jpeg', 'video/mp4']
 
   # Helper
   def get_image_url
