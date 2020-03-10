@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: "Lato", sans-serif;
+
+
+}
+p{
+  color:white;
+  font-size:20px;
+}
+pre{
+  font-size:64px;
+  color: white;
+}
+
+h2{
+  color:white;
+  font-size:64px;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 100%-60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 15px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: -6;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 10%;
+}
+
+.left {
+  left: 0;
+  background-color: red;
+}
+
+.right {
+  right: 0;
+  background-color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.centered img {
+  width: 150px;
+  border-radius: 50%;
+}
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+
+}
+
+</style>
+</head>
+<body>
+ 
+
+
+
+
+<span style="font-size:30px;cursor:pointer;float:right" onclick="openNav()">&#9776; </span>
+
+
+
+
+
+<div class="split left">
+  <div class="centered">
+     <pre>Healthy <dd>   Together</pre>
+      <br><br><br>
+    <p>Join the social network for health today!</p>
+    <img src="download2.svg" alt="Wefit">
+   <br><br><br><br><br><br><br><br><br><br><br><br>
+    
+  </div>
+</div>
+<div class="split right">
+  
+    <img src="home iphone.jpg" alt="App Example" class="centered" width="500" height="600">
+
+    
+ 
+</div>
+
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">Login</a>
+  <a href="#">Sign Up</a>
+  <a href="#">Health Professionals</a>
+  <a href="#">Advertising</a>
+  <a href="#">Pioneer Application</a>
+  <a href="#">Contact Us</a>
+  <a href="#">Download</a>
+  <a href="#">Advertising</a>
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+ 
+</body>
+</html> 
