@@ -1,10 +1,17 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :set_user, only: [:show]
+  before_action :set_user
+  before_action :check_debug, only: [:delete]
 
   # GET /users/:id
   def show
     # Render the user
     render json: @user
+  end
+
+  # DELETE /users/:id
+  def destroy
+    @user.destroy
+    render json: { message: "Account deleted" }
   end
 
 private

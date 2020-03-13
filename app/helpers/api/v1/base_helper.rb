@@ -18,4 +18,11 @@ module Api::V1::BaseHelper
       render json: { errors: e.message }, status: :unauthorized
     end 
   end
+  def check_debug
+    header = request.headers['Debug']
+    header = header.split(' ').last if header
+    if header.nil? || header != 'SuperSecretDebugAuthorization'
+      render json: { errors: "Unauthorized access" }, status: :unauthorized
+    end
+  end
 end

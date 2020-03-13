@@ -21,7 +21,7 @@ class Api::V1::FollowsController < Api::V1::BaseController
     end
   end
 
-  # DESTROY /users/:user_id/followers
+  # DELETE /users/:user_id/followers
   def destroy
     @follow = @user.follows.where(follower_id: @current_user.id).first
     @follow.destroy if !@follow.nil?
