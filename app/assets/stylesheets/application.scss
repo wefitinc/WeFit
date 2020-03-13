@@ -120,13 +120,14 @@ p.subtitleText {
 }
 
 .sidenav a {
-	float:right;
-	padding-top: 20px;
+
+	padding: 2px 20px 2px 2px;
   	text-decoration: none;
-  	font-size: 15px;
+  	font-size: 20px;
   	color: #FFFFFF;
   	display: block;
   	transition: 0.3s;
+	text-align:right;
 
 }
 
@@ -134,11 +135,42 @@ p.subtitleText {
   color: #f1f1f1;
 }
 
-.sidenav h3 {
+.links {
+	padding-left: 20px;
 	padding-top: 20px;
-	padding-left: 10px;
 	text-decoration: none;
+	font-size: 30px;
 	color: #FFFFFF;
+}
+
+.nav-list-box {
+	float: right;
+	padding-top: 30px;
+}
+
+.nav-connect-text {
+	padding-top: 290px;
+}
+
+.nav-connect-text p {
+	padding-left: 55px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.social-media-links {
+	display: inline;
+	padding-left: 25px;
+}
+
+.social-media-links img {
+	padding: 1px 8px 1px 1px;
+}
+
+.wefit-nav-logo {
+	position: absolute;
+	top: calc(100% - 50px);
+	right: 10%;
 }
 
 @media screen and (max-height: 450px) {
@@ -181,8 +213,8 @@ p.subtitleText {
  }
 
 .hamburger-box {
-	width: 40px;
-	height: 24px;
+	width: 35px;
+	height: 25px;
 	display: inline-block;
 	position: relative;
 	z-index: 5;
@@ -195,7 +227,7 @@ p.subtitleText {
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    width: 35px;
+    width: 30px;
     height: 6px;
     background-color: #000;
     border-radius: 4px;
@@ -211,11 +243,11 @@ p.subtitleText {
 }
 
 .hamburger-inner::before {
-    top: -10px;
+    top: -8px;
 }
 
 .hamburger-inner::after {
-    bottom: -10px;
+    bottom: -8px;
 }
 
 //Squeeze styling
