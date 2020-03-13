@@ -2,51 +2,92 @@
 <% title 'The Social Network for All Things Health' %>
 <% meta_tag :description, 'Join WeFit today, it’s free! Post and attend local healthy activities, chat with licensed health professionals, join support groups, or post about health.' %>
 <%# Page content %>
-<div id="homepage">
-  <h1 id="homepage-top" class="text-center big-text">Discover the social community for health</h1>
-  <div id="homepage-content" class="row">
-    <!-- Signup/countdown -->
-    <% if current_user? %>
-      <div id="signup" class="col-4 px-10 py-5 mx-auto text-center mobile-min-width">
-        <h2 class="py-3">Welcome <span class="light-blue font-weight-bold"><%= current_user.first_name %> <%= current_user.last_name %></span>!</h2>
-        <h3>WeFit Launch Countdown</h3>
-        <div class="row">
-          <div class="col">
-            <h1 id='days' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">178</h1>
-            <p class="font-weight-bold">Days</p>
-          </div>
-          <div class="col">
-            <h1 id='hours' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">24</h1>
-            <p class="font-weight-bold">Hours</p>
-          </div>
-          <div class="col">
-            <h1 id='minutes' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">60</h1>
-            <p class="font-weight-bold">Minutes</p>
-          </div>
-          <div class="col">
-            <h1 id='seconds' class="rounded-big bg-black px-3 py-5 font-weight-bold text-white">60</h1>
-            <p class="font-weight-bold">Seconds</p>
-          </div>
-        </div>
-      </div>
-    <% else %>
-      <div id="signup" class="col-3 px-6 py-4 mx-auto my-auto bg-light border rounded-big shadow mobile-min-width">
-        <h3 class="text-center pb-2">Join today, <b>FREE</b> forever.</h3>
-        <%= render 'signup' %>
-      </div>
-    <% end %>
-  </div>
+
+<div class="split left">
+
+    <img src="assets/logo-transparent.png" class="logo-image" alt="WeFit" height="50px" width="100px">
+
+    <div class="centered">
+        <h1><b>Healthy</b></h1>
+        <h1><b>Together</b></h1>
+        <br><br><br><br>
+        <p class="subtitleText">Join the social network for health today!</p>
+        <br>
+        <img src="assets/Apple_Store_Image.svg" class="apple-image" alt="AppleStore">
+    </div>
+
+    <div class="bottom-left">
+        <p class="bottomText">WeFit Inc &copy; 2020</p>
 </div>
 
-<div id="background-wrap">
-  <div class="hide-mobile bubble x1"></div>
-  <div class="hide-mobile bubble x2"></div>
-  <div class="hide-mobile bubble x3"></div>
-  <div class="hide-mobile bubble x4"></div>
-  <div class="hide-mobile bubble x5"></div>
-  <div class="hide-mobile bubble x6"></div>
-  <div class="hide-mobile bubble x7"></div>
-  <div class="hide-mobile bubble x8"></div>
-  <div class="hide-mobile bubble x9"></div>
-  <div class="hide-mobile bubble x10"></div>
+<div class="split right">
+
+    <div class="hamburger hamburger--squeeze" type="button">
+        <div class="hamburger-box">
+            <div class="hamburger-inner"></div>
+        </div>
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+        <h3>Menu</h3>
+        <a href="#">Log In</a>
+        <a href="#">Sign Up</a>
+        <a href="#">Health Professionals</a>
+        <a href="#">Advertising</a>
+        <a href="#">Pioneer Application</a>
+        <a href="#">Contact Us</a>
+        <a href="#">Download</a>
+        <p><b>Connect with us!</b></p>
+    </div>
+
+    <img src="assets/what_is_wefit.svg" class="what-is-wefit" alt="what_is_wefit">
+
+    <div class="centered">
+        <img src="assets/iPhone XS White Clay.svg" class="slideshowFrame">
+    </div>
+
+    <ul class="bottom-nav">
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Help Center</a></li>
+    </ul>
+
+    <img src="assets/text-logo-red.svg" class="wefit-logo" alt="logo">
+
 </div>
+
+
+
+
+
+<script>
+
+
+function openNav() {
+
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+
+    document.getElementById("mySidenav").style.width = "0px";
+}
+
+var hamburger = document.querySelector(".hamburger");
+hamburger.addEventListener("click", function() {
+
+        if(hamburger.classList.contains("is-active")){
+            hamburger.classList.toggle("is-active");
+            closeNav();
+        }else{
+            hamburger.classList.toggle("is-active");
+            openNav();
+        }
+
+
+
+
+
+});
+
+</script>

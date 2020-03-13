@@ -11,7 +11,7 @@
     <title>WeFit <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
     <meta name='description' content='<%= yield_meta_tag(:description, 'WeFit, the social network for all things health.') %>' />
     <meta name='keywords' content='<%= yield_meta_tag(:keywords, 'wefit,wefit.us,fitness,health') %>' />
-    
+
     <%# Favicon %>
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -44,21 +44,14 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <div id="full-page">
-      <%= render 'layouts/header' %>
 
-      <!-- Main content -->
-      <div class="container-fluid">
+
+    <!-- Main content -->
+    <div class="container-fluid">
         <%= yield %>
-      </div>
-      
-      <!-- Footer -->
-      <%= render 'layouts/footer' %> 
     </div>
 
-    <%# Only show the login modal if the user isn't logged in %>
-    <% if not current_user? %>
-    <%= render 'layouts/login_form' %>
-    <% end %>
+
+
   </body>
 </html>
