@@ -25,54 +25,368 @@ html,body
 	// Push the footer to the bottom of the page
 	height: 100%;
 	// Reset margins and padding just in case
-	margin: 0; padding: 0; 
+	margin: 0; padding: 0;
 	// Set the font
-	font-family: 'Didact Gothic', sans-serif;
-}
-#full-page
-{
-	// Push the footer to the bottom
-	min-height: 100%;
-	position: relative;
+	font-family: 'Roboto', sans-serif;
 }
 
-// Height of footer to use
-$footer-height: 250px;
+p
+{
+	color: #FFFFFF;
+}
+
+pre
+{
+	font-size: 64px;
+	color: #FFFFFF;
+}
+
+h1
+{
+	color: #FFFFFF;
+	font-size:64px;
+}
+
+span
+{
+	padding-right:25px;
+	padding-top: 15px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+}
 
 .container-fluid
 {
 	// Make content go edge-to-edge
 	padding-left: 0;
 	padding-right: 0;
-	// Pad the bottom of the content to leave room for the footer
-	padding-bottom: $footer-height + 20px;
-}
-footer
-{
-	// Make sure the footer is in place and the correct height
-	bottom: 0;
-	width: 100%;
-	height: $footer-height;
-	position: absolute;
-	// Pad the top and bottom for looks sake
-	padding-top: 2.1em;
-	padding-bottom: 0.8em;
 }
 
-// Footer styles
-.social-icon
-{
-	color: white;
-	padding-left: 1%;
-	padding-right: 1%;
+//images for left side
+img.logo-image {
+	padding-left: 45px;
+	padding-top: 15px;
 }
-.social-icon:hover
-{
-	color: white;
+
+img.apple-image {
+	border-radius: 0%;
+	height:51.75px;
+	width:150px;
+}
+
+//images for right sidenav
+
+button.what_is_wefit {
+	position:relative;
+	width: 120px;
+	height: 36px;
+	float: right;
+	top: 10px;
+	right: 10px;
+	border-radius: 50px 50px 50px 50px;
+	background-color: #FF0000;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+
+
+}
+
+.slideshowFrame {
+	position: absolute;
+	width: 37%;
+	height: auto;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+	margin-right: 0px;
+	z-index: 1;
+}
+
+.slideshow-container {
+	
+
+
+
+
+	z-index: 2;
+}
+
+
+
+//font size sub title text
+p.subtitleText {
+	font-size:25px;
+}
+
+//side navigation bar
+.sidenav {
+	height: 100%;
+  	width: 0;
+  	position: fixed;
+  	z-index: 2;
+  	top: 0;
+  	right: 0;
+  	background-color: #111;
+  	overflow-x: hidden;
+  	transition: 0.5s;
+  	padding-top: calc(100%-60px);
+}
+
+.sidenav a {
+
+	padding: 2px 20px 2px 2px;
+  	text-decoration: none;
+  	font-size: 20px;
+  	color: #FFFFFF;
+  	display: block;
+  	transition: 0.3s;
+	text-align:right;
+	text-shadow: -.40px -.40px 0 transparent,
+                .40px .40px transparent;
+
+}
+
+.sidenav a:hover {
+	text-shadow: -.40px -.40px 0 #FFFFFF,
+                  .40px .40px #FFFFFF;
+}
+
+.links {
+	padding-left: 20px;
+	padding-top: 20px;
 	text-decoration: none;
+	font-size: 30px;
+	color: #FFFFFF;
 }
-.footer-link       { color: white; }
-.footer-link:hover { color: white; text-decoration: none; }
+
+.nav-list-box {
+	float: right;
+	padding-top: 30px;
+}
+
+.nav-connect-text {
+	padding-top: 290px;
+}
+
+.nav-connect-text p {
+	padding-left: 55px;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.social-media-links {
+	display: inline;
+	padding-left: 25px;
+}
+
+.social-media-links img {
+	padding: 1px 8px 1px 1px;
+
+}
+
+.social-media-links img:hover {
+		transform: scale(1.5);
+		transition: all .2s ease-in-out;
+}
+
+.wefit-nav-logo {
+	position: absolute;
+	top: calc(100% - 50px);
+	right: 10%;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+//hamburger button
+.hamburger {
+	float: right;
+ 	padding: 15px 15px;
+ 	display: inline-block;
+ 	cursor: pointer;
+ 	transition-property: opacity, filter;
+ 	transition-duration: 0.15s;
+ 	transition-timing-function: linear;
+	font: inherit;
+ 	color: inherit;
+  	text-transform: none;
+  	background-color: transparent;
+  	border: 0;
+  	margin: 0;
+  	overflow: visible;
+
+}
+
+.hamburger:hover {
+    opacity: 0.7;
+}
+
+.hamburger.is-active:hover{
+	opacity: 1;
+	background-color: #7c7c7c;
+}
+
+.hamburger.is-active .hamburger-inner,
+.hamburger.is-active .hamburger-inner::before,
+.hamburger.is-active .hamburger-inner::after {
+	background-color: #FFFFFF;
+ }
+
+.hamburger-box {
+	width: 35px;
+	height: 25px;
+	display: inline-block;
+	position: relative;
+	z-index: 5;
+}
+
+.hamburger-inner {
+  	display: block;
+  	top: 50%;
+  	margin-top: -2px;
+}
+
+.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+    width: 30px;
+    height: 6px;
+    background-color: #000;
+    border-radius: 4px;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 1.0s;
+    transition-timing-function: ease;
+}
+
+.hamburger-inner::before, .hamburger-inner::after {
+    content: "";
+    display: block;
+}
+
+.hamburger-inner::before {
+    top: -8px;
+}
+
+.hamburger-inner::after {
+    bottom: -8px;
+}
+
+//Squeeze styling
+
+.hamburger--squeeze .hamburger-inner {
+	transition-duration: 0.075s;
+	transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--squeeze .hamburger-inner::before {
+	transition: top 0.075s 0.12s ease, opacity 0.075s ease;
+}
+
+.hamburger--squeeze .hamburger-inner::after {
+    transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+.hamburger--squeeze.is-active .hamburger-inner {
+  transform: rotate(45deg);
+  transition-delay: 0.12s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.hamburger--squeeze.is-active .hamburger-inner::before {
+    top: 0;
+    opacity: 0;
+    transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+}
+
+.hamburger--squeeze.is-active .hamburger-inner::after {
+    bottom: 0;
+    transform: rotate(-90deg);
+    transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 0%;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #FF0000;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: #FFFFFF;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+}
+
+//text for the bottom left
+p.bottomText {
+	font-size:15px;
+}
+
+.bottom-left {
+
+	position: absolute;
+	top: calc(100% - 40px);
+	left: 3%;
+}
+
+.bottom-nav {
+	position: absolute;
+	top: 93%;
+	left: 5%;
+}
+
+.bottom-nav a {
+	padding: 10px;
+	font-size: 12px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #000000;
+
+}
+
+.bottom-nav a:hover {
+	border-bottom: 1.5px solid red;
+}
+
+
+img.wefit-logo {
+	position: absolute;
+	float: right;
+	top: 93%;
+	right: 3%;
+}
+
 
 // Colors
 .pink         { color: #ff0800 !important; }
@@ -87,100 +401,9 @@ footer
 .bg-red 	    { background-color: #ff0800 !important; }
 .bg-black       { background-color: #000000 !important; }
 
-// misc. styles
-.rounded-big      { border-radius: 2.5rem !important; }
-.nounderline      { text-decoration: none !important }
-.mobile-min-width { min-width: 350px; }
-.big-text
-{
-	width: 60%;
-	margin-left: auto;
-	margin-right: auto;
-}
-
-// Button styles
-.btn-green
-{
-	color: #fff;
-	outline-color: #009912;
-	background-color: #009912;
-}
-.btn-green:hover
-{
-	color: #fff;
-	outline-color: #008809;
-	background-color: #008809;
-}
 .btn-about
 {
 	width: 25%;
-}
-
-// Login modal styles
-.modal-header
-{
-	border-bottom: none;
-	border-top: none;
-	text-align: center;
-	padding-bottom: 0px;
-}
-.modal-close
-{
-	text-align: center;
-}
-
-// Navbar styles
-.navbar-top
-{
-	padding-left: 3rem !important;
-	padding-right: 3rem !important;
-}
-.navbar-dark
-{
-	.navbar-nav
-	{
-		.nav-link       { color: rgba(255, 255, 255, 0.85); }
-		.nav-link:hover { color: rgba(255, 255, 255, 1.0);  }
-	}
-	.navbar-toggler
-	{
-		color: rgba(255,255,255,.75);
-    	border-color: rgba(255,255,255,.5);
-	}
-	.navbar-toggler-icon
-	{
-		// Load up a nice background image to use for the toggler
-		background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 155)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-	}
-}
-
-// Homepage styles
-.share-icon
-{
-	padding-left: 2.5%;
-	padding-right: 2.5%;
-	#path2
-	{
-		fill: #333 !important;
-	}
-}
-.share-icons
-{
-	text-align: center;
-}
-#homepage
-{
-	margin-left: 5%;
-	margin-right: 5%;
-}
-#homepage-top
-{
-	padding-top: 2%;
-	padding-bottom: 2%;
-} 
-#homepage-content
-{
-	padding-bottom: 1em;
 }
 
 // Account settings styles
@@ -352,86 +575,3 @@ input.invalid {
 	margin-left: auto;
 	margin-right: auto;
 }
-
-// Circles for the background
-@import 'circles';
-
-//background-wrap for the background
-@import 'background-wrap';
-
-// Mobile styles
-@media only screen and (max-width: 800px)
-{
-	// Add some additional footer padding on mobile
-	$footer-height: 580px;
-	.container-fluid
-	{
-		padding-bottom: $footer-height + 20px;
-	}
-	footer
-	{
-		height: $footer-height;
-		text-align: center;
-	}
-
-	// Msc. styles
-	.hide-mobile { display: none; }
-	
-	.big-text  { width: 90%; }
-	.btn-about { width: 50%; }
-
-	// Navbar styles
-	.navbar-top
-	{
-		padding-left: 1rem !important;
-		padding-right: 1rem !important;
-	}
-	#bottom-icon
-	{
-		width: 84px;
-		height: 25px;
-	}
-
-	// Home page
-	#homepage
-	{
-		margin-left: 0;
-		margin-right: 0;
-	}
-	#homepage-content
-	{
-		margin-left: auto;
-		margin-right: auto;
-	}
-	#new-user-date
-	{
-		margin-top: -0.8rem;
-	}
-
-	#professionals-form
-	{
-		padding: 0.4rem;
-	}
-
-	// Privacy policy/terms of use
-	#privacy-policy
-	{
-		margin-left: 0;
-		margin-right: 0;
-		padding-left: 1rem;
-		padding-right: 1rem;
-	}
-
-	// Contact
-	#contact-page
-	{
-		padding-top: 1rem !important;
-		padding-left: 1rem !important;
-		padding-right: 1rem !important;
-	}
-}
-
-
-
-
-
