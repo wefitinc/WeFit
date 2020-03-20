@@ -84,21 +84,44 @@ img.apple-image {
 
 //images for right sidenav
 
-img.what-is-wefit {
+button.what_is_wefit {
+	position:relative;
+	width: 120px;
+	height: 36px;
 	float: right;
-	height:60px;
-	width:175px;
-	padding-top: 15px;
-	//10px
-	padding-right: 10px;
-	border-radius: 0%;
+	top: 10px;
+	right: 10px;
+	border-radius: 50px 50px 50px 50px;
+	background-color: #FF0000;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 12px;
+
 
 }
 
-img.slideshowFrame {
-	//use 250 for button click
-	padding-right: 0px;
+.slideshowFrame {
+	position: absolute;
+	width: 37%;
+	height: auto;
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+	margin-right: 0px;
+	z-index: 1;
 }
+
+.slideshow-container {
+	
+
+
+
+
+	z-index: 2;
+}
+
+
 
 //font size sub title text
 p.subtitleText {
@@ -128,11 +151,14 @@ p.subtitleText {
   	display: block;
   	transition: 0.3s;
 	text-align:right;
+	text-shadow: -.40px -.40px 0 transparent,
+                .40px .40px transparent;
 
 }
 
 .sidenav a:hover {
-  color: #f1f1f1;
+	text-shadow: -.40px -.40px 0 #FFFFFF,
+                  .40px .40px #FFFFFF;
 }
 
 .links {
@@ -165,6 +191,12 @@ p.subtitleText {
 
 .social-media-links img {
 	padding: 1px 8px 1px 1px;
+
+}
+
+.social-media-links img:hover {
+		transform: scale(1.5);
+		transition: all .2s ease-in-out;
 }
 
 .wefit-nav-logo {
@@ -181,7 +213,7 @@ p.subtitleText {
 //hamburger button
 .hamburger {
 	float: right;
- 	padding: 25px 15px;
+ 	padding: 15px 15px;
  	display: inline-block;
  	cursor: pointer;
  	transition-property: opacity, filter;
@@ -330,21 +362,28 @@ p.bottomText {
 
 .bottom-nav {
 	position: absolute;
-	top: 95%;
+	top: 93%;
 	left: 5%;
 }
 
 .bottom-nav a {
 	padding: 10px;
-	font-size: 14;
+	font-size: 12px;
 	font-weight: bold;
+	text-decoration: none;
 	color: #000000;
+
 }
+
+.bottom-nav a:hover {
+	border-bottom: 1.5px solid red;
+}
+
 
 img.wefit-logo {
 	position: absolute;
 	float: right;
-	top: 95%;
+	top: 93%;
 	right: 3%;
 }
 

@@ -1,6 +1,7 @@
 <%# Meta data about the page %>
 <% title 'The Social Network for All Things Health' %>
 <% meta_tag :description, 'Join WeFit today, it’s free! Post and attend local healthy activities, chat with licensed health professionals, join support groups, or post about health.' %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <%# Page content %>
 
 <div class="split left">
@@ -57,10 +58,12 @@
         </div>
     </div>
 
-    <img src="assets/what_is_wefit.svg" class="what-is-wefit" alt="what_is_wefit">
+    <button id="whatiswefit" class="what_is_wefit" type="button">What is WeFit?</button>
 
-    <div class="centered">
-        <img src="assets/iPhone XS White Clay.svg" class="slideshowFrame">
+    <img src="assets/iPhone XS White Clay.svg" id="iphoneslide" class="slideshowFrame" width="341" height="683">
+
+    <div class="slideshow-container"
+
     </div>
 
     <ul class="bottom-nav">
@@ -73,21 +76,21 @@
 
 </div>
 
-
-
-
-
 <script>
 
 
 function openNav() {
 
     document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("iphoneslide").style.left = "30%";
+    document.getElementById("whatiswefit").style.right = "320px";
 }
 
 function closeNav() {
 
     document.getElementById("mySidenav").style.width = "0px";
+    document.getElementById("iphoneslide").style.left = "50%";
+    document.getElementById("whatiswefit").style.right = "10px";
 }
 
 var hamburger = document.querySelector(".hamburger");
