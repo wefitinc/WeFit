@@ -1,0 +1,69 @@
+body{
+	margin :0;
+	bottom: 0;
+	background:white;
+	font-family: 'Work Sans', sans-serif;
+	font-weight: 300;
+}
+
+.container{
+	background-color : black;
+	overflow:hidden;
+	display: inline-block;
+	position:fixed;
+	bottom: 0;
+	width: 100%;
+	margin: 0 auto;
+}
+header {
+	background: white;
+}
+
+header::after{
+	content: '';
+	display:table;
+	clear: all;
+}
+#WefitInc {
+	
+	font-size : 15px;
+	font-style: normal;
+	font-weight: 500;
+	color:white;
+	margin-left: 50px;
+	margin-right: 450px;
+	float:left;
+}
+nav {
+ float:left;
+}
+
+nav ul{
+	margin :0;
+	padding: 0;
+	list-style:none;
+}
+
+
+
+
+nav li {
+	color:white;
+	display: inline-block;
+	margin-left: 40px;
+	padding-top: 15px;
+}
+nav a {
+	color:white;
+	text-decoration:none;
+	
+}
+img{
+	width:7%;
+	height: 70%;
+}
+.logo{
+	float:left;
+	margin-left: 450px;
+}
+	
