@@ -1,12 +1,11 @@
 <%# Meta data about the page %>
 <% title 'The Social Network for All Things Health' %>
 <% meta_tag :description, 'Join WeFit today, it’s free! Post and attend local healthy activities, chat with licensed health professionals, join support groups, or post about health.' %>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <%# Page content %>
 
 <div class="split left">
 
-    <img src="assets/logo-transparent.png" class="logo-image" alt="WeFit" height="50px" width="100px">
+    <%= link_to image_tag("logo-transparent.png", class: 'logo-image', size: "128x56", alt: "WeFit"), root_path %>
 
     <div class="centered">
         <h1><b>Healthy</b></h1>
@@ -46,15 +45,15 @@
             <p class="connect-text">Connect with us!</p>
         </div>
         <div class="social-media-links">
-            <img src="assets/facebook-icon.svg" class="facebook-icon" alt="FaceBook">
-            <img src="assets/instagram-icon.svg" class="instagram-icon" alt="Instagram">
-            <img src="assets/twitter-icon.svg" class="twitter-icon" alt="Twitter">
-            <img src="assets/linkedin-icon.svg" class="linkedin-icon" alt="LinkedIn">
-            <img src="assets/youtube-icon.svg" class="youtube-icon" alt="YouTube">
+            <%= image_tag "facebook-icon.svg", class: "facebook-icon", alt: "FaceBook" %>
+            <%= image_tag "instagram-icon.svg", class: "instagram-icon", alt: "Instagram" %>
+            <%= image_tag "twitter-icon.svg", class: "twitter-icon", alt: "Twitter" %>
+            <%= image_tag "linkedin-icon.svg", class: "linkedin-icon", alt: "LinkedIn" %>
+            <%= image_tag "youtube-icon.svg", class: "youtube-icon", alt: "YouTube" %>
         </div>
 
         <div class="wefit-nav-logo">
-            <img src="assets/text-transparent-white.svg" class="nav-logo" alt="NavLogo">
+            <%= image_tag "text-transparent-white.svg", class: "nav-logo", alt: "NavLogo" %>
         </div>
     </div>
 
@@ -72,7 +71,7 @@
         <li><a href="#">Help Center</a></li>
     </ul>
 
-    <img src="assets/text-logo-red.svg" class="wefit-logo" alt="logo">
+    <%= image_tag "text-logo-red.svg", class: "wefit-logo", alt: "logo" %>
 
 </div>
 
