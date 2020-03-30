@@ -8,8 +8,8 @@ class Api::V1::PostsController < Api::V1::BaseController
     render json: Post.all
   end
 
-  # POST /posts/search
-  def search
+  # POST /posts/filter
+  def filter
     if parameters[:filters]
       # Get the filtering parameters
       @tags = tag_filter_params[:tag_list]
