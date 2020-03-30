@@ -10,14 +10,16 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # POST /posts/filter
   def filter
-    if parameters[:filters]
+    if params[:filters]
       # Get the filtering parameters
       @tags = tag_filter_params[:tag_list]
       @match_all = tag_filter_params[:match_all]
       # Get the posts that match
-      render json: Post.tagged_with(@tags, match_all: @match_all)
+      @posts = Post.tagged_with(@tags, match_all: @match_all)
+    else
+      @posts = Post.all
     end
-    render json: Post.all
+    render json: @posts
   end
 
   # GET /posts/:id
