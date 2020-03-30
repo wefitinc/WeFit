@@ -18,6 +18,9 @@ Rails.application.routes.draw do
         post   'followers', to: 'follows#create'
         delete 'followers', to: 'follows#destroy'
       end
+
+      post '/posts/search', to: 'posts#search'
+      
       resources :posts, only: [:index, :show, :create, :destroy] do
         resources :likes, only: [:index, :create]
         resources :views, only: [:index, :create]

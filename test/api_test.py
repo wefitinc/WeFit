@@ -189,9 +189,9 @@ def get_posts(tags):
 		}
 	}
 	# Post path
-	path = '/api/v1/posts/'
+	path = '/api/v1/posts/search'
 	print('Contacting '+url+path+'...', end ="")
-	r = requests.get(url+path, json=json)
+	r = requests.post(url+path, json=json)
 	if r.status_code == 200:
 		print("Got posts")
 		print('\t'+str(r.json()))

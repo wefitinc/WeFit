@@ -4,19 +4,17 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # GET /posts
   def index
-    # Is this a request with filters?
-    if params[:filters]
-      # Get the filtering parameters
-      @tags = tag_filter_params[:tag_list]
-      @match_all = tag_filter_params[:match_all]
-      # Get the posts that match
-      @posts = Post.tagged_with(@tags, match_all: @match_all)
-    else
-      # Get all posts
-      @posts = Post.all
-    end
     # Render the posts
-    render json: @posts
+    render json: Post.all
+  end
+
+  # POST /posts/search
+  def search
+    # Get the filtering parameters
+    @tags = tag_filter_params[:tag_list]
+    @match_all = tag_filter_params[:match_all]
+    # Get the posts that match
+    render json: Post.tagged_with(@tags, match_all: @match_all)
   end
 
   # GET /posts/:id
