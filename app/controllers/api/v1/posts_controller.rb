@@ -10,6 +10,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # POST /posts/filter
   def filter
+    # TODO: Should 'all' be the default? or should we make filters mandatory in this endpoint
     if params[:filters]
       # Get the filtering parameters
       @tags = tag_filter_params[:tag_list]

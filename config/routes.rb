@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       # TODO find a better routing for this
       get '/users/:id/posts', to: 'posts#for_user'
 
-      resources :users, only: [:show, :destroy] do
+      resources :users, only: [ :show, :destroy ] do
         get    'following', to: 'follows#index_following'
         get    'followers', to: 'follows#index_followers'
         
@@ -21,11 +21,13 @@ Rails.application.routes.draw do
 
       post '/posts/filter', to: 'posts#filter'
       
-      resources :posts, only: [:index, :show, :create, :destroy] do
-        resources :likes, only: [:index, :create]
-        resources :views, only: [:index, :create]
-        resources :comments, only: [:index, :create]
+      resources :posts, only: [ :index, :show, :create, :destroy ] do
+        resources :likes, only: [ :index, :create ]
+        resources :views, only: [ :index, :create ]
+        resources :comments, only: [ :index, :create ]
       end
+
+      resources :activities, only: [ :index, :show, :create ]
     end
   end
 
