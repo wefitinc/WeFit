@@ -4,7 +4,13 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # GET /posts
   def index
-    # Is this a request with filters?
+    # Render the posts
+    render json: Post.all
+  end
+
+  # POST /posts/filter
+  def filter
+    # TODO: Should 'all' be the default? or should we make filters mandatory in this endpoint
     if params[:filters]
       # Get the filtering parameters
       @tags = tag_filter_params[:tag_list]
@@ -12,10 +18,8 @@ class Api::V1::PostsController < Api::V1::BaseController
       # Get the posts that match
       @posts = Post.tagged_with(@tags, match_all: @match_all)
     else
-      # Get all posts
       @posts = Post.all
     end
-    # Render the posts
     render json: @posts
   end
 
