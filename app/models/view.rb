@@ -1,7 +1,7 @@
 class View < ApplicationRecord
   # Views are on posts and have users
+  belongs_to :post, counter_cache: true
   belongs_to :user
-  belongs_to :post
   # The post must exist
   validates :post,
     presence: true

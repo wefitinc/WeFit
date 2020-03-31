@@ -29,11 +29,10 @@ class Post < ApplicationRecord
   validates :font_size, 
     presence: true,
     numericality: { only_integer: false, greater_than: 0 }
-
+  # Data for text display 
   validates :textview_width, :textview_height,
     presence: true,
     numericality: { only_integer: false, greater_than: 0 }
-
   validates :header_color,
     presence: true,
     format: { with: VALID_COLOR_REGEX }
@@ -63,9 +62,6 @@ class Post < ApplicationRecord
   def as_json(*)
     super.tap do |hash|
         hash["user_id"] = user.hashid
-        hash["likes"] = likes.count
-        hash["views"] = views.count
-        hash["comments"] = comments.count
         hash["image_url"] = get_image_url
       end
   end

@@ -303,7 +303,7 @@ def create_activity(token):
 
 if __name__ == '__main__':
 	# Sign up the test user
-	# signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
+	signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
 	data = login(email, password)
 	# If login successful

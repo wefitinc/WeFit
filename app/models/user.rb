@@ -149,9 +149,6 @@ class User < ApplicationRecord
     ).tap do |hash|
       # Insert the hashid
       hash["id"] = hashid
-      # Insert followers/follows count
-      hash["following"] = following.count
-      hash["followers"] = followers.count
     end
   end
 end

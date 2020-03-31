@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_041429) do
+ActiveRecord::Schema.define(version: 2020_03_31_165924) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -93,6 +93,9 @@ ActiveRecord::Schema.define(version: 2020_03_31_041429) do
     t.float "textview_width"
     t.float "textview_height"
     t.string "header_color"
+    t.integer "likes_count", default: 0
+    t.integer "views_count", default: 0
+    t.integer "comments_count", default: 0
     t.index ["latitude", "longitude"], name: "index_posts_on_latitude_and_longitude"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -155,6 +158,8 @@ ActiveRecord::Schema.define(version: 2020_03_31_041429) do
     t.integer "failed_attempts", default: 0
     t.string "unlock_digest"
     t.datetime "locked_at"
+    t.integer "follower_count", default: 0
+    t.integer "following_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
