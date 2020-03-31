@@ -11,22 +11,23 @@ class Api::V1::PostsController < Api::V1::BaseController
   # POST /posts/filter
   def filter
     # TODO: Should 'all' be the default? or should we make filters mandatory in this endpoint
+    @posts = Post.all
+    # If there are any filters passed
     if params[:filters]
-      # Get the filtering parameters
-      @tags = tag_filter_params[:tag_list]
-      @match_all = tag_filter_params[:match_all]      
-      # TODO: Clean this up
       # Check for filtering on following
       if tag_filter_params[:following_only]
-        # Get posts where the creator is followed by the current user and tags match
-        @posts = Post.where(user_id: @current_user.following).tagged_with(@tags, match_all: @match_all)
-      else
-        # Get the posts that match
-        @posts = Post.tagged_with(@tags, match_all: @match_all)
+        # Filter posts where the creator is followed by the current user
+        @posts = @posts.where(user_id: @current_user.following)
       end
-    else
-      @posts = Post.all
+      # Get the tag filtering parameters
+      @tags = tag_filter_params[:tag_list]
+      @match_all = tag_filter_params[:match_all]      
+      if not @tags.empty?
+        # Fitler on tags
+        @posts = @posts.tagged_with(@tags, match_all: @match_all)
+      end
     end
+    # Render the posts
     render json: @posts
   end
 
