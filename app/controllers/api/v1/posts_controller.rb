@@ -1,6 +1,6 @@
 class Api::V1::PostsController < Api::V1::BaseController
   # Authorize the user before posting
-  before_action :authorize, only: [:create, :destroy]
+  before_action :authorize, only: [:filter, :create, :destroy]
 
   # GET /posts
   def index
@@ -14,9 +14,16 @@ class Api::V1::PostsController < Api::V1::BaseController
     if params[:filters]
       # Get the filtering parameters
       @tags = tag_filter_params[:tag_list]
-      @match_all = tag_filter_params[:match_all]
-      # Get the posts that match
-      @posts = Post.tagged_with(@tags, match_all: @match_all)
+      @match_all = tag_filter_params[:match_all]      
+      # TODO: Clean this up
+      # Check for filtering on following
+      if tag_filter_params[:following_only]
+        # Get posts where the creator is followed by the current user and tags match
+        @posts = Post.where(user_id: @current_user.following).tagged_with(@tags, match_all: @match_all)
+      else
+        # Get the posts that match
+        @posts = Post.tagged_with(@tags, match_all: @match_all)
+      end
     else
       @posts = Post.all
     end
@@ -98,7 +105,8 @@ private
   end
   def tag_filter_params
     params.require(:filters).permit(
-      :match_all, 
+      :following_only, 
+      :match_all,
       tag_list: [])
   end
 end
