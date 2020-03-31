@@ -18,10 +18,8 @@ class Post < ApplicationRecord
   # Associate an image with each post
   has_one_base64_attached :image
 
-  # Make sure to allow for reverse geocoding
+  # Reverse geocoding for spatial lookups
   reverse_geocoded_by :latitude, :longitude
-  # ERROR This breaks everything, but we need it for post lookup
-  # after_validation :reverse_geocode
 
   # Validate data presence before storing in DB
   # NOTE: Background can be an image or a color, should we validate for this?
@@ -48,8 +46,9 @@ class Post < ApplicationRecord
   validates :position_x, presence: true, numericality: true
   validates :position_y, presence: true, numericality: true
   # TODO Validate the coordinates
-  validates :latitude, presence: true
-  validates :longitude, presence: true
+  validates :latitude, :longitude,
+    presence: true,
+    numericality: true
   # Validate image properties
   validates :image,
     size: { less_than: 4.megabytes },
