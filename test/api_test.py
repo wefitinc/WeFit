@@ -139,6 +139,20 @@ def create_post(token, image_filename):
 		return
 	print('Failed to load image \"'+image_filename+'\"')
 
+def view_post(token, post_id):
+	# Post path
+	path = '/api/v1/posts/'+str(post_id)+'/views'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Viewed post")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to like post, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 def like_post(token, post_id):
 	# Post path
 	path = '/api/v1/posts/'+str(post_id)+'/likes'
@@ -274,11 +288,11 @@ if __name__ == '__main__':
 			# image = 'red-suspension-bridge-3493772.jpg'
 			# post_data = create_post(data['token'], image)
 			# if post_data:
-			# 	like_post(data['token'], post_data['id'])
+			# 	view_post(data['token'], post_data['id'])
 			# 	like_post(data['token'], post_data['id'])
 			# 	comment_on_post(data['token'], post_data['id'])
-			# 	# delete_post(data['token'], post_data['id'])	
+			# 	delete_post(data['token'], post_data['id'])	
 			get_posts(data['token'], 'fitness')
 			# follow_user(data['token'], 'qN4tOb')
 			# unfollow_user(data['token'], 'qN4tOb')
-			create_activity(data['token'])
+			# create_activity(data['token'])

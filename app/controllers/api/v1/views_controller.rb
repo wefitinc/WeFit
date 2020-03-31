@@ -1,4 +1,4 @@
-class Api::V1::ViewsController < ApplicationController
+class Api::V1::ViewsController < Api::V1::BaseController
   before_action :find_post
   before_action :authorize, only: [:create]
 
