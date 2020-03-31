@@ -1,9 +1,14 @@
 class Api::V1::PostsController < Api::V1::BaseController
   # Authorize the user before posting
-  before_action :authorize, only: [:index, :create, :destroy]
+  before_action :authorize, only: [:filter, :create, :destroy]
 
   # GET /posts
   def index
+    render json: Post.all
+  end
+
+  # POST /posts/filter
+  def filter
     # TODO: Should 'all' be the default? or should we make filters mandatory in this endpoint
     @posts = Post.all
     # Check for filtering on following
@@ -98,6 +103,7 @@ private
   def tag_filter_params
     params.permit(
       :following_only, 
+      :latitude, :longitude,:radius,
       :match_all,
       tag_list: [])
   end

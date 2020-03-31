@@ -13,6 +13,32 @@ url      = 'http://localhost:3000'
 email    = 'test@wefit.us'
 password = 'SuperSecretTestPassword'
 
+def signup(email, password, first_name, last_name, birthdate, gender="Other"):
+	# Signup path
+	path = '/api/v1/auth/signup'
+	print('Contacting '+url+path+'...', end ="")
+	# JSON data to send for login
+	json = { 
+		'email': email, 
+		'password': password,
+		'first_name': first_name,
+		'last_name': last_name,
+		'birthdate': birthdate,
+		'gender': gender,
+	}
+	# Make the request (POST)
+	r = requests.post(url+path, json=json)
+	# If the request was successful
+	if r.status_code == 200:
+		# Log and return the data
+		print("Signed up!")
+		print('\t'+str(r.json()))
+		return r.json()
+	# Failed, dont return data# 
+	print('Failed to signup, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+	return None
+
 # Send a login request with the email and password
 def login(email, password):
 	# Login path
@@ -272,6 +298,8 @@ def create_activity(token):
 	print('\t'+str(r.json()))
 
 if __name__ == '__main__':
+	# Sign up the test user
+	# signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
 	data = login(email, password)
 	# If login successful
@@ -282,13 +310,13 @@ if __name__ == '__main__':
 		if user_data:
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			# Image filename
-			# image = 'red-suspension-bridge-3493772.jpg'
-			# post_data = create_post(data['token'], image)
-			# if post_data:
-			# 	view_post(data['token'], post_data['id'])
-			# 	like_post(data['token'], post_data['id'])
-			# 	comment_on_post(data['token'], post_data['id'])
-			# 	delete_post(data['token'], post_data['id'])	
+			image = 'red-suspension-bridge-3493772.jpg'
+			post_data = create_post(data['token'], image)
+			if post_data:
+				view_post(data['token'], post_data['id'])
+				like_post(data['token'], post_data['id'])
+				comment_on_post(data['token'], post_data['id'])
+				# delete_post(data['token'], post_data['id'])	
 			get_posts(data['token'], [])
 			# follow_user(data['token'], 'qN4tOb')
 			# unfollow_user(data['token'], 'qN4tOb')
