@@ -57,13 +57,4 @@ class Post < ApplicationRecord
   def get_image_url
     url_for(self.image) if self.image.attached?
   end
-
-  # JSON serializer
-  def as_json(*)
-    super.tap do |hash|
-        hash["user_id"] = user.hashid
-        hash["image_url"] = get_image_url
-      end
-  end
-
 end

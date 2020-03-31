@@ -16,24 +16,18 @@ class Api::V1::PostsController < Api::V1::BaseController
     @lat = tag_filter_params[:latitude]
     @lon = tag_filter_params[:longitude]
     @radius = tag_filter_params[:radius]
-    if @radius and @lat and @lon
-      # Filter posts where the distance is within the radius
-      @posts = @posts.near([@lat, @lon], @radius)
-    end
+    # Filter posts where the distance is within the radius
+    @posts = @posts.near([@lat, @lon], @radius) if @radius and @lat and @lon
 
-    # Check for filtering on following
-    if tag_filter_params[:following_only]
-      # Filter posts where the creator is followed by the current user
-      @posts = @posts.where(user_id: @current_user.following)
-    end
+    # Filter posts where the creator is followed by the current user
+    @following_only = tag_filter_params[:following_only]
+    @posts = @posts.where(user_id: @current_user.following) if @following_only 
     
     # Get the tag filtering parameters
     @tags = tag_filter_params[:tag_list]
     @match_all = tag_filter_params[:match_all]      
-    if @tags and not @tags.empty?
-      # Fitler on tags
-      @posts = @posts.tagged_with(@tags, match_all: @match_all)
-    end
+    # Fitler on tags
+    @posts = @posts.tagged_with(@tags, match_all: @match_all) if @tags and not @tags.empty?
     
     # Render the posts
     render json: @posts

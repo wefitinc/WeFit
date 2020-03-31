@@ -303,9 +303,9 @@ def create_activity(token):
 
 if __name__ == '__main__':
 	# Sign up the test user
-	signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
+	signup('test2@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
-	data = login(email, password)
+	data = login('test2@wefit.us', password)
 	# If login successful
 	if data:
 		# Run an authorization test
@@ -321,7 +321,7 @@ if __name__ == '__main__':
 			# 	like_post(data['token'], post_data['id'])
 			# 	comment_on_post(data['token'], post_data['id'])
 			# 	# delete_post(data['token'], post_data['id'])	
-			get_posts(data['token'], [])
-			# follow_user(data['token'], 'qN4tOb')
-			# unfollow_user(data['token'], 'qN4tOb')
+			# get_posts(data['token'], [])
+			follow_user(data['token'], 'b9YtZb')
+			# unfollow_user(data['token'], 'b9YtZb')
 			# create_activity(data['token'])

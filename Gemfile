@@ -30,6 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # Invisible captcha for spam prevention
 gem 'invisible_captcha'
 
+gem 'active_model_serializers'
+
 # Geocoding for posts
 gem 'geocoder'
 # Taggable posts

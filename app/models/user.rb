@@ -129,26 +129,4 @@ class User < ApplicationRecord
     return false if string.nil?
     BCrypt::Password.new(string).is_password?(token)
   end
-
-  # JSON serializer
-  def as_json(*)
-    super.except(
-      # Strip internal id
-      "id",
-      # Strip OAuth2 stuff
-      "provider", "uid",
-      # Strip password/activation digests
-      "password_digest", 
-      "activation_digest",
-      # Strip DB timestamps 
-      "created_at", "updated_at",
-      # Strip reset stuff  
-      "reset_digest", "reset_sent_at",
-      # Strip auth stuff
-      "failed_attempts", "unlock_digest", "locked_at"
-    ).tap do |hash|
-      # Insert the hashid
-      hash["id"] = hashid
-    end
-  end
 end

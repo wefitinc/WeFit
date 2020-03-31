@@ -20,10 +20,4 @@ class Activity < ApplicationRecord
       greater_than_or_equal_to: 1,
       less_than_or_equal_to: 5
     }
-  # JSON serializer
-  def as_json(*)
-    super.except("user_id").tap do |hash|
-        hash["user_id"] = user.hashid
-      end
-  end
 end
