@@ -1,31 +1,22 @@
 class Api::V1::PostsController < Api::V1::BaseController
   # Authorize the user before posting
-  before_action :authorize, only: [:filter, :create, :destroy]
+  before_action :authorize, only: [:index, :create, :destroy]
 
   # GET /posts
   def index
-    # Render the posts
-    render json: Post.all
-  end
-
-  # POST /posts/filter
-  def filter
     # TODO: Should 'all' be the default? or should we make filters mandatory in this endpoint
     @posts = Post.all
-    # If there are any filters passed
-    if params[:filters]
-      # Check for filtering on following
-      if tag_filter_params[:following_only]
-        # Filter posts where the creator is followed by the current user
-        @posts = @posts.where(user_id: @current_user.following)
-      end
-      # Get the tag filtering parameters
-      @tags = tag_filter_params[:tag_list]
-      @match_all = tag_filter_params[:match_all]      
-      if not @tags.empty?
-        # Fitler on tags
-        @posts = @posts.tagged_with(@tags, match_all: @match_all)
-      end
+    # Check for filtering on following
+    if tag_filter_params[:following_only]
+      # Filter posts where the creator is followed by the current user
+      @posts = @posts.where(user_id: @current_user.following)
+    end
+    # Get the tag filtering parameters
+    @tags = tag_filter_params[:tag_list]
+    @match_all = tag_filter_params[:match_all]      
+    if @tags and not @tags.empty?
+      # Fitler on tags
+      @posts = @posts.tagged_with(@tags, match_all: @match_all)
     end
     # Render the posts
     render json: @posts
@@ -105,7 +96,7 @@ private
     params.require(:post).permit(tag_list: [])
   end
   def tag_filter_params
-    params.require(:filters).permit(
+    params.permit(
       :following_only, 
       :match_all,
       tag_list: [])

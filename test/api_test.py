@@ -200,19 +200,16 @@ def delete_post(token, post_id):
 
 def get_posts(token, tags):
 	json = {
-		'filters': 
-		{
-			"match_all": False,
-			"following_only": True,
-			"tag_list": ["fitness"],
-		}
+		"match_all": False,
+		"following_only": True,
+		"tag_list": tags,
 	}
 	# Post path
-	path = '/api/v1/posts/filter'
+	path = '/api/v1/posts'
 	print('Contacting '+url+path+'...', end ="")
 	# Make sure the headers contain the authorization token
 	headers = { 'Authorization': token }
-	r = requests.post(url+path, json=json, headers=headers)
+	r = requests.get(url+path, json=json, headers=headers)
 	if r.status_code == 200:
 		print("Got posts")
 		print('\t'+str(r.json()))
@@ -292,7 +289,7 @@ if __name__ == '__main__':
 			# 	like_post(data['token'], post_data['id'])
 			# 	comment_on_post(data['token'], post_data['id'])
 			# 	delete_post(data['token'], post_data['id'])	
-			get_posts(data['token'], 'fitness')
+			get_posts(data['token'], [])
 			# follow_user(data['token'], 'qN4tOb')
 			# unfollow_user(data['token'], 'qN4tOb')
 			# create_activity(data['token'])

@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         delete 'followers', to: 'follows#destroy'
       end
 
-      post '/posts/filter', to: 'posts#filter'
+      get '/posts/filter', to: 'posts#index'
       
       resources :posts, only: [ :index, :show, :create, :destroy ] do
         resources :likes, only: [ :index, :create ]
