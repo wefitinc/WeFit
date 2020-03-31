@@ -18,6 +18,9 @@ class Post < ApplicationRecord
   # Associate an image with each post
   has_one_base64_attached :image
 
+  # Reverse geocoding for spatial lookups
+  reverse_geocoded_by :latitude, :longitude
+
   # Validate data presence before storing in DB
   # NOTE: Background can be an image or a color, should we validate for this?
   validates :background, presence: true

@@ -11,11 +11,22 @@ class Api::V1::PostsController < Api::V1::BaseController
   def filter
     # TODO: Should 'all' be the default? or should we make filters mandatory in this endpoint
     @posts = Post.all
+    
+    # Distance query
+    @lat = tag_filter_params[:latitude]
+    @lon = tag_filter_params[:longitude]
+    @radius = tag_filter_params[:radius]
+    if @radius and @lat and @lon
+      # Filter posts where the distance is within the radius
+      @posts = @posts.near([@lat, @lon], @radius)
+    end
+
     # Check for filtering on following
     if tag_filter_params[:following_only]
       # Filter posts where the creator is followed by the current user
       @posts = @posts.where(user_id: @current_user.following)
     end
+    
     # Get the tag filtering parameters
     @tags = tag_filter_params[:tag_list]
     @match_all = tag_filter_params[:match_all]      
@@ -23,6 +34,7 @@ class Api::V1::PostsController < Api::V1::BaseController
       # Fitler on tags
       @posts = @posts.tagged_with(@tags, match_all: @match_all)
     end
+    
     # Render the posts
     render json: @posts
   end
@@ -103,7 +115,7 @@ private
   def tag_filter_params
     params.permit(
       :following_only, 
-      :latitude, :longitude,:radius,
+      :latitude,:longitude,:radius,
       :match_all,
       tag_list: [])
   end

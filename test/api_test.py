@@ -227,15 +227,19 @@ def delete_post(token, post_id):
 def get_posts(token, tags):
 	json = {
 		"match_all": False,
-		"following_only": True,
+		"following_only": False,
 		"tag_list": tags,
+
+		'latitude': '33.4255',
+		'longitude': '111.9400',
+		'radius': 50,
 	}
 	# Post path
-	path = '/api/v1/posts'
+	path = '/api/v1/posts/filter'
 	print('Contacting '+url+path+'...', end ="")
 	# Make sure the headers contain the authorization token
 	headers = { 'Authorization': token }
-	r = requests.get(url+path, json=json, headers=headers)
+	r = requests.post(url+path, json=json, headers=headers)
 	if r.status_code == 200:
 		print("Got posts")
 		print('\t'+str(r.json()))
@@ -310,13 +314,13 @@ if __name__ == '__main__':
 		if user_data:
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			# Image filename
-			image = 'red-suspension-bridge-3493772.jpg'
-			post_data = create_post(data['token'], image)
-			if post_data:
-				view_post(data['token'], post_data['id'])
-				like_post(data['token'], post_data['id'])
-				comment_on_post(data['token'], post_data['id'])
-				# delete_post(data['token'], post_data['id'])	
+			# image = 'red-suspension-bridge-3493772.jpg'
+			# post_data = create_post(data['token'], image)
+			# if post_data:
+			# 	view_post(data['token'], post_data['id'])
+			# 	like_post(data['token'], post_data['id'])
+			# 	comment_on_post(data['token'], post_data['id'])
+			# 	# delete_post(data['token'], post_data['id'])	
 			get_posts(data['token'], [])
 			# follow_user(data['token'], 'qN4tOb')
 			# unfollow_user(data['token'], 'qN4tOb')
