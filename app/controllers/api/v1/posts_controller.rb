@@ -1,4 +1,5 @@
 class Api::V1::PostsController < Api::V1::BaseController
+  before_action :set_post, only:  [:show, :destroy]
   # Authorize the user before posting
   before_action :authorize, only: [:filter, :create, :destroy]
 
@@ -35,23 +36,14 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # GET /posts/:id
   def show
-    # Get the post
-    @post = Post.find(params[:id])
     # Render the post
     render json: @post
   end
 
   # DELETE /posts/:id
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
-    if @post.destroyed?
-      render json: { message: "Post destroyed" }
-    else
-      render json: { message: "Failed to destroy post" }, status: :internal_server_error
-    end
-    rescue ActiveRecord::RecordNotFound
-      render json: { message: "Post not found or already destroyed" }, status: :not_found
+    render json: { message: "Post destroyed" }
   end
 
   # POST /posts
@@ -79,13 +71,8 @@ class Api::V1::PostsController < Api::V1::BaseController
   def for_user
     # Get the user by the hashid
     @user = User.find_by_hashid(params[:id])
-    if @user == nil
-      # Return a 404 if the user was not found
-      render json: { errors: "User not found" }, status: :not_found 
-    else
-      # Render the user's posts
-      render json: @user.posts
-    end
+    # Render the user's posts
+    render json: @user.posts
   end
 
 private
@@ -112,5 +99,9 @@ private
       :latitude,:longitude,:radius,
       :match_all,
       tag_list: [])
+  end
+  def set_post
+    @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
   end
 end
