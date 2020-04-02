@@ -9,6 +9,7 @@ class PostSerializer < ActiveModel::Serializer
     :textview_width, :textview_height,
     :latitude, :longitude,
     :image_url,
+    :tag_list,
     :likes_count, :views_count, :comments_count, 
     :created_at, :updated_at
 
