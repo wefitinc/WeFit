@@ -5,12 +5,12 @@
 
 <div class="split left">
 
-    <%= link_to image_tag("logo-transparent.png", class: 'logo-image', size: "128x56", alt: "WeFit"), root_path %>
+    <%= link_to image_tag("logo-transparent.svg", class: 'logo-image', size: "118x45", alt: "WeFit"), root_path %>
 
     <div class="centered">
         <h1><b>Healthy</b></h1>
         <h1><b>Together</b></h1>
-        <br><br><br><br>
+        <br><br><br>
         <p class="subtitleText">Join the social network for health today!</p>
         <br>
         <%= image_tag "Apple_Store_Image.svg", class: "apple-image", alt: "AppleStore" %>
@@ -18,15 +18,17 @@
 
     <div class="bottom-left">
         <p class="bottomText">WeFit Inc &copy; <%= Time.current.year %></p>
+    </div>
 </div>
 
 <div class="split right">
 
-    <div class="hamburger hamburger--squeeze" type="button">
+    <div class="hamburger hamburger--boring" type="button">
         <div class="hamburger-box">
             <div class="hamburger-inner"></div>
         </div>
     </div>
+
 
     <div id="mySidenav" class="sidenav">
 
@@ -57,12 +59,60 @@
         </div>
     </div>
 
-    <button id="whatiswefit" class="what_is_wefit" type="button">What is WeFit?</button>
 
-    <%= image_tag "iPhone XS White Clay.svg", id: "iphoneslide", class: "slideshowFrame", size: 
-    "341x683" %>
+    <a href="#" id="whatiswefit" class="what_is_wefit" type="button">What is WeFit?</a>
+
+
+    <%= image_tag "iPhone XS White Clay.png", id: "iphoneslide", class: "slideshowFrame"%>
 
     <div class="slideshow-container">
+
+        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+
+            <p>Create & view</br>health inspired posts</p>
+            <%= image_tag "slide1_home.svg", size: "200x200"%>
+
+        </div>
+
+        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+
+            <p>Create & attend</br>local healthy activities</p>
+            <%= image_tag "slide2_home.svg", size: "200x200"%>
+
+        </div>
+
+        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+
+            <p>Join support groups</p></br>
+            <%= image_tag "slide3_home.svg", size: "200x200"%>
+
+        </div>
+
+        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+
+            <p>Chat with licensed</br>health professionals</p>
+            <%= image_tag "slide4_home.svg", size: "200x200"%>
+
+        </div>
+
+        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+
+            <p>Guided exercise &</br>meditation videos</p>
+            <%= image_tag "slide5_home.svg", size: "200x200" %>
+
+        </div>
+
+        <div class="circle-container" style="text-align:center" id="rightForegroundSlides">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
+
+        <div class="slideButtonContainer"  style="text-align:center" id="rightForegroundSlides">
+            <a href="#" id="" class="slideButton" type="button">Learn More</a>
+        </div>
 
     </div>
 
@@ -78,36 +128,63 @@
 
 <script>
 
+    /* script for image scroll box start*/
 
-function openNav() {
+    var slideIndex = 1;
+    showSlides(slideIndex);
 
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("iphoneslide").style.left = "30%";
-    document.getElementById("whatiswefit").style.right = "320px";
-}
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
 
-function closeNav() {
-
-    document.getElementById("mySidenav").style.width = "0px";
-    document.getElementById("iphoneslide").style.left = "50%";
-    document.getElementById("whatiswefit").style.right = "10px";
-}
-
-var hamburger = document.querySelector(".hamburger");
-hamburger.addEventListener("click", function() {
-
-        if(hamburger.classList.contains("is-active")){
-            hamburger.classList.toggle("is-active");
-            closeNav();
-        }else{
-            hamburger.classList.toggle("is-active");
-            openNav();
-        }
-
-
-
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) {slideIndex = 1}
+      if (n < 1) {slideIndex = slides.length}
+      for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex-1].style.display = "block";
+      dots[slideIndex-1].className += " active";
+      slideIndex++;
+      setTimeout(showSlides, 5000, slideIndex);
+    }
+     /*script for image scroll box end*/
 
 
-});
+
+    function openNav() {
+
+        document.getElementById("mySidenav").style.width = "250px";
+        //document.getElementById("iphoneslide").style.left = "30%";
+        //document.getElementById("rightForegroundSlides").style.left = "30%";
+        document.getElementById("whatiswefit").style.right = "320px";
+    }
+
+    function closeNav() {
+
+        document.getElementById("mySidenav").style.width = "0px";
+        //document.getElementById("iphoneslide").style.left = "50%";
+        //document.getElementById("rightForegroundSlides").style.left = "30%";
+        document.getElementById("whatiswefit").style.right = "10px";
+    }
+
+    var hamburger = document.querySelector(".hamburger");
+    hamburger.addEventListener("click", function() {
+
+            if(hamburger.classList.contains("is-active")){
+                hamburger.classList.toggle("is-active");
+                closeNav();
+            }else{
+                hamburger.classList.toggle("is-active");
+                openNav();
+            }
+
+    });
 
 </script>
