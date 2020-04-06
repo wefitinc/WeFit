@@ -3,10 +3,11 @@
   <head>
     <%# Device meta stuff %>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#ff0800">
     <meta name="msapplication-TileColor" content="#ff0800">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <%# SEO Stuff %>
     <title>WeFit <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
     <meta name='description' content='<%= yield_meta_tag(:description, 'WeFit, the social network for all things health.') %>' />
