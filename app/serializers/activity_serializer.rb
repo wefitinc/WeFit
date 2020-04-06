@@ -1,6 +1,6 @@
 class ActivitySerializer < ActiveModel::Serializer
-  has_one :user
   attributes :id,
+    :user_id,
     :name,
     :description,
     :event_time,
@@ -8,4 +8,8 @@ class ActivitySerializer < ActiveModel::Serializer
     :location_name,
     :location_address,
     :difficulty
+
+  def user_id
+    object.user.hashid
+  end
 end

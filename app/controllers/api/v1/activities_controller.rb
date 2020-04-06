@@ -1,5 +1,6 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
   before_action :authorize, only: [:create]
+  before_action :set_activity, only: [:show]
 
   # GET /activites
   def index
@@ -8,7 +9,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
 
   # GET /activities/:id
   def show
-    render json: Activity.find(params[:id])
+    render json: @activity
   end
 
   # POST /activities
@@ -35,5 +36,8 @@ private
       :location_name,
       :location_address,
       :difficulty)
+  end
+  def set_activity
+    @activity = Activity.find(params[:id])
   end
 end
