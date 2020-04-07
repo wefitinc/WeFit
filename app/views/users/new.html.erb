@@ -59,50 +59,46 @@
         </div>
     </div>
 
+    <%= link_to "What is WeFit?", root_path, class: "what_is_wefit" %>
 
-    <a href="#" id="whatiswefit" class="what_is_wefit" type="button">What is WeFit?</a>
+    <div class="slideshow-container centered">
 
-
-    <%= image_tag "iPhone XS White Clay.png", id: "iphoneslide", class: "slideshowFrame"%>
-
-    <div class="slideshow-container">
-
-        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+        <div class="mySlides" id="rightForegroundSlides">
 
             <p>Create & view</br>health inspired posts</p>
-            <%= image_tag "slide1_home.svg", size: "200x200"%>
+            <%= image_tag "Slide1_home.svg", size: "200x200", class: 'slideshow-image' %>
 
         </div>
 
-        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+        <div class="mySlides" id="rightForegroundSlides">
 
             <p>Create & attend</br>local healthy activities</p>
-            <%= image_tag "slide2_home.svg", size: "200x200"%>
+            <%= image_tag "slide2_home.svg", size: "200x200", class: 'slideshow-image' %>
 
         </div>
 
-        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+        <div class="mySlides" id="rightForegroundSlides">
 
             <p>Join support groups</p></br>
-            <%= image_tag "slide3_home.svg", size: "200x200"%>
+            <%= image_tag "slide3_home.svg", size: "200x200", class: 'slideshow-image' %>
 
         </div>
 
-        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+        <div class="mySlides" id="rightForegroundSlides">
 
             <p>Chat with licensed</br>health professionals</p>
-            <%= image_tag "slide4_home.svg", size: "200x200"%>
+            <%= image_tag "slide4_home.svg", size: "200x200", class: 'slideshow-image' %>
 
         </div>
 
-        <div class="mySlides" style="text-align:center" id="rightForegroundSlides">
+        <div class="mySlides" id="rightForegroundSlides">
 
             <p>Guided exercise &</br>meditation videos</p>
-            <%= image_tag "slide5_home.svg", size: "200x200" %>
+            <%= image_tag "slide5_home.svg", size: "200x200", class: 'slideshow-image' %>
 
         </div>
 
-        <div class="circle-container" style="text-align:center" id="rightForegroundSlides">
+        <div class="circle-container" id="rightForegroundSlides">
             <span class="dot" onclick="currentSlide(1)"></span>
             <span class="dot" onclick="currentSlide(2)"></span>
             <span class="dot" onclick="currentSlide(3)"></span>
@@ -110,11 +106,12 @@
             <span class="dot" onclick="currentSlide(5)"></span>
         </div>
 
-        <div class="slideButtonContainer"  style="text-align:center" id="rightForegroundSlides">
+        <div class="slideButtonContainer"  id="rightForegroundSlides">
             <a href="#" id="" class="slideButton" type="button">Learn More</a>
         </div>
 
     </div>
+
 
     <ul class="bottom-nav">
         <li><a href="#">Terms</a></li>

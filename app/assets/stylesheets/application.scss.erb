@@ -10,13 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- * require_tree .
+ *= require_tree .
  *= require_self
  */
- //bottom nav variables
- $duration: .2s;
- $distance: 8px;
- $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+//bottom nav variables
+$duration: .2s;
+$distance: 8px;
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
 // Include bootstrap styles
 @import "bootstrap";
@@ -294,43 +295,34 @@ p.subtitleText {
 
 //beginning slideshow styling
 
-.slideshowFrame {
-	position: relative;
-	width: 40%;
-	height: auto;
-	top: 4rem;
-    left: 13rem;
-    //transform: translate(-50%, -50%);
-    //text-align: center;
-	//margin-right: 0px;
-	z-index: -1;
-}
-
-@media only screen and (min-width: 1920px){
-	.slideShowFrame {
-		top: 6rem;
-		left: 20rem;
-	}
-}
-
 /* Slideshow container */
 .slideshow-container {
-  position: absolute;
-  width: 11.5rem;
-  height: auto;
-  top: 9rem;
-  left: 15rem;
-  z-index: 1;
+  // Dimensions of the image
+  width: 298px;
+  height: 554px;
+  // Padding to center things more nicely
+  // TODO: Play with this;
+  padding: 5rem 1rem;
+  // Pull the image from the asset pipeline, make sure it doesn't repeat and center it
+  background-image: url("<%= asset_path "iPhone XS White Clay.png" %>");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .mySlides{
 	z-index: 2;
+	text-align: center;
+}
+.slideshow-image
+{
+	// Add some top-bottom margins to the image to give them some breathing room
+	margin: 3rem 0;
 }
 
 /* Caption text */
 .mySlides p {
   color: #000;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   //padding-left: 1rem;
   //padding: 8px 12px;
