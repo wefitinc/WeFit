@@ -57,44 +57,55 @@
         </div>
     </div>
 
-    <button id="whatiswefit" class="what_is_wefit" type="button">What is WeFit?</button>
+    <%= link_to "What is WeFit?", root_path, class: "what_is_wefit" %>
 
-    <%= image_tag "iPhone XS White Clay.svg", id: "iphoneslide", class: "slideshowFrame", size: 
-    "341x683" %>
+    <div class="slideshow-container centered">
 
-    <div class="slideshow-container">
+        <div class="mySlides" id="rightForegroundSlides">
 
-    </div>
+            <p>Create & view</br>health inspired posts</p>
+            <%= image_tag "Slide1_home.svg", size: "200x200", class: 'slideshow-image' %>
 
-    <ul class="bottom-nav">
-        <li><a href="#">Terms</a></li>
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Help Center</a></li>
-    </ul>
+        </div>
+
+        <div class="mySlides" id="rightForegroundSlides">
+
+            <p>Create & attend</br>local healthy activities</p>
+            <%= image_tag "slide2_home.svg", size: "200x200", class: 'slideshow-image' %>
+
+        </div>
+
+        <div class="mySlides" id="rightForegroundSlides">
+
+            <p>Join support groups</p></br>
+            <%= image_tag "slide3_home.svg", size: "200x200", class: 'slideshow-image' %>
 
     <%= image_tag "text-logo-red.svg", class: "wefit-logo", alt: "logo" %>
 
-</div>
+        <div class="mySlides" id="rightForegroundSlides">
 
-<script>
+            <p>Chat with licensed</br>health professionals</p>
+            <%= image_tag "slide4_home.svg", size: "200x200", class: 'slideshow-image' %>
 
 
-function openNav() {
+        <div class="mySlides" id="rightForegroundSlides">
 
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("iphoneslide").style.left = "30%";
-    document.getElementById("whatiswefit").style.right = "320px";
-}
+            <p>Guided exercise &</br>meditation videos</p>
+            <%= image_tag "slide5_home.svg", size: "200x200", class: 'slideshow-image' %>
 
 function closeNav() {
 
-    document.getElementById("mySidenav").style.width = "0px";
-    document.getElementById("iphoneslide").style.left = "50%";
-    document.getElementById("whatiswefit").style.right = "10px";
-}
+        <div class="circle-container" id="rightForegroundSlides">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+        </div>
 
-var hamburger = document.querySelector(".hamburger");
-hamburger.addEventListener("click", function() {
+        <div class="slideButtonContainer"  id="rightForegroundSlides">
+            <a href="#" id="" class="slideButton" type="button">Learn More</a>
+        </div>
 
         if(hamburger.classList.contains("is-active")){
             hamburger.classList.toggle("is-active");
@@ -104,6 +115,12 @@ hamburger.addEventListener("click", function() {
             openNav();
         }
 
+
+    <ul class="bottom-nav">
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Help Center</a></li>
+    </ul>
 
 
 

@@ -10,9 +10,14 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- * require_tree .
+ *= require_tree .
  *= require_self
  */
+
+//bottom nav variables
+$duration: .2s;
+$distance: 8px;
+$easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 
 // Include bootstrap styles
 @import "bootstrap";
@@ -279,18 +284,67 @@ p.subtitleText {
 }
 
 .hamburger-inner::after {
-    bottom: -8px;
+    bottom: -0.5rem;
 }
 
-//Squeeze styling
+//Boring styling
 
-.hamburger--squeeze .hamburger-inner {
-	transition-duration: 0.075s;
-	transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+.hamburger--boring .hamburger-inner, .hamburger--boring .hamburger-inner::before, .hamburger--boring .hamburger-inner::after {
+	transition-property: none;
 }
 
-.hamburger--squeeze .hamburger-inner::before {
-	transition: top 0.075s 0.12s ease, opacity 0.075s ease;
+.hamburger--boring.is-active .hamburger-inner {
+	transform: rotate(45deg);
+}
+.hamburger--boring.is-active .hamburger-inner::before {
+	top: 0;
+	opacity: 0;
+}
+.hamburger--boring.is-active .hamburger-inner::after {
+	bottom: 0;
+    transform: rotate(-90deg);
+}
+
+//end of hamburger button
+
+//beginning slideshow styling
+
+/* Slideshow container */
+.slideshow-container {
+  // Dimensions of the image
+  width: 298px;
+  height: 554px;
+  // Padding to center things more nicely
+  // TODO: Play with this;
+  padding: 5rem 1rem;
+  // Pull the image from the asset pipeline, make sure it doesn't repeat and center it
+  background-image: url("<%= asset_path "iPhone XS White Clay.png" %>");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mySlides{
+	z-index: 2;
+	text-align: center;
+}
+.slideshow-image
+{
+	// Add some top-bottom margins to the image to give them some breathing room
+	margin: 3rem 0;
+}
+
+/* Caption text */
+.mySlides p {
+  color: #000;
+  font-size: 1.2rem;
+  font-weight: bold;
+  //padding-left: 1rem;
+  //padding: 8px 12px;
+  //position: absolute;
+  //top: 1rem;
+  //width: 100%;
+  text-align:center;
+  z-index: 2;
 }
 
 .hamburger--squeeze .hamburger-inner::after {
