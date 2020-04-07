@@ -49,7 +49,7 @@ pre
 h1
 {
 	color: #FFFFFF;
-	font-size:64px;
+	font-size:60px;
 }
 
 span
@@ -89,9 +89,11 @@ img.apple-image {
 
 //images for right sidenav
 
-button.what_is_wefit {
+.what_is_wefit {
 	position:relative;
-	width: 120px;
+	text-decoration: none;
+	padding: 10px 10px 10px 24px;
+	width: 130px;
 	height: 36px;
 	float: right;
 	top: 10px;
@@ -100,37 +102,19 @@ button.what_is_wefit {
 	background-color: #FF0000;
 	color: #FFFFFF;
 	font-weight: bold;
-	font-size: 12px;
-
+	font-size: 10px;
+	transition-duration: 0.5s;
 
 }
 
-.slideshowFrame {
-	position: absolute;
-	width: 37%;
-	height: auto;
-	top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-	margin-right: 0px;
-	z-index: 1;
+.what_is_wefit:hover {
+	color: #FFFFFF;
+	text-decoration: none;
 }
-
-.slideshow-container {
-	
-
-
-
-
-	z-index: 2;
-}
-
-
 
 //font size sub title text
 p.subtitleText {
-	font-size:25px;
+	font-size:18px;
 }
 
 //side navigation bar
@@ -151,7 +135,7 @@ p.subtitleText {
 
 	padding: 2px 20px 2px 2px;
   	text-decoration: none;
-  	font-size: 20px;
+  	font-size: 16px;
   	color: #FFFFFF;
   	display: block;
   	transition: 0.3s;
@@ -168,7 +152,7 @@ p.subtitleText {
 
 .links {
 	padding-left: 20px;
-	padding-top: 20px;
+	padding-top: 5px;
 	text-decoration: none;
 	font-size: 30px;
 	color: #FFFFFF;
@@ -215,10 +199,12 @@ p.subtitleText {
   .sidenav a {font-size: 18px;}
 }
 
+//end of navbar
+
 //hamburger button
 .hamburger {
 	float: right;
- 	padding: 15px 15px;
+ 	padding: 1rem 0.9375rem;
  	display: inline-block;
  	cursor: pointer;
  	transition-property: opacity, filter;
@@ -250,8 +236,8 @@ p.subtitleText {
  }
 
 .hamburger-box {
-	width: 35px;
-	height: 25px;
+	width: 1.875rem;
+	height: 1.25rem;
 	display: inline-block;
 	position: relative;
 	z-index: 5;
@@ -260,14 +246,14 @@ p.subtitleText {
 .hamburger-inner {
   	display: block;
   	top: 50%;
-  	margin-top: -2px;
+  	margin-top: -0.125rem;
 }
 
 .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-    width: 30px;
-    height: 6px;
+    width: 1.5625rem;
+    height: 0.3125rem;
     background-color: #000;
-    border-radius: 4px;
+    border-radius: 0.25rem;
     position: absolute;
     transition-property: transform;
     transition-duration: 1.0s;
@@ -280,7 +266,7 @@ p.subtitleText {
 }
 
 .hamburger-inner::before {
-    top: -8px;
+    top: -0.5rem;
 }
 
 .hamburger-inner::after {
@@ -347,27 +333,56 @@ p.subtitleText {
   z-index: 2;
 }
 
-.hamburger--squeeze .hamburger-inner::after {
-    transition: bottom 0.075s 0.12s ease, transform 0.075s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+/* The dots/bullets/indicators */
+.circle-container {
+	position: relative;
+	//width: 10rem;
+	top: 0.1rem;
+	z-index: 3;
 }
 
-.hamburger--squeeze.is-active .hamburger-inner {
-  transform: rotate(45deg);
-  transition-delay: 0.12s;
-  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+.dot {
+  cursor: pointer;
+  height: .5rem;
+  width: .5rem;
+  //margin: 0 2px;
+  background-color: #C4C4C4;
+  border-radius: 50%;
+  display: inline-block;
+  padding: 0px;
+  transition: background-color 0.6s ease;
 }
 
-.hamburger--squeeze.is-active .hamburger-inner::before {
-    top: 0;
-    opacity: 0;
-    transition: top 0.075s ease, opacity 0.075s 0.12s ease;
+.active, .dot:hover {
+  background-color: #717171;
 }
 
-.hamburger--squeeze.is-active .hamburger-inner::after {
-    bottom: 0;
-    transform: rotate(-90deg);
-    transition: bottom 0.075s ease, transform 0.075s 0.12s cubic-bezier(0.215, 0.61, 0.355, 1);
+.slideButtonContainer {
+	position: relative;
+	z-index: 3;
 }
+
+.slideButton{
+	position:relative;
+    text-decoration: none;
+    padding: 0.625rem 0.625rem 0.625rem 0.625rem;
+    width: 8.125rem;
+    height: 2.25rem;
+    top: 0.625rem;
+    border-radius: 3.125rem 3.125rem 3.125rem 3.125rem;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 0.75rem;
+
+}
+
+.slideButton:hover {
+	text-decoration: none;
+	text-decoration-color: #000000;
+	color: #FFFFFF;
+}
+
+//end of slideshow styling
 
 /* Split the screen in half */
 .split {
@@ -404,7 +419,7 @@ p.subtitleText {
 
 //text for the bottom left
 p.bottomText {
-	font-size:15px;
+	font-size:12px;
 }
 
 .bottom-left {
@@ -414,30 +429,73 @@ p.bottomText {
 	left: 3%;
 }
 
+//bottom right nav
+
 .bottom-nav {
 	position: absolute;
-	top: 93%;
-	left: 5%;
+	top: 94%;
+	left: 4%;
+	list-style-type: none;
+	margin: 0;
+	text-align: center;
+
+	li {
+		display: inline-block;
+		margin: 0 0.25rem;
+	}
+
 }
 
 .bottom-nav a {
-	padding: 10px;
-	font-size: 12px;
-	font-weight: bold;
-	text-decoration: none;
+	font-size: 13px;
 	color: #000000;
+	font-weight: bold;
+	position: relative;
+	text-decoration: none;
+	padding-bottom: 8px;
 
+	&:before,
+	  &:after {
+		  content: '';
+		  position: absolute;
+		  bottom: 2px;
+		  left: 0;
+		  right: 0;
+		  height: 2px;
+		  background-color: #FF0000;
+	  }
+	  &:before {
+		  	opacity: 0;
+    		transform: translateY(- $distance);
+        	transition: transform 0s $easeOutBack, opacity 0s;
+	  }
+	  &:after {
+        opacity: 0;
+        transform: translateY($distance/2);
+        transition: transform $duration $easeOutBack, opacity $duration;
+    }
+	&:hover,
+    &:focus {
+        &:before,
+        &:after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        &:before {
+            transition: transform $duration $easeOutBack, opacity $duration;
+        }
+        &:after {
+            transition: transform 0s $duration $easeOutBack, opacity 0s $duration;
+        }
+    }
 }
 
-.bottom-nav a:hover {
-	border-bottom: 1.5px solid red;
-}
-
+//bottom navigation end
 
 img.wefit-logo {
 	position: absolute;
 	float: right;
-	top: 93%;
+	top: calc(100% - 3.125rem);
 	right: 3%;
 }
 
