@@ -226,13 +226,16 @@ def delete_post(token, post_id):
 
 def get_posts(token, tags):
 	json = {
-		"match_all": False,
-		"following_only": False,
-		"tag_list": tags,
+		'filters':
+		{
+			"match_all": False,
+			"following_only": False,
+			"tag_list": tags,
 
-		'latitude': '33.4255',
-		'longitude': '111.9400',
-		'radius': 50,
+			# 'latitude': '33.4255',
+			# 'longitude': '111.9400',
+			# 'radius': 50,
+		}
 	}
 	# Post path
 	path = '/api/v1/posts/filter'
@@ -309,10 +312,10 @@ if __name__ == '__main__':
 	# If login successful
 	if data:
 		# Run an authorization test
-		auth_check(data['token'])
-		user_data = get_me(data['token'])
-		if user_data:
-			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
+		# auth_check(data['token'])
+		# user_data = get_me(data['token'])
+		# if user_data:
+			# print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			# Image filename
 			# image = 'red-suspension-bridge-3493772.jpg'
 			# post_data = create_post(data['token'], image)
