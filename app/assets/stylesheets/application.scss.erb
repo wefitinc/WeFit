@@ -39,9 +39,6 @@ html,body
 // Mobile site styles
 body.is_mobile
 {
-	height: 100%; 
-	overflow: hidden;
-
 	background-color: #000;
 	font-family: 'Manjari', sans-serif;
 	
@@ -69,7 +66,7 @@ body.is_mobile
 	}
 	div#bottom
 	{
-		position: absolute;
+		position: fixed;
 		left: 0;
 		right: 0;
 		bottom: 0;
@@ -77,11 +74,10 @@ body.is_mobile
 		p
 		{
 			text-align: center;
-			margin-bottom: 0.5rem;
+			margin-bottom: 0.1rem;
 		}
 		.bottom-logo
 		{
-			img { color: #fff; }
 			text-align: center;
 			margin-bottom: 1vh;
 		}
