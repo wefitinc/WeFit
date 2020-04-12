@@ -38,20 +38,20 @@
     })(window,document,'script','dataLayer','GTM-KWKKSWG');</script>
     <!-- End Google Tag Manager -->
   </head>
-  <body class="<%= controller_name %> <%= action_name %> <%= login_status %> <%= login_error %>">
+  <body class="<%= controller_name %> <%= action_name %> <%= login_status %> <%= login_error %> <%= mobile_status %>">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWKKSWG"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-
-
     <!-- Main content -->
     <div class="container-fluid">
-        <%= yield %>
+        <% if mobile_device? %>
+            <%= render 'layouts/mobile_page' %>
+        <% else %>
+            <%= yield %>
+        <% end %>
     </div>
-
-
 
   </body>
 </html>
