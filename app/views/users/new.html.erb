@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <%= link_to "What is WeFit?", root_path, class: "what_is_wefit" %>
+    <%= link_to "What is WeFit?", root_path, class: "what_is_wefit", id: "whatiswefit" %>
 
     <div class="slideshow-container centered">
 
@@ -160,7 +160,7 @@
         document.getElementById("mySidenav").style.width = "250px";
         //document.getElementById("iphoneslide").style.left = "30%";
         //document.getElementById("rightForegroundSlides").style.left = "30%";
-        //document.getElementById("whatiswefit").style.right = "320px";
+        document.getElementById("whatiswefit").style.right = "320px";
     }
 
     function closeNav() {
@@ -168,7 +168,7 @@
         document.getElementById("mySidenav").style.width = "0px";
         //document.getElementById("iphoneslide").style.left = "50%";
         //document.getElementById("rightForegroundSlides").style.left = "30%";
-        //document.getElementById("whatiswefit").style.right = "10px";
+        document.getElementById("whatiswefit").style.right = "10px";
     }
 
     var hamburger = document.querySelector(".hamburger");
