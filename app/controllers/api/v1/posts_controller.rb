@@ -94,7 +94,7 @@ private
     params.require(:post).permit(tag_list: [])
   end
   def tag_filter_params
-    params.permit(
+    params.require(:filters).permit(
       :following_only, 
       :latitude,:longitude,:radius,
       :match_all,

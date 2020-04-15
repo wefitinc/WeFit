@@ -4,14 +4,14 @@ import mimetypes
 from datetime import datetime 
 
 # Production testing
-# url      = 'https://wefit.us'
-# email    = 'test@test.com'
-# password = 'SuperSecretTestPassword'
+url      = 'https://wefit.us'
+email    = 'test@test.com'
+password = 'SuperSecretTestPassword'
 
 # Development testing
-url      = 'http://localhost:3000'
-email    = 'test@wefit.us'
-password = 'SuperSecretTestPassword'
+# url      = 'http://localhost:3000'
+# email    = 'test@wefit.us'
+# password = 'SuperSecretTestPassword'
 
 def signup(email, password, first_name, last_name, birthdate, gender="Other"):
 	# Signup path
@@ -226,13 +226,16 @@ def delete_post(token, post_id):
 
 def get_posts(token, tags):
 	json = {
-		"match_all": False,
-		"following_only": False,
-		"tag_list": tags,
+		'filters':
+		{
+			"match_all": False,
+			"following_only": False,
+			"tag_list": tags,
 
-		'latitude': '33.4255',
-		'longitude': '111.9400',
-		'radius': 50,
+			# 'latitude': '33.4255',
+			# 'longitude': '111.9400',
+			# 'radius': 50,
+		}
 	}
 	# Post path
 	path = '/api/v1/posts/filter'
@@ -303,16 +306,16 @@ def create_activity(token):
 
 if __name__ == '__main__':
 	# Sign up the test user
-	signup('test2@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
+	# signup('test2@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
-	data = login('test2@wefit.us', password)
+	data = login(email, password)
 	# If login successful
 	if data:
 		# Run an authorization test
-		auth_check(data['token'])
-		user_data = get_me(data['token'])
-		if user_data:
-			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
+		# auth_check(data['token'])
+		# user_data = get_me(data['token'])
+		# if user_data:
+			# print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			# Image filename
 			# image = 'red-suspension-bridge-3493772.jpg'
 			# post_data = create_post(data['token'], image)

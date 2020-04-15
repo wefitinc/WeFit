@@ -1,6 +1,6 @@
 class PostSerializer < ActiveModel::Serializer
+  has_one :user
   attributes :id, 
-    :user_id,
     :background,
     :header_color,
     :text, 
@@ -15,9 +15,5 @@ class PostSerializer < ActiveModel::Serializer
 
   def image_url
     object.get_image_url
-  end
-
-  def user_id
-    object.user.hashid
   end
 end

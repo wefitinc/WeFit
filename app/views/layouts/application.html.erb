@@ -3,8 +3,13 @@
   <head>
     <%# Device meta stuff %>
     <meta charset="utf-8">
+    <% if mobile_device? %>
+    <meta name="theme-color" content="#000000">
+    <meta name="msapplication-TileColor" content="#000000">
+    <% else %>
     <meta name="theme-color" content="#ff0800">
     <meta name="msapplication-TileColor" content="#ff0800">
+    <% end %>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%# SEO Stuff %>
@@ -38,20 +43,20 @@
     })(window,document,'script','dataLayer','GTM-KWKKSWG');</script>
     <!-- End Google Tag Manager -->
   </head>
-  <body class="<%= controller_name %> <%= action_name %> <%= login_status %> <%= login_error %>">
+  <body class="<%= controller_name %> <%= action_name %> <%= login_status %> <%= login_error %> <%= mobile_status %>">
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWKKSWG"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-
-
     <!-- Main content -->
     <div class="container-fluid">
-        <%= yield %>
+        <% if mobile_device? %>
+            <%= render 'layouts/mobile_page' %>
+        <% else %>
+            <%= yield %>
+        <% end %>
     </div>
-
-
 
   </body>
 </html>
