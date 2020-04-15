@@ -7,20 +7,20 @@ Rails.application.routes.draw do
       post '/auth/login', to: 'auth#login'
       get  '/auth/check', to: 'auth#check'
       get  '/auth/me', to: 'auth#me'
-      
+
       # TODO find a better routing for this
       get '/users/:id/posts', to: 'posts#for_user'
 
       resources :users, only: [ :show, :destroy ] do
         get    'following', to: 'follows#index_following'
         get    'followers', to: 'follows#index_followers'
-        
+
         post   'followers', to: 'follows#create'
         delete 'followers', to: 'follows#destroy'
       end
 
       post '/posts/filter', to: 'posts#filter'
-      
+
       resources :posts, only: [ :index, :show, :create, :destroy ] do
         resources :likes, only: [ :index, :create ]
         resources :views, only: [ :index, :create ]
@@ -55,9 +55,7 @@ Rails.application.routes.draw do
   # Account activation routing
   resources :activations, only: [:new, :edit]
   # Professionals routing
-  get  '/professionals', to: 'professionals#index'
-  get  '/professionals/new/:rate', to: 'professionals#new'
-  get  '/professionals/new/:rate/checkout', to: 'professionals#checkout'
+  get  '/professionals/new/', to: 'professionals#new'
   post '/professionals', to: 'professionals#create'
   # User routing
   get   'account_settings', to: 'users#edit'
