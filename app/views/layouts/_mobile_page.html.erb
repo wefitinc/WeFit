@@ -1,0 +1,17 @@
+<div class="mobile-logo">
+  <%= image_tag 'logo-transparent.svg', size: '100x100', alt: 'logo' %>
+</div>
+<div class="centered">
+  <h1>Coming Soon</h1>
+  <lottie-player
+    src="https://assets3.lottiefiles.com/datafiles/a7kd2uysziSJpYt/data.json" background="transparent" speed="0.5" style="width: 275px; height: 275px; margin: 1vh auto 1vh auto;" loop autoplay >
+  </lottie-player>
+  <h3>The healthy social network</h3>
+</div>
+<div id="bottom">
+  <div class="bottom-logo">
+    <%= image_tag "text-transparent-white-new.svg", alt: "Text Logo", size: '90x28' %>
+  </div>
+  <p>WeFit Inc &copy; <%= Time.current.year %></p>
+</div>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>

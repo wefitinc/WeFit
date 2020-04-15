@@ -49,4 +49,7 @@ module ApplicationHelper
       request.user_agent =~ /Mobile|webOS/
     end
   end
+  def mobile_status
+    mobile_device? ? "is_mobile" : "is_desktop"
+  end
 end

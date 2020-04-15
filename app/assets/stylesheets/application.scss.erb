@@ -23,6 +23,7 @@ $easeOutBack: cubic-bezier(0.175, 0.885, 0.320, 1.275);
 @import "bootstrap";
 // Include Google font
 @import url(https://fonts.googleapis.com/css?family=Didact+Gothic&display=swap);
+@import url(https://fonts.googleapis.com/css?family=Manjari);
 
 // Main body styles
 html,body
@@ -33,6 +34,55 @@ html,body
 	margin: 0; padding: 0;
 	// Set the font
 	font-family: 'Roboto', sans-serif;
+}
+
+// Mobile site styles
+body.is_mobile
+{
+	background-color: #000;
+	font-family: 'Manjari', sans-serif;
+	
+	h1
+	{
+		color: #fff;
+		font-size: 6vh;
+		padding-left: 1vh;
+		padding-right: 1vh;
+		text-align: center;
+		margin-bottom: -100px;
+	}
+	h3
+	{
+		color: #fff;
+		font-size: 3.5vh;
+		padding-left: 3vh;
+		padding-right: 3vh;
+		text-align: center;
+		margin-top: -90px;
+	}
+	.mobile-logo
+	{
+		text-align: center;
+		margin-top: 5vh;
+	}
+	div#bottom
+	{
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+
+		p
+		{
+			text-align: center;
+			margin-bottom: 0.1rem;
+		}
+		.bottom-logo
+		{
+			text-align: center;
+			margin-bottom: 1vh;
+		}
+	}
 }
 
 p
@@ -49,7 +99,7 @@ pre
 h1
 {
 	color: #FFFFFF;
-	font-size:60px;
+	font-size:5vw;
 }
 
 span
@@ -114,7 +164,7 @@ img.apple-image {
 
 //font size sub title text
 p.subtitleText {
-	font-size:18px;
+	font-size:1.2vw;
 }
 
 //side navigation bar
@@ -436,13 +486,13 @@ p.subtitleText {
 
 //text for the bottom left
 p.bottomText {
-	font-size:12px;
+	font-size:0.90vw;
 }
 
 .bottom-left {
 
 	position: absolute;
-	top: calc(100% - 40px);
+	top: 94.3vh;
 	left: 3%;
 }
 
