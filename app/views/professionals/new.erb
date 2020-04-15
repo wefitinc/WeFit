@@ -1,95 +1,94 @@
-<div class="px-2 mx-auto my-auto" style="max-width: 1000px">
-  <h1 class="text-center big-text py-4">Health Professional <%=params[:rate]%></h1>
-  <div class="row">
-    <div class="col-md-4 order-md-2 mb-4">
-      <h4 class="d-flex justify-content-between align-items-center mb-3">
-        <span class="text-muted">Your cart</span>
-        <span class="badge badge-secondary badge-pill">1</span>
-      </h4>
-      <ul class="list-group mb-3">
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Product name</h6>
-            <small class="text-muted"><%=params[:rate]%></small>
-          </div>
-          <span class="text-muted">$<%=params[:prices]%></span>
-        </li>
+<%# Meta data about the page %>
+<% title 'Health Professionals' %>
+<% meta_tag :description, 'Calling all licensed health professionals. Grow your reach and sales with WeFit Health Professional.' %>
+<%# Page content %>
 
-        <li class="list-group-item d-flex justify-content-between">
-          <span>Total (USD)</span>
-          <strong>$ </strong>
-        </li>
-      </ul>
-
-      <form class="card p-2">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Promo code">
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </div>
-      </form>
+<div class="health_bg">
+    <!--top-->
+    <div class="health_top">
+        <%= link_to image_tag("logo-transparent.svg", class: 'logo-image', size: "118x45", alt: "WeFit"), root_path %>
+        <h5>Health Professional</h5>
     </div>
-    <% if @professional.errors.any? %>
-    <div class="alert alert-warning" role="alert">
-      <h4 class="alert-heading">Errors signing up!</h4>
-      <% @professional.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
-      <% end %>
+
+    <div class="hamburger hamburger--boring" type="button">
+        <div class="hamburger-box">
+            <div class="hamburger-inner white"></div>
+        </div>
     </div>
-    <% end %>
-    <%= form_for @professional, html: { id: 'professionals-form' } do |f| %>
-      <%# Rate (hidden field) %>
-      <%= hidden_field_tag :rate, params[:rate]%>
-      <%# First and last name %>
-      <div class="form-group row">
-        <div class="col"><%= f.text_field :first_name,  class: 'form-control', required: true, placeholder: 'First Name' %></div>
-        <div class="col"><%= f.text_field :last_name,  class: 'form-control', required: true, placeholder: 'Last Name' %></div>
-      </div>
-      <%# Email %>
-      <div class="form-group">
-        <%= f.email_field :email, class: 'form-control', required: true, placeholder: 'Email' %>
-      </div>
-      <%# Password %>
-      <div class="form-group">
-        <%= f.password_field :password, class: 'form-control', required: true, placeholder: 'Create Password' %>
-      </div>
-      <%# Type %>
-      <div class="form-group">
-        <%= f.select :type, Professional::TYPES, { prompt: "Professional Type" }, { class: "form-control", required: true } %>
-      </div>
-      <%# License/Csertification %>
-      <div class="form-group">
-          <p><label for="upload_file">Upload License/Certification</label> : 
-            <%= file_field 'upload', 'datafile' %></p>
-        </div>
-      <%# Bio %>
-      <div class="form-group">
-        <%= text_area_tag :body, '', class: 'form-control', size: '3x4', placeholder: 'Write Your Bio (100 Word Max)', required: '' %>
-      </div>
-      <%# Upload Headshot %>
-      <div class="form-group">
-          <p><label for="upload_file">Upload Headshot</label> : 
-            <%= file_field 'upload', 'datafile' %></p>
-        </div>
-      <%# Submit button %>
-      <div class="form-group text-center">
-        <%= f.submit 'Next', class: "btn btn-green btn-lg w-50"%>
-      </div>
 
-    <% end %>
-</div>
+    <div id="mySidenav" class="sidenav">
+
+        <p class="links">Menu</p>
+
+        <div class="nav-list-box">
+            <a href="#">Log In</a>
+            <a href="#">Sign Up</a>
+            <%= link_to 'Health Professionals', controller:'professionals', action:'new' %>
+            <a href="#">Advertising</a>
+            <a href="#">Pioneer Application</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Download</a>
+        </div>
+        <div class="nav-connect-text">
+            <p class="connect-text">Connect with us!</p>
+        </div>
+        <div class="social-media-links">
+            <%= image_tag "facebook-icon-red.svg", class: "facebook-icon", alt: "FaceBook" %>
+            <%= image_tag "instagram-icon-red.svg", class: "instagram-icon", alt: "Instagram" %>
+            <%= image_tag "twitter-icon-red.svg", class: "twitter-icon", alt: "Twitter" %>
+            <%= image_tag "linkedin-icon-red.svg", class: "linkedin-icon", alt: "LinkedIn" %>
+            <%= image_tag "youtube-icon-red.svg", class: "youtube-icon", alt: "YouTube" %>
+        </div>
+
+        <div class="wefit-nav-logo">
+            <%= image_tag "text-transparent-white.svg", class: "nav-logo", alt: "NavLogo" %>
+        </div>
+    </div>
+
+    <div class="BlackBox">
+        <h2>Grow your reach with</br>WeFit Health Professional</h2>
+        <%= link_to "Sign Up", root_path, class: "signupButton" %>
+    </div>
+
 </div>
 
-<div id="background-wrap">
-    <div class="bubble x1"></div>
-    <div class="bubble x2"></div>
-    <div class="bubble x3"></div>
-    <div class="bubble x4"></div>
-    <div class="bubble x5"></div>
-    <div class="bubble x6"></div>
-    <div class="bubble x7"></div>
-    <div class="bubble x8"></div>
-    <div class="bubble x9"></div>
-    <div class="bubble x10"></div>
+<div class="health_bg2">
+    <h2>Poop</h2>
+
+
 </div>
+
+
+
+<script>
+
+    function openNav() {
+
+        document.getElementById("mySidenav").style.width = "250px";
+        //document.getElementById("iphoneslide").style.left = "30%";
+        //document.getElementById("rightForegroundSlides").style.left = "30%";
+        //document.getElementById("whatiswefit").style.right = "320px";
+    }
+
+    function closeNav() {
+
+        document.getElementById("mySidenav").style.width = "0px";
+        //document.getElementById("iphoneslide").style.left = "50%";
+        //document.getElementById("rightForegroundSlides").style.left = "30%";
+        //document.getElementById("whatiswefit").style.right = "10px";
+    }
+
+    var hamburger = document.querySelector(".hamburger");
+    hamburger.addEventListener("click", function() {
+
+            if(hamburger.classList.contains("is-active")){
+                hamburger.classList.toggle("is-active");
+                closeNav();
+            }else{
+                hamburger.classList.toggle("is-active");
+                openNav();
+            }
+
+    });
+
+</script>

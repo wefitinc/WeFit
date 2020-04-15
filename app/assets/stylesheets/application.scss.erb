@@ -129,6 +129,7 @@ p.subtitleText {
   	overflow-x: hidden;
   	transition: 0.5s;
   	padding-top: calc(100%-60px);
+	white-space: nowrap;
 }
 
 .sidenav a {
@@ -262,6 +263,17 @@ p.subtitleText {
     transition-timing-function: ease;
 }
 
+.hamburger-inner.white, .hamburger-inner.white::before, .hamburger-inner.white::after {
+    width: 1.5625rem;
+    height: 0.3125rem;
+    background-color: #FFF;
+    border-radius: 0.25rem;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 1.0s;
+    transition-timing-function: ease;
+}
+
 .hamburger-inner::before, .hamburger-inner::after {
     content: "";
     display: block;
@@ -300,13 +312,16 @@ p.subtitleText {
 /* Slideshow container */
 .slideshow-container {
   // Dimensions of the image
+  //width: 298px;
+  //height: 554px;
   width: 298px;
   height: 554px;
+  //max-width: 100%;
   // Padding to center things more nicely
   // TODO: Play with this;
   padding: 5rem 1rem;
   // Pull the image from the asset pipeline, make sure it doesn't repeat and center it
-  background-image: url("<%= asset_path "iPhone XS White Clay.png" %>");
+  background-image: url("<%= asset_path "iPhone XS White Clay.png"%>");
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -583,96 +598,116 @@ img.wefit-logo {
 
 
 // Professionals page styles
-.professional-top
-{
-	padding-top: 4%;
-	padding-bottom: 4%;
-}
-#professionals-form
-{
-	padding: 1rem;
-}
 
-.container {
-  max-width: 960px;
+//first background content
+.health_bg {
+	height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    overflow-x: hidden;
+    padding-top: 0%;
+	background-image: url("<%= asset_path "health_professionals_bg.svg" %>");
+	background-size: cover;
+
 }
-
-.lh-condensed { line-height: 1.25; }
-
-#regForm {
-  background-color: #ffffff;
-  margin: 100px auto;
-  padding: 40px;
-  width: 70%;
-  min-width: 300px;
+//top bar content
+.health_top{
+	display: inline;
 }
 
-/* Style the input fields */
-input {
-  padding: 10px;
-  width: 100%;
-  font-size: 17px;
-  font-family: Raleway;
-  border: 1px solid #aaaaaa;
+.health_top h5 {
+	position: absolute;
+	left: 8rem;
+	top: 1.2rem;
+	color: #FFFFFF;
+	padding-left: 1rem;
+
 }
 
-/* Mark input boxes that gets an error on validation: */
-input.invalid {
-  background-color: #ffdddd;
+//black box content
+
+.BlackBox {
+	position: absolute;
+	height:32vh;
+	width:35vw;
+	background-color: #000;
+	top: 37%;
+	border-radius: 0px 25px 25px 0px;
+
 }
 
-/* Hide all steps by default: */
-.tab {
-  display: none;
+.BlackBox h2 {
+
+	font-style: normal;
+	font-size: 36px;
+	font-weight: 300;
+	padding: 5rem 2rem 0rem 0rem;
+	text-align: right;
+	color: #FFFFFF;
 }
 
-/* Make circles that indicate the steps of the form: */
-.step {
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbbbbb;
-  border: none;
-  border-radius: 50%;
-  display: inline-block;
-  opacity: 0.5;
+.signupButton {
+	position:relative;
+	text-decoration: none;
+	padding: 10px 10px 10px 10px;
+	text-align: center;
+	width: 130px;
+	height: 36px;
+	float: right;
+	top: 10px;
+	right: 30px;
+	border-radius: 50px 50px 50px 50px;
+	background-color: #FF0000;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 14px;
+	transition-duration: 0.5s;
+
 }
 
-/* Mark the active step: */
-.step.active {
-  opacity: 1;
+.signupButton:hover {
+	color: #FFFFFF;
+	text-decoration: none;
 }
 
-/* Mark the steps that are finished and valid: */
-.step.finish {
-  background-color: #4CAF50;
+//Second background
+.health_bg2 {
+	height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 100%;
+    overflow-x: hidden;
+    padding-top: 0%;
+	background-color: #FDFDFD;
+	background-size: cover;
+	//background-repeat: no-repeat;
+    //background-position: center;
+}
+
+//bottom nav bar content
+.healthBottomNav {
+	position: absolute;
+	box-sizing: border-box;
+	overflow: hidden;
+  	background-color: #000;
+	height: 7vh;
+	width: 100vw;
+	top: 93vh;
+	display: inline;
+}
+
+.healthBottomNav img {
+	position: absolute;
+	float: right;
+	top: calc(100% - 3.125rem);
+	right: 3%;
 }
 
 
-.StripeElement
-{
-  box-sizing: border-box;
 
-  height: 40px;
-
-  padding: 10px 12px;
-
-  border: 1px solid lightgrey;
-  border-radius: 4px;
-  background-color: white;
-}
-
-.StripeElement--focus {
-  box-shadow: 0 1px 3px 0 #cfd7df;
-}
-
-.StripeElement--invalid {
-  border-color: #fa755a;
-}
-
-.StripeElement--webkit-autofill {
-  background-color: #fefde5 !important;
-}
 
 
 // Privacy policy/terms of use styles
