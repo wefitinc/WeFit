@@ -56,13 +56,11 @@ def upload_to_s3():
 	except ClientError as err:
 		print("Failed to create boto3 client.\n" + str(err))
 		return False
-
 	try:
 		client.put_object(
 			Body=open(ZIP_FILENAME, 'rb'),
 			Bucket=S3_BUCKET,
-			Key=BUCKET_KEY
-		)
+			Key=BUCKET_KEY)
 	except ClientError as err:
 		print("Failed to upload artifact to S3.\n" + str(err))
 		return False
@@ -78,7 +76,6 @@ def create_new_version():
 	except ClientError as err:
 		print("Failed to create boto3 client.\n" + str(err))
 		return False
-
 	try:
 		response = client.create_application_version(
 			ApplicationName=APPLICATION_NAME,
@@ -89,12 +86,10 @@ def create_new_version():
 				'S3Bucket': S3_BUCKET,
 				'S3Key': BUCKET_KEY
 			},
-			Process=True
-		)
+			Process=True)
 	except ClientError as err:
 		print("Failed to create application version.\n" + str(err))
 		return False
-
 	try:
 		if response['ResponseMetadata']['HTTPStatusCode'] is 200:
 			return True
@@ -112,17 +107,14 @@ def deploy_new_version():
 	except ClientError as err:
 		print("Failed to create boto3 client.\n" + str(err))
 		return False
-
 	try:
 		response = client.update_environment(
 			ApplicationName=APPLICATION_NAME,
 			EnvironmentName=APPLICATION_ENVIRONMENT,
-			VersionLabel=VERSION_LABEL,
-		)
+			VersionLabel=VERSION_LABEL)
 	except ClientError as err:
 		print("Failed to update environment.\n" + str(err))
 		return False
-
 	print(response)
 	return True
 
@@ -141,6 +133,7 @@ def main():
 	if not deploy_new_version():
 		sys.exit(-1)
 	print('Deployed!')
+	os.remove(ZIP_FILENAME)
 
 if __name__ == '__main__':
 	main()
