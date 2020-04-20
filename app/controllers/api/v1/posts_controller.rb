@@ -79,15 +79,21 @@ private
   def post_params
     params.require(:post).permit(
       :background,
+      :header_color,
       :text,
       :font,
       :font_size,
       :color,
-      :position_x,
-      :position_y,
-      :rotation,
-      :textview_width, :textview_height,
-      :header_color,
+      :textview_rotation,
+      :textview_position_x,
+      :textview_position_y,
+      :textview_width, 
+      :textview_height,
+      :image_rotation,
+      :image_position_x,
+      :image_position_y,
+      :image_width, 
+      :image_height,
       :latitude, :longitude)
   end
   def tag_list_param

@@ -24,26 +24,34 @@ class Post < ApplicationRecord
   # Validate data presence before storing in DB
   # NOTE: Background can be an image or a color, should we validate for this?
   validates :background, presence: true
+  validates :header_color,
+    presence: true,
+    format: { with: VALID_COLOR_REGEX }
   validates :text, presence: true
   validates :font, presence: true
   validates :font_size, 
     presence: true,
     numericality: { only_integer: false, greater_than: 0 }
   # Data for text display 
+  # TODO: Maybe these should just be default 0 with no required presence?
+  validates :textview_rotation, presence: true, numericality: true
+  validates :textview_position_x, presence: true, numericality: true
+  validates :textview_position_y, presence: true, numericality: true
   validates :textview_width, :textview_height,
     presence: true,
     numericality: { only_integer: false, greater_than: 0 }
-  validates :header_color,
+  # Data for image display 
+  # TODO: Maybe these should just be default 0 with no required presence?
+  validates :image_rotation, presence: true, numericality: true
+  validates :image_position_x, presence: true, numericality: true
+  validates :image_position_y, presence: true, numericality: true
+  validates :image_width, :image_height,
     presence: true,
-    format: { with: VALID_COLOR_REGEX }
+    numericality: { only_integer: false, greater_than: 0 }
   # Color has to fit the color regex
   validates :color, 
     presence: true, 
     format: { with: VALID_COLOR_REGEX }
-  # TODO: Maybe these should just be default 0 with no required presence?
-  validates :rotation, presence: true, numericality: true
-  validates :position_x, presence: true, numericality: true
-  validates :position_y, presence: true, numericality: true
   # TODO Validate the coordinates
   validates :latitude, :longitude,
     presence: true,

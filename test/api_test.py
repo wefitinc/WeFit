@@ -4,14 +4,14 @@ import mimetypes
 from datetime import datetime 
 
 # Production testing
-url      = 'https://wefit.us'
-email    = 'test@test.com'
-password = 'SuperSecretTestPassword'
+# url      = 'https://wefit.us'
+# email    = 'test@test.com'
+# password = 'SuperSecretTestPassword'
 
 # Development testing
-# url      = 'http://localhost:3000'
-# email    = 'test@wefit.us'
-# password = 'SuperSecretTestPassword'
+url      = 'http://localhost:3000'
+email    = 'test@wefit.us'
+password = 'SuperSecretTestPassword'
 
 def signup(email, password, first_name, last_name, birthdate, gender="Other"):
 	# Signup path
@@ -133,15 +133,21 @@ def create_post(token, image_filename):
 				'font': 'Consolas',
 				'font_size': 8,
 				# Top left
-				'position_x': 0.0, 
-				'position_y': 0.0, 
-				'rotation': 0.0,
+				'textview_rotation': 0.0,
+				'textview_position_x': 0.0, 
+				'textview_position_y': 0.0, 
+				'textview_width': 80,
+				'textview_height': 80,
 				# Tempe, Az coordinates
 				'latitude': '33.4255',
 				'longitude': '111.9400',
-				'textview_width': 80,
-				'textview_height': 80,
 				'header_color': '#fff',
+				# Image stuff
+				'image_rotation': 0.0,
+				'image_position_x': 0.0,
+				'image_position_y': 0.0,
+				'image_width': 10.0,
+				'image_height': 10.0,
 				# Add a tag list
 				'tag_list': [ "fitness", "outdoors" ],
 			},
@@ -306,24 +312,24 @@ def create_activity(token):
 
 if __name__ == '__main__':
 	# Sign up the test user
-	# signup('test2@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
+	# signup('test@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
 	data = login(email, password)
 	# If login successful
 	if data:
 		# Run an authorization test
 		# auth_check(data['token'])
-		# user_data = get_me(data['token'])
-		# if user_data:
-			# print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
+		user_data = get_me(data['token'])
+		if user_data:
+			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			# Image filename
-			# image = 'red-suspension-bridge-3493772.jpg'
-			# post_data = create_post(data['token'], image)
-			# if post_data:
-			# 	view_post(data['token'], post_data['id'])
-			# 	like_post(data['token'], post_data['id'])
-			# 	comment_on_post(data['token'], post_data['id'])
-			# 	# delete_post(data['token'], post_data['id'])	
+			image = 'red-suspension-bridge-3493772.jpg'
+			post_data = create_post(data['token'], image)
+			if post_data:
+				view_post(data['token'], post_data['id'])
+				like_post(data['token'], post_data['id'])
+				comment_on_post(data['token'], post_data['id'])
+				# delete_post(data['token'], post_data['id'])	
 			get_posts(data['token'], [])
 			# follow_user(data['token'], 'b9YtZb')
 			# unfollow_user(data['token'], 'b9YtZb')

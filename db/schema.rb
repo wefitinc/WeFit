@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_165924) do
+ActiveRecord::Schema.define(version: 2020_04_20_202511) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -81,9 +81,9 @@ ActiveRecord::Schema.define(version: 2020_03_31_165924) do
     t.text "text"
     t.string "font"
     t.string "color"
-    t.float "position_x"
-    t.float "position_y"
-    t.float "rotation"
+    t.float "textview_position_x"
+    t.float "textview_position_y"
+    t.float "textview_rotation"
     t.decimal "latitude"
     t.decimal "longitude"
     t.integer "user_id"
@@ -96,6 +96,11 @@ ActiveRecord::Schema.define(version: 2020_03_31_165924) do
     t.integer "likes_count", default: 0
     t.integer "views_count", default: 0
     t.integer "comments_count", default: 0
+    t.float "image_rotation"
+    t.float "image_position_x"
+    t.float "image_position_y"
+    t.float "image_width"
+    t.float "image_height"
     t.index ["latitude", "longitude"], name: "index_posts_on_latitude_and_longitude"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
