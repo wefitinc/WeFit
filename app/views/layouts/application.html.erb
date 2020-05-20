@@ -55,13 +55,7 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Main content -->
-    <% if mobile_device? %>
-    <div class="container-fluid">
-      <%= render 'layouts/mobile_page' %>
-    </div>
-    <% else %>
     <%= yield %>
-    <% end %>
 
   </body>
 </html>
