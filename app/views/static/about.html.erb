@@ -1,0 +1,73 @@
+<% title 'About WeFit' %>
+<% meta_tag :description, 'Learn more about who we are, what we do, and why we do it.' %>
+<% meta_tag :keywords, "what is wefit, about wefit, noom, weight watchers, fitbit, myfitnesspal, wefit mission, wefit values, wefit story, why is wefit different" %>
+
+<header class="header header-black">
+	<%= link_to (image_tag "logo-transparent.svg", class: "logo"), root_path %>
+	<input class="menu-btn" type="checkbox" id="menu-btn" />
+	<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+	<ul class="menu bg-transparent">
+		<li><a href="https://www.apple.com/ios/app-store/" class="download download-red">Download</a></li>
+		<li><%= link_to 'About', about_path %></li>
+		<li><%= link_to 'Ads', advertise_path %></li>
+		<li><%= link_to 'Health Professionals', professionals_path %></li>
+		<li><a href="influencer.html">Influencers</a></li>
+	</ul>
+</header>
+
+<main class="main">
+	<h1 class="aboutwefit">About WeFit</h1>
+	<div class="wrapper">
+		<section class="columns">
+			<div class="column">
+				<h2>Our Story</h2>
+				<p class="statements">We set out to make a change in the way we approach our health. We believe that in order to change our health habits, there needs to be a platform that is both fun, easy to use, and rewarding. What better way than combining the fun and excitement of social media, with resources that ensure a much more fulfilling experience with your health, mentally and physically.</p>
+			</div>
+			<div class="column">
+				<h2>Our Mission</h2>
+				<p class="statements">Create a fun and supportive community of people centered around health.</p>
+			</div>
+			<div class="column">
+				<h2>Our Values</h2>
+				<p class="statements"><strong>Passion:</strong> We believe that the best products are built from teams who have an unwavering passion to change industry standards.</p>
+				<p class="statements"><strong>Integrity:</strong> We hold ourselves to the highest level of integrity in everything we do.</p>
+				<p class="statements"><strong>Customer obsession:</strong> We put our focus into aligning our products with what our consumers want.</p>
+			</div>
+		</section>
+	</div>
+</main>
+
+<footer>
+	<div>
+		<svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+		viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+		<defs>
+		<path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+		</defs>
+		<g class="parallax">
+		<use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(0,0,0,0.7" />
+		<use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(0,0,0,0.5)" />
+		<use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(0,0,0,0.3)" />
+		<use xlink:href="#gentle-wave" x="48" y="7" fill="#000" />
+		</g>
+		</svg>
+	</div>
+	<div id="footer">
+		<a href="home.html"><%= image_tag "text-transparent-white.svg", class: "textwefit", alt: "text-logo" %></a>
+		<p class="copyright">WeFit Inc. © 2020. All Rights Reserved.</p>
+
+		<a href="terms.html"><p class="documents">Terms</p></a>
+		<a href="privacy.html"><p class="documents">Privacy</p></a>
+		<a href="helpcenter.html"><p class="documents">Help Center</p></a>
+
+		<p class="boldfooterelements">Contact Us</p>
+		<a href="mailto:contact@wefit.us"><p class="email">contact@wefit.us</p></a>
+		<p class="boldfooterelements">Follow Us</p>
+
+		<a href="https://www.facebook.com/WeFitHQ/?notif_id=1551856660795398&notif_t=page_fan"><%= image_tag "FBicon.svg", class: "socialicons", alt: "FBIcon" %></a>
+		<a href="https://www.instagram.com/wefitapp/"><%= image_tag "Instaicon.svg", class: "socialicons", alt: "IGIcon" %></a>
+		<a href="https://twitter.com/wefit_app"><%= image_tag "Twittericon.svg", class: "socialicons", alt: "IGIcon" %></a>
+		<a href="https://www.linkedin.com/company/wefit-inc/?viewAsMember=true"><%= image_tag "Linkedinicon.svg", class: "socialicons", alt: "IGIcon" %></a>
+		<a href="https://www.youtube.com/channel/UCuMcN15thVjRN5g1tq3k6dg?view_as=subscriber"><%= image_tag "Youtubeicon.svg", class: "socialicons", alt: "YTIcon" %></a>
+	</div>
+</footer>

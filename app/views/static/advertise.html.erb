@@ -1,0 +1,193 @@
+<% title 'Advertising' %>
+<% meta_tag :description, 'Advertise on the healthy social network today. We personalize your advertising experience and have a unique, targeted audience.' %>
+<% meta_tag :keywords, "health, fitness, wellness, social media, local, health professional, WeFit, social health, healthy together" %>
+
+<header class="header header-black">
+	<%= link_to (image_tag "logo-transparent.svg", class: "logo"), root_path %>
+	<input class="menu-btn" type="checkbox" id="menu-btn" />
+	<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+	<ul class="menu bg-transparent">
+		<li><a href="https://www.apple.com/ios/app-store/" class="download download-red">Download</a></li>
+		<li><%= link_to 'About', about_path %></li>
+		<li><%= link_to 'Ads', advertise_path %></li>
+		<li><%= link_to 'Health Professionals', professionals_path %></li>
+		<li><a href="influencer.html">Influencers</a></li>
+	</ul>
+</header>
+
+<canvas class="dots-canvas"></canvas>
+
+<main class="main">
+	<div class="sickcircles">Advertise on WeFit</div>
+	<div id="getstarted">Get Started</div>
+	<div id="contactForm">
+		<h2 class="formtext">WeFit Advertising</h2>
+		<small class="formtextsmall">A WeFit representative will reach out to you<br>
+		shortly to discuss your advertising needs.</small>
+
+		<form action="#">
+			<input placeholder="Name" type="text" required />
+			<input placeholder="Business email" type="email" required />
+			<input placeholder="Business type" type="text" required />
+			<input placeholder="Budget" type="text" required />
+
+			<input class="formBtn" type="submit" />
+		</form>
+	</div>
+</main>
+
+<footer>
+	<div id="advertising-footer">
+		<a href="home.html"><%= image_tag "text-transparent-white.svg", class: "textwefit", alt: "text-logo" %></a>
+		<p class="copyright">WeFit Inc. © 2020. All Rights Reserved.</p>
+
+		<a href="terms.html"><p class="documents">Terms</p></a>
+		<a href="privacy.html"><p class="documents">Privacy</p></a>
+		<a href="helpcenter.html"><p class="documents">Help Center</p></a>
+
+		<p class="boldfooterelements">Contact Us</p>
+		<a href="mailto:contact@wefit.us"><p class="email">contact@wefit.us</p></a>
+		<p class="boldfooterelements">Follow Us</p>
+
+		<a href="https://www.facebook.com/WeFitHQ/?notif_id=1551856660795398&notif_t=page_fan"><%= image_tag "FBicon.svg", class: "socialicons", alt: "FBIcon" %></a>
+		<a href="https://www.instagram.com/wefitapp/"><%= image_tag "Instaicon.svg", class: "socialicons", alt: "IGIcon" %></a>
+		<a href="https://twitter.com/wefit_app"><%= image_tag "Twittericon.svg", class: "socialicons", alt: "IGIcon" %></a>
+		<a href="https://www.linkedin.com/company/wefit-inc/?viewAsMember=true"><%= image_tag "Linkedinicon.svg", class: "socialicons", alt: "IGIcon" %></a>
+		<a href="https://www.youtube.com/channel/UCuMcN15thVjRN5g1tq3k6dg?view_as=subscriber"><%= image_tag "Youtubeicon.svg", class: "socialicons", alt: "YTIcon" %></a>
+	</div>
+</footer>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	$(function() {
+	  // contact form animations
+	  $('#getstarted').click(function() {
+	    $('#contactForm').fadeToggle();
+	  })
+	  $(document).mouseup(function (e) {
+	    var container = $("#contactForm");
+
+	    if (!container.is(e.target) // if the target of the click isn't the container...
+	        && container.has(e.target).length === 0) // ... nor a descendant of the container
+	    {
+	        container.fadeOut();
+	    }
+	  });
+
+	});
+
+	// https://www.youtube.com/watch?v=EO6OkltgudE&list=PLpPnRKq7eNW3We9VdCfx9fprhqXHwTPXL
+
+	// Dynamic Canvas Resizing
+	var canvas = document.querySelector('canvas');
+	canvas.height = window.innerHeight;
+	canvas.width = window.innerWidth;
+
+	// // Drawing on the Canvas
+	var c = canvas.getContext('2d');
+
+	var mouse = {
+	  x: undefined,
+	  y: undefined
+	}
+	var maxRadius = 40;
+	var minRadius = 2;
+
+	var colorArray = [
+	  '#ff0800',
+	  '#b30600',
+	  '#fff',
+	  '#808080',
+	  '#ff7878'
+	]
+
+	window.addEventListener('mousemove', function(e) {
+	  mouse.x = e.x;
+	  mouse.y = e.y;
+	})
+
+	window.addEventListener('resize', function() {
+	  canvas.width = window.innerWidth;
+	  canvas.height = window.innerHeight;
+
+	  init();
+	});
+
+	function Circle(x, y, dx, dy, radius) {
+	  this.x = x;
+	  this.y = y;
+	  this.dx = dx;
+	  this.dy = dy;
+	  this.radius = radius;
+	  this.minRadius = radius;
+	  this.color = colorArray[Math.floor(Math.random() * colorArray.length)];
+
+	  this.draw = function() {
+	    c.beginPath();
+	    c.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+	    c.fillStyle = this.color;
+	    c.fill();
+	  }
+
+	  this.update = function() {
+	    if (this.x + this.radius > innerWidth || this.x - this.radius < 0) {
+	      this.dx = -this.dx;
+	    }
+
+	    if (this.y + this.radius > innerHeight || this.y - this.radius < 0) {
+	      this.dy = -this.dy;
+	    }
+
+	    this.x += this.dx;
+	    this.y += this.dy;
+
+	    // interactivity
+	    if (mouse.x - this.x < 50 && mouse.x - this.x > -50
+	        && mouse.y - this.y < 50 && mouse.y - this.y > -50) {
+
+	        if (this.radius < maxRadius) {
+	          this.radius += 1;
+	        }
+
+	    } else if (this.radius > this.minRadius) {
+	        this.radius -= 1;
+	    }
+
+	    this.draw();
+	  }
+	}
+
+	var circle = new Circle(200, 200, 3, 3, 30);
+
+	var circleArray = [];
+
+	function init() {
+	  //Reset so resize doesn't concatinate more circles
+	  circleArray = [];
+
+	  for (var i=0; i < 800; i++) {
+	    var radius = Math.random() * 4 + 1;
+	    var x = Math.random() * (innerWidth - radius * 2) + radius,
+	      y = Math.random() * (innerHeight - radius * 2) + radius,
+	      dx = (Math.random() - 0.5),
+	      dy = (Math.random() - 0.5);
+
+
+	    circleArray.push(new Circle(x, y, dx, dy, radius));
+	  }
+	}
+
+	function animate() {
+	  requestAnimationFrame(animate);
+	  c.clearRect(0, 0, innerWidth, innerHeight);
+
+	  for (var i = 0; i < circleArray.length; i++) {
+	    circleArray[i].update();
+	  }
+	}
+
+	init();
+	animate();
+});
+</script>

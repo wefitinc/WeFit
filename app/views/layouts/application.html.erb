@@ -3,6 +3,7 @@
   <head>
     <%# Device meta stuff %>
     <meta charset="utf-8">
+    
     <% if mobile_device? %>
     <meta name="theme-color" content="#000000">
     <meta name="msapplication-TileColor" content="#000000">
@@ -10,6 +11,7 @@
     <meta name="theme-color" content="#ff0800">
     <meta name="msapplication-TileColor" content="#ff0800">
     <% end %>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%# SEO Stuff %>
@@ -29,10 +31,13 @@
     <%= csp_meta_tag %>
 
     <!-- App CSS -->
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!-- App JS -->
-    <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
+    <script
+        src="http://code.jquery.com/jquery-3.5.0.min.js"
+        integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+        crossorigin="anonymous"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': 'true' %>
 
     <!-- Google Tag Manager -->
@@ -50,13 +55,13 @@
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Main content -->
+    <% if mobile_device? %>
     <div class="container-fluid">
-        <% if mobile_device? %>
-            <%= render 'layouts/mobile_page' %>
-        <% else %>
-            <%= yield %>
-        <% end %>
+      <%= render 'layouts/mobile_page' %>
     </div>
+    <% else %>
+    <%= yield %>
+    <% end %>
 
   </body>
 </html>
