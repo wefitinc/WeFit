@@ -33,7 +33,7 @@ body,html {
 }
 
 .bluelink {
-  color: blue;
+  color: blue !important;
   font-size: 16px;
   font-weight: 400;
 }
@@ -474,24 +474,17 @@ a:hover { color: #aaa; text-decoration: none; }
   position: relative;
   padding-top: 100px;
   padding-bottom: 100px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .video-js {
   position: absolute;
   background: transparent;
   z-index: -200;
-  bottom: 70px;
+  bottom: 3rem;
   max-width: 150%;
   transform: translate(0%, 0%);
 }
-@media screen and (min-width: 1000px) {
-  .video-js { 
-    bottom: -125px; 
-    max-width: 100%;
-    padding-top: 100px;
-    padding-bottom: 100px;
-  }
-}
-
 .ourfeatures {
   text-align: center;
   padding-top: 50px;
@@ -500,14 +493,14 @@ a:hover { color: #aaa; text-decoration: none; }
   font-weight: 500;
   color: #000;
 }
-.thehealthysocialnetwork{
+.thehealthysocialnetwork {
   text-align: center;
-  font-size: 5vw;
+  font-size: 6vw !important;
   display: inline-block;
   width: 100%;
   height: auto;
-  padding-bottom: 20px;
-  padding-top: 10px;
+  padding-bottom: 50px;
+  padding-top: 20px;
   font-weight: 500;
   font-size: calc(28px + .5vw);
   color: #fff;
@@ -520,7 +513,13 @@ a:hover { color: #aaa; text-decoration: none; }
   padding-top: 1.5vw;
 }
 @media screen and (min-width: 1000px) {
-  .thehealthysocialnetwork { font-size: 3.5rem; }
+  .video-js { 
+    bottom: -125px; 
+    max-width: 100%;
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .thehealthysocialnetwork { font-size: 3.5rem !important; }
   .ourfeatures { font-size: 1.75rem; }
 }
 
