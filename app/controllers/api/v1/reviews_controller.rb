@@ -1,6 +1,6 @@
 class Api::V1::ReviewsController < Api::V1::BaseController
   before_action :find_user
-  before_action :check_professional, only: [:create]
+  before_action :check_professional
   before_action :authorize, only: [:create, :destroy]
 
   # GET /users/:user_id/reviews
@@ -25,6 +25,6 @@ private
     render json: { errors: "User not found" }, status: 404 if @user.nil?
   end
   def check_professional
-    render json: { errors: "Reviewed user is not a professional" }, status: :unprocessable_entity if not @user.professional? 
+    render json: { errors: "This user is not a professional" }, status: :bad_request if not @user.professional? 
   end
 end
