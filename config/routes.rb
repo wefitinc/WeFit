@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       post '/auth/login', to: 'auth#login'
       get  '/auth/check', to: 'auth#check'
       get  '/auth/me', to: 'auth#me'
+      post '/auth/upgrade', to: 'auth#upgrade'
 
       # TODO find a better routing for these
       get '/users/:id/posts', to: 'posts#for_user'

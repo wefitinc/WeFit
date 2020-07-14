@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   # Stuff for professionals
   PROFESSIONAL_RATES = ['Standard', 'Plus']
-  PROFESSIONAL_TYPES = ["None", "Personal Trainer", "Dietitian", "Primary Care Physician", "Psychiatrist", "Naturopath", "Dentist/Orthodontist", "Chiropractor"]
+  PROFESSIONAL_TYPES = ["None", "Personal Trainer", "Dietitian", "Psychiatrist", "Psychologist"]
 
   # Allow the user mailer to access the tokens
   attr_accessor :reset_token

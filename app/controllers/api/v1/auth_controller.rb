@@ -50,6 +50,19 @@ class Api::V1::AuthController < Api::V1::BaseController
     render json: @current_user
   end
 
+  # POST /auth/upgrade
+  def upgrade
+    @current_user.update(
+      bio: params[:bio],
+      professional: true, 
+      professional_type: params[:professional_type])
+    if @current_user.save then
+      render json: @current_user
+    else
+      render json: { errors: @current_user.errors }, status: :unprocessable_entity
+    end
+  end
+
 private
   def login_params
     params.permit(
@@ -64,8 +77,6 @@ private
       :last_name,
       :gender,
       :birthdate,
-      :bio,
-      :professional,
-      :professional_type)
+      :bio)
   end
 end
