@@ -1,5 +1,7 @@
 require 'stripe'
 
+# NOTE: This is old code, do not use. Keeping it only as reference for the stripe api 
+
 class ProfessionalsController < ApplicationController
   def index
   end

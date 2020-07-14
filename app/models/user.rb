@@ -2,6 +2,11 @@ class User < ApplicationRecord
   # Basic email REGEX for server side validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_DATE_REGEX = /([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])/
+
+  # Stuff for professionals
+  PROFESSIONAL_RATES = ['Standard', 'Plus']
+  PROFESSIONAL_TYPES = ["None", "Personal Trainer", "Dietitian", "Primary Care Physician", "Psychiatrist", "Naturopath", "Dentist/Orthodontist", "Chiropractor"]
+
   # Allow the user mailer to access the tokens
   attr_accessor :reset_token
   attr_accessor :activation_token
@@ -30,6 +35,8 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_relationships, source: :follower
   has_many :following, through: :followed_relationships, source: :user
 
+  has_many :reviews
+
   # The user needs a valid name
   validates :first_name,  
     presence: true, 
@@ -46,6 +53,8 @@ class User < ApplicationRecord
     allow_blank: false, 
     length: { maximum: 255 },
     format: { with: VALID_EMAIL_REGEX }
+  # Downcase emails
+  before_save { email.downcase! }
   # Needs a password
   validates :password,
     presence: true,
@@ -61,6 +70,20 @@ class User < ApplicationRecord
     presence: true,
     allow_blank: false, 
     format: { with: VALID_DATE_REGEX }
+  # Add in a user-written bio
+  validates :bio,
+    presence: true,
+    allow_blank: true,
+    length: { maximum: 256 }
+  # Professional validation
+  validates :professional,
+    presence: true,
+    allow_blank: false
+  validates :professional_type,
+    presence: true,
+    if: :professional? # A professional type is only required if the user is a professional
+  validates :professional_type,
+    inclusion: { in: PROFESSIONAL_TYPES }
 
   # Implements the signup/login via the omniauth plugins
   def self.find_or_create_from_auth_hash(auth)

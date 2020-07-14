@@ -323,14 +323,14 @@ if __name__ == '__main__':
 		if user_data:
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			# Image filename
-			image = 'red-suspension-bridge-3493772.jpg'
-			post_data = create_post(data['token'], image)
-			if post_data:
-				view_post(data['token'], post_data['id'])
-				like_post(data['token'], post_data['id'])
-				comment_on_post(data['token'], post_data['id'])
-				# delete_post(data['token'], post_data['id'])	
-			get_posts(data['token'], [])
+			# image = 'red-suspension-bridge-3493772.jpg'
+			# post_data = create_post(data['token'], image)
+			# if post_data:
+			# 	view_post(data['token'], post_data['id'])
+			# 	like_post(data['token'], post_data['id'])
+			# 	comment_on_post(data['token'], post_data['id'])
+			# 	# delete_post(data['token'], post_data['id'])	
+			# get_posts(data['token'], [])
 			# follow_user(data['token'], 'b9YtZb')
 			# unfollow_user(data['token'], 'b9YtZb')
 			# create_activity(data['token'])

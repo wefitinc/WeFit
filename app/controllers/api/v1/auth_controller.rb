@@ -59,10 +59,13 @@ private
   def signup_params
     params.permit(
       :email,
+      :password,
       :first_name,
       :last_name,
       :gender,
       :birthdate,
-      :password)
+      :bio,
+      :professional,
+      :professional_type)
   end
 end

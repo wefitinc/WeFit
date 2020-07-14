@@ -175,6 +175,7 @@ $(document).ready(function()
 	  // contact form animations
 	  $('#hp-getstarted').click(function() {
 	    $('#contactForm').fadeToggle();
+	    $('body').append('<div id="dimmer" class="dim"></div>');
 	  })
 	  $(document).mouseup(function (e) {
 	    var container = $("#contactForm");
@@ -183,6 +184,7 @@ $(document).ready(function()
 	        && container.has(e.target).length === 0) // ... nor a descendant of the container
 	    {
 	        container.fadeOut();
+	        $('#dimmer').remove();
 	    }
 	  });
 

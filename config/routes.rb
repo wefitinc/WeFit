@@ -8,8 +8,9 @@ Rails.application.routes.draw do
       get  '/auth/check', to: 'auth#check'
       get  '/auth/me', to: 'auth#me'
 
-      # TODO find a better routing for this
+      # TODO find a better routing for these
       get '/users/:id/posts', to: 'posts#for_user'
+      get '/users/professionals', to: 'users#index_professionals'
 
       resources :users, only: [ :show, :destroy ] do
         get    'following', to: 'follows#index_following'
@@ -17,6 +18,9 @@ Rails.application.routes.draw do
 
         post   'followers', to: 'follows#create'
         delete 'followers', to: 'follows#destroy'
+        
+        get    'reviews', to: 'reviews#index'
+        post   'reviews', to: 'reviews#create'
       end
 
       post '/posts/filter', to: 'posts#filter'

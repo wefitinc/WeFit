@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_202511) do
+ActiveRecord::Schema.define(version: 2020_07_14_071306) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -105,17 +105,15 @@ ActiveRecord::Schema.define(version: 2020_04_20_202511) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
-  create_table "professionals", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "password_digest"
-    t.string "type"
-    t.string "rate"
-    t.string "customer_id"
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "professional_id"
+    t.integer "stars"
+    t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_professionals_on_email", unique: true
+    t.index ["professional_id"], name: "index_reviews_on_professional_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -165,6 +163,9 @@ ActiveRecord::Schema.define(version: 2020_04_20_202511) do
     t.datetime "locked_at"
     t.integer "follower_count", default: 0
     t.integer "following_count", default: 0
+    t.boolean "professional", default: false
+    t.string "professional_type", default: "None"
+    t.text "bio"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

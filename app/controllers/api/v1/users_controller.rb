@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :set_user
-  before_action :check_debug, only: [:delete]
+  before_action :set_user, only: [:show, :destroy]
+  before_action :check_debug, only: [:destroy]
 
   # GET /users/:id
   def show
@@ -12,6 +12,12 @@ class Api::V1::UsersController < Api::V1::BaseController
   def destroy
     @user.destroy
     render json: { message: "Account deleted" }
+  end
+
+  # GET /users/professionals
+  def index_professionals
+    @users = User.all
+    render json: @users.where(professional: true)
   end
 
 private

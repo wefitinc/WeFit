@@ -1,4 +1,5 @@
 module Api::V1::BaseHelper
+
   # Check for authorization in the header
   def authorize
     # Get the authorization token from the header
@@ -22,6 +23,7 @@ module Api::V1::BaseHelper
       end
     end
   end
+
   def check_debug
     header = request.headers['Debug']
     header = header.split(' ').last if header
@@ -29,4 +31,5 @@ module Api::V1::BaseHelper
       render json: { errors: "Unauthorized access" }, status: :unauthorized
     end
   end
+
 end
