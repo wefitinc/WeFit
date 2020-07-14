@@ -5,13 +5,12 @@ class Api::V1::ReviewsController < Api::V1::BaseController
 
   # GET /users/:user_id/reviews
   def index
-    @reviews = Review.all.where(professional_id: @user.id)
-    render json: @reviews
+    render json: @user.reviews
   end
 
   # POST /users/:user_id/reviews
   def create
-    @review = Review.create(user_id: @current_user.id, professional_id: @user.id, text: params[:text], stars: params[:stars])
+    @review = @user.reviews.where(reviewer_id: @current_user.id, text: params[:text], stars: params[:stars]).create
     if @review.valid?
       render json: { message: "Review submitted" }
     else

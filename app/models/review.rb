@@ -1,10 +1,10 @@
 class Review < ApplicationRecord
   belongs_to :user
-  belongs_to :professional,
+  belongs_to :reviewer,
     class_name: 'User'
 
   validates :user, presence: true
-  validates :professional, presence: true
+  validates :reviewer, presence: true
 
   validates :text,
     presence: true,
