@@ -33,6 +33,8 @@ Rails.application.routes.draw do
       end
 
       resources :activities, only: [ :index, :show, :create ]
+
+      post '/activities/filter', to: 'activities#filter'
     end
   end
 

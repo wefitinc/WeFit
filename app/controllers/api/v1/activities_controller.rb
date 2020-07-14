@@ -7,6 +7,14 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     render json: Activity.all
   end
 
+  # POST /activities/filter
+  def filter
+    @activities = Activity.all
+    @activities = @activities.paginate(page: filter_params[:page], per_page: 5) if filter_params[:page]
+
+    render json: @activities
+  end
+
   # GET /activities/:id
   def show
     render json: @activity
@@ -39,5 +47,11 @@ private
   end
   def set_activity
     @activity = Activity.find(params[:id])
+  end
+  def filter_params
+    params.require(:filters).permit(
+      :page, 
+      :difficulty,
+      :date)
   end
 end

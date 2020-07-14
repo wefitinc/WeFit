@@ -310,6 +310,25 @@ def create_activity(token):
 	print('Failed to create activity, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
+def get_activities(page):
+	json = {
+		'filters':
+		{
+			"page": page,
+		}
+	}
+	# Activity path
+	path = '/api/v1/activities/filter'
+	print('Contacting '+url+path+'...', end ="")
+
+	r = requests.post(url+path, json=json)
+	if r.status_code == 200:
+		print("Got activities")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get activities, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 if __name__ == '__main__':
 	# Sign up the test user
 	# signup('test@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
@@ -334,3 +353,4 @@ if __name__ == '__main__':
 			# follow_user(data['token'], 'b9YtZb')
 			# unfollow_user(data['token'], 'b9YtZb')
 			# create_activity(data['token'])
+			get_activities(1)
