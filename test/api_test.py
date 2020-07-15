@@ -352,5 +352,5 @@ if __name__ == '__main__':
 			# get_posts(data['token'], [])
 			# follow_user(data['token'], 'b9YtZb')
 			# unfollow_user(data['token'], 'b9YtZb')
-			# create_activity(data['token'])
+			create_activity(data['token'])
 			get_activities(1)

@@ -32,7 +32,9 @@ Rails.application.routes.draw do
         resources :comments, only: [ :index, :create ]
       end
 
-      resources :activities, only: [ :index, :show, :create ]
+      resources :activities, only: [ :index, :show, :create, :update ] do
+        resources :attendees, only: [ :index, :create, :destroy ]
+      end
 
       post '/activities/filter', to: 'activities#filter'
     end

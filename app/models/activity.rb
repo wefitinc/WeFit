@@ -1,6 +1,8 @@
 class Activity < ApplicationRecord
   belongs_to :user
 
+  has_many :attendees, dependent: :destroy
+
   validates :name,
     presence: true,
     length: { maximum: 128 }

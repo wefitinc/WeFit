@@ -1,6 +1,6 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
   before_action :authorize, only: [:create]
-  before_action :set_activity, only: [:show]
+  before_action :set_activity, only: [:show, :update]
 
   # GET /activites
   def index
@@ -17,6 +17,12 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
 
   # GET /activities/:id
   def show
+    render json: @activity
+  end
+
+  # PUT/PATCH /activities/:id
+  def update
+    @activity.update(activity_params)
     render json: @activity
   end
 
