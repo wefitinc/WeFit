@@ -35,6 +35,7 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_relationships, source: :follower
   has_many :following, through: :followed_relationships, source: :user
 
+  # Associate each review with a user (being reviewed)
   has_many :reviews
 
   # The user needs a valid name
