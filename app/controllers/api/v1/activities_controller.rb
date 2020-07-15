@@ -1,6 +1,7 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
-  before_action :authorize, only: [:create]
+  before_action :authorize, only: [:create, :update]
   before_action :set_activity, only: [:show, :update]
+  before_action :validate_owner, only: [:update]
 
   # GET /activites
   def index
@@ -51,13 +52,18 @@ private
       :location_address,
       :difficulty)
   end
-  def set_activity
-    @activity = Activity.find(params[:id])
-  end
   def filter_params
     params.require(:filters).permit(
       :page, 
       :difficulty,
       :date)
   end
+  def set_activity
+    @activity = Activity.find(params[:id])
+    render json: { errors: "Not found" }, status: 404 if @activity.nil?
+  end
+  def validate_owner
+    render json: { errors: "You are not the owner of this activity" }, status: :unauthorized if not @current_user.id == @activity.user_id
+  end
+  
 end
