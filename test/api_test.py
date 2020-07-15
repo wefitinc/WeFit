@@ -310,18 +310,35 @@ def create_activity(token):
 	print('Failed to create activity, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
-def get_activities(page):
+def attend_activity(token, activity_id):
+	# Activity path
+	path = '/api/v1/activities/'+str(activity_id)+'/attendees'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Attending activity")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to attend activity, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def get_activities(token, page):
 	json = {
 		'filters':
 		{
 			"page": page,
+			"attending": False,
+			"max_difficulty": 2,
 		}
 	}
 	# Activity path
 	path = '/api/v1/activities/filter'
 	print('Contacting '+url+path+'...', end ="")
-
-	r = requests.post(url+path, json=json)
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
 	if r.status_code == 200:
 		print("Got activities")
 		print('\t'+str(r.json()))
@@ -352,5 +369,6 @@ if __name__ == '__main__':
 			# get_posts(data['token'], [])
 			# follow_user(data['token'], 'b9YtZb')
 			# unfollow_user(data['token'], 'b9YtZb')
-			create_activity(data['token'])
-			get_activities(1)
+			# create_activity(data['token'])
+			attend_activity(data['token'], 2)
+			get_activities(data['token'], 1)

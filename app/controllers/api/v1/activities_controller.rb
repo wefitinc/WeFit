@@ -1,5 +1,5 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
-  before_action :authorize, only: [:create, :update]
+  before_action :authorize, only: [:create, :update, :filter]
   before_action :set_activity, only: [:show, :update]
   before_action :validate_owner, only: [:update]
 
@@ -10,9 +10,16 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
 
   # POST /activities/filter
   def filter
+    # All activities by default
     @activities = Activity.all
+    # Filter based on attending
+    @activities = @activities.joins(:attendees).where(user_id: @current_user.id) if filter_params[:attending]
+    # Filter for difficulty
+    @activities = @activities.min_difficulty(filter_params[:min_difficulty]) if filter_params[:min_difficulty]
+    @activities = @activities.max_difficulty(filter_params[:max_difficulty]) if filter_params[:max_difficulty]
+    # Paginate results
     @activities = @activities.paginate(page: filter_params[:page], per_page: 5) if filter_params[:page]
-
+    # Render results
     render json: @activities
   end
 
@@ -55,8 +62,8 @@ private
   def filter_params
     params.require(:filters).permit(
       :page, 
-      :difficulty,
-      :date)
+      :attending,
+      :min_difficulty, :max_difficulty)
   end
   def set_activity
     @activity = Activity.find(params[:id])

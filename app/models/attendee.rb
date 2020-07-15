@@ -3,7 +3,7 @@ class Attendee < ApplicationRecord
   belongs_to :user
 
   # The activity must exist
-  validates :post,
+  validates :activity,
     presence: true
   # Users must exist and be unique
   validates :user,

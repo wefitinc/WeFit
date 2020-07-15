@@ -3,6 +3,9 @@ class Activity < ApplicationRecord
 
   has_many :attendees, dependent: :destroy
 
+  scope :min_difficulty, ->(min) { where('difficulty >= ?', min) }
+  scope :max_difficulty, ->(max) { where('difficulty <= ?', max) }
+
   validates :name,
     presence: true,
     length: { maximum: 128 }
