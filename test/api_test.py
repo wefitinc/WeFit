@@ -4,14 +4,14 @@ import mimetypes
 from datetime import datetime 
 
 # Production testing
-# url      = 'https://wefit.us'
-# email    = 'test@test.com'
-# password = 'SuperSecretTestPassword'
+url      = 'https://wefit.us'
+email    = 'test@test.com'
+password = 'SuperSecretTestPassword'
 
 # Development testing
-url      = 'http://localhost:3000'
-email    = 'test@wefit.us'
-password = 'SuperSecretTestPassword'
+# url      = 'http://localhost:3000'
+# email    = 'test@wefit.us'
+# password = 'SuperSecretTestPassword'
 
 def signup(email, password, first_name, last_name, birthdate, gender="Other"):
 	# Signup path
@@ -348,7 +348,7 @@ def get_activities(token, page):
 
 if __name__ == '__main__':
 	# Sign up the test user
-	signup('test@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
+	# signup('test@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
 	data = login(email, password)
 	# If login successful
