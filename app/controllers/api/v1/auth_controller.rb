@@ -11,11 +11,7 @@ class Api::V1::AuthController < Api::V1::BaseController
     @user = User.find_by_email(login_params[:email])
     # If the user exists and the password matches
     if @user&.authenticate(login_params[:password])
-      # Encode a new token with their user ID
-      @token = JsonWebToken.encode(user_id: @user.hashid)
-      @time = Time.now + 24.hours.to_i
-      # Send the token as a response
-      render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
+      render_login
     else
       # Login failed, send an error message
       render json: { errors: 'Email or password incorrect' }, status: :unauthorized
@@ -27,11 +23,7 @@ class Api::V1::AuthController < Api::V1::BaseController
     # Try and make a new user
     @user = User.new(signup_params)
     if @user.save
-      # Encode a new token with their user ID
-      @token = JsonWebToken.encode(user_id: @user.hashid)
-      @time = Time.now + 24.hours.to_i
-      # Send the token as a response
-      render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
+      render_login
     else
       # Signup failed, abort
       render json: { errors: @user.errors }, status: :unprocessable_entity
@@ -79,5 +71,15 @@ private
       :birthdate,
       :bio,
       :professional)
+  end
+
+  def render_login
+    # Encode a new token with their user ID
+    @token = JsonWebToken.encode(user_id: @user.hashid)
+    @time = Time.now + 24.hours.to_i
+    # Record the login 
+    @user.logins.create!(ip_address: request.remote_ip)
+    # Send the token as a response
+    render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
   end
 end

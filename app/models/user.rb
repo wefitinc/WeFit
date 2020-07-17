@@ -38,6 +38,9 @@ class User < ApplicationRecord
   # Associate each review with a user (being reviewed)
   has_many :reviews
 
+  # Record user logins
+  has_many :logins
+
   # The user needs a valid name
   validates :first_name,  
     presence: true, 
