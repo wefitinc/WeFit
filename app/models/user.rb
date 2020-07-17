@@ -79,7 +79,7 @@ class User < ApplicationRecord
   # Professional validation
   validates :professional,
     presence: true,
-    allow_blank: false
+    allow_blank: true
   validates :professional_type,
     presence: true,
     if: :professional? # A professional type is only required if the user is a professional

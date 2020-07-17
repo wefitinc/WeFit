@@ -17,7 +17,7 @@ def signup(email, password, first_name, last_name, birthdate, gender="Other"):
 	# Signup path
 	path = '/api/v1/auth/signup'
 	print('Contacting '+url+path+'...', end ="")
-	# JSON data to send for login
+	# JSON data to send for signup
 	json = { 
 		'email': email, 
 		'password': password,
@@ -25,6 +25,7 @@ def signup(email, password, first_name, last_name, birthdate, gender="Other"):
 		'last_name': last_name,
 		'birthdate': birthdate,
 		'gender': gender,
+		'professional': False,
 	}
 	# Make the request (POST)
 	r = requests.post(url+path, json=json)
@@ -329,8 +330,7 @@ def get_activities(token, page):
 		'filters':
 		{
 			"page": page,
-			"attending": False,
-			"max_difficulty": 2,
+			"attending": False
 		}
 	}
 	# Activity path
@@ -348,7 +348,7 @@ def get_activities(token, page):
 
 if __name__ == '__main__':
 	# Sign up the test user
-	# signup('test@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
+	signup('test@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
 	data = login(email, password)
 	# If login successful
@@ -370,5 +370,5 @@ if __name__ == '__main__':
 			# follow_user(data['token'], 'b9YtZb')
 			# unfollow_user(data['token'], 'b9YtZb')
 			# create_activity(data['token'])
-			attend_activity(data['token'], 2)
+			# attend_activity(data['token'], 2)
 			get_activities(data['token'], 1)

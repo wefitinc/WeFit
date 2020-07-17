@@ -7,6 +7,8 @@ class ActivitySerializer < ActiveModel::Serializer
     :google_placeID,
     :location_name,
     :location_address,
+    :latitude,
+    :longitude,
     :attendees_count,
     :difficulty
 end

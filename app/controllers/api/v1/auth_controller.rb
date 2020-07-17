@@ -77,6 +77,7 @@ private
       :last_name,
       :gender,
       :birthdate,
-      :bio)
+      :bio,
+      :professional)
   end
 end

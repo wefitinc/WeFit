@@ -12,11 +12,19 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
   def filter
     # All activities by default
     @activities = Activity.all
+    # Order by event date/time
+    @activities = @activities.order('event_time DESC')
     # Filter based on attending
     @activities = @activities.joins(:attendees).where(user_id: @current_user.id) if filter_params[:attending]
     # Filter for difficulty
     @activities = @activities.min_difficulty(filter_params[:min_difficulty]) if filter_params[:min_difficulty]
     @activities = @activities.max_difficulty(filter_params[:max_difficulty]) if filter_params[:max_difficulty]
+    # Filter by location
+    @lat = filter_params[:latitude]
+    @lon = filter_params[:longitude]
+    @radius = filter_params[:radius]
+    # Filter activities where the distance is within the radius
+    @activities = @activities.near([@lat, @lon], @radius) if @radius and @lat and @lon
     # Paginate results
     @activities = @activities.paginate(page: filter_params[:page], per_page: 5) if filter_params[:page]
     # Render results
@@ -63,7 +71,8 @@ private
     params.require(:filters).permit(
       :page, 
       :attending,
-      :min_difficulty, :max_difficulty)
+      :min_difficulty, :max_difficulty,
+      :latitude, :longitude, :radius)
   end
   def set_activity
     @activity = Activity.find(params[:id])
