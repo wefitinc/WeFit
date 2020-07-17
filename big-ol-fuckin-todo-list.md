@@ -6,18 +6,6 @@
   1. Make the application layout suck less
 
 ---
- * Update for activities
- * Lowercase emails
- * AttendeesN
- * Favorite button
- * Pagination for activities
-   * Filter 
-     * Distance/radius
-     * Difficulty
-     * Date 
-   * Sort
-     * Date
-     * Popularity
  * Data
    * Photo
  * Admin/moderator dashboard

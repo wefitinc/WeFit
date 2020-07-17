@@ -32,9 +32,9 @@ class Api::V1::AuthController < Api::V1::BaseController
 
   # GET /auth/check
   def check
-    header = request.headers['Authorization']
-    token = header.split(' ').last 
-    render json: { message: 'Authorization token valid', token: token }, status: :ok
+    @header = request.headers['Authorization']
+    @token  = @header.split(' ').last 
+    render json: { message: 'Authorization token valid', token: @token }, status: :ok
   end
 
   # GET /auth/me
@@ -56,11 +56,14 @@ class Api::V1::AuthController < Api::V1::BaseController
   end
 
 private
+  # Parameters for logging in
+  # NOTE: Should we take in device location/type here too?
   def login_params
     params.permit(
         :email, 
         :password)
   end
+  # Parameters for signing up
   def signup_params
     params.permit(
       :email,
@@ -72,7 +75,7 @@ private
       :bio,
       :professional)
   end
-
+  # Generate an authorization token and record a successful login
   def render_login
     # Encode a new token with their user ID
     @token = JsonWebToken.encode(user_id: @user.hashid)

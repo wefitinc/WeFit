@@ -11,7 +11,7 @@
 		* The App IDs and Secrets should eventually be moved to an environment variable
 
 * Deployment
-	* Run `deploy.py` to generate a deployment zip
-	* Upload to AWS
+	* Run `deploy.py` to deploy to AWS
+	* **NOTE: Need to update your environment variables with AWS Secret Keys!**
 
 * See the Wiki for more info
