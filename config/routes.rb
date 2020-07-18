@@ -8,11 +8,11 @@ Rails.application.routes.draw do
       get  '/auth/check', to: 'auth#check'
       get  '/auth/me', to: 'auth#me'
       post '/auth/upgrade', to: 'auth#upgrade'
-      post '/auth/reset', to: 'auth#reset'
 
       # TODO find a better routing for these
-      get '/users/:id/posts', to: 'posts#for_user'
-      get '/users/professionals', to: 'users#index_professionals'
+      get  '/users/:id/posts', to: 'posts#for_user'
+      get  '/users/professionals', to: 'users#index_professionals'
+      post '/users/:id/reset', to: 'users#reset'
 
       resources :users, only: [ :show, :destroy ] do
         get    'following', to: 'follows#index_following'

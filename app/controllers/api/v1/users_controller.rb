@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :set_user, only: [:show, :destroy]
+  before_action :set_user, only: [:show, :destroy, :reset]
   before_action :check_debug, only: [:destroy]
 
   # GET /users/:id
@@ -12,6 +12,13 @@ class Api::V1::UsersController < Api::V1::BaseController
   def destroy
     @user.destroy
     render json: { message: "Account deleted" }
+  end
+
+  # POST /users/:id/reset
+  def reset
+    @user.create_reset_digest
+    @user.send_password_reset_email
+    render json: { message: "Password reset email sent" }, status: :ok
   end
 
   # GET /users/professionals
