@@ -37,7 +37,7 @@ def create_zip():
 	add_dummy_dir(z, 'log/')
 	add_dir(z, 'public/')
 	add_dummy_dir(z, 'storage/')
-	add_dir(z, 'test/')
+	add_dummy_dir(z, 'test/')
 	add_dummy_dir(z, 'tmp/')
 	add_dir(z, 'vendor/')
 	z.write('.gitignore')

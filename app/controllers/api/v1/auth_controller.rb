@@ -55,6 +55,13 @@ class Api::V1::AuthController < Api::V1::BaseController
     end
   end
 
+  # POST /auth/reset
+  def reset
+    @current_user.create_reset_digest
+    @current_user.send_password_reset_email
+    render json: { message: "Password reset email sent" }, status: :ok
+  end
+
 private
   # Parameters for logging in
   # NOTE: Should we take in device location/type here too?
