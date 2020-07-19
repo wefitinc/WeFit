@@ -13,7 +13,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # All activities by default
     @activities = Activity.all
     # Order by event date/time
-    @activities = @activities.order('event_time DESC')
+    @activities = @activities.order('event_time ASC')
     # Filter based on attending
     @activities = @activities.joins(:attendees).where(user_id: @current_user.id) if filter_params[:attending]
     # Filter for difficulty
@@ -26,9 +26,14 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # Filter activities where the distance is within the radius
     @activities = @activities.near([@lat, @lon], @radius) if @radius and @lat and @lon
     # Paginate results
-    @activities = @activities.paginate(page: filter_params[:page], per_page: 5) if filter_params[:page]
+    @page = filter_params[:page] || 1
+    @activities = @activities.paginate(page: @page, per_page: 10)
     # Render results
-    render json: @activities
+    render json: { 
+      current_page: @activities.current_page, 
+      total_pages:  @activities.total_pages,
+      activities: @activities 
+    }
   end
 
   # GET /activities/:id
