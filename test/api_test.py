@@ -400,10 +400,11 @@ def invite_to_group(token, group_id, user_id):
 	print('Failed to invite to group, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
-def create_topic(token, group_id, body):
+def create_topic(token, group_id, anonymous, body):
 	json = {
 		'topic':
 		{
+			'anonymous': anonymous,
 			'body': body	
 		}
 	}
@@ -461,4 +462,5 @@ if __name__ == '__main__':
 			# join_group(token, 2)
 			# invite_to_group(token, 2, 'b9YtZb')
 			# join_group(token, 2)
-			# create_topic(token, 2, "This is a test topic")
+			# create_topic(token, 2, False, "This is a test topic")
+			# create_topic(token, 2, True, "This is an anonymous test topic")

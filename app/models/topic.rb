@@ -12,4 +12,6 @@ class Topic < ApplicationRecord
   # Each topic has a body
   # TODO: Check and see if this is too few characters
   validates :body, length: { maximum: 512 }
+  # Allow topics to be anonymous if the user so chooses
+  validates :anonymous, inclusion: { in: [ true, false ] }
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_212235) do
+ActiveRecord::Schema.define(version: 2020_07_24_222002) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -208,6 +208,7 @@ ActiveRecord::Schema.define(version: 2020_07_24_212235) do
     t.integer "comments_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "anonymous", default: false
     t.index ["group_id"], name: "index_topics_on_group_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end

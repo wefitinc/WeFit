@@ -60,6 +60,7 @@ private
 
   def topic_params
   	params.require(:topic).permit(
+      :anonymous,
       :body)
   end
 end
