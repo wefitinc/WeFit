@@ -1,12 +1,11 @@
 class Comment < ApplicationRecord
-  belongs_to :post, counter_cache: true
+  # Comments belong to an object (the thing being commented on) and have users
   belongs_to :user
-    # The post must exist
-  validates :post,
-    presence: true
-  # Users must exist
-  validates :user,
-    presence: true
+  belongs_to :owner, 
+    polymorphic: true,
+    counter_cache: true
+  # Users must exist, but need not be unique
+  validates :user, presence: true
   # Validate the comment body
   validates :body, 
     presence: true, 

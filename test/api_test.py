@@ -346,29 +346,119 @@ def get_activities(token, page):
 	print('Failed to get activities, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
+def create_group(token, title, location, description, public):
+	json = {
+		'group':
+		{
+			'title': title,
+			'location': location,
+			'description': description,
+			'public': public
+		}
+	}
+	# Groups path
+	path = '/api/v1/groups/'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Created group")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to create group, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def join_group(token, group_id):
+	# Members path
+	path = '/api/v1/groups/'+str(group_id)+'/members'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Joined group")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to join group, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def invite_to_group(token, group_id, user_id):
+	json = {
+		'user_id': user_id
+	}
+	# Invites path
+	path = '/api/v1/groups/'+str(group_id)+'/invites'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Invited to group")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to invite to group, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def create_topic(token, group_id, body):
+	json = {
+		'topic':
+		{
+			'body': body	
+		}
+	}
+	# Topics path
+	path = '/api/v1/groups/'+str(group_id)+'/topics'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Created topic")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to create topic, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 if __name__ == '__main__':
 	# Sign up the test user
-	# signup('test@wefit.us', password, 'Test', 'Test', '1970-01-01', 'Other')
+	# signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
 	# Try and log in as the test user
 	data = login(email, password)
 	# If login successful
 	if data:
+		# Alias the auth token for ease of reading
+		token = data['token']
 		# Run an authorization test
-		# auth_check(data['token'])
-		user_data = get_me(data['token'])
+		auth_check(token)
+		user_data = get_me(token)
 		if user_data:
+			# Debug print the user data, just to be sure
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
-			# Image filename
+			
+			# Post tests
 			# image = 'red-suspension-bridge-3493772.jpg'
-			# post_data = create_post(data['token'], image)
+			# post_data = create_post(token, image)
 			# if post_data:
-			# 	view_post(data['token'], post_data['id'])
-			# 	like_post(data['token'], post_data['id'])
-			# 	comment_on_post(data['token'], post_data['id'])
-			# 	# delete_post(data['token'], post_data['id'])	
-			# get_posts(data['token'], [])
-			# follow_user(data['token'], 'b9YtZb')
-			# unfollow_user(data['token'], 'b9YtZb')
-			# create_activity(data['token'])
-			# attend_activity(data['token'], 2)
-			get_activities(data['token'], 1)
+			# 	view_post(token, post_data['id'])
+			# 	like_post(token, post_data['id'])
+			# 	comment_on_post(token, post_data['id'])
+			# 	# delete_post(token, post_data['id'])	
+			# get_posts(token, [])
+
+			# User following tests
+			# follow_user(token, 'b9YtZb')
+			# unfollow_user(token, 'b9YtZb')
+
+			# Activities tests
+			# create_activity(token)
+			# attend_activity(token, 2)
+			# get_activities(token, 1)
+
+			# Groups tests
+			# create_group(token, 'Test public group!', 'Mesa, Az', 'This is a test group! Get hype!', True)
+			# create_group(token, 'Test private group!', 'Mesa, Az', 'This is a test group! Get hype!', False)
+			# join_group(token, 2)
+			# invite_to_group(token, 2, 'b9YtZb')
+			# join_group(token, 2)
+			# create_topic(token, 2, "This is a test topic")

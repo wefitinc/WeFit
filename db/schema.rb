@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_17_210619) do
+ActiveRecord::Schema.define(version: 2020_07_24_212235) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,10 +62,11 @@ ActiveRecord::Schema.define(version: 2020_07_17_210619) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "user_id"
-    t.integer "post_id"
+    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.string "owner_type"
+    t.index ["owner_id"], name: "index_comments_on_owner_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -79,12 +80,37 @@ ActiveRecord::Schema.define(version: 2020_07_17_210619) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "title"
+    t.string "location"
+    t.text "description"
+    t.boolean "public", default: true
+    t.integer "members_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "topics_count", default: 0
+    t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "invited_by_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_invites_on_group_id"
+    t.index ["invited_by_id"], name: "index_invites_on_invited_by_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
+  end
+
   create_table "likes", force: :cascade do |t|
-    t.integer "post_id"
+    t.integer "owner_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.string "owner_type"
+    t.index ["owner_id"], name: "index_likes_on_owner_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -96,6 +122,15 @@ ActiveRecord::Schema.define(version: 2020_07_17_210619) do
     t.decimal "latitude"
     t.decimal "longitude"
     t.index ["user_id"], name: "index_logins_on_user_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_members_on_group_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -163,6 +198,18 @@ ActiveRecord::Schema.define(version: 2020_07_17_210619) do
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "group_id"
+    t.text "body"
+    t.integer "likes_count", default: 0
+    t.integer "comments_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_topics_on_group_id"
+    t.index ["user_id"], name: "index_topics_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

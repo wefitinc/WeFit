@@ -1,7 +1,8 @@
 class Review < ApplicationRecord
+  # The user that is being reviewed
   belongs_to :user
-  belongs_to :reviewer,
-    class_name: 'User'
+  # The reviewer, also a user
+  belongs_to :reviewer, class_name: 'User'
 
   validates :user, presence: true
   validates :reviewer, presence: true

@@ -28,8 +28,8 @@ Rails.application.routes.draw do
       post '/posts/filter', to: 'posts#filter'
 
       resources :posts, only: [ :index, :show, :create, :destroy ] do
-        resources :likes, only: [ :index, :create ]
         resources :views, only: [ :index, :create ]
+        resources :likes, only: [ :index, :create ]
         resources :comments, only: [ :index, :create ]
       end
 
@@ -37,6 +37,17 @@ Rails.application.routes.draw do
       
       resources :activities, only: [ :index, :show, :create, :update ] do
         resources :attendees, only: [ :index, :create, :destroy ]
+      end
+
+      resources :groups, only: [:index, :show, :create, :destroy ] do
+        resources :members, only: [ :index, :create, :destroy ]
+        resources :invites, only: [ :create ]
+        resources :topics, only: [ :index, :create ]
+      end
+
+      resources :topics, only: [:show, :destroy] do
+        resources :likes, only: [ :index, :create ]
+        resources :comments, only: [ :index, :create ]
       end
     end
   end

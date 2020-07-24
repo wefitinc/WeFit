@@ -2,6 +2,7 @@ class Api::V1::PostsController < Api::V1::BaseController
   before_action :set_post, only:  [:show, :destroy]
   # Authorize the user before posting
   before_action :authorize, only: [:filter, :create, :destroy]
+  before_action :check_owner, only: [:destroy]
 
   # GET /posts
   def index
@@ -109,5 +110,10 @@ private
   def set_post
     @post = Post.find(params[:id])
   rescue ActiveRecord::RecordNotFound
+  end
+  def check_owner
+    unless @post.user_id == @current_user.id
+      render json: { errors: "You are not the owner of this post" }, status: :unauthorized 
+    end
   end
 end

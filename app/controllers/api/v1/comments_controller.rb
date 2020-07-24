@@ -1,25 +1,27 @@
 class Api::V1::CommentsController < Api::V1::BaseController
-  before_action :find_post
-  before_action :authorize, only: [:create]
+  before_action :authorize, only: [ :create ]
+  before_action :set_owner
 
-  # GET /posts/:id/comments
+  # GET /:owner/:id/comments
   def index
-  	render json: @post.comments
+    render json: @owner.comments
   end
-
-  # POST /posts/:id/comments
+  # POST /:owner/:id/comments
   def create
-    @comment = @post.comments.where(user_id: @current_user.id, body: params[:body]).create
-    if @comment.valid?
-      render json: @comment
-    else
-      render json: { errors: @comment.errors }, status: :unprocessable_entity
-    end
+    @owner.comments.where(user_id: @current_user.id, body: params[:body]).create
+    render json: { message: "Commented!" }
   end
 
 private
-  # Find the post for this comment
-  def find_post
-  	@post = Post.find(params[:post_id])
-  end	
+  def set_owner
+    if params[:post_id]
+      @owner = Post.find(params[:post_id])
+      render json: { errors: "Post not found" }, status: :not_found if @owner.nil?
+    elsif params[:topic_id]
+      @owner = Topic.find(params[:topic_id])
+      render json: { errors: "Topic not found" }, status: :not_found if @owner.nil?
+    else
+      render json: { errors: "Owner type not supported" }, status: :not_implemented
+    end
+  end
 end

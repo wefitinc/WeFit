@@ -1,12 +1,11 @@
 class Like < ApplicationRecord
-  # Likes are on posts and have users
-  belongs_to :post, counter_cache: true
+  # Likes belong to an object (the thing being 'liked') and have users
   belongs_to :user
-  # The post must exist
-  validates :post,
-    presence: true
+  belongs_to :owner, 
+    polymorphic: true,
+    counter_cache: true
   # Users must exist and be unique
   validates :user,
     presence: true,
-    uniqueness: { scope: :post }
+    uniqueness: { scope: :owner }
 end

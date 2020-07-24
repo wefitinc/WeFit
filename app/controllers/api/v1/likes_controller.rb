@@ -1,20 +1,27 @@
 class Api::V1::LikesController < Api::V1::BaseController
-  before_action :find_post
-  before_action :authorize, only: [:create]
+  before_action :authorize, only: [ :create ]
+  before_action :set_owner
 
-  # GET /api/v1/posts/:id/likes
+  # GET /:owner/:id/likes
   def index
-    render json: @post.likes
+    render json: @owner.likes
   end
-  # POST /api/v1/posts/:id/likes
+  # POST /:owner/:id/likes
   def create
-    @post.likes.where(user_id: @current_user.id).first_or_create
-    render json: { message: "Liked!" }
+    @owner.likes.where(user_id: @current_user.id).first_or_create
+    render json: { message: "Commented!" }
   end
 
 private
-  def find_post
-    @post = Post.find(params[:post_id])
-    render json: { message: "Post not found" }, status: :not_found if @post.nil?
+  def set_owner
+    if params[:post_id]
+      @owner = Post.find(params[:post_id])
+      render json: { errors: "Post not found" }, status: :not_found if @owner.nil?
+    elsif params[:topic_id]
+      @owner = Topic.find(params[:topic_id])
+      render json: { errors: "Topic not found" }, status: :not_found if @owner.nil?
+    else
+      render json: { errors: "Owner type not supported" }, status: :not_implemented
+    end
   end
 end

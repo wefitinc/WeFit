@@ -8,9 +8,14 @@ class Post < ApplicationRecord
   belongs_to :user
 
   # Add in the likes, views, and comments
-  has_many :likes, dependent: :destroy
   has_many :views, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  # NOTE: Comments and likes are polymorphic, need to be owned as such!
+  has_many :comments, 
+    as: :owner, 
+    dependent: :destroy
+  has_many :likes, 
+    as: :owner,
+    dependent: :destroy
 
   # Add a tag list
   acts_as_taggable
