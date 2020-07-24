@@ -3,6 +3,7 @@ class TopicSerializer < ActiveModel::Serializer
   has_one :user
   # The data to return
   attributes :id,
+    :group_id,
     :anonymous,
     :user,
     :body, 
