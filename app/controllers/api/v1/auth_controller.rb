@@ -3,8 +3,7 @@ require 'json_web_token'
 
 class Api::V1::AuthController < Api::V1::BaseController
   # Make sure to authorize the user
-  before_action :authorize, except: [ :login, :logins, :signup ]
-  before_action :check_debug, only: [ :logins ]
+  before_action :authorize, except: [ :login, :signup ]
 
   # POST /auth/login
   def login 
@@ -24,6 +23,10 @@ class Api::V1::AuthController < Api::V1::BaseController
     # Try and make a new user
     @user = User.new(signup_params)
     if @user.save
+      # Send the activation email
+      @user.create_activation_digest
+      @user.send_activation_email
+      # Render the auth token
       render_login
     else
       # Signup failed, abort
@@ -56,12 +59,6 @@ class Api::V1::AuthController < Api::V1::BaseController
     end
   end
 
-  # GET /auth/logins
-  def logins
-    @logins = Login.all
-    render json: @logins
-  end
-
 private
   # Parameters for logging in
   # NOTE: Should we take in device location/type here too?
@@ -88,8 +85,8 @@ private
     @token = JsonWebToken.encode(user_id: @user.hashid)
     @time = Time.now + 24.hours.to_i
     # Record the login 
-    @user.logins.create!(ip_address: request.remote_ip)
+    @user.logins.create(ip_address: request.remote_ip)
     # Send the token as a response
-    render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }, status: :ok
+    render json: { token: @token, exp: @time.strftime("%m-%d-%Y %H:%M"), user_id: @user.hashid }
   end
 end

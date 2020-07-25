@@ -107,3 +107,5 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 
 # GNU Terry Pratchett
 gem 'rack-pratchett'
+# Throttle requests
+gem 'rack-attack'

@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/auth/signup', to: 'auth#signup'
       post '/auth/login', to: 'auth#login'
-      get  '/auth/logins', to: 'auth#logins'
       get  '/auth/check', to: 'auth#check'
       get  '/auth/me', to: 'auth#me'
       post '/auth/upgrade', to: 'auth#upgrade'

@@ -14,8 +14,6 @@ password = 'SuperSecretTestPassword'
 # email    = 'test@wefit.us'
 # password = 'SuperSecretTestPassword'
 
-debug_password = 'SuperSecretDebugAuthorization'
-
 def signup(email, password, first_name, last_name, birthdate, gender="Other"):
 	# Signup path
 	path = '/api/v1/auth/signup'
@@ -94,23 +92,6 @@ def get_me(token):
 		print("Got my user data")
 		print('\t'+str(r.json()))
 		return r.json()
-	# If the request failed
-	print('Failed to authorize, status code ['+str(r.status_code)+']')
-	print('\t'+str(r.json()))
-
-def get_logins():
-	# Logins path
-	path = '/api/v1/auth/logins'
-	print('Contacting '+url+path+'...', end ="")
-	# Make sure the headers contain the debug digest
-	headers = { 'Debug': debug_password }
-	# Make the request (GET)
-	r = requests.get(url+path, headers=headers)
-	# If the request was successful
-	if r.status_code == 200:
-		print("Got login data")
-		print('\t'+str(r.json()))
-		return
 	# If the request failed
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
@@ -510,7 +491,6 @@ def create_message(token, conversation_id, body):
 	print('\t'+str(r.json()))
 
 if __name__ == '__main__':
-	# get_logins()
 	# Sign up the test user
 	# signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
 	# qN4tOb

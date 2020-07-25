@@ -1,4 +1,4 @@
 class LoginSerializer < ActiveModel::Serializer
   has_one :user
-  attributes :user, :address, :created_at
+  attributes :user, :created_at
 end
