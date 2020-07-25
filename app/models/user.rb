@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_secure_password
   # Use hashids for more secure lookup
   include Hashid::Rails
+  hashid_config override_find: true
 
   # Associate posts with users
   has_many :posts, dependent: :destroy

@@ -3,7 +3,8 @@ require 'json_web_token'
 
 class Api::V1::AuthController < Api::V1::BaseController
   # Make sure to authorize the user
-  before_action :authorize, except: [:login, :signup]
+  before_action :authorize, except: [ :login, :logins, :signup ]
+  before_action :check_debug, only: [ :logins ]
 
   # POST /auth/login
   def login 
@@ -53,6 +54,12 @@ class Api::V1::AuthController < Api::V1::BaseController
     else
       render json: { errors: @current_user.errors }, status: :unprocessable_entity
     end
+  end
+
+  # GET /auth/logins
+  def logins
+    @logins = Login.all
+    render json: @logins
   end
 
 private

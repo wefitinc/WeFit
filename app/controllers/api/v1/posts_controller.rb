@@ -10,8 +10,9 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # POST /posts/filter
   def filter
-    # TODO: Should 'all' be the default? or should we make filters mandatory in this endpoint
     @posts = Post.all
+    # Filter out posts that are 24 hours old
+    # @posts = @posts.where(created_at: 24.hours.ago..Time.now)
     
     # Distance query
     @lat = tag_filter_params[:latitude]

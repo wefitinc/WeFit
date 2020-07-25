@@ -25,9 +25,12 @@ module Api::V1::BaseHelper
   end
 
   def check_debug
+    debug_password = 'SuperSecretDebugAuthorization'
+    debug_digest   = Digest::SHA256.digest debug_password
+
     header = request.headers['Debug']
     header = header.split(' ').last if header
-    if header.nil? || header != 'SuperSecretDebugAuthorization'
+    if header.nil? || Digest::SHA256.digest(header) != debug_digest
       render json: { errors: "Unauthorized access" }, status: :unauthorized
     end
   end
