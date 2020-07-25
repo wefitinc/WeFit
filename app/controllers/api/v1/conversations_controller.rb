@@ -25,6 +25,5 @@ private
 
   def find_recipient
     @recipient = User.find_by_hashid(conversation_params[:recipient_id])
-    render json: { error: 'Recipient not found' }, status: :not_found if @recipient.nil?
   end
 end

@@ -26,20 +26,3 @@ Coming Soon Analytics
 ---
  * Page
  * Like/dislikes
-
-DM
----
- * 
-
-Support Groups
----
-Anyone can invite
- * Name
- * Description
- * Cover photo
- * Visibility 
- * Invites
-
-Support
----
-* Anonymous mode

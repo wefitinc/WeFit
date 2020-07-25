@@ -36,7 +36,6 @@ class Api::V1::GroupsController < Api::V1::BaseController
 private
   def set_group
   	@group = Group.find(params[:id])
-  	render json: { message: "Group not found" }, status: :not_found if @group.nil?
   end
 
   def check_owner

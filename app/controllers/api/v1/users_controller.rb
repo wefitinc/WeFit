@@ -1,5 +1,5 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :set_user, only: [:show, :destroy, :reset]
+  before_action :find_user, only: [:show, :destroy, :reset]
   before_action :check_debug, only: [:destroy]
 
   # GET /users/:id
@@ -23,14 +23,14 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   # GET /users/professionals
   def index_professionals
-    @users = User.all
-    render json: @users.where(professional: true)
+    @users = User.where(professional: true)
+    render json: @users
   end
 
 private
-  def set_user
+  def find_user
     # Use find_by_hashid to not allow sequential ID lookups
     @user = User.find_by_hashid(params[:id])
-    render json: { errors: "Not found" }, status: 404 if @user.nil?
+    render json: { errors: "Couldn't find user with id=#{params[:id]}" }, status: 404 if @user.nil?
   end
 end

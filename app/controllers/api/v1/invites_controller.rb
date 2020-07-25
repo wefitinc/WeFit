@@ -13,13 +13,12 @@ class Api::V1::InvitesController < Api::V1::BaseController
 private
   # Find the user being invited
   def find_user
-  	@user = User.find_by_hashid(params[:user_id])
-    render json: { errors: "User not found" }, status: :not_found if @user.nil?
+    @user = User.find_by_hashid(params[:user_id])
+    render json: { errors: "Couldn't find user with id=#{params[:user_id]}" }, status: 404 if @user.nil?
   end
   # Find the group that the user is being invited to
   def find_group
     @group = Group.find(params[:group_id])
-    render json: { message: "Group not found" }, status: :not_found if @group.nil?
   end
   # Check and make sure this person can invite the user to the group
   def check_membership

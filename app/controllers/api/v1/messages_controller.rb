@@ -41,7 +41,6 @@ class Api::V1::MessagesController < Api::V1::BaseController
 private
   def set_conversation
     @conversation = Conversation.find(params[:conversation_id])
-    render json: { error: "Conversation not found" }, status: :not_found if @conversation.nil?
   end
   def check_in_conversation
     @in_conversation = (@conversation.sender == @current_user) || (@conversation.recipient == @current_user) 

@@ -22,7 +22,6 @@ private
   # Find the group for this membership
   def find_group
     @group = Group.find(params[:group_id])
-    render json: { message: "Group not found" }, status: :not_found if @group.nil?
   end
   # Check and make sure the user can join 
   def check_can_join

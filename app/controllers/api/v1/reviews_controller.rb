@@ -21,7 +21,7 @@ class Api::V1::ReviewsController < Api::V1::BaseController
 private
   def find_user
     @user = User.find_by_hashid(params[:user_id])
-    render json: { errors: "User not found" }, status: 404 if @user.nil?
+    render json: { errors: "Couldn't find user with id=#{params[:id]}" }, status: 404 if @user.nil?
   end
   def check_professional
     render json: { errors: "This user is not a professional" }, status: :bad_request if not @user.professional? 

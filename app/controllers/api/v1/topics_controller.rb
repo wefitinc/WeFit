@@ -40,11 +40,9 @@ class Api::V1::TopicsController < Api::V1::BaseController
 private
   def set_group
   	@group = Group.find(params[:group_id])
-  	render json: { errors: "Group not found" }, status: :not_found if @group.nil?
   end
   def set_topic
   	@topic = Topic.find(params[:id])
-  	render json: { errors: "Topic not found" }, status: :not_found if @topic.nil?
   end
 
   def check_member
