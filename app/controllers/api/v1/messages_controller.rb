@@ -30,7 +30,7 @@ class Api::V1::MessagesController < Api::V1::BaseController
     # Save to DB
     if @message.save then
       # Broadcast the message to the conversation channel
-      MessagesChannel.broadcast_to(@conversation, @ message)
+      MessagesChannel.broadcast_to(@conversation, @message)
       # Render the message
       render json: @message
     else
