@@ -1,5 +1,8 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  # Mount the action cable
+  mount ActionCable.server => '/cable'
+
   # API
   namespace :api do
     namespace :v1 do
@@ -48,6 +51,10 @@ Rails.application.routes.draw do
       resources :topics, only: [:show, :destroy] do
         resources :likes, only: [ :index, :create ]
         resources :comments, only: [ :index, :create ]
+      end
+
+      resources :conversations, only: [:index, :create] do
+        resources :messages, only: [:index, :filter, :create] 
       end
     end
   end

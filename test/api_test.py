@@ -421,9 +421,78 @@ def create_topic(token, group_id, anonymous, body):
 	print('Failed to create topic, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
+def get_conversations(token):
+	# Conversations path
+	path = '/api/v1/conversations'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.get(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Got conversations")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get conversations, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def create_conversation(token, recipient):
+	json = {
+		'conversation':
+		{
+			'recipient_id': recipient
+		}
+	}
+	# Conversations path
+	path = '/api/v1/conversations'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Got conversations")
+		print('\t'+str(r.json()))
+		return r.json()
+	print('Failed to get conversations, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def get_messages(token, conversation_id):
+	# Conversations path
+	path = '/api/v1/conversations/'+str(conversation_id)+'/messages'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.get(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Got messages")
+		print('\t'+str(r.json()))
+		return r.json()
+	print('Failed to get messages, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def create_message(token, conversation_id, body):
+	json = {
+		'message':
+		{
+			'body': body
+		}
+	}
+	# Messages path
+	path = '/api/v1/conversations/'+str(conversation_id)+'/messages'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Sent message")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to send message, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 if __name__ == '__main__':
 	# Sign up the test user
 	# signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
+	# qN4tOb
 	# Try and log in as the test user
 	data = login(email, password)
 	# If login successful
@@ -464,3 +533,10 @@ if __name__ == '__main__':
 			# join_group(token, 2)
 			# create_topic(token, 2, False, "This is a test topic")
 			# create_topic(token, 2, True, "This is an anonymous test topic")
+
+			# Messaging test
+			conversation_data = create_conversation(token, 'qN4tOb')
+			if conversation_data:
+				conversation_id = conversation_data['id'] 
+				create_message(token, conversation_id, "Hey man, what's up?")
+				get_messages(token, conversation_id)

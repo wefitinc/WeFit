@@ -89,6 +89,10 @@ class User < ApplicationRecord
   validates :professional_type,
     inclusion: { in: PROFESSIONAL_TYPES }
 
+  def conversations
+    Conversation.where('sender_id=? OR recipient_id=?', self.id,self.id)
+  end
+
   # Implements the signup/login via the omniauth plugins
   def self.find_or_create_from_auth_hash(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
