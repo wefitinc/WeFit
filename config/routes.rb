@@ -53,8 +53,10 @@ Rails.application.routes.draw do
         resources :comments, only: [ :index, :create ]
       end
 
+      post  '/conversations/:conversation_id/messages/filter', to: 'messages#filter'
+
       resources :conversations, only: [:index, :create] do
-        resources :messages, only: [:index, :filter, :create] 
+        resources :messages, only: [:index, :create] 
       end
     end
   end
