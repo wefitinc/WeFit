@@ -510,7 +510,7 @@ def create_message(token, conversation_id, body):
 	print('\t'+str(r.json()))
 
 if __name__ == '__main__':
-	get_logins()
+	# get_logins()
 	# Sign up the test user
 	# signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
 	# qN4tOb
@@ -556,8 +556,8 @@ if __name__ == '__main__':
 			# create_topic(token, 2, True, "This is an anonymous test topic")
 
 			# Messaging test
-			conversation_data = create_conversation(token, 'qN4tOb')
-			if conversation_data:
-				conversation_id = conversation_data['id'] 
-				create_message(token, conversation_id, "Hey man, what's up?")
-				get_messages(token, conversation_id)
+			# conversation_data = create_conversation(token, 'qN4tOb')
+			# if conversation_data:
+			# 	conversation_id = conversation_data['id'] 
+			# 	create_message(token, conversation_id, "Hey man, what's up?")
+			# 	get_messages(token, conversation_id)

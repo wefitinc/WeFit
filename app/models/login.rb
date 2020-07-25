@@ -5,9 +5,7 @@ class Login < ApplicationRecord
   # NOTE: This won't be exact, its just for getting general location to 
   # allow user's to see if their account has been compromised
   geocoded_by :ip_address
-  geocoded_by :address
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :geocode, :reverse_geocode 
+  after_validation :geocode
   # The only inputs needed are a user and an ip address
   # NOTE: The IP address comes from the request anyway
   validates :user, presence: true
