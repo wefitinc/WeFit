@@ -36,5 +36,6 @@ module ApplicationCable
       else
         @current_user
       end
+    end
   end
 end
