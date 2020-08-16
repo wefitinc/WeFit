@@ -12,6 +12,9 @@ class Activity < ApplicationRecord
   geocoded_by :location_address
   after_validation :geocode 
 
+  # Associate an image with each activity
+  has_one_base64_attached :image
+
   # The name of the activity
   validates :name,
     presence: true,
@@ -38,4 +41,9 @@ class Activity < ApplicationRecord
       greater_than_or_equal_to: 1,
       less_than_or_equal_to: 5
     }
+
+  # Helper
+  def get_image_url
+    url_for(self.image) if self.image.attached?
+  end
 end

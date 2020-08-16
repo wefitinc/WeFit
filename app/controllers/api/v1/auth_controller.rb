@@ -82,8 +82,9 @@ private
   # Generate an authorization token and record a successful login
   def render_login
     # Encode a new token with their user ID
-    @token = JsonWebToken.encode(user_id: @user.hashid)
-    @time = Time.now + 24.hours.to_i
+    @time = 1.year.from_now
+    @payload = { user_id: @user.hashid }
+    @token = JsonWebToken.encode(@payload, @time)
     # Record the login 
     @user.logins.create(ip_address: request.remote_ip)
     # Send the token as a response

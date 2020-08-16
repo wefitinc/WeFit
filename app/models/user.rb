@@ -38,9 +38,10 @@ class User < ApplicationRecord
 
   # Associate each review with a user (being reviewed)
   has_many :reviews
-
   # Record user logins
   has_many :logins
+  # Record users that this user has blocked
+  has_many :blocks
 
   # The user needs a valid name
   validates :first_name,  
@@ -92,6 +93,10 @@ class User < ApplicationRecord
 
   def conversations
     Conversation.where('sender_id=? OR recipient_id=?', self.id,self.id)
+  end
+
+  def blocked?(user)
+    self.blocks.where(blocked_id: user.id).exists?
   end
 
   # Implements the signup/login via the omniauth plugins

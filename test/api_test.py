@@ -524,7 +524,7 @@ if __name__ == '__main__':
 			# Activities tests
 			# create_activity(token)
 			# attend_activity(token, 2)
-			# get_activities(token, 1)
+			get_activities(token, 1)
 
 			# Groups tests
 			# create_group(token, 'Test public group!', 'Mesa, Az', 'This is a test group! Get hype!', True)

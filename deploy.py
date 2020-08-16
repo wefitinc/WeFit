@@ -11,8 +11,8 @@ from botocore.exceptions import ClientError
 APPLICATION_NAME='WeFit'
 APPLICATION_ENVIRONMENT= 'Wefit-env-3'
 REGION_NAME='us-east-2'
-VERSION_LABEL = strftime("%Y-%m-%dT%H:%M:%S")
 S3_BUCKET='elasticbeanstalk-us-east-2-314946208894'
+VERSION_LABEL = strftime("%Y-%m-%dT%H:%M:%S")
 ZIP_FILENAME = APPLICATION_NAME+'.zip'
 BUCKET_KEY = APPLICATION_NAME + '_' + VERSION_LABEL + '.zip'
 

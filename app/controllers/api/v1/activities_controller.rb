@@ -16,6 +16,8 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     @activities = @activities.order('event_time ASC')
     # Filter based on attending
     @activities = @activities.joins(:attendees).where(user_id: @current_user.id) if filter_params[:attending]
+    # Filter based on date
+    @activities = @activities.where(event_time: filter_params[:min_date]..filter_params[:max_date]) if filter_params[:min_date] && filter_params[:max_date]
     # Filter for difficulty
     @activities = @activities.min_difficulty(filter_params[:min_difficulty]) if filter_params[:min_difficulty]
     @activities = @activities.max_difficulty(filter_params[:max_difficulty]) if filter_params[:max_difficulty]
@@ -32,7 +34,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     render json: { 
       current_page: @activities.current_page, 
       total_pages:  @activities.total_pages,
-      activities: @activities 
+      activities: ActiveModelSerializers::SerializableResource.new(@activities).as_json
     }
   end
 
@@ -53,6 +55,8 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     @activity = Activity.new(activity_params)
     # Set the owner to the logged in user
     @activity.user_id = @current_user.id
+    # Attach the image to the activity
+    @activity.image.attach(data: params[:image]) if !params[:image].nil?
     # Attempt to save in DB
     if @activity.save
       render json: @activity
@@ -86,5 +90,4 @@ private
   def validate_owner
     render json: { errors: "You are not the owner of this activity" }, status: :unauthorized if not @current_user.id == @activity.user_id
   end
-  
 end
