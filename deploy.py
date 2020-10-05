@@ -9,7 +9,7 @@ from botocore.exceptions import ClientError
 
 # Configuration
 APPLICATION_NAME='WeFit'
-APPLICATION_ENVIRONMENT= 'Wefit-env-3'
+APPLICATION_ENVIRONMENT= 'Wefit-env'
 REGION_NAME='us-east-2'
 S3_BUCKET='elasticbeanstalk-us-east-2-314946208894'
 VERSION_LABEL = strftime("%Y-%m-%dT%H:%M:%S")

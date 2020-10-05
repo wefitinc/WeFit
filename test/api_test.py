@@ -5,14 +5,14 @@ import mimetypes
 from datetime import datetime 
 
 # Production testing
-url      = 'https://wefit.us'
-email    = 'test@test.com'
-password = 'SuperSecretTestPassword'
+# url      = 'https://wefit.us'
+# email    = 'test@test.com'
+# password = 'SuperSecretTestPassword'
 
 # Development testing
-# url      = 'http://localhost:3000'
-# email    = 'test@wefit.us'
-# password = 'SuperSecretTestPassword'
+url      = 'http://localhost:3000'
+email    = 'test@wefit.us'
+password = 'SuperSecretTestPassword'
 
 def signup(email, password, first_name, last_name, birthdate, gender="Other"):
 	# Signup path
@@ -286,30 +286,54 @@ def unfollow_user(token, user_id):
 	print('Failed to unfollow user, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
-def create_activity(token):
-	json = {
-		'activity':
-		{
-			'name': 'Test activity! 🔥🔥🔥',
-			'description': "Test activity! 🔥🔥🔥",
-			'event_time': datetime.now(tz=None).isoformat(),
-			'google_placeID': 'ChIJD1QzO9sIK4cRMzA8R39xbmY',
-			'location_name': 'ASU',
-			'location_address': 'Tempe, AZ 85281',
-			'difficulty': 1
+def create_activity(token, image_filename):
+	# Get the mimetype of the file
+	mime_type = mimetypes.guess_type(image_filename)[0]
+	# Load image data
+	with open(image_filename, 'rb') as image_file:
+		# Read image
+		image = image_file.read()
+		# Base64 encode
+		image_b64 = base64.b64encode(image)
+		# Image
+		json = {
+			'activity':
+			{
+				'name': 'Test activity! 🔥🔥🔥',
+				'description': "Test activity! 🔥🔥🔥",
+				'event_time': datetime.now(tz=None).isoformat(),
+				'google_placeID': 'ChIJD1QzO9sIK4cRMzA8R39xbmY',
+				'location_name': 'ASU',
+				'location_address': 'Tempe, AZ 85281',
+				'difficulty': 1
+			},
+			'image': "data:"+mime_type+";base64,"+str(image_b64)
 		}
-	}
+		# Activities path
+		path = '/api/v1/activities/'
+		print('Contacting '+url+path+'...', end ="")
+		# Make sure the headers contain the authorization token
+		headers = { 'Authorization': token }
+		r = requests.post(url+path, json=json, headers=headers)
+		if r.status_code == 200:
+			print("Created activity")
+			print('\t'+str(r.json()))
+			return
+		print('Failed to create activity, status code ['+str(r.status_code)+']')
+		print('\t'+str(r.json()))
+
+def delete_activity(token, id):
 	# Activities path
-	path = '/api/v1/activities/'
+	path = '/api/v1/activities/'+str(id)
 	print('Contacting '+url+path+'...', end ="")
 	# Make sure the headers contain the authorization token
 	headers = { 'Authorization': token }
-	r = requests.post(url+path, json=json, headers=headers)
+	r = requests.delete(url+path, headers=headers)
 	if r.status_code == 200:
-		print("Created activity")
+		print("Deleted activity")
 		print('\t'+str(r.json()))
 		return
-	print('Failed to create activity, status code ['+str(r.status_code)+']')
+	print('Failed to delete activity, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
 def attend_activity(token, activity_id):
@@ -324,6 +348,20 @@ def attend_activity(token, activity_id):
 		print('\t'+str(r.json()))
 		return
 	print('Failed to attend activity, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def unattend_activity(token, activity_id):
+	# Activity path
+	path = '/api/v1/activities/'+str(activity_id)+'/attendees'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.delete(url+path, headers=headers)
+	if r.status_code == 200:
+		print("No longer attending activity")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to unattend activity, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
 def get_activities(token, page):
@@ -507,8 +545,9 @@ if __name__ == '__main__':
 			# Debug print the user data, just to be sure
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			
+			image = 'red-suspension-bridge-3493772.jpg'
+			
 			# Post tests
-			# image = 'red-suspension-bridge-3493772.jpg'
 			# post_data = create_post(token, image)
 			# if post_data:
 			# 	view_post(token, post_data['id'])
@@ -522,9 +561,11 @@ if __name__ == '__main__':
 			# unfollow_user(token, 'b9YtZb')
 
 			# Activities tests
-			# create_activity(token)
-			# attend_activity(token, 2)
-			get_activities(token, 1)
+			# create_activity(token, image)
+			# attend_activity(token, 1)
+			unattend_activity(token, 1)
+			# get_activities(token, 1)
+			# delete_activity(token, 1)
 
 			# Groups tests
 			# create_group(token, 'Test public group!', 'Mesa, Az', 'This is a test group! Get hype!', True)

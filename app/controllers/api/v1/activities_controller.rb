@@ -1,7 +1,7 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
-  before_action :authorize, only: [:create, :update, :filter]
-  before_action :set_activity, only: [:show, :update]
-  before_action :validate_owner, only: [:update]
+  before_action :authorize, only: [:create, :update, :filter, :destroy]
+  before_action :set_activity, only: [:show, :update, :destroy]
+  before_action :validate_owner, only: [:update, :destroy]
 
   # GET /activites
   def index
@@ -34,7 +34,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     render json: { 
       current_page: @activities.current_page, 
       total_pages:  @activities.total_pages,
-      activities: ActiveModelSerializers::SerializableResource.new(@activities).as_json
+      activities: ActiveModelSerializers::SerializableResource.new(@activities, current_user: @current_user).as_json
     }
   end
 
@@ -45,6 +45,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
 
   # PUT/PATCH /activities/:id
   def update
+    @activity.image.attach(data: params[:image]) if not params[:image].nil?
     @activity.update(activity_params)
     render json: @activity
   end
@@ -56,13 +57,19 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # Set the owner to the logged in user
     @activity.user_id = @current_user.id
     # Attach the image to the activity
-    @activity.image.attach(data: params[:image]) if !params[:image].nil?
+    @activity.image.attach(data: params[:image]) if not params[:image].nil?
     # Attempt to save in DB
     if @activity.save
       render json: @activity
     else
       render json: { errors: @activity.errors }, status: :unprocessable_entity
     end
+  end
+
+  # DELETE /activities/:id
+  def destroy
+    @activity.destroy
+    render json: { message: "Activity destroyed" }
   end
 
 private

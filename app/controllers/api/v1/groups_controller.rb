@@ -19,6 +19,8 @@ class Api::V1::GroupsController < Api::V1::BaseController
     @group = Group.new(group_params)
     # Set the owner to the logged in user
     @group.user_id = @current_user.id
+    # Attach the image to the group
+    @group.image.attach(data: params[:image]) if not params[:image].nil?
     # Save to DB
     if @group.save
       render json: @group

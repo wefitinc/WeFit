@@ -38,8 +38,9 @@ Rails.application.routes.draw do
 
       post '/activities/filter', to: 'activities#filter'
       
-      resources :activities, only: [ :index, :show, :create, :update ] do
-        resources :attendees, only: [ :index, :create, :destroy ]
+      resources :activities, only: [ :index, :show, :create, :update, :destroy ] do
+        resources :attendees, only: [ :index, :create ]
+        delete '/attendees', to: 'attendees#destroy'
       end
 
       resources :groups, only: [:index, :show, :create, :destroy ] do

@@ -1,4 +1,6 @@
 class Activity < ApplicationRecord
+  include Rails.application.routes.url_helpers
+  
   # Each activity belongs to it's creating user
   belongs_to :user
   # Each activity has many attending users (hopefully)

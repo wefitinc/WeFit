@@ -1,6 +1,10 @@
 class Group < ApplicationRecord
+  include Rails.application.routes.url_helpers
+  
   # Every group has a creator
   belongs_to :user
+  # Associate an image with each activity
+  has_one_base64_attached :image
   # Groups have many members
   has_many :members, dependent: :destroy
   has_many :invites, dependent: :destroy
@@ -21,6 +25,7 @@ class Group < ApplicationRecord
   # Groups are either public or invite only
   validates :public, inclusion: { in: [ true, false ] }
 
+  # Helper
   def owner?(user)
     return self.user.id == user.id
   end
@@ -29,5 +34,8 @@ class Group < ApplicationRecord
   end
   def invited?(user)
     return self.invites.exists?(user_id: user.id)
+  end
+  def get_image_url
+    url_for(self.image) if self.image.attached?
   end
 end
