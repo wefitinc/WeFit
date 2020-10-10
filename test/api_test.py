@@ -408,6 +408,36 @@ def create_group(token, title, location, description, public):
 	print('Failed to create group, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
+def get_groups(token):
+	json = {
+		'is_member': True,
+	}
+	# Members path
+	path = '/api/v1/groups/filter'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, json=json, headers=headers)
+	if r.status_code == 200:
+		print("Got group data")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get group data, status code ['+str(r.status_code)+']')
+
+def get_group(token, group_id):
+	# Members path
+	path = '/api/v1/groups/'+str(group_id)
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.get(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Got group data")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get group data, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 def join_group(token, group_id):
 	# Members path
 	path = '/api/v1/groups/'+str(group_id)+'/members'
@@ -458,6 +488,48 @@ def create_topic(token, group_id, anonymous, body):
 		print('\t'+str(r.json()))
 		return
 	print('Failed to create topic, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def get_topics(token, group_id):
+	# Topics path
+	path = '/api/v1/groups/'+str(group_id)+'/topics'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.get(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Got topics")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get topics, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def like_topic(token, topic_id):
+	# Topic path
+	path = '/api/v1/topics/'+str(topic_id)+'/likes'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Liked topic")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to like topic, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def unlike_topic(token, topic_id):
+	# Topic path
+	path = '/api/v1/topics/'+str(topic_id)+'/likes'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.delete(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Liked topic")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to like topic, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
 def get_conversations(token):
@@ -563,18 +635,22 @@ if __name__ == '__main__':
 			# Activities tests
 			# create_activity(token, image)
 			# attend_activity(token, 1)
-			unattend_activity(token, 1)
+			# unattend_activity(token, 1)
 			# get_activities(token, 1)
 			# delete_activity(token, 1)
 
 			# Groups tests
+			get_groups(token)
 			# create_group(token, 'Test public group!', 'Mesa, Az', 'This is a test group! Get hype!', True)
 			# create_group(token, 'Test private group!', 'Mesa, Az', 'This is a test group! Get hype!', False)
-			# join_group(token, 2)
+			# join_group(token, 1)
 			# invite_to_group(token, 2, 'b9YtZb')
 			# join_group(token, 2)
 			# create_topic(token, 2, False, "This is a test topic")
 			# create_topic(token, 2, True, "This is an anonymous test topic")
+			# get_topics(token, 4)
+			# like_topic(token, 1)
+			# unlike_topic(token, 1)
 
 			# Messaging test
 			# conversation_data = create_conversation(token, 'qN4tOb')

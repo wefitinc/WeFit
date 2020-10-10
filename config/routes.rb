@@ -43,16 +43,21 @@ Rails.application.routes.draw do
         delete '/attendees', to: 'attendees#destroy'
       end
 
+      post '/groups/filter', to: 'groups#filter'
+
       resources :groups, only: [:index, :show, :create, :destroy ] do
         resources :members, only: [ :index, :create, :destroy ]
         resources :invites, only: [ :create ]
-        resources :topics, only: [ :index, :create ]
+        resources :topics, only: [ :index, :create, :destroy ]
       end
 
       resources :topics, only: [:show, :destroy] do
         resources :likes, only: [ :index, :create ]
         resources :comments, only: [ :index, :create ]
       end
+
+      delete '/posts/:post_id/likes', to: 'likes#destroy'
+      delete '/topics/:topic_id/likes', to: 'likes#destroy'
 
       post  '/conversations/:conversation_id/messages/filter', to: 'messages#filter'
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_26_194912) do
+ActiveRecord::Schema.define(version: 2020_10_10_074453) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -242,6 +242,16 @@ ActiveRecord::Schema.define(version: 2020_07_26_194912) do
     t.boolean "anonymous", default: false
     t.index ["group_id"], name: "index_topics_on_group_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
+  end
+
+  create_table "trigrams", force: :cascade do |t|
+    t.string "trigram", limit: 3
+    t.integer "score", limit: 2
+    t.integer "owner_id"
+    t.string "owner_type"
+    t.string "fuzzy_field"
+    t.index ["owner_id", "owner_type", "fuzzy_field", "trigram", "score"], name: "index_for_match"
+    t.index ["owner_id", "owner_type"], name: "index_by_owner"
   end
 
   create_table "users", force: :cascade do |t|

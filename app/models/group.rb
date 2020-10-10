@@ -1,9 +1,10 @@
 class Group < ApplicationRecord
+  include PgSearch::Model
   include Rails.application.routes.url_helpers
   
   # Every group has a creator
   belongs_to :user
-  # Associate an image with each activity
+  # Associate an image with each group
   has_one_base64_attached :image
   # Groups have many members
   has_many :members, dependent: :destroy
@@ -24,6 +25,9 @@ class Group < ApplicationRecord
   	length: { maximum: 256 }
   # Groups are either public or invite only
   validates :public, inclusion: { in: [ true, false ] }
+
+  # Allow search on title and description
+  pg_search_scope :search_for, against: [:title, :description]
 
   # Helper
   def owner?(user)

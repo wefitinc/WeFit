@@ -37,6 +37,8 @@ gem 'geocoder'
 # Taggable posts
 gem 'acts-as-taggable-on', '~> 6.0'
 
+gem 'pg_search'
+
 # ActiveStorage stuff
 gem "aws-sdk-s3", require: false
 gem 'active_storage_base64'

@@ -1,5 +1,5 @@
 class Api::V1::LikesController < Api::V1::BaseController
-  before_action :authorize, only: [ :create ]
+  before_action :authorize, only: [ :create, :destroy ]
   before_action :set_owner
 
   # GET /:owner/:id/likes
@@ -9,7 +9,13 @@ class Api::V1::LikesController < Api::V1::BaseController
   # POST /:owner/:id/likes
   def create
     @owner.likes.where(user_id: @current_user.id).first_or_create
-    render json: { message: "Commented!" }
+    render json: { message: "Liked!" }
+  end
+  # DELETE /:owner/:id/likes
+  def destroy
+    @like = @owner.likes.where(user_id: @current_user.id).first
+    @like.destroy if not @like.nil?
+    render json: { message: "Unliked!" }
   end
 
 private
