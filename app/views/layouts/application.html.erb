@@ -12,10 +12,10 @@
     <meta name="msapplication-TileColor" content="#ff0800">
     <% end %>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%# SEO Stuff %>
-    <title>WeFit <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
+    <title>WeFit - The Healthy Social Network <%= if content_for?(:title) then ' | ' + yield(:title) end %></title>
     <meta name='description' content='<%= yield_meta_tag(:description, 'WeFit, the social network for all things health.') %>' />
     <meta name='keywords' content='<%= yield_meta_tag(:keywords, 'wefit,wefit.us,fitness,health') %>' />
 
@@ -32,7 +32,7 @@
 
     <!-- App CSS -->
     <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet">
     <!-- App JS -->
     <script
       src="https://code.jquery.com/jquery-3.5.0.min.js"
