@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
         post   'followers', to: 'follows#create'
         delete 'followers', to: 'follows#destroy'
-        
+
         get    'reviews', to: 'reviews#index'
         post   'reviews', to: 'reviews#create'
       end
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
       end
 
       post '/activities/filter', to: 'activities#filter'
-      
+
       resources :activities, only: [ :index, :show, :create, :update, :destroy ] do
         resources :attendees, only: [ :index, :create ]
         delete '/attendees', to: 'attendees#destroy'
@@ -62,7 +62,7 @@ Rails.application.routes.draw do
       post  '/conversations/:conversation_id/messages/filter', to: 'messages#filter'
 
       resources :conversations, only: [:index, :create] do
-        resources :messages, only: [:index, :create] 
+        resources :messages, only: [:index, :create]
       end
     end
   end
@@ -76,6 +76,8 @@ Rails.application.routes.draw do
   get 'about', to: 'static#about'
   get 'advertise', to: 'static#advertise'
   get 'professionals', to: 'static#professionals'
+  get 'helpcenter', to: 'static#helpcenter'
+  get 'terms', to: 'static#terms'
   # Root controller
   root 'static#home'
 end
