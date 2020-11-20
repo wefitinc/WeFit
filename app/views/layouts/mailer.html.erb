@@ -52,6 +52,13 @@
       </div>
     </section>
     <%= yield %>
+    <% if not @user.nil? then %>
+    <section>
+      <div class="container">
+        <p class="text-center text-small">This email was sent to <b><%= @user.email %></b>. Not you? Contact us immediately.</p>
+      </div>
+    </section>
+    <%e end %>
     <section class="hero bg-red">
       <div class="container">
         <%= image_tag 'https://wefit.us/assets/text-transparent-white-8afdb20c6706ec0bce4a0d325b0ea0c616b7f90900a644b37d9fce3fc4538e2a.png', size: '130x40', class: 'center' %>

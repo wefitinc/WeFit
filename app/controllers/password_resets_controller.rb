@@ -40,23 +40,23 @@ class PasswordResetsController < ApplicationController
   end
 
 private
-    def user_params
-      params.require(:user).permit(:password)
-    end
+  def user_params
+    params.require(:user).permit(:password)
+  end
 
-    def get_user
-      @user = User.find_by(email: params[:email])
+  def get_user
+    @user = User.find_by(email: params[:email])
+  end
+  # Checks if the user exists and the reset token matches
+  def valid_user
+    unless (@user && @user.authenticated?(:reset, params[:id]))
+      render 'new'
     end
-    # Checks if the user exists and the reset token matches
-    def valid_user
-      unless (@user && @user.authenticated?(:reset, params[:id]))
-        render 'new'
-      end
+  end
+  # Checks expiration of reset token.
+  def check_expiration
+    if @user.password_reset_expired?
+      redirect_to new_password_reset_url
     end
-    # Checks expiration of reset token.
-    def check_expiration
-      if @user.password_reset_expired?
-        redirect_to new_password_reset_url
-      end
-    end
+  end
 end
