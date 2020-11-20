@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   # API
   namespace :api do
     namespace :v1 do
-      post '/auth/signup', to: 'auth#signup'
-      post '/auth/login', to: 'auth#login'
-      get  '/auth/check', to: 'auth#check'
-      get  '/auth/me', to: 'auth#me'
-      post '/auth/upgrade', to: 'auth#upgrade'
+      post  '/auth/signup', to: 'auth#signup'
+      post  '/auth/login', to: 'auth#login'
+      get   '/auth/check', to: 'auth#check'
+      get   '/auth/me', to: 'auth#me'
+      patch '/auth/me', to: 'auth#update'
+      post  '/auth/upgrade', to: 'auth#upgrade'
 
       # TODO find a better routing for these
       get  '/users/:id/posts', to: 'posts#for_user'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
       resources :users, only: [ :show, :destroy ] do
         get    'following', to: 'follows#index_following'
         get    'followers', to: 'follows#index_followers'
+        get    'friends', to: 'follows#index_friends'
 
         post   'followers', to: 'follows#create'
         delete 'followers', to: 'follows#destroy'

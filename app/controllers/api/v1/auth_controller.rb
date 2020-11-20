@@ -22,6 +22,8 @@ class Api::V1::AuthController < Api::V1::BaseController
   def signup
     # Try and make a new user
     @user = User.new(signup_params)
+    # Attach the profile pic to the user
+    @user.profile_pic.attach(data: params[:profile_pic]) if not params[:profile_pic].nil?
     if @user.save
       # Send the activation email
       @user.create_activation_digest
@@ -59,6 +61,15 @@ class Api::V1::AuthController < Api::V1::BaseController
     end
   end
 
+  # PUT/PATCH /auth/me
+  def update
+    @current_user.profile_pic.attach(data: params[:profile_pic]) if not params[:profile_pic].nil?
+    if not @current_user.update(update_params) then
+      render json: { errors: @current_user.errors }, status: :unprocessable_entity
+    end
+    render json: @current_user
+  end
+
 private
   # Parameters for logging in
   # NOTE: Should we take in device location/type here too?
@@ -78,6 +89,15 @@ private
       :birthdate,
       :bio,
       :professional)
+  end
+  # Parameters for updating users
+  def update_params
+    params.permit(
+      :first_name,
+      :last_name,
+      :gender,
+      :birthdate,
+      :bio)
   end
   # Generate an authorization token and record a successful login
   def render_login

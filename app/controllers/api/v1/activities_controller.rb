@@ -46,7 +46,9 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
   # PUT/PATCH /activities/:id
   def update
     @activity.image.attach(data: params[:image]) if not params[:image].nil?
-    @activity.update(activity_params)
+    if not @activity.update(activity_params) then
+      render json: { errors: @activity.errors }, status: :unprocessable_entity
+    end
     render json: @activity
   end
 
@@ -87,6 +89,7 @@ private
     params.require(:filters).permit(
       :page, 
       :attending,
+      :min_date, :max_date,
       :min_difficulty, :max_difficulty,
       :latitude, :longitude, :radius)
   end

@@ -10,6 +10,10 @@ class Api::V1::FollowsController < Api::V1::BaseController
   def index_followers
     render json: @user.followers
   end
+  # GET /users/:user_id/friends
+  def index_friends
+    render json: @user.friends
+  end
 
   # POST /users/:user_id/followers
   def create

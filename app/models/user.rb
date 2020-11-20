@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Rails.application.routes.url_helpers
   # Basic email REGEX for server side validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   VALID_DATE_REGEX = /([12]\d{3})-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])/
@@ -18,6 +19,9 @@ class User < ApplicationRecord
   # Use hashids for more secure lookup
   include Hashid::Rails
   hashid_config override_find: true
+
+  # Associate a pofile pic with each user
+  has_one_base64_attached :profile_pic
 
   # Associate posts with users
   has_many :posts, dependent: :destroy
@@ -54,6 +58,7 @@ class User < ApplicationRecord
     length: { maximum: 50 }
   # The user needs a valid email address, unique within the database
   validates :email, 
+    on: :create,
     presence: true, 
     uniqueness: true,
     allow_blank: false, 
@@ -63,6 +68,7 @@ class User < ApplicationRecord
   before_save { email.downcase! }
   # Needs a password
   validates :password,
+    on: :create,
     presence: true,
     allow_blank: false, 
     length: { minimum: 6 }
@@ -90,6 +96,16 @@ class User < ApplicationRecord
     if: :professional? # A professional type is only required if the user is a professional
   validates :professional_type,
     inclusion: { in: PROFESSIONAL_TYPES }
+
+  def get_image_url
+    url_for(self.profile_pic) if self.profile_pic.attached?
+  end
+
+  # Friends are defined as users who are both following you and you are following
+  # Or: follwers ∩ following
+  def friends
+    followers & following
+  end
 
   def conversations
     Conversation.where('sender_id=? OR recipient_id=?', self.id,self.id)

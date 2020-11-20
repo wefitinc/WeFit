@@ -96,6 +96,27 @@ def get_me(token):
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
+def update_me(token):
+	json = {
+		'first_name': "Test2",
+		'last_name': "Test2"
+	}
+	# User path
+	path = '/api/v1/auth/me'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	# Make the request (GET)
+	r = requests.patch(url+path, headers=headers, json=json)
+	# If the request was successful
+	if r.status_code == 200:
+		print("Got my user data")
+		print('\t'+str(r.json()))
+		return r.json()
+	# If the request failed
+	print('Failed to authorize, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
 def get_user(user_id):
 	# User path
 	path = '/api/v1/users/'+str(user_id)
@@ -113,6 +134,76 @@ def get_user(user_id):
 	print('Failed to authorize, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 	return None
+
+def follow_user(token, user_id):
+	# Follow path
+	path = '/api/v1/users/'+str(user_id)+'/followers'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.post(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Followed user")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to follow user, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def unfollow_user(token, user_id):
+	# Follow path
+	path = '/api/v1/users/'+str(user_id)+'/followers'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.delete(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Unfollowed user")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to unfollow user, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def get_followers(token, user_id):
+	# Followers path
+	path = '/api/v1/users/'+str(user_id)+'/followers'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.get(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Got followers")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get followers, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def get_following(token, user_id):
+	# Following path
+	path = '/api/v1/users/'+str(user_id)+'/following'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.get(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Got following")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get following, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
+
+def get_friends(token, user_id):
+	# Friends path
+	path = '/api/v1/users/'+str(user_id)+'/friends'
+	print('Contacting '+url+path+'...', end ="")
+	# Make sure the headers contain the authorization token
+	headers = { 'Authorization': token }
+	r = requests.get(url+path, headers=headers)
+	if r.status_code == 200:
+		print("Got friends")
+		print('\t'+str(r.json()))
+		return
+	print('Failed to get friends, status code ['+str(r.status_code)+']')
+	print('\t'+str(r.json()))
 
 def create_post(token, image_filename):
 	# Get the mimetype of the file
@@ -256,34 +347,6 @@ def get_posts(token, tags):
 		print('\t'+str(r.json()))
 		return
 	print('Failed to get posts, status code ['+str(r.status_code)+']')
-	print('\t'+str(r.json()))
-
-def follow_user(token, user_id):
-	# Follow path
-	path = '/api/v1/users/'+str(user_id)+'/followers'
-	print('Contacting '+url+path+'...', end ="")
-	# Make sure the headers contain the authorization token
-	headers = { 'Authorization': token }
-	r = requests.post(url+path, headers=headers)
-	if r.status_code == 200:
-		print("Followed user")
-		print('\t'+str(r.json()))
-		return
-	print('Failed to follow user, status code ['+str(r.status_code)+']')
-	print('\t'+str(r.json()))
-
-def unfollow_user(token, user_id):
-	# Follow path
-	path = '/api/v1/users/'+str(user_id)+'/followers'
-	print('Contacting '+url+path+'...', end ="")
-	# Make sure the headers contain the authorization token
-	headers = { 'Authorization': token }
-	r = requests.delete(url+path, headers=headers)
-	if r.status_code == 200:
-		print("Unfollowed user")
-		print('\t'+str(r.json()))
-		return
-	print('Failed to unfollow user, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
 def create_activity(token, image_filename):
@@ -601,6 +664,8 @@ def create_message(token, conversation_id, body):
 	print('\t'+str(r.json()))
 
 if __name__ == '__main__':
+	# Image path for image upload test
+	image = 'red-suspension-bridge-3493772.jpg'
 	# Sign up the test user
 	# signup(email, password, 'Test', 'Test', '1970-01-01', 'Other')
 	# qN4tOb
@@ -617,7 +682,15 @@ if __name__ == '__main__':
 			# Debug print the user data, just to be sure
 			print("Hello "+user_data['first_name']+" "+user_data['last_name']+", the API works!")
 			
-			image = 'red-suspension-bridge-3493772.jpg'
+			# User test
+			# update_me(token)
+
+			# User following tests
+			# follow_user(token, 'b9YtZb')
+			# unfollow_user(token, 'b9YtZb')
+			# get_followers(test, user_data['id'])
+			# get_following(test, user_data['id'])
+			get_friends(token, user_data['id'])
 			
 			# Post tests
 			# post_data = create_post(token, image)
@@ -628,10 +701,6 @@ if __name__ == '__main__':
 			# 	# delete_post(token, post_data['id'])	
 			# get_posts(token, [])
 
-			# User following tests
-			# follow_user(token, 'b9YtZb')
-			# unfollow_user(token, 'b9YtZb')
-
 			# Activities tests
 			# create_activity(token, image)
 			# attend_activity(token, 1)
@@ -640,7 +709,7 @@ if __name__ == '__main__':
 			# delete_activity(token, 1)
 
 			# Groups tests
-			get_groups(token)
+			# get_groups(token)
 			# create_group(token, 'Test public group!', 'Mesa, Az', 'This is a test group! Get hype!', True)
 			# create_group(token, 'Test private group!', 'Mesa, Az', 'This is a test group! Get hype!', False)
 			# join_group(token, 1)
@@ -648,7 +717,7 @@ if __name__ == '__main__':
 			# join_group(token, 2)
 			# create_topic(token, 2, False, "This is a test topic")
 			# create_topic(token, 2, True, "This is an anonymous test topic")
-			# get_topics(token, 4)
+			# get_topics(token, 7)
 			# like_topic(token, 1)
 			# unlike_topic(token, 1)
 
