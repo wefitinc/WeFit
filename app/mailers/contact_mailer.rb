@@ -3,6 +3,6 @@ class ContactMailer < ApplicationMailer
 		@name = name
 		@email = email
 		@body = body
-		mail to: 'contact@wefit.us', reply_to: email, subject: "Contact request"
+		mail to: 'kyle@wefit.us', reply_to: email, subject: "Contact request"
 	end
 end

@@ -1,14 +1,53 @@
 <%# Meta data about the page %>
 <% title 'Reset your Password' %>
 <%# Page content %>
-<div class="px-3 py-3 mx-auto my-auto">
-	<div class="row">
-		<div class="col-md-6 px-5 mx-auto text-center">
-			<h1>Forgot password</h1>
-			<%= form_for(:password_reset, url: password_resets_path) do |f| %>
-				<div class="form-group"><%= f.email_field :email, class: 'form-control', required: '', placeholder: 'Email' %></div>
-				<div class="form-group"><%= f.submit "Submit", class: 'btn btn-green btn-lg w-50 py-3' %></div>
-			<% end %>
-		</div>
-	</div>
+<div class="page-header">
+  <div data-collapse="medium" data-animation="default" data-duration="400" role="banner" class="nav-bar w-nav">
+    <div class="logo-wrapper">
+      <%= link_to image_tag("logo-transperant-1.svg", alt: "WeFit Logo", class: "logo"), root_path, class: "brand w-nav-brand" %>
+    </div>
+    <nav role="navigation" class="nav-menu w-nav-menu">
+      <div class="nav-link-wrap">
+        <a href="index.html" data-w-id="a10aaa46-f1ff-9464-bae3-58462542015b" class="nav-link w-nav-link">Home</a>
+        <div data-w-id="a10aaa46-f1ff-9464-bae3-58462542015d" class="nav-line"></div>
+      </div>
+    </nav>
+    <div class="menu-button w-nav-button">
+      <div class="icon w-icon-nav-menu"></div>
+    </div>
+  </div>
+  <div class="container">
+    <h1 class="page-header-title">Password Reset</h1>
+  </div>
+  <div class="section-circle-left"></div>
+  <div class="section-circle-right"></div>
+  <div class="style-guide-title white">Forgot your password?</div>
 </div>
+<section class="section">
+  <div class="container">
+    <div class="style-guide-block-wrapper">
+      <div class="style-guide-block">
+        <div class="colors-wrapper"></div>
+        <div class="w-form">
+          <h2 class="heading">Request password reset</h3>
+          <p class="heading">Enter your email and a password reset link will be sent to you</p>
+          <%= form_for(:password_reset, url: password_resets_path) do |f| %>
+            <%= invisible_captcha :name %>
+            <div class="contact-form-grid">
+              <div id="w-node-9a87716d1805-1130cd2c">
+                <%= f.label :email, "Email", class: 'field-label-2' %>
+                <%= f.email_field :email, placeholder: "Email", class: 'text-field-2 w-input', required: true %>
+              </div>
+            </div>
+            <%= submit_tag "Submit", data: {wait: "Please wait..."}, class: "submit-button w-button" %>
+          <% end %>
+          <div class="w-form-done">
+            <div>Thank you! Your submission has been received!</div>
+          </div>
+          <div class="w-form-fail">
+            <div>Oops! Something went wrong while submitting the form.</div>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
