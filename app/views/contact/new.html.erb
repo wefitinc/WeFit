@@ -1,28 +1,123 @@
 <%# Meta data about the page %>
-<% title 'Contact' %>
-<% meta_tag :description, 'We’d love to hear from you!' %>
+<% title 'Help Center' %>
 <%# Page content %>
-<div id="contact-page">
-	<div class="col-md-4 px-4 py-4 mx-auto my-auto bg-light border rounded-big shadow">
-		<h3 class="text-center">Contact Us</h3>
-		<%= form_tag '/contact', method: :post do %>
-            <%= invisible_captcha :subtitle %>
-			<div class="form-group"><%= text_field_tag :name, '', class: 'form-control', placeholder: 'Name', required: '' %></div>
-			<div class="form-group"><%= email_field_tag :email, '', class: 'form-control', placeholder: 'Email', required: '' %></div>
-			<div class="form-group"><%= text_area_tag :body, '', class: 'form-control', size: '3x4', placeholder: 'Message', required: '' %></div>
-			<div class="form-group text-center"><%= submit_tag :Submit, class: 'btn btn-green btn-lg w-50' %></div>
-		<% end %>
-	</div>
+<div class="page-header">
+  <div data-collapse="medium" data-animation="default" data-duration="400" role="banner" class="nav-bar w-nav">
+    <div class="logo-wrapper">
+      <%= link_to image_tag("logo-transperant-1.svg", alt: "WeFit Logo", class: "logo"), root_path, class: "brand w-nav-brand" %>
+    </div>
+    <nav role="navigation" class="nav-menu w-nav-menu">
+      <div class="nav-link-wrap">
+        <a href="index.html" data-w-id="a10aaa46-f1ff-9464-bae3-58462542015b" class="nav-link w-nav-link">Home</a>
+        <div data-w-id="a10aaa46-f1ff-9464-bae3-58462542015d" class="nav-line"></div>
+      </div>
+    </nav>
+    <div class="menu-button w-nav-button">
+      <div class="icon w-icon-nav-menu"></div>
+    </div>
+  </div>
+  <div class="container">
+    <h1 class="page-header-title">Help Center<br></h1>
+  </div>
+  <div class="section-circle-left"></div>
+  <div class="section-circle-right"></div>
 </div>
-<div id="background-wrap">
-    <div class="bubble x1"></div>
-    <div class="bubble x2"></div>
-    <div class="bubble x3"></div>
-    <div class="bubble x4"></div>
-    <div class="bubble x5"></div>
-    <div class="bubble x6"></div>
-    <div class="bubble x7"></div>
-    <div class="bubble x8"></div>
-    <div class="bubble x9"></div>
-    <div class="bubble x10"></div>
-</div>
+<section id="contact-form" class="contact-form">
+  <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+    <div class="w-tab-content">
+      <div data-w-tab="Tab 2" class="w-tab-pane"></div>
+    </div>
+  </div>
+  <div data-duration-in="300" data-duration-out="100" class="w-tabs">
+    <div class="tabs-menu-2 w-tab-menu">
+      <a data-w-tab="Tab 1" class="tab-link-tab-1-3 w-inline-block w-tab-link w--current">
+        <div class="text-block-4">FAQs</div>
+      </a>
+      <a data-w-tab="Tab 2" class="tab-link-tab-2-3 w-inline-block w-tab-link">
+        <div class="text-block-3">Contact Us</div>
+      </a>
+    </div>
+    <div class="tabs-content w-tab-content">
+      <div data-w-tab="Tab 1" class="tab-pane-tab-1 w-tab-pane w--tab-active">
+        <div class="columns-2 w-row">
+          <div class="w-col w-col-4">
+            <h6 class="heading-2">Is WeFit free?</h6>
+            <p class="paragraph-7">YES! WeFit is completely free to download and use. There are paid services offered by health professionals on our platform but you do NOT have to purchase those in order to get the full WeFit experience. </p>
+          </div>
+          <div class="w-col w-col-4">
+            <h6 class="heading-3">Is WeFit only available for iOS?</h6>
+            <p class="paragraph-2">Yes. WeFit is currently only available on iOS, but there are plan to expand our offering to Android and Web platforms soon.</p>
+          </div>
+          <div class="w-col w-col-4">
+            <h6 class="heading-4">How do I change/reset my password?</h6>
+            <p class="paragraph-3">Reset your password here: <a href="#" class="link">https://www.wefit.us/resetpassword</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div data-w-tab="Tab 2" class="w-tab-pane">
+        <div class="container-2 w-container">
+          <h2 class="heading">Contact Us</h2>
+          <div class="w-form">
+            <%= form_tag '/contact', id: 'wf-form-Contact-Form', name: 'wf-form-Contact-Form', data: {name: 'Contact Form'}, method: :post do %>
+              <%= invisible_captcha :subtitle %>
+              <div class="contact-form-grid">
+                <div id="w-node-9a87716d17f5-1130cd2c">
+                  <%= label_tag :name, "Full Name", class: 'field-label-3' %>
+                  <%= text_field_tag :name, '', placeholder: "Full Name", class: 'text-field-2 w-input', required: true %>
+                </div>
+                <div id="w-node-9a87716d17fd-1130cd2c">
+                  <%= label_tag :email, "Email", class: 'field-label' %>
+                  <%= text_field_tag :email, '', placeholder: "Email", class: 'text-field-3 w-input', required: true %>
+                </div>
+                <div id="w-node-9a87716d1805-1130cd2c">
+                  <%= label_tag :body, "Message", class: 'field-label-2' %>
+                  <%= text_area_tag :body, '', placeholder: "Message", class: 'textarea w-input', maxlength: 2048 %>
+                </div>
+                <%= submit_tag "Send", data: {wait: "Please wait..."}, class: "submit-button w-button" %>
+              </div>
+            <% end %>
+            <div class="w-form-done">
+              <div>Thank you! Your submission has been received!</div>
+            </div>
+            <div class="w-form-fail">
+              <div>Oops! Something went wrong while submitting the form.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="tabs-content-2 w-tab-content">
+      <div data-w-tab="Tab 1" class="tab-pane-tab-1 w-tab-pane w--tab-active">
+        <div class="columns-2 w-row">
+          <div class="w-col w-col-4">
+            <h6 class="heading-6">How does COVID-19 impact WeFit activities?</h6>
+            <p class="paragraph-5">WeFit activities are a great way to get active with a group of friends. We recommend that groups attending activities be no larger than 10 people, and that proper safety protocols are followed (6 feet apart, wear masks).</p>
+          </div>
+          <div class="w-col w-col-4">
+            <h6 class="heading-6">How do I block another user?</h6>
+            <p class="paragraph-5">There are several ways to block a user who is ruining your experience on WeFit. The simplest way is to navigate to the specific users profile, click the icon in the top right with the 3 dots and on that popup there is an option to block user. This can be undone at anytime at <strong>settings &gt; account settings &gt; blocked users.</strong></p>
+          </div>
+          <div class="w-col w-col-4">
+            <h6 class="heading-5">Is WeFit safe and secure?</h6>
+            <p class="paragraph-4">Yes. We take very serious measures to ensure your privacy and safety while using our platform. Users have the ability to post completely anonymously on our support groups feature to ensure that any sensitive health information you give out can not be traced back to you. Make sure to use the anonymous mode if you do decide to post confidential things. </p>
+          </div>
+        </div>
+      </div>
+      <div data-w-tab="Tab 2" class="w-tab-pane"></div>
+    </div>
+    <div class="tabs-content-2 w-tab-content">
+      <div data-w-tab="Tab 1" class="tab-pane-tab-1 w-tab-pane w--tab-active">
+        <div class="columns-2 w-row">
+          <div class="w-col w-col-3"></div>
+          <div class="column-3 w-col w-col-6">
+            <h6 class="heading-7">How do I use WeFit?</h6>
+            <div style="padding-top:56.17021276595745%" id="w-node-52f48a75180e-1130cd2c" class="w-embed-youtubevideo"><iframe src="https://www.youtube.com/embed/t97VaPZT2hc?rel=0&amp;controls=1&amp;autoplay=0&amp;mute=0&amp;start=0" frameborder="0" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:auto" allow="autoplay; encrypted-media" allowfullscreen=""></iframe></div>
+          </div>
+          <div class="w-col w-col-3"></div>
+        </div>
+      </div>
+      <div data-w-tab="Tab 2" class="w-tab-pane"></div>
+    </div>
+  </div>
+</section>

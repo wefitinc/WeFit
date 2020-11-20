@@ -74,11 +74,11 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   # Account activation routing
   resources :activations, only: [:new, :edit]
+  # Contact routing
+  post 'contact', to: 'contact#create'
   # Static pages
-  get 'about', to: 'static#about'
-  get 'advertise', to: 'static#advertise'
-  get 'professionals', to: 'static#professionals'
-  get 'helpcenter', to: 'static#helpcenter'
+  get 'help', to: 'contact#new'
+  get 'privacy', to: 'static#privacy'
   get 'terms', to: 'static#terms'
   # Root controller
   root 'static#home'
