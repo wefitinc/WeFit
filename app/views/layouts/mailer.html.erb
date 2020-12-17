@@ -42,26 +42,26 @@
         border-radius: 0.5rem;
         font-size: 1.2em;
       }
+      a:link    { color: #fff; }
+      a:visited { color: #fff; }
+      .white { color: #fff; }
+      .centered { text-align: center; }
     </style>
   </head>
 
   <body>
     <section class="hero bg-red">
       <div class="container">
-        <%= image_tag 'logo-transperant-1.svg', size: '200x100', class: 'center' %>
+        <%= email_image_tag "logo-email.png", class: 'center' %>
       </div>
     </section>
     <%= yield %>
-    <% if not @user.nil? then %>
-    <section>
-      <div class="container">
-        <p class="text-center text-small">This email was sent to <b><%= @user.email %></b>. Not you? Contact us immediately.</p>
-      </div>
-    </section>
-    <%e end %>
     <section class="hero bg-red">
       <div class="container">
-        <%= image_tag 'https://wefit.us/assets/text-transparent-white-8afdb20c6706ec0bce4a0d325b0ea0c616b7f90900a644b37d9fce3fc4538e2a.png', size: '130x40', class: 'center' %>
+        <% if not @user.nil? %>
+        <p class="white centered">This email was sent to <%= @user.email %>. Not you? Contact us immediately.</p>
+        <% end %>
+        <p class="white centered">&copy; Wefit Inc. <%= Time.zone.now.year %></p>
       </div>
     </section>
   </body>

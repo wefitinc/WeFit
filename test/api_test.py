@@ -690,7 +690,7 @@ if __name__ == '__main__':
 			# unfollow_user(token, 'b9YtZb')
 			# get_followers(test, user_data['id'])
 			# get_following(test, user_data['id'])
-			get_friends(token, user_data['id'])
+			# get_friends(token, user_data['id'])
 			
 			# Post tests
 			# post_data = create_post(token, image)
