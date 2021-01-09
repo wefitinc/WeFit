@@ -33,6 +33,9 @@ Rails.application.routes.draw do
       post '/posts/filter', to: 'posts#filter'
 
       resources :posts, only: [ :index, :show, :create, :destroy ] do
+        collection do
+          get "category_initial_posts"
+        end
         resources :views, only: [ :index, :create ]
         resources :likes, only: [ :index, :create ]
         resources :comments, only: [ :index, :create ]

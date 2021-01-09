@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_08_074356) do
+ActiveRecord::Schema.define(version: 2021_01_09_210706) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -66,6 +66,12 @@ ActiveRecord::Schema.define(version: 2020_10_08_074356) do
     t.datetime "updated_at", null: false
     t.index ["blocked_id"], name: "index_blocks_on_blocked_id"
     t.index ["user_id"], name: "index_blocks_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -164,6 +170,15 @@ ActiveRecord::Schema.define(version: 2020_10_08_074356) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "post_tagged_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_post_tagged_users_on_post_id"
+    t.index ["user_id"], name: "index_post_tagged_users_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "background"
     t.text "text"
@@ -177,7 +192,7 @@ ActiveRecord::Schema.define(version: 2020_10_08_074356) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "font_size", null: false
+    t.float "font_size"
     t.float "textview_width"
     t.float "textview_height"
     t.string "header_color"
@@ -189,6 +204,8 @@ ActiveRecord::Schema.define(version: 2020_10_08_074356) do
     t.float "image_position_y"
     t.float "image_width"
     t.float "image_height"
+    t.string "media_url", null: false
+    t.float "score", default: 0.0
     t.index ["latitude", "longitude"], name: "index_posts_on_latitude_and_longitude"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
