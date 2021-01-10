@@ -86,4 +86,5 @@ class Post < ApplicationRecord
   def get_image_url
     url_for(self.image) if self.image.attached?
   end
+
 end

@@ -6,6 +6,8 @@ class Api::V1::ViewsController < Api::V1::BaseController
   def index
   	render json: @post.views
   end
+
+  # TODO: make it accept multiple values otherwise too many API calls.
   # POST /views
   def create
     @view = @post.views.where(user_id: @current_user.id).first_or_create

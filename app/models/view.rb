@@ -9,4 +9,13 @@ class View < ApplicationRecord
   validates :user,
     presence: true,
     uniqueness: { scope: :post }
+
+  after_commit :inc_post_score, on: :create
+
+  private 
+
+  def inc_post_score
+    self.post.update(score: self.post.score + ViewValue)
+  end
+
 end
