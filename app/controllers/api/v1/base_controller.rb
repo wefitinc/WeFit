@@ -3,6 +3,7 @@ class Api::V1::BaseController < ActionController::API
   include Api::V1::BaseHelper
 
   before_action :set_default_response_format
+  before_action :get_page_param
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
@@ -22,4 +23,9 @@ class Api::V1::BaseController < ActionController::API
   def set_default_response_format
     request.format = :json
   end
+
+  def get_page_param
+    @page_param = params[:page] || FirstPage
+  end
+  
 end

@@ -1,3 +1,5 @@
+require 'json_web_token'
+
 module Api::V1::BaseHelper
 
   # Check for authorization in the header

@@ -8,4 +8,22 @@ class Like < ApplicationRecord
   validates :user,
     presence: true,
     uniqueness: { scope: :owner }
+
+  after_commit :inc_post_score, on: :create
+  after_commit :dec_post_score, on: :destroy
+
+  private 
+
+  def inc_post_score
+  	if self.owner_type == "Post"
+  		self.owner.update(score: self.owner.score + LikeValue)
+  	end
+  end
+
+  def dec_post_score
+  	if self.owner_type == "Post"
+  		self.owner.update(score: self.owner.score - LikeValue)
+  	end
+  end
+
 end

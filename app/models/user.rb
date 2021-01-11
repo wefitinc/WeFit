@@ -182,4 +182,8 @@ class User < ApplicationRecord
     return false if string.nil?
     BCrypt::Password.new(string).is_password?(token)
   end
+
+  def name
+    "#{first_name} #{last_name}"
+  end
 end

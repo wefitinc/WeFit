@@ -11,6 +11,12 @@ class Api::V1::CommentsController < Api::V1::BaseController
     @owner.comments.where(user_id: @current_user.id, body: params[:body]).create
     render json: { message: "Commented!" }
   end
+  # POST /:owner/:id/comments/:id
+  def destroy
+    @comment = Comment.find_by(id: params[:id])
+    @comment.destroy if @comment.present?
+    render json: { message: "Uncommented!" }
+  end
 
 private
   def set_owner

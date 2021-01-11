@@ -11,4 +11,21 @@ class Comment < ApplicationRecord
     presence: true, 
     allow_blank: false, 
     length: { maximum: 128 }
+
+  after_commit :inc_post_score, on: :create
+  after_commit :dec_post_score, on: :destroy
+
+  private 
+
+  def inc_post_score
+    if self.owner_type == "Post"
+      self.owner.update(score: self.owner.score + CommentValue)
+    end
+  end
+
+  def dec_post_score
+    if self.owner_type == "Post"
+      self.owner.update(score: self.owner.score - CommentValue)
+    end
+  end
 end

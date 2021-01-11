@@ -33,9 +33,17 @@ Rails.application.routes.draw do
       post '/posts/filter', to: 'posts#filter'
 
       resources :posts, only: [ :index, :show, :create, :destroy ] do
+        collection do
+          get 'category_top_posts'
+          get 'category_posts'
+          post 'rewatch'
+          get 'taggable_users'
+          post 'search_taggable_user'
+          get 'categories'
+        end
         resources :views, only: [ :index, :create ]
         resources :likes, only: [ :index, :create ]
-        resources :comments, only: [ :index, :create ]
+        resources :comments, only: [ :index, :create, :destroy ]
       end
 
       post '/activities/filter', to: 'activities#filter'
@@ -55,7 +63,7 @@ Rails.application.routes.draw do
 
       resources :topics, only: [:show, :destroy] do
         resources :likes, only: [ :index, :create ]
-        resources :comments, only: [ :index, :create ]
+        resources :comments, only: [ :index, :create, :destroy ]
       end
 
       delete '/posts/:post_id/likes', to: 'likes#destroy'
