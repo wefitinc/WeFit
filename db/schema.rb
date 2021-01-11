@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_210706) do
     t.float "image_position_y"
     t.float "image_width"
     t.float "image_height"
-    t.string "media_url", null: false
+    t.string "media_url", default: "", null: false
     t.float "score", default: 0.0
     t.index ["latitude", "longitude"], name: "index_posts_on_latitude_and_longitude"
     t.index ["user_id"], name: "index_posts_on_user_id"
