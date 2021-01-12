@@ -43,14 +43,19 @@ Rails.application.routes.draw do
         end
         resources :views, only: [ :index, :create ]
         resources :likes, only: [ :index, :create ]
+        resources :reports, only: [ :index, :create ]
         resources :comments, only: [ :index, :create, :destroy ]
       end
 
       post '/activities/filter', to: 'activities#filter'
 
       resources :activities, only: [ :index, :show, :create, :update, :destroy ] do
-        resources :attendees, only: [ :index, :create ]
-        delete '/attendees', to: 'attendees#destroy'
+        resources :reports, only: [ :index, :create ]
+        resources :participants, only: [ :index, :create ] do
+          collection do
+            get 'attendees'
+          end
+        end
       end
 
       post '/groups/filter', to: 'groups#filter'

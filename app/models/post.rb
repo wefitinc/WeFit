@@ -16,6 +16,9 @@ class Post < ApplicationRecord
   has_many :likes, 
     as: :owner,
     dependent: :destroy
+  has_many :reports, 
+    as: :owner,
+    dependent: :destroy
   has_many :post_tagged_users, 
     dependent: :destroy
   accepts_nested_attributes_for :post_tagged_users

@@ -401,7 +401,7 @@ def delete_activity(token, id):
 
 def attend_activity(token, activity_id):
 	# Activity path
-	path = '/api/v1/activities/'+str(activity_id)+'/attendees'
+	path = '/api/v1/activities/'+str(activity_id)+'/participants/attendees'
 	print('Contacting '+url+path+'...', end ="")
 	# Make sure the headers contain the authorization token
 	headers = { 'Authorization': token }
@@ -411,20 +411,6 @@ def attend_activity(token, activity_id):
 		print('\t'+str(r.json()))
 		return
 	print('Failed to attend activity, status code ['+str(r.status_code)+']')
-	print('\t'+str(r.json()))
-
-def unattend_activity(token, activity_id):
-	# Activity path
-	path = '/api/v1/activities/'+str(activity_id)+'/attendees'
-	print('Contacting '+url+path+'...', end ="")
-	# Make sure the headers contain the authorization token
-	headers = { 'Authorization': token }
-	r = requests.delete(url+path, headers=headers)
-	if r.status_code == 200:
-		print("No longer attending activity")
-		print('\t'+str(r.json()))
-		return
-	print('Failed to unattend activity, status code ['+str(r.status_code)+']')
 	print('\t'+str(r.json()))
 
 def get_activities(token, page):

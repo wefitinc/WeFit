@@ -8,3 +8,6 @@ FollowingCategoryName = "Following"
 ViewValue = 0.1
 LikeValue = 1
 CommentValue = 2
+
+# Activities
+InitialRadialDistance = 25

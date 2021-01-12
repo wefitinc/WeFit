@@ -10,4 +10,7 @@ class Login < ApplicationRecord
   # NOTE: The IP address comes from the request anyway
   validates :user, presence: true
   validates :ip_address, presence: true
+
+  reverse_geocoded_by :latitude, :longitude, address: :location
+  after_validation :reverse_geocode
 end

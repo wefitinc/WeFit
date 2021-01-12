@@ -1,11 +1,29 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
-  before_action :authorize, only: [:create, :update, :filter, :destroy]
+  before_action :authorize, only: [:index, :create, :update, :filter, :destroy, :show]
   before_action :set_activity, only: [:show, :update, :destroy]
   before_action :validate_owner, only: [:update, :destroy]
 
   # GET /activites
+  # Params: {page: <int>, lat: <decimal>, lng: <decimal>}
   def index
-    render json: Activity.all
+    # Initial Filters: upcoming, 25 miles, and all difficulties selected.
+    @lat = params[:latitude]
+    @lon = params[:longitude]
+    # Order by event date/time
+    @activities = Activity.all.order('event_time ASC')
+    # Filter by location
+    @activities = @activities.near([@lat, @lon], InitialRadialDistance) if @lat && @lon
+    # Paginate results
+    @activities = @activities.paginate(page: @page_param)
+    # Get participants list
+    attendee_list, absentee_list = get_participants_list(@activities)
+    # Render results
+    render json: { 
+      current_page: @activities.current_page, 
+      total_pages:  @activities.total_pages,
+      activities: ActiveModelSerializers::SerializableResource.new(@activities, 
+        current_user: @current_user, attendee_list: attendee_list, absentee_list: absentee_list).as_json
+    }
   end
 
   # POST /activities/filter
@@ -30,6 +48,8 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # Paginate results
     @page = filter_params[:page] || 1
     @activities = @activities.paginate(page: @page, per_page: 10)
+    # Get participants list
+    attendee_list, absentee_list = get_participants_list(@activities)
     # Render results
     render json: { 
       current_page: @activities.current_page, 
@@ -40,7 +60,13 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
 
   # GET /activities/:id
   def show
-    render json: @activity
+    # Get participants list
+    attendee_list, absentee_list = get_participants_list([@activity])
+    # Render results
+    render json: { 
+      activity: ActiveModelSerializers::SerializableResource.new(@activity, 
+        current_user: @current_user, attendee_list: attendee_list, absentee_list: absentee_list).as_json
+    }
   end
 
   # PUT/PATCH /activities/:id
@@ -83,7 +109,9 @@ private
       :google_placeID,
       :location_name,
       :location_address,
-      :difficulty)
+      :difficulty, 
+      :latitude, 
+      :longitude)
   end
   def filter_params
     params.require(:filters).permit(
@@ -99,5 +127,15 @@ private
   end
   def validate_owner
     render json: { errors: "You are not the owner of this activity" }, status: :unauthorized if not @current_user.id == @activity.user_id
+  end
+
+  def get_participants_list(records)
+    participants = Participant.where(activity_id: records.map(&:id), user_id: @current_user.id)
+    attendee_list = []; absentee_list = []
+    participants.each do |obj|
+      attendee_list << obj.activity_id if obj.is_attending
+      absentee_list << obj.activity_id unless obj.is_attending
+    end
+    return attendee_list, absentee_list
   end
 end

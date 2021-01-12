@@ -3,16 +3,25 @@ class Activity < ApplicationRecord
   
   # Each activity belongs to it's creating user
   belongs_to :user
-  # Each activity has many attending users (hopefully)
-  has_many :attendees, dependent: :destroy
+
+  has_many :participants, dependent: :destroy
+  has_many :attendees, -> { where "is_attending = true" }, class_name: "Participant"
+  has_many :absentees, -> { where "is_attending = false" }, class_name: "Participant"
+
+  has_many :attendee_users, source: "user", through: :attendees
+  has_many :absentee_users, source: "user", through: :absentees
+
+  has_many :reports, 
+    as: :owner,
+    dependent: :destroy
 
   # Allow filtering on difficulty ramges
   scope :min_difficulty, ->(min) { where('difficulty >= ?', min) }
   scope :max_difficulty, ->(max) { where('difficulty <= ?', max) }
 
-  # Geocode the address into latitude and longitude
-  geocoded_by :location_address
-  after_validation :geocode 
+  # Geocode the address into latitude and longitude: getting lat, lng from client
+  # geocoded_by :location_address
+  # after_validation :geocode 
 
   # Associate an image with each activity
   has_one_base64_attached :image

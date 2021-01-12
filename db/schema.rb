@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_09_210706) do
+ActiveRecord::Schema.define(version: 2021_01_12_144802) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -47,16 +50,9 @@ ActiveRecord::Schema.define(version: 2021_01_09_210706) do
     t.integer "attendees_count", default: 0
     t.decimal "latitude"
     t.decimal "longitude"
+    t.integer "absentees_count", default: 0
+    t.integer "reports_count"
     t.index ["user_id"], name: "index_activities_on_user_id"
-  end
-
-  create_table "attendees", force: :cascade do |t|
-    t.integer "activity_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_attendees_on_activity_id"
-    t.index ["user_id"], name: "index_attendees_on_user_id"
   end
 
   create_table "blocks", force: :cascade do |t|
@@ -147,6 +143,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_210706) do
     t.datetime "updated_at", null: false
     t.decimal "latitude"
     t.decimal "longitude"
+    t.string "location"
     t.index ["user_id"], name: "index_logins_on_user_id"
   end
 
@@ -168,6 +165,16 @@ ActiveRecord::Schema.define(version: 2021_01_09_210706) do
     t.datetime "updated_at", null: false
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "participants", force: :cascade do |t|
+    t.bigint "activity_id"
+    t.bigint "user_id"
+    t.boolean "is_attending", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_participants_on_activity_id"
+    t.index ["user_id"], name: "index_participants_on_user_id"
   end
 
   create_table "post_tagged_users", force: :cascade do |t|
@@ -206,8 +213,19 @@ ActiveRecord::Schema.define(version: 2021_01_09_210706) do
     t.float "image_height"
     t.string "media_url", null: false
     t.float "score", default: 0.0
+    t.integer "reports_count"
     t.index ["latitude", "longitude"], name: "index_posts_on_latitude_and_longitude"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "owner_type"
+    t.bigint "owner_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_type", "owner_id"], name: "index_reports_on_owner_type_and_owner_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -296,4 +314,7 @@ ActiveRecord::Schema.define(version: 2021_01_09_210706) do
     t.index ["user_id"], name: "index_views_on_user_id"
   end
 
+  add_foreign_key "participants", "activities"
+  add_foreign_key "participants", "users"
+  add_foreign_key "reports", "users"
 end
