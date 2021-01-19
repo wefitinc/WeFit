@@ -4,6 +4,7 @@ class GroupSerializer < ActiveModel::Serializer
     :title,
     :public,
     :is_member,
+    :is_invited,
     :image_url,
     :location,
     :description,
@@ -20,5 +21,11 @@ class GroupSerializer < ActiveModel::Serializer
     # NOTE: Use 'any?' instead of 'exists?' to try and prevent a second DB query
     @current_user = @instance_options[:current_user]
     return object.member?(@current_user)
+  end
+  def is_invited
+    # False by default if the user was not passed
+    return false if not @instance_options[:invited_groups]
+    # Return if an invited record exists for this user
+    return @instance_options[:invited_groups].include?(object.id)
   end
 end

@@ -7,6 +7,8 @@ class Api::V1::TopicsController < Api::V1::BaseController
 
   # GET /topics
   def index
+    # Posts should by default display by most recent at the top, and the filter option 
+    # should be to display list by most recent or most popular (likes + comments).
   	render json: @group.topics, current_user: @current_user
   end
 
@@ -17,6 +19,9 @@ class Api::V1::TopicsController < Api::V1::BaseController
 
   # POST /topics
   def create
+    # Users can attach a picture from their camera or photo gallery, and toggle on anonymous mode 
+    # which conceals the users identity from being seen by anyone in the group
+    
     # Create the topic
     @topic = Topic.new(topic_params)
     # Set the group

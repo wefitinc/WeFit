@@ -1,11 +1,35 @@
 class Api::V1::GroupsController < Api::V1::BaseController
   before_action :authorize
-  before_action :set_group, only: [:show, :destroy]
-  before_action :check_owner, only: [:destroy]
+  before_action :set_group, only: [:show, :destroy, :leave, :admin, :remove_admin]
+  before_action :set_user, only: [:admin, :remove_admin]
+  before_action :auth_group_action, only: [:destroy, :admin]
+  before_action :check_owner, only: [:leave]
 
   # GET /groups
   def index
   	render json: Group.all, current_user: @current_user
+  end
+
+  # GET /groups/suggestions
+  def suggestions
+    joined_group_ids = Member.where(user_id: @current_user.id).pluck(:group_id)
+    @groups = Group.where.not(id: joined_group_ids).order(members_count: :desc, title: :asc).page(@page_param)
+    @invited_groups = Invite.where(user_id: @current_user, group_id: @groups.map(&:id)).pluck(:group_id)
+    render json: { 
+      current_page: @groups.current_page, 
+      total_pages:  @groups.total_pages,
+      groups: ActiveModelSerializers::SerializableResource.new(@groups, current_user: @current_user).as_json
+    }
+  end
+
+  # POST /groups/search
+  def search
+    @groups = Group.search_for(params[:search]).order(members_count: :desc, title: :asc).page(@page_param)
+    render json: { 
+      current_page: @groups.current_page, 
+      total_pages:  @groups.total_pages,
+      groups: ActiveModelSerializers::SerializableResource.new(@groups, current_user: @current_user).as_json
+    }
   end
 
   # POST /groups/filter
@@ -42,6 +66,14 @@ class Api::V1::GroupsController < Api::V1::BaseController
     end
   end
 
+  # POST /groups/:id/leave
+  # Leave a group. 
+  def leave
+    # Owner can't leave the group
+    Member.where(group_id: @group.id, user_id: @current_user.id).last.try(:destroy)
+    render json: { message: "Group left" }
+  end
+
   # DELETE /groups/:id
   def destroy
     @group.destroy
@@ -53,9 +85,19 @@ private
   	@group = Group.find(params[:id])
   end
 
+  def set_user
+    @user = User.find_by_hashid(params[:user_id])
+  end
+
+  def auth_group_action
+    unless @group.user_id == @current_user.id || @group.admins.pluck(:user_id).include?(@current_user.id)
+      render json: { errors: "You are not the owner or admin of this group" }, status: :unauthorized 
+    end
+  end
+
   def check_owner
-    unless @group.user_id == @current_user.id
-      render json: { errors: "You are not the owner of this group" }, status: :unauthorized 
+    if @group.user_id == @current_user.id
+      render json: { errors: "Owners can't leave the group" }, status: :unauthorized 
     end
   end
 

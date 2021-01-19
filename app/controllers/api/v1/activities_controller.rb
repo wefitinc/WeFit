@@ -1,5 +1,5 @@
 class Api::V1::ActivitiesController < Api::V1::BaseController
-  before_action :authorize, only: [:index, :create, :update, :filter, :destroy, :show]
+  before_action :authorize, only: [:index, :create, :update, :filter, :destroy, :show, :search]
   before_action :set_activity, only: [:show, :update, :destroy]
   before_action :validate_owner, only: [:update, :destroy]
 
@@ -15,6 +15,25 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     @activities = @activities.near([@lat, @lon], InitialRadialDistance) if @lat && @lon
     # Paginate results
     @activities = @activities.paginate(page: @page_param)
+    # Get participants list
+    attendee_list, absentee_list = get_participants_list(@activities)
+    # Render results
+    render json: { 
+      current_page: @activities.current_page, 
+      total_pages:  @activities.total_pages,
+      activities: ActiveModelSerializers::SerializableResource.new(@activities, 
+        current_user: @current_user, attendee_list: attendee_list, absentee_list: absentee_list).as_json
+    }
+  end
+
+  # GET /activities/suggestions
+  def suggestions
+    # Use index API to get suggestions
+  end
+
+  # POST /activities/search
+  def search
+    @activities = Activity.search_for(params[:search]).paginate(page: @page_param)
     # Get participants list
     attendee_list, absentee_list = get_participants_list(@activities)
     # Render results

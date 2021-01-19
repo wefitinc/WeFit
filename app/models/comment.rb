@@ -4,6 +4,9 @@ class Comment < ApplicationRecord
   belongs_to :owner, 
     polymorphic: true,
     counter_cache: true
+  has_many :reports, 
+    as: :owner,
+    dependent: :destroy
   # Users must exist, but need not be unique
   validates :user, presence: true
   # Validate the comment body

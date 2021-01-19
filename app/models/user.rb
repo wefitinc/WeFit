@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include PgSearch::Model
   include Rails.application.routes.url_helpers
   # Basic email REGEX for server side validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -46,6 +47,11 @@ class User < ApplicationRecord
   has_many :logins
   # Record users that this user has blocked
   has_many :blocks
+  # User has many groups
+  has_many :members, dependent: :destroy
+  has_many :groups, through: :members
+
+  reverse_geocoded_by "logins.latitude", "logins.longitude"
 
   # The user needs a valid name
   validates :first_name,  
@@ -96,6 +102,23 @@ class User < ApplicationRecord
     if: :professional? # A professional type is only required if the user is a professional
   validates :professional_type,
     inclusion: { in: PROFESSIONAL_TYPES }
+
+  # Allow search on title and description
+  pg_search_scope :search_by_full_name, 
+                  against: [:first_name, :last_name], 
+                  using: {tsearch: { prefix: true }},
+                  :order_within_rank => "users.follower_count DESC"
+
+  pg_search_scope :search_by_professional_type, against: [:professional_type], using: {
+    tsearch: { prefix: true }
+  }
+
+  pg_search_scope :search_by_location, :associated_against => {
+      logins: :location
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
 
   def get_image_url
     url_for(self.profile_pic) if self.profile_pic.attached?

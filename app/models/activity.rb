@@ -1,4 +1,5 @@
 class Activity < ApplicationRecord
+  include PgSearch::Model
   include Rails.application.routes.url_helpers
   
   # Each activity belongs to it's creating user
@@ -53,8 +54,26 @@ class Activity < ApplicationRecord
       less_than_or_equal_to: 5
     }
 
+  # Allow search on title and description
+  pg_search_scope :search_for, against: {
+    name: 'A',  
+    event_time: 'D', 
+    description: 'D', 
+    location_name: 'D'
+  }, using: {
+    tsearch: { prefix: true }
+  },
+  :associated_against => {
+      user: {:first_name => 'B', :last_name => 'C'}
+  }
+  
+
   # Helper
   def get_image_url
     url_for(self.image) if self.image.attached?
+  end
+
+  def creator_name
+    user.name
   end
 end

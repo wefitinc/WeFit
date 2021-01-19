@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_12_144802) do
+ActiveRecord::Schema.define(version: 2021_01_19_193006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,6 +101,15 @@ ActiveRecord::Schema.define(version: 2021_01_12_144802) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
+  create_table "group_admins", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_admins_on_group_id"
+    t.index ["user_id"], name: "index_group_admins_on_user_id"
+  end
+
   create_table "groups", force: :cascade do |t|
     t.integer "user_id"
     t.string "title"
@@ -111,6 +120,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_144802) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "topics_count", default: 0
+    t.integer "reports_count", default: 0
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
@@ -123,6 +133,15 @@ ActiveRecord::Schema.define(version: 2021_01_12_144802) do
     t.index ["group_id"], name: "index_invites_on_group_id"
     t.index ["invited_by_id"], name: "index_invites_on_invited_by_id"
     t.index ["user_id"], name: "index_invites_on_user_id"
+  end
+
+  create_table "join_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_join_requests_on_group_id"
+    t.index ["user_id"], name: "index_join_requests_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -275,6 +294,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_144802) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "anonymous", default: false
+    t.integer "reports_count", default: 0
     t.index ["group_id"], name: "index_topics_on_group_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
@@ -302,6 +322,7 @@ ActiveRecord::Schema.define(version: 2021_01_12_144802) do
     t.boolean "professional", default: false
     t.string "professional_type", default: "None"
     t.text "bio"
+    t.integer "reviews_count", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -314,6 +335,10 @@ ActiveRecord::Schema.define(version: 2021_01_12_144802) do
     t.index ["user_id"], name: "index_views_on_user_id"
   end
 
+  add_foreign_key "group_admins", "groups"
+  add_foreign_key "group_admins", "users"
+  add_foreign_key "join_requests", "groups"
+  add_foreign_key "join_requests", "users"
   add_foreign_key "participants", "activities"
   add_foreign_key "participants", "users"
   add_foreign_key "reports", "users"

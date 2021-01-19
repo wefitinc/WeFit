@@ -20,6 +20,12 @@ private
     elsif params[:activity_id]
       @owner = Activity.find(params[:activity_id])
       render json: { errors: "Activity not found" }, status: :not_found if @owner.nil?
+    elsif params[:group_id]
+      @owner = Group.find(params[:group_id])
+      render json: { errors: "Group not found" }, status: :not_found if @owner.nil?
+    elsif params[:topic_id]
+      @owner = Topic.find(params[:topic_id])
+      render json: { errors: "Topic not found" }, status: :not_found if @owner.nil?
     else
       render json: { errors: "Owner type not supported" }, status: :not_implemented
     end

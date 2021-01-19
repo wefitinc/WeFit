@@ -26,8 +26,8 @@ private
   end
   # Check and make sure the user can join 
   def check_can_join
-    # A user can join a group if it's public OR they've been previously invited
-    @can_join = @group.public? || @group.invited?(@current_user) 
+    # A user can join a group if it's public OR they've been previously invited by owner or admin
+    @can_join = @group.public? || @group.invited_by_owner_or_admin?(@current_user) 
     unless @can_join
       render json: { errors: "This group is not public, you must be invited" }, status: :unauthorized
     end

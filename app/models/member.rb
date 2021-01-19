@@ -3,4 +3,8 @@ class Member < ApplicationRecord
   belongs_to :group, counter_cache: true
   # Every member represents a user
   belongs_to :user
+
+  validates :user,
+    presence: true,
+    uniqueness: { scope: :group }
 end

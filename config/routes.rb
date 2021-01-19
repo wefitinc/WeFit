@@ -19,6 +19,16 @@ Rails.application.routes.draw do
       post '/users/:id/reset', to: 'users#reset'
 
       resources :users, only: [ :show, :destroy ] do
+        collection do
+          get 'suggestions'
+          get 'professionals_suggestions'
+          post 'search_professionals'
+          post 'search'
+        end
+
+        member do
+          get 'groups'
+        end
         get    'following', to: 'follows#index_following'
         get    'followers', to: 'follows#index_followers'
         get    'friends', to: 'follows#index_friends'
@@ -50,6 +60,10 @@ Rails.application.routes.draw do
       post '/activities/filter', to: 'activities#filter'
 
       resources :activities, only: [ :index, :show, :create, :update, :destroy ] do
+        collection do
+          get 'suggestions'
+          post 'search'
+        end
         resources :reports, only: [ :index, :create ]
         resources :participants, only: [ :index, :create ] do
           collection do
@@ -61,9 +75,32 @@ Rails.application.routes.draw do
       post '/groups/filter', to: 'groups#filter'
 
       resources :groups, only: [:index, :show, :create, :destroy ] do
-        resources :members, only: [ :index, :create, :destroy ]
+        collection do
+          get 'suggestions'
+          post 'search'
+        end
+        member do 
+          post 'leave'
+        end
+        resources :admins, only: [ :index, :create ] do
+          collection do 
+            post 'remove'
+          end
+        end
+        resources :members, only: [ :index, :create ]
         resources :invites, only: [ :create ]
-        resources :topics, only: [ :index, :create, :destroy ]
+        resources :requests, only: [ :index, :create ] do 
+          collection do 
+            post 'reject'
+          end
+          member do
+            post 'accept'
+          end
+        end
+        resources :reports, only: [ :index, :create ]
+        resources :topics, only: [ :index, :create, :destroy ] do
+          resources :reports, only: [ :index, :create ]
+        end
       end
 
       resources :topics, only: [:show, :destroy] do

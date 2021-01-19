@@ -1,3 +1,5 @@
+json.current_page  @posts.current_page
+json.total_pages   @posts.total_pages
 json.posts @posts do |post|
 	json.id									post.id
 	json.media_url          post.media_url

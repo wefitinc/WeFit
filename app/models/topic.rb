@@ -4,6 +4,9 @@ class Topic < ApplicationRecord
   # Each topic is created by a user in a group
   belongs_to :user
   belongs_to :group, counter_cache: true
+  has_many :reports, 
+    as: :owner,
+    dependent: :destroy
   # Associate an image with each topic
   has_one_base64_attached :image
   # NOTE: Comments and likes are polymorphic, need to be owned as such!

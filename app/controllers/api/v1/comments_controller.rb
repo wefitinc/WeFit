@@ -6,6 +6,7 @@ class Api::V1::CommentsController < Api::V1::BaseController
   def index
     render json: @owner.comments
   end
+
   # POST /:owner/:id/comments
   def create
     @owner.comments.where(user_id: @current_user.id, body: params[:body]).create
