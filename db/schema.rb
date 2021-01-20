@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_19_193006) do
+ActiveRecord::Schema.define(version: 2021_01_20_104331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2021_01_19_193006) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "owner_type"
+    t.integer "reports_count", default: 0
     t.index ["owner_id"], name: "index_comments_on_owner_id"
     t.index ["owner_type"], name: "index_comments_on_owner_type"
     t.index ["user_id"], name: "index_comments_on_user_id"

@@ -1,15 +1,20 @@
 class Api::V1::TopicsController < Api::V1::BaseController
   before_action :authorize
   before_action :set_group, only: [ :index, :create ]
-  before_action :set_topic, only: [ :show ]
+  before_action :set_topic, only: [ :show, :destroy ]
   before_action :check_member, only: [ :create ]
-  before_action :check_owner, only: [ :destroy ]
+  before_action :check_owner_or_admin, only: [ :destroy ]
 
   # GET /topics
+  # Default => show recent posts at the top
+  # Params: {popular: true} => this will show popular posts at the top
   def index
-    # Posts should by default display by most recent at the top, and the filter option 
-    # should be to display list by most recent or most popular (likes + comments).
-  	render json: @group.topics, current_user: @current_user
+    if params[:popular]
+      @topics = @group.topics.order('likes_count + comments_count DESC').page(@page_param)
+    else
+      @topics = @group.topics.order(created_at: :desc).page(@page_param)
+    end
+  	render json: @topics, current_user: @current_user
   end
 
   # GET /topics/:id
@@ -19,9 +24,6 @@ class Api::V1::TopicsController < Api::V1::BaseController
 
   # POST /topics
   def create
-    # Users can attach a picture from their camera or photo gallery, and toggle on anonymous mode 
-    # which conceals the users identity from being seen by anyone in the group
-    
     # Create the topic
     @topic = Topic.new(topic_params)
     # Set the group
@@ -49,7 +51,7 @@ private
   	@group = Group.find(params[:group_id])
   end
   def set_topic
-  	@topic = Topic.find(params[:topic_id])
+  	@topic = Topic.find(params[:id])
   end
 
   def check_member
@@ -57,9 +59,9 @@ private
       render json: { errors: "You are not a member of this group" }, status: :unauthorized
     end
   end
-  def check_owner
-    unless @topic.user_id == @current_user.id
-      render json: { errors: "You are not the owner of this topic" }, status: :unauthorized 
+  def check_owner_or_admin
+    unless @topic.user_id == @current_user.id || @group.owner?(@current_user) || @group.admin?(@current_user)
+      render json: { errors: "You are not the owner of this topic or owner/admin of the group" }, status: :unauthorized 
     end
   end
 

@@ -26,6 +26,9 @@ private
     elsif params[:topic_id]
       @owner = Topic.find(params[:topic_id])
       render json: { errors: "Topic not found" }, status: :not_found if @owner.nil?
+    elsif params[:comment_id]
+      @owner = Comment.find(params[:comment_id])
+      render json: { errors: "Comment not found" }, status: :not_found if @owner.nil?
     else
       render json: { errors: "Owner type not supported" }, status: :not_implemented
     end

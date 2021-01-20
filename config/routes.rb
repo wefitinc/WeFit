@@ -98,14 +98,17 @@ Rails.application.routes.draw do
           end
         end
         resources :reports, only: [ :index, :create ]
-        resources :topics, only: [ :index, :create, :destroy ] do
-          resources :reports, only: [ :index, :create ]
-        end
+        resources :topics, only: [ :index, :create, :destroy ]
       end
 
       resources :topics, only: [:show, :destroy] do
-        resources :likes, only: [ :index, :create ]
+        resources :likes, only: [ :index, :create, :destroy ]
         resources :comments, only: [ :index, :create, :destroy ]
+        resources :reports, only: [ :index, :create ]
+      end
+
+      resources :comments, only: [ :index, :create, :destroy ] do
+        resources :reports, only: [ :index, :create ]
       end
 
       delete '/posts/:post_id/likes', to: 'likes#destroy'

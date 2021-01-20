@@ -1,6 +1,9 @@
 class Comment < ApplicationRecord
   # Comments belong to an object (the thing being commented on) and have users
   belongs_to :user
+  has_many :reports, 
+    as: :owner,
+    dependent: :destroy
   belongs_to :owner, 
     polymorphic: true,
     counter_cache: true
