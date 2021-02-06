@@ -40,6 +40,12 @@ Rails.application.routes.draw do
         post   'reviews', to: 'reviews#create'
       end
 
+      resources :professionals, only: [ :index, :show ] do
+        collection do 
+          post 'signup'
+        end
+      end
+
       post '/posts/filter', to: 'posts#filter'
 
       resources :posts, only: [ :index, :show, :create, :destroy ] do

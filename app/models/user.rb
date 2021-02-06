@@ -28,6 +28,11 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   accepts_nested_attributes_for :posts
 
+  # Associate services with professionals
+  has_many :professional_services, dependent: :destroy
+  accepts_nested_attributes_for :professional_services
+
+
   # Create relationships for following users
   # Follows = The record of follows
   has_many :follows

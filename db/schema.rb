@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_104331) do
+ActiveRecord::Schema.define(version: 2021_02_06_221203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,14 @@ ActiveRecord::Schema.define(version: 2021_01_20_104331) do
     t.index ["user_id"], name: "index_logins_on_user_id"
   end
 
+  create_table "master_services", force: :cascade do |t|
+    t.string "name"
+    t.string "unit"
+    t.string "professional_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "members", force: :cascade do |t|
     t.integer "group_id"
     t.integer "user_id"
@@ -238,6 +246,25 @@ ActiveRecord::Schema.define(version: 2021_01_20_104331) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "professional_service_lengths", force: :cascade do |t|
+    t.decimal "length"
+    t.decimal "price"
+    t.bigint "professional_service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["professional_service_id"], name: "index_professional_service_lengths_on_professional_service_id"
+  end
+
+  create_table "professional_services", force: :cascade do |t|
+    t.bigint "service_id"
+    t.bigint "user_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_id"], name: "index_professional_services_on_service_id"
+    t.index ["user_id"], name: "index_professional_services_on_user_id"
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string "owner_type"
     t.bigint "owner_id"
@@ -257,6 +284,14 @@ ActiveRecord::Schema.define(version: 2021_01_20_104331) do
     t.datetime "updated_at", null: false
     t.index ["reviewer_id"], name: "index_reviews_on_reviewer_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "name"
+    t.string "unit"
+    t.string "professional_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "taggings", force: :cascade do |t|
@@ -342,5 +377,8 @@ ActiveRecord::Schema.define(version: 2021_01_20_104331) do
   add_foreign_key "join_requests", "users"
   add_foreign_key "participants", "activities"
   add_foreign_key "participants", "users"
+  add_foreign_key "professional_service_lengths", "professional_services"
+  add_foreign_key "professional_services", "services"
+  add_foreign_key "professional_services", "users"
   add_foreign_key "reports", "users"
 end

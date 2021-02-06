@@ -115,7 +115,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     end
 
     @users = User.joins("INNER join logins on logins.user_id=users.id AND logins.id = 
-      (SELECT MAX(id) FROM logins WHERE logins.user_id = users.id)").select("users.*, 
+      (SELECT MAX(id) FROM logins WHERE logins.user_id = users.id)").where(professional: true).select("users.*, 
       logins.id as login_id, logins.latitude, logins.longitude, logins.location").near([lat, lng], 
       50).order("follower_count desc, distance desc").page(@page_param)
     
@@ -127,7 +127,7 @@ class Api::V1::UsersController < Api::V1::BaseController
     # (such as 'personal trainers in Los Angeles').
 
     @users = User.joins("INNER join logins on logins.user_id=users.id AND logins.id = 
-      (SELECT MAX(id) FROM logins WHERE logins.user_id = users.id)").select("users.*, 
+      (SELECT MAX(id) FROM logins WHERE logins.user_id = users.id)").where(professional: true).select("users.*, 
       logins.id as login_id, logins.latitude, logins.longitude, logins.location")
 
     professional_type = get_professional_type(params[:search])
