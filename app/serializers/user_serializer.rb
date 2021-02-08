@@ -12,7 +12,9 @@ class UserSerializer < ActiveModel::Serializer
     :professional,
     :professional_type,
     :follower_count, 
-    :following_count
+    :following_count,
+    :reviews_count,
+    :rating
 
   def id
     object.hashid

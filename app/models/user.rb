@@ -21,6 +21,8 @@ class User < ApplicationRecord
   include Hashid::Rails
   hashid_config override_find: true
 
+  scope :professionals, -> { where('professional = ?', true) }
+
   # Associate a pofile pic with each user
   has_one_base64_attached :profile_pic
 
@@ -107,6 +109,10 @@ class User < ApplicationRecord
     if: :professional? # A professional type is only required if the user is a professional
   validates :professional_type,
     inclusion: { in: PROFESSIONAL_TYPES }
+  validates :license_number,
+    presence: true,
+    if: :professional? # A license number is only required if the user is a professional
+
 
   # Allow search on title and description
   pg_search_scope :search_by_full_name, 
@@ -123,7 +129,9 @@ class User < ApplicationRecord
   },
   using: {
     tsearch: { prefix: true }
-  }
+  }  
+
+  after_update :submit_professional_application
 
   def get_image_url
     url_for(self.profile_pic) if self.profile_pic.attached?
@@ -214,4 +222,14 @@ class User < ApplicationRecord
   def name
     "#{first_name} #{last_name}"
   end
+
+  private
+
+  def submit_professional_application
+    if saved_change_to_professional_type?
+      ProfessionalApplicationSubmission.create!(user_id: self.id)
+    end
+  end
+
+
 end

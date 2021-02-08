@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_221203) do
+ActiveRecord::Schema.define(version: 2021_02_08_224418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -246,6 +246,16 @@ ActiveRecord::Schema.define(version: 2021_02_06_221203) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "professional_application_submissions", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "reviewer_id"
+    t.integer "application_status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reviewer_id"], name: "index_professional_application_submissions_on_reviewer_id"
+    t.index ["user_id"], name: "index_professional_application_submissions_on_user_id"
+  end
+
   create_table "professional_service_lengths", force: :cascade do |t|
     t.decimal "length"
     t.decimal "price"
@@ -359,6 +369,8 @@ ActiveRecord::Schema.define(version: 2021_02_06_221203) do
     t.string "professional_type", default: "None"
     t.text "bio"
     t.integer "reviews_count", default: 0
+    t.decimal "rating"
+    t.string "license_number"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
@@ -377,6 +389,8 @@ ActiveRecord::Schema.define(version: 2021_02_06_221203) do
   add_foreign_key "join_requests", "users"
   add_foreign_key "participants", "activities"
   add_foreign_key "participants", "users"
+  add_foreign_key "professional_application_submissions", "users"
+  add_foreign_key "professional_application_submissions", "users", column: "reviewer_id"
   add_foreign_key "professional_service_lengths", "professional_services"
   add_foreign_key "professional_services", "services"
   add_foreign_key "professional_services", "users"

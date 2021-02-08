@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       resources :professionals, only: [ :index, :show ] do
         collection do 
           post 'signup'
+          post 'filter'
         end
       end
 

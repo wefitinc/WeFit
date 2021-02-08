@@ -1,4 +1,6 @@
 class ProfessionalService < ApplicationRecord
+	#  This model stores the services offered by a professional
+
   # belongs to a service from amongst the services defined
   belongs_to :service
   # user is professional
