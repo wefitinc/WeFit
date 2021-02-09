@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_224418) do
+ActiveRecord::Schema.define(version: 2021_02_09_211847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -296,6 +296,25 @@ ActiveRecord::Schema.define(version: 2021_02_08_224418) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "service_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "professional_id"
+    t.bigint "professional_service_length_id"
+    t.string "details"
+    t.string "delivery_method"
+    t.string "phone"
+    t.string "email"
+    t.datetime "time"
+    t.decimal "price", default: "0.0", null: false
+    t.integer "service_request_status", default: 0
+    t.boolean "is_custom", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["professional_id"], name: "index_service_requests_on_professional_id"
+    t.index ["professional_service_length_id"], name: "index_service_requests_on_professional_service_length_id"
+    t.index ["user_id"], name: "index_service_requests_on_user_id"
+  end
+
   create_table "services", force: :cascade do |t|
     t.string "name"
     t.string "unit"
@@ -395,4 +414,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_224418) do
   add_foreign_key "professional_services", "services"
   add_foreign_key "professional_services", "users"
   add_foreign_key "reports", "users"
+  add_foreign_key "service_requests", "professional_service_lengths"
+  add_foreign_key "service_requests", "users"
+  add_foreign_key "service_requests", "users", column: "professional_id"
 end

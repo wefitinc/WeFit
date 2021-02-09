@@ -45,13 +45,6 @@ class Api::V1::ProfessionalsController < Api::V1::BaseController
     render json: @users
   end
 
-  # 
-  def services
-    # based on professional type
-    @services = Service.where(professional_type: params[:professional_type])
-    # name, unit
-  end
-
   # POST /api/v1/professionals/sign_up
   def signup
     # A record will be created in ProfessionalApplicationSubmission after successful update
@@ -69,12 +62,19 @@ class Api::V1::ProfessionalsController < Api::V1::BaseController
     render json: { error: 'User not found with this id' }, status: :not_found unless @user.present?
   end
 
-  # User will request for service from the professional
-  # This API Will be used to create service request: normal or custom
-  def request_service
-
+  # GET /api/v1/professionals/:id/service_requests
+  def service_requests
+    @requests = ServiceRequest.active.includes(:user, professional_service_length: [professional_service: 
+      :service]).where(professional_id: params[:id]).paginate(page: @page_param)
   end
 
+  # GET /api/v1/professionals/:id/receipts
+  def receipts
+    @requests = ServiceRequest.approved.includes(:user, professional_service_length: [professional_service: 
+      :service]).where(professional_id: params[:id]).paginate(page: @page_param)
+
+    render 'service_requests'
+  end
 
   private
 
@@ -88,24 +88,6 @@ class Api::V1::ProfessionalsController < Api::V1::BaseController
         professional_service_lengths_attributes: [:length, :price] 
       ]
     )
-  end
-
-  def service_request_params
-    # params.require(:service_request).permit(
-    #   :service_name,
-    #   :professional_id,
-    #   :user_id,
-    #   :details,
-    #   :delivery_method (phone call, video call, email),
-    #   :phone_number,
-    #   :email,
-    #   :date,
-    #   :time,
-    #   :price,
-    #   :is_custom,
-    #   :is_accepted,
-    #   :is_completed
-    # )
   end
 
 end

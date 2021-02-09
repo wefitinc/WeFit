@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
         member do
           get 'groups'
+          get 'service_requests'
         end
         get    'following', to: 'follows#index_following'
         get    'followers', to: 'follows#index_followers'
@@ -44,6 +45,20 @@ Rails.application.routes.draw do
         collection do 
           post 'signup'
           post 'filter'
+        end
+        member do
+          get 'service_requests'
+          get 'receipts'
+        end
+      end
+
+      resources :service_requests, only: [ :show, :create ] do
+        member do 
+          post 'accept'
+          post 'reject'
+          post 'complete'
+          post 'cancel'
+          post 'approve'
         end
       end
 

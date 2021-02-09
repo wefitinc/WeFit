@@ -33,6 +33,13 @@ class Api::V1::UsersController < Api::V1::BaseController
     }
   end
 
+  # GET /users/:id/service_requests
+  # Get service requests requested by user to professional
+  def service_requests
+    @requests = ServiceRequest.active.includes(:user, professional_service_length: [professional_service: 
+      :service]).where(user_id: params[:id]).paginate(page: @page_param)
+  end
+
   # GET /users/professionals
   def index_professionals
     @users = User.where(professional: true)
