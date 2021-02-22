@@ -97,7 +97,10 @@ private
       :last_name,
       :gender,
       :birthdate,
-      :bio)
+      :bio,
+      :facebook_link,
+      :instagram_link,
+      :twitter_link)
   end
   # Generate an authorization token and record a successful login
   def render_login

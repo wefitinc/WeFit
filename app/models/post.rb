@@ -27,7 +27,7 @@ class Post < ApplicationRecord
   acts_as_taggable_on :tags
 
   # Associate an image with each post
-  # has_one_base64_attached :image
+  has_one_base64_attached :image
 
   # Reverse geocoding for spatial lookups
   reverse_geocoded_by :latitude, :longitude

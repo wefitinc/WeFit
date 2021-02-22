@@ -57,6 +57,8 @@ class User < ApplicationRecord
   # User has many groups
   has_many :members, dependent: :destroy
   has_many :groups, through: :members
+  # User has activity streaks
+  has_many :activity_streaks
 
   reverse_geocoded_by "logins.latitude", "logins.longitude"
 

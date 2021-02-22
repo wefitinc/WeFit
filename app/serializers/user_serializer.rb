@@ -14,7 +14,10 @@ class UserSerializer < ActiveModel::Serializer
     :follower_count, 
     :following_count,
     :reviews_count,
-    :rating
+    :rating,
+    :facebook_link,
+    :instagram_link, 
+    :twitter_link
 
   def id
     object.hashid

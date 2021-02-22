@@ -1,7 +1,20 @@
 class Api::V1::UsersController < Api::V1::BaseController
   before_action :authorize, only: [:professionals_suggestions, :suggestions, :search, :groups]
-  before_action :find_user, only: [:show, :destroy, :reset]
+  before_action :find_user, only: [:show, :destroy, :reset, :posts, :activity_streak]
   before_action :check_debug, only: [:destroy]
+
+  # GET /users/:id/posts
+  def posts
+    # Render the posts using jbuilder
+    @posts = @user.posts.includes(:post_tagged_users).page(@page_param)
+    @liked_posts_ids = Like.where(owner_type: "Post", owner_id: @posts.map(&:id), 
+      user_id: @user.id).pluck(:owner_id)
+  end
+
+  # GET /users/:id/activity_streak
+  def activity_streak
+    @streak = @user.activity_streaks.where("date > ?", Date.current - 7.days).order(date: :asc)
+  end
 
   # GET /users/:id
   def show

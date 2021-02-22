@@ -14,11 +14,11 @@ Rails.application.routes.draw do
       post  '/auth/upgrade', to: 'auth#upgrade'
 
       # TODO find a better routing for these
-      get  '/users/:id/posts', to: 'posts#for_user'
+      # get  '/users/:id/posts', to: 'posts#for_user'
       get  '/users/professionals', to: 'users#index_professionals'
       post '/users/:id/reset', to: 'users#reset'
 
-      resources :users, only: [ :show, :destroy ] do
+      resources :users, only: [ :show, :destroy, :update ] do
         collection do
           get 'suggestions'
           get 'professionals_suggestions'
@@ -29,7 +29,10 @@ Rails.application.routes.draw do
         member do
           get 'groups'
           get 'service_requests'
+          get 'posts'
+          get 'activity_streak'
         end
+
         get    'following', to: 'follows#index_following'
         get    'followers', to: 'follows#index_followers'
         get    'friends', to: 'follows#index_friends'
@@ -137,6 +140,8 @@ Rails.application.routes.draw do
       delete '/topics/:topic_id/likes', to: 'likes#destroy'
 
       post  '/conversations/:conversation_id/messages/filter', to: 'messages#filter'
+
+      resources :activity_streaks, only: [:create]
 
       resources :conversations, only: [:index, :create] do
         resources :messages, only: [:index, :create]

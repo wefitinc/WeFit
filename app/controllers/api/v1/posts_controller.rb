@@ -97,6 +97,8 @@ class Api::V1::PostsController < Api::V1::BaseController
     @post = Post.new(post_params)
     # Set the owner to the logged in user
     @post.user_id = @current_user.id
+    # Attach the image if present
+    @post.image.attach(data: params[:image]) if not params[:image].nil?
     # Update the score based on the followers
     update_score
     # Process tags and assign to this post
@@ -115,30 +117,6 @@ class Api::V1::PostsController < Api::V1::BaseController
     @post.destroy
     render json: { message: "Post destroyed" }
   end
-
-  ############# Extra APIs that will be implemented later ############
-  
-  # POST
-  def send_as_message
-    # Send post as message: available for all the viewers
-  end
-
-  # POST
-  def report_post
-    # report the post
-  end
-
-  # POST
-  def follow_user
-    # follow the owner of the post
-  end
-
-  # POST
-  def block_user
-    # block the owner of the post
-  end
-
-  ########### END ##############
 
   # GET /posts
   # def index

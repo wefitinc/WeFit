@@ -12,7 +12,7 @@ class PostSerializer < ActiveModel::Serializer
     # :textview_position_y, 
     # :textview_width, 
     # :textview_height,
-    # :image_url,
+    :image_url,
     # :image_rotation,
     # :image_position_x, 
     # :image_position_y, 
