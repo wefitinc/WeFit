@@ -13,4 +13,4 @@ User.create(
   first_name: 'Test',
   last_name: 'Test',
   birthdate: '1970-01-01',
-  gender: 'Other')
+  gender: 'Other')Admin.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?

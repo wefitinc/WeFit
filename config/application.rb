@@ -1,6 +1,7 @@
 require_relative 'boot'
 
 require 'rails/all'
+require "sprockets/railtie"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -20,5 +21,11 @@ module WeFit
     # the framework and any gems in your application.
 
     config.middleware.use Rack::Attack
+
+    # Config for active admin
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Flash
   end
 end

@@ -228,7 +228,7 @@ class User < ApplicationRecord
   private
 
   def submit_professional_application
-    if saved_change_to_professional_type?
+    if saved_change_to_professional_type? && self.professional_type != "None"
       ProfessionalApplicationSubmission.create!(user_id: self.id)
     end
   end

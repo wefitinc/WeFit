@@ -49,6 +49,7 @@ class Api::V1::ProfessionalsController < Api::V1::BaseController
   def signup
     # A record will be created in ProfessionalApplicationSubmission after successful update
     # Upon accepting the application request, professional field will be set to true for the user
+    # Upon rejection of the application request, professional type and associated service requests will be removed.
 
     if not @current_user.update(professional_signup_params) then
       render json: { errors: @activity.errors }, status: :unprocessable_entity
