@@ -93,8 +93,10 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   # POST /posts - Create a post
   def create
+    # replace user hashid to id
+    updated_post_params = process_tagged_user_attributes(post_params)
     # Create the new post
-    @post = Post.new(post_params)
+    @post = Post.new(updated_post_params)
     # Set the owner to the logged in user
     @post.user_id = @current_user.id
     # Attach the image if present
@@ -172,6 +174,16 @@ private
       :longitude,
       :media_url, 
       post_tagged_users_attributes: [:user_id])
+  end
+
+  def process_tagged_user_attributes(post_params)
+    if post_params[:post_tagged_users_attributes].present?
+      post_params[:post_tagged_users_attributes].each do |user_hash|
+        id = User.find_by_hashid(user_hash["user_id"]).try(:id)
+        user_hash["user_id"] = id if id.present?
+      end
+    end
+    return post_params
   end
 
   def process_tags
