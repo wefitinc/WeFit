@@ -46,7 +46,7 @@ ActiveAdmin.register ProfessionalApplicationSubmission do
       row :application_status
       row :services do |professional_application_submission|
         professional_application_submission.user.professional_services.pluck(:id).map{|service_id| 
-          link_to('foo',admin_professional_service_path(service_id)) }
+          link_to(service_id,admin_professional_service_path(service_id)) }
       end
       row :user
       row :reviewer
