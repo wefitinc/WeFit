@@ -2,6 +2,7 @@
 FirstPage = 1
 CategoryTopPostsNumber = 10
 PostsSinceLastXHours = 24
+CategoryPostsSinceLastXHours = 999
 FollowingCategoryName = "Following"
 
 # Score Values

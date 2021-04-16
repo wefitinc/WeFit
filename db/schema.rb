@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_200527) do
+ActiveRecord::Schema.define(version: 2021_04_16_191654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -230,6 +230,22 @@ ActiveRecord::Schema.define(version: 2021_03_23_200527) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "actor_id"
+    t.bigint "creator_id"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.integer "action", null: false
+    t.boolean "is_seen", default: false, null: false
+    t.boolean "is_deleted", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_notifications_on_actor_id"
+    t.index ["creator_id"], name: "index_notifications_on_creator_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "participants", force: :cascade do |t|
     t.bigint "activity_id"
     t.bigint "user_id"
@@ -446,6 +462,9 @@ ActiveRecord::Schema.define(version: 2021_03_23_200527) do
   add_foreign_key "group_admins", "users"
   add_foreign_key "join_requests", "groups"
   add_foreign_key "join_requests", "users"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "actor_id"
+  add_foreign_key "notifications", "users", column: "creator_id"
   add_foreign_key "participants", "activities"
   add_foreign_key "participants", "users"
   add_foreign_key "professional_application_submissions", "users"

@@ -46,7 +46,7 @@ class Api::V1::PostsController < Api::V1::BaseController
         created_at: :desc).page(@page_param)
     else
       @posts = Post.includes(:user, post_tagged_users: :user).tagged_with(params[:tag]).where("posts.created_at > ?", Time.zone.now - 
-        PostsSinceLastXHours.hours).where.not(id: viewed_post_ids).order(score: :desc, 
+        CategoryPostsSinceLastXHours.hours).where.not(id: viewed_post_ids).order(score: :desc, 
         created_at: :desc).page(@page_param)
     end
     # Get post ids that the user has liked
