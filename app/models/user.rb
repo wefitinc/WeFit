@@ -30,6 +30,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   accepts_nested_attributes_for :posts
 
+  # Associate activities with users
+  has_many :activities, dependent: :destroy
+
   # Associate services with professionals
   has_many :professional_services, dependent: :destroy
   accepts_nested_attributes_for :professional_services

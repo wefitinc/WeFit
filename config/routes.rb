@@ -32,7 +32,10 @@ Rails.application.routes.draw do
           get 'groups'
           get 'service_requests'
           get 'posts'
+          get 'liked_posts'
           get 'activity_streak'
+          get 'activities'
+          get 'attended_activities'
         end
 
         get    'following', to: 'follows#index_following'

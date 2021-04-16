@@ -148,13 +148,4 @@ private
     render json: { errors: "You are not the owner of this activity" }, status: :unauthorized if not @current_user.id == @activity.user_id
   end
 
-  def get_participants_list(records)
-    participants = Participant.where(activity_id: records.map(&:id), user_id: @current_user.id)
-    attendee_list = []; absentee_list = []
-    participants.each do |obj|
-      attendee_list << obj.activity_id if obj.is_attending
-      absentee_list << obj.activity_id unless obj.is_attending
-    end
-    return attendee_list, absentee_list
-  end
 end

@@ -27,5 +27,15 @@ class Api::V1::BaseController < ActionController::API
   def get_page_param
     @page_param = params[:page] || FirstPage
   end
+
+  def get_participants_list(records)
+    participants = Participant.where(activity_id: records.map(&:id), user_id: @current_user.id)
+    attendee_list = []; absentee_list = []
+    participants.each do |obj|
+      attendee_list << obj.activity_id if obj.is_attending
+      absentee_list << obj.activity_id unless obj.is_attending
+    end
+    return attendee_list, absentee_list
+  end
   
 end

@@ -1,6 +1,6 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action :authorize, only: [:professionals_suggestions, :suggestions, :search, :groups]
-  before_action :find_user, only: [:show, :destroy, :reset, :posts, :activity_streak]
+  before_action :authorize, only: [:professionals_suggestions, :suggestions, :search, :groups, :activities, :attended_activities]
+  before_action :find_user, only: [:show, :destroy, :reset, :posts, :liked_posts, :activities, :attended_activities, :activity_streak]
   before_action :check_debug, only: [:destroy]
 
   # GET /users/:id/posts
@@ -9,6 +9,49 @@ class Api::V1::UsersController < Api::V1::BaseController
     @posts = @user.posts.includes(:post_tagged_users).page(@page_param)
     @liked_posts_ids = Like.where(owner_type: "Post", owner_id: @posts.map(&:id), 
       user_id: @user.id).pluck(:owner_id)
+  end
+
+  # GET /users/:id/liked_posts
+  def liked_posts
+    # Render the liked posts using jbuilder
+    @liked_posts_ids = Like.where(owner_type: "Post", user_id: @user.id).pluck(:owner_id)
+    @posts = @user.posts.includes(:post_tagged_users).where(id: @liked_posts_ids).page(@page_param)
+    render 'posts'
+  end
+
+  # GET /users/:id/activities
+  def activities
+    # Order by event date/time
+    @activities = @user.activities.order('event_time ASC')
+    # Paginate results
+    @activities = @activities.paginate(page: @page_param)
+    # Get participants list
+    attendee_list, absentee_list = get_participants_list(@activities)
+    # Render results
+    render json: { 
+      current_page: @activities.current_page, 
+      total_pages:  @activities.total_pages,
+      activities: ActiveModelSerializers::SerializableResource.new(@activities, 
+        current_user: @current_user, attendee_list: attendee_list, absentee_list: absentee_list).as_json
+    }
+  end
+
+  # GET /users/:id/attended_activities
+  def attended_activities
+    attended_activities_ids = Participant.where(user_id: @user.id, is_attending: true).pluck(:activity_id)
+    # Order by event date/time
+    @activities = Activity.where(id: attended_activities_ids).order('event_time ASC')
+    # Paginate results
+    @activities = @activities.paginate(page: @page_param)
+    # Get participants list
+    attendee_list, absentee_list = get_participants_list(@activities)
+    # Render results
+    render json: { 
+      current_page: @activities.current_page, 
+      total_pages:  @activities.total_pages,
+      activities: ActiveModelSerializers::SerializableResource.new(@activities, 
+        current_user: @current_user, attendee_list: attendee_list, absentee_list: absentee_list).as_json
+    }
   end
 
   # GET /users/:id/activity_streak
