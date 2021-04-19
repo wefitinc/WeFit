@@ -1,6 +1,6 @@
 class Api::V1::ProfessionalsController < Api::V1::BaseController
   before_action :authorize, only: [ :signup ]
-  # before_action :set_owner
+  before_action :find_user, only: [:service_requests, :receipts]
 
   # GET /api/v1/professionals
   def index
@@ -59,25 +59,31 @@ class Api::V1::ProfessionalsController < Api::V1::BaseController
 
   # GET /api/v1/professionals/:id
   def show
-    @user = User.professionals.where(id: params[:id]).last
+    @user = User.professionals.find_by_hashid(params[:id])
     render json: { error: 'User not found with this id' }, status: :not_found unless @user.present?
   end
 
   # GET /api/v1/professionals/:id/service_requests
   def service_requests
     @requests = ServiceRequest.active.includes(:user, professional_service_length: [professional_service: 
-      :service]).where(professional_id: params[:id]).paginate(page: @page_param)
+      :service]).where(professional_id: @user.id).paginate(page: @page_param)
   end
 
   # GET /api/v1/professionals/:id/receipts
   def receipts
     @requests = ServiceRequest.approved.includes(:user, professional_service_length: [professional_service: 
-      :service]).where(professional_id: params[:id]).paginate(page: @page_param)
+      :service]).where(professional_id: @user.id).paginate(page: @page_param)
 
     render 'service_requests'
   end
 
   private
+
+  def find_user
+    # Use find_by_hashid to not allow sequential ID lookups
+    @user = User.find_by_hashid(params[:id])
+    render json: { errors: "Couldn't find user with id=#{params[:id]}" }, status: 404 if @user.nil?
+  end
 
   def professional_signup_params
     params.require(:user).permit(

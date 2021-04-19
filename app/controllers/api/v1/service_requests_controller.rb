@@ -1,5 +1,6 @@
 class Api::V1::ServiceRequestsController < Api::V1::BaseController
   before_action :authorize
+  before_action :find_user, only: [:create]
   before_action :set_object, except: [ :create ]
   before_action :check_professional, only: [ :accept, :reject, :complete ]
   before_action :check_user, only: [ :cancel, :approve ]
@@ -7,6 +8,8 @@ class Api::V1::ServiceRequestsController < Api::V1::BaseController
 
   # POST /api/v1/service_requests
   def create
+    # Inject user id in params
+    params[:service_request][:professional_id] = @user.id
     # Create the Service Request(user to professional): normal or custom
     @request = ServiceRequest.new(service_request_params)
     # Set the owner to the logged in user
@@ -78,6 +81,12 @@ class Api::V1::ServiceRequestsController < Api::V1::BaseController
       :price,
       :is_custom
     )
+  end
+
+  def find_user
+    # Use find_by_hashid to not allow sequential ID lookups
+    @user = User.find_by_hashid(service_request_params[:professional_id])
+    render json: { errors: "Couldn't find user with id=#{params[:id]}" }, status: 404 if @user.nil?
   end
 
   def set_object
