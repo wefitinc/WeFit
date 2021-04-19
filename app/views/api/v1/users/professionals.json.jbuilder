@@ -1,6 +1,6 @@
 json.current_page  @users.current_page
 json.total_pages   @users.total_pages
-json.posts @users do |user|
+json.professionals @users do |user|
 	json.id									user.hashid
 	json.first_name         user.first_name
 	json.last_name          user.last_name
