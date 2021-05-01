@@ -9,10 +9,15 @@ class Like < ApplicationRecord
     presence: true,
     uniqueness: { scope: :owner }
 
-  after_commit :inc_post_score, on: :create
+  after_commit :after_like_processes, on: :create
   after_commit :dec_post_score, on: :destroy
 
   private 
+
+  def after_like_processes
+    inc_post_score
+    relay_notification
+  end
 
   def inc_post_score
   	if self.owner_type == "Post"
@@ -24,6 +29,16 @@ class Like < ApplicationRecord
   	if self.owner_type == "Post"
   		self.owner.update(score: self.owner.score - LikeValue)
   	end
+  end
+
+  def relay_notification
+    # if self.owner_type == "Post" 
+    #   unless self.user_id == self.owner.user_id
+    #     obj_params = {user_id: self.owner.user_id, actor_id: self.user_id, creator_id: self.owner.user_id, 
+    #       notifiable_id: self.id, notifiable_type: "Like", action: Notification.actions[:like]}
+    #     NotificationProcessingService.perform(obj_params)
+    #   end
+    # end
   end
 
 end

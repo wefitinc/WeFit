@@ -228,11 +228,9 @@ private
           INNER JOIN taggings ON taggings.taggable_id = posts.id AND taggings.taggable_type = 'Post' 
           AND taggings.context = 'tags' 
           INNER JOIN tags ON tags.id = taggings.tag_id 
-          where posts.created_at >= '#{(Time.zone.now - PostsSinceLastXHours.hours).strftime("%Y-%m-%d %H:%M:%S")}' 
           AND posts.id NOT IN (#{@viewed_post_ids.join(',')}) 
-        ) 
-        AS c_posts
-      ) where ranking <= #{CategoryTopPostsNumber};"
+        ) AS c_posts
+      ) AS t_posts where ranking <= #{CategoryTopPostsNumber};"
     return sql
   end
 
@@ -243,13 +241,13 @@ private
 
   def get_category_posts_counter
     return ActsAsTaggableOn::Tagging.joins(:tag).where(taggable_type: "Post", context: 
-      "tags").where.not(taggable_id: @viewed_post_ids).where("taggings.created_at >= ?",
-      Time.zone.now - PostsSinceLastXHours.hours).group("tags.name").count
+      "tags").where.not(taggable_id: @viewed_post_ids).group("tags.name").count
   end
 
   def get_seen_post_ids
-    return View.where(user_id: @current_user.id).where("created_at > ?", Time.zone.now - 
-      PostsSinceLastXHours.hours).pluck(:post_id)
+    ids = View.where(user_id: @current_user.id).pluck(:post_id) 
+    ids = [0] unless ids.present?
+    return ids
   end
 
   def get_latest_following_posts
