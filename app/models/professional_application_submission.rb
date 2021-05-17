@@ -3,7 +3,7 @@ class ProfessionalApplicationSubmission < ApplicationRecord
 
   belongs_to :user
   belongs_to :reviewer, 
-    class_name: 'User', optional: true
+    class_name: 'Admin', optional: true
 
   # The user needs to be there
   validates :user, 
