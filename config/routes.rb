@@ -148,8 +148,12 @@ Rails.application.routes.draw do
 
       resources :activity_streaks, only: [:create]
 
-      resources :conversations, only: [:index, :create] do
-        resources :messages, only: [:index, :create]
+      resources :conversations, only: [:index, :create, :destroy] do
+        resources :messages, only: [:index, :create] do 
+          collection do
+            post :destroy_messages
+          end
+        end
       end
     end
   end

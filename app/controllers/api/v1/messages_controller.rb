@@ -38,6 +38,16 @@ class Api::V1::MessagesController < Api::V1::BaseController
     end
   end
 
+  # POST /conversations/:conversation_id/messages/destroy_messages
+  def destroy_messages
+    @messages = @conversation.messages.where(id: params[:message_ids], user_id: @current_user.id)
+    if @messages.destroy_all
+      render json: { message: "Message(s) deleted" }
+    else
+      render json: { errors: "Some error occured. Couldn't delete messages." }, status: 500
+    end
+  end
+
 private
   def set_conversation
     @conversation = Conversation.find(params[:conversation_id])
