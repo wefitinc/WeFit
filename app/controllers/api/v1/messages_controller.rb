@@ -63,7 +63,7 @@ private
     params.permit(:last_message)
   end
   def message_params
-    params.require(:message).permit(:body)
+    params.require(:message).permit(:body, :messageable_type, :messageable_id)
   end
 
   # Update all messages that aren't written by this user to be read

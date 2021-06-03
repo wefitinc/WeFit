@@ -4,5 +4,7 @@ class MessageSerializer < ActiveModel::Serializer
   	:user, 
   	:body, 
   	:read,
+  	:messageable_type,
+  	:messageable_id,
   	:created_at
 end
