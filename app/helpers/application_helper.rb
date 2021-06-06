@@ -58,4 +58,16 @@ module ApplicationHelper
     image_tag(source, options.merge(srcset: srcset))
   end
 
+  def get_notification_text(notification)
+    text = ActionTemplate[notification.action]
+    text.sub!("#user_name#", notification.user.first_name) if text.include?("#user_name#")
+    text.sub!("#actor_name#", notification.actor.first_name) if text.include?("#actor_name#")
+    text.sub!("#activity_name#", notification.notifiable.name) if text.include?("#activity_name#")
+    text.sub!("#group_name#", notification.notifiable.name) if text.include?("#group_name#")
+    text.sub!("#service_name#", notification.notifiable.name) if text.include?("#service_name#")
+    text.sub!("#professional_name#", notification.creator.first_name) if text.include?("#professional_name#")
+    text.sub!("#buyer_name#", notification.actor.first_name) if text.include?("#buyer_name#")
+    text.sub!("#rejection_reason#", notification.notifiable.reason) if text.include?("#rejection_reason#")
+  end
+
 end

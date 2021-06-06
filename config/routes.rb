@@ -141,6 +141,16 @@ Rails.application.routes.draw do
         resources :reports, only: [ :index, :create ]
       end
 
+      resources :notifications, only: [ :index ] do
+        collection do
+          post 'delete'
+          post 'mute'
+          post 'unmute'
+          post 'settings'
+          get 'get_settings'
+        end
+      end
+
       delete '/posts/:post_id/likes', to: 'likes#destroy'
       delete '/topics/:topic_id/likes', to: 'likes#destroy'
 

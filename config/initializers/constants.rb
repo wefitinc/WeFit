@@ -59,17 +59,9 @@ ActionTemplate =  {
 	professional_account_rejection: "Unfortunately your request for a professioanl account has been rejected.",
 
 
-	new_feature: "#message",
+	new_feature: "#message#",
 	app_review: "Help us: We want our community to thrive, and for that, we need your help. Give us a good review!"
 }
-
-
-
-
-
-
-
-
 
 
 

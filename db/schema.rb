@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_03_154245) do
+ActiveRecord::Schema.define(version: 2021_06_06_153919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -232,6 +232,24 @@ ActiveRecord::Schema.define(version: 2021_06_03_154245) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notification_settings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.boolean "mute_likes"
+    t.boolean "mute_comments"
+    t.boolean "mute_followers"
+    t.boolean "mute_activities"
+    t.boolean "mute_groups"
+    t.boolean "mute_messages"
+    t.boolean "mute_exercise_reminders"
+    t.boolean "mute_motivation_messages"
+    t.boolean "mute_professionals"
+    t.boolean "mute_emails"
+    t.datetime "unmute_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notification_settings_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "actor_id"
@@ -363,6 +381,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_154245) do
     t.boolean "is_custom", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "reason"
     t.index ["professional_id"], name: "index_service_requests_on_professional_id"
     t.index ["professional_service_length_id"], name: "index_service_requests_on_professional_service_length_id"
     t.index ["user_id"], name: "index_service_requests_on_user_id"
@@ -464,6 +483,7 @@ ActiveRecord::Schema.define(version: 2021_06_03_154245) do
   add_foreign_key "group_admins", "users"
   add_foreign_key "join_requests", "groups"
   add_foreign_key "join_requests", "users"
+  add_foreign_key "notification_settings", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "notifications", "users", column: "actor_id"
   add_foreign_key "notifications", "users", column: "creator_id"
