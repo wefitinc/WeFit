@@ -1,17 +1,4 @@
-<!-- <section>
-  <div class="container">
-    <h3 class="text-center">Welcome to the Social Network for Health</h3>
-  </div>
-  <div class="container">
-    <p>Hi <b><%= @user.first_name %> <%= @user.last_name %></b>,</p>
-    <p>Thank you so much for joining our community! Please verify your email below for security purposes and to reset your password if necessary.</p>
-    <div class="btn-container"><%#= link_to "Verify Email", edit_activation_url(@user.activation_token, email: @user.email), class: 'btn' %></div>
-    <p>Now that you're officially a member of WeFit (Woohoo!), it's time to invite your friends and start conquering your health journey together, as a community.</p>
-    <div class="btn-container"><%#= link_to "Invite Friends", '#', class: 'btn' %></div>
-  </div>
-</section> -->
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
    <head>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,7 +50,8 @@
       <div class="content" style="text-align: center;color: #fff;">
         <h2 style="font-size: 28px;margin: 22px 0 10px;font-weight: normal;">Welcome to WeFit</h2>
         <p style="max-width: 185px;margin:0 auto;font-size: 18px;">Thank you so much for joining the healthy social network.</p>
-        <a href="#" class="btn-primary" style="height: 40px;background: #FFFFFF;border-radius: 50px;color: #FF0800;display: inline-block;padding: 10px 24px;box-sizing: border-box;text-decoration: none;font-size: 16px;margin: 23px 0 0;font-family: SFProText-Medium;min-width: 140px;">Verify Email</a>
+        <!-- <a href="#" class="btn-primary" style="height: 40px;background: #FFFFFF;border-radius: 50px;color: #FF0800;display: inline-block;padding: 10px 24px;box-sizing: border-box;text-decoration: none;font-size: 16px;margin: 23px 0 0;font-family: SFProText-Medium;min-width: 140px;">Verify Email</a> -->
+        <%= link_to "Verify Email", edit_activation_url(@user.activation_token, email: @user.email), class: 'btn-primary', style: 'height: 40px;background: #FFFFFF;border-radius: 50px;color: #FF0800;display: inline-block;padding: 10px 24px;box-sizing: border-box;text-decoration: none;font-size: 16px;margin: 23px 0 0;font-family: SFProText-Medium;min-width: 140px;' %>
       </div>
     </div>
     

@@ -151,6 +151,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :activations, only: [ :new, :edit ]
+
       delete '/posts/:post_id/likes', to: 'likes#destroy'
       delete '/topics/:topic_id/likes', to: 'likes#destroy'
 

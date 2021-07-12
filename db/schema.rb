@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_06_153919) do
+ActiveRecord::Schema.define(version: 2021_07_01_114633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,18 @@ ActiveRecord::Schema.define(version: 2021_06_06_153919) do
     t.datetime "remember_created_at"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "analyses", force: :cascade do |t|
+    t.integer "users_count"
+    t.integer "posts_count"
+    t.integer "activities_count"
+    t.integer "groups_count"
+    t.integer "groups_joined_count"
+    t.integer "day"
+    t.integer "week"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "blocks", force: :cascade do |t|

@@ -11,14 +11,14 @@ class Api::V1::MessagesController < Api::V1::BaseController
 
   # GET /conversations/:conversation_id/messages
   def index
-    @messages = @conversation.messages.order('id DESC')
+    @messages = @conversation.messages.order('id DESC').page(@page_param)
     render json: @messages 
   end
   
   # POST /conversations/:conversation_id/messages/filter
   def filter
     @messages = @conversation.messages
-    @messages = @messages.where('id > ?', filter_params[:last_message]).order('id DESC') if filter_params[:last_message]
+    @messages = @messages.where('id > ?', filter_params[:last_message]).order('id DESC').page(@page_param) if filter_params[:last_message]
     render json: @messages
   end
 

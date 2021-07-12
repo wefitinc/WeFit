@@ -1,6 +1,6 @@
 class Api::V1::NotificationsController < Api::V1::BaseController
 
-  before_action :authorize, only: [:index, :mute]
+  before_action :authorize, only: [:index, :mute, :unmute, :get_settings, :delete, :settings]
   before_action :set_activity, only: [:destroy]
 
   # GET /notifications
@@ -28,7 +28,7 @@ class Api::V1::NotificationsController < Api::V1::BaseController
   # Params: {ids: <array of notification ids to be deleted>}
   def delete
     validate_owner
-    Notification.where(id: params[:id]).update_all(is_deleted: true)
+    Notification.where(id: params[:ids]).update_all(is_deleted: true)
     render json: { message: "Notification(s) deleted" }
   end
 
