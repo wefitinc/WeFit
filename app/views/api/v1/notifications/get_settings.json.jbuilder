@@ -10,5 +10,5 @@ json.settings do
   json.mute_exercise_reminders    @setting.mute_exercise_reminders
   json.mute_motivation_messages   @setting.mute_motivation_messages
   json.mute_professionals         @setting.mute_professionals
-  json.mute_email                 @setting.mute_email
+  json.mute_email                 @setting.mute_emails
 end

@@ -39,7 +39,12 @@ class Api::V1::NotificationsController < Api::V1::BaseController
 
   # POST /notifications/settings
   def settings
-    NotificationSetting.where(user_id: @current_user.id).last.update(notification_settings_params)
+    if NotificationSetting.where(user_id: @current_user.id).exists?
+      @setting = NotificationSetting.where(user_id: @current_user.id).last.update(notification_settings_params)
+    else
+      settings_params = notification_settings_params.merge!({user_id: @current_user.id})
+      @setting = NotificationSetting.create(settings_params)
+    end
     render 'get_settings'
   end
 

@@ -7,8 +7,13 @@ class Api::V1::ConversationsController < Api::V1::BaseController
 
   # GET /conversations
   def index
-    @conversations = @current_user.conversations
-    render json: @conversations
+    @conversations = @current_user.conversations.page(@page_param)
+    # Render results
+    render json: { 
+      current_page: @conversations.current_page, 
+      total_pages:  @conversations.total_pages,
+      conversations: ActiveModelSerializers::SerializableResource.new(@conversations).as_json
+    }
   end
 
   # POST /conversations

@@ -8,6 +8,8 @@ class Conversation < ApplicationRecord
   # Each conversation has many messages
   has_many :messages, dependent: :destroy
 
+  has_one :last_message, -> { order("created_at DESC") }, :class_name => "Message"
+
   scope :between, -> (sender_id,recipient_id) {
     where("(conversations.sender_id=? AND conversations.recipient_id=?) OR (conversations.sender_id=? AND conversations.recipient_id=?)", 
       sender_id,recipient_id, 
