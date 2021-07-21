@@ -35,6 +35,12 @@ class Api::V1::NotificationsController < Api::V1::BaseController
   # GET /notifications/settings
   def get_settings
     @setting = NotificationSetting.where(user_id: @current_user.id).last
+    unless @setting.present?
+      @setting = NotificationSetting.create(user_id: @current_user.id, mute_likes: false, mute_comments: false, 
+        mute_followers: false, mute_activities: false, mute_groups: false, mute_messages: false, 
+        mute_exercise_reminders: false, mute_motivation_messages: false, mute_professionals: false, 
+        mute_emails: false)
+    end
   end
 
   # POST /notifications/settings

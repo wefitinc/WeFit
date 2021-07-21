@@ -10,7 +10,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     @lat = params[:latitude]
     @lon = params[:longitude]
     # Order by event date/time
-    @activities = Activity.all.order('event_time ASC')
+    @activities = Activity.all.order('event_time ASC').where("date(event_time) > ?", Date.today)
     # Filter by location
     @activities = @activities.near([@lat, @lon], InitialRadialDistance) if @lat && @lon
     # Paginate results
@@ -33,7 +33,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
 
   # POST /activities/search
   def search
-    @activities = Activity.search_for(params[:search]).paginate(page: @page_param)
+    @activities = Activity.where("date(event_time) > ?", Date.today).search_for(params[:search]).paginate(page: @page_param)
     # Get participants list
     attendee_list, absentee_list = get_participants_list(@activities)
     # Render results
@@ -50,7 +50,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # All activities by default
     @activities = Activity.all
     # Order by event date/time
-    @activities = @activities.order('event_time ASC')
+    @activities = @activities.order('event_time ASC').where("date(event_time) > ?", Date.today)
     # Filter based on attending
     @activities = @activities.joins(:attendees).where(user_id: @current_user.id) if filter_params[:attending]
     # Filter based on date
