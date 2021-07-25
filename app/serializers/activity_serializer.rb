@@ -16,9 +16,9 @@ class ActivitySerializer < ActiveModel::Serializer
     :absentees_count,
     :difficulty
   
-  def image_url
-    object.get_image_url
-  end
+  # def image_url
+  #   object.get_image_url
+  # end
 
   def is_attending
     return true if @instance_options[:attendee_list] && @instance_options[:attendee_list].include?(object.id)

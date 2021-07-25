@@ -11,9 +11,9 @@ class GroupSerializer < ActiveModel::Serializer
     :members_count,
     :topics_count
 
-  def image_url
-    object.get_image_url
-  end
+  # def image_url
+  #   object.get_image_url
+  # end
   def is_member
     # False by default if the user was not passed
     return false if not @instance_options[:current_user]

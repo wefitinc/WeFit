@@ -3,8 +3,9 @@ class UserSerializer < ActiveModel::Serializer
   attributes :id, 
     :first_name, 
     :last_name, 
-    # :email, 
-    :profile_pic_url,
+    # :email,
+    :image_url, 
+    # :profile_pic_url,
     :gender, 
     :activated,
     :birthdate, 
@@ -22,7 +23,7 @@ class UserSerializer < ActiveModel::Serializer
   def id
     object.hashid
   end
-  def profile_pic_url
-    object.get_image_url
-  end
+  # def profile_pic_url
+  #   object.get_image_url
+  # end
 end

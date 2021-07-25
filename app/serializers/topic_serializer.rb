@@ -17,9 +17,9 @@ class TopicSerializer < ActiveModel::Serializer
   def user
     object.anonymous? ? nil : object.user 
   end
-  def image_url
-    object.get_image_url
-  end
+  # def image_url
+  #   object.get_image_url
+  # end
   def is_liked
     # False by default if the user was not passed
     return false if not @instance_options[:current_user]
