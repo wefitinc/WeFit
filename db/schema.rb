@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_114633) do
+ActiveRecord::Schema.define(version: 2021_07_25_153313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_114633) do
     t.decimal "longitude"
     t.integer "absentees_count", default: 0
     t.integer "reports_count"
+    t.text "image_url"
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
@@ -169,6 +170,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_114633) do
     t.datetime "updated_at", null: false
     t.integer "topics_count", default: 0
     t.integer "reports_count", default: 0
+    t.text "image_url"
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
@@ -444,6 +446,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_114633) do
     t.datetime "updated_at", null: false
     t.boolean "anonymous", default: false
     t.integer "reports_count", default: 0
+    t.text "image_url"
     t.index ["group_id"], name: "index_topics_on_group_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end
@@ -478,6 +481,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_114633) do
     t.string "instagram_link"
     t.string "twitter_link"
     t.integer "activity_streak_counter", default: 0
+    t.text "image_url"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -100,7 +100,8 @@ private
       :bio,
       :facebook_link,
       :instagram_link,
-      :twitter_link)
+      :twitter_link,
+      :image_url)
   end
   # Generate an authorization token and record a successful login
   def render_login

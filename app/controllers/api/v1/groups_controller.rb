@@ -113,6 +113,7 @@ private
       :title,
       :location,
       :description,
-      :public)
+      :public,
+      :image_url)
   end
 end
