@@ -16,13 +16,14 @@ class Activity < ApplicationRecord
     as: :owner,
     dependent: :destroy
 
-  # Allow filtering on difficulty ramges
+  # Allow filtering on difficulty ranges
   scope :min_difficulty, ->(min) { where('difficulty >= ?', min) }
   scope :max_difficulty, ->(max) { where('difficulty <= ?', max) }
+  scope :in_difficulty, ->(difficulty) { where(difficulty: difficulty) }  
 
   # Geocode the address into latitude and longitude: getting lat, lng from client
-  # geocoded_by :location_address
-  # after_validation :geocode 
+  geocoded_by :location_address
+  after_validation :geocode 
 
   # Associate an image with each activity
   has_one_base64_attached :image

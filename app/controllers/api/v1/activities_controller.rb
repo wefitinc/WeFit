@@ -56,14 +56,16 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # Filter based on date
     @activities = @activities.where(event_time: filter_params[:min_date]..filter_params[:max_date]) if filter_params[:min_date] && filter_params[:max_date]
     # Filter for difficulty
-    @activities = @activities.min_difficulty(filter_params[:min_difficulty]) if filter_params[:min_difficulty]
-    @activities = @activities.max_difficulty(filter_params[:max_difficulty]) if filter_params[:max_difficulty]
+    # @activities = @activities.min_difficulty(filter_params[:min_difficulty]) if filter_params[:min_difficulty]
+    # @activities = @activities.max_difficulty(filter_params[:max_difficulty]) if filter_params[:max_difficulty]
+    @activities = @activities.in_difficulty(filter_params[:difficulty]) if filter_params[:difficulty]
     # Filter by location
     @lat = filter_params[:latitude]
     @lon = filter_params[:longitude]
-    @radius = filter_params[:radius]
+    # @radius = filter_params[:radius]
+    @radius = filter_params[:max_proximity]
     # Filter activities where the distance is within the radius
-    @activities = @activities.near([@lat, @lon], @radius) if @radius and @lat and @lon
+    @activities = @activities.near([@lat, @lon], @radius) if (@radius != -1) and @lat and @lon
     # Paginate results
     @page = filter_params[:page] || 1
     @activities = @activities.paginate(page: @page, per_page: 10)
@@ -139,7 +141,9 @@ private
       :attending,
       :min_date, :max_date,
       :min_difficulty, :max_difficulty,
-      :latitude, :longitude, :radius)
+      :min_proximity, :max_proximity,
+      :latitude, :longitude, :radius,
+      difficulty: [])
   end
   def set_activity
     @activity = Activity.find(params[:id])
