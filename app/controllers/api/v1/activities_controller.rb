@@ -50,7 +50,7 @@ class Api::V1::ActivitiesController < Api::V1::BaseController
     # All activities by default
     @activities = Activity.all
     # Order by event date/time
-    @activities = @activities.order('event_time ASC').where("date(event_time) > ?", Date.today)
+    @activities = @activities.order('event_time ASC').where("event_time > ?", Time.now.in_time_zone)
     # Filter based on attending
     @activities = @activities.joins(:attendees).where(user_id: @current_user.id) if filter_params[:attending]
     # Filter based on date
