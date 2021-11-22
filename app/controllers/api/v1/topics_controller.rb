@@ -69,6 +69,7 @@ private
   	params.require(:topic).permit(
       :anonymous,
       :body,
-      :image_url)
+      :mood,
+      link_urls: [], media_urls: [])
   end
 end

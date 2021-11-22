@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_25_153313) do
+ActiveRecord::Schema.define(version: 2021_11_22_224840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -447,6 +447,9 @@ ActiveRecord::Schema.define(version: 2021_07_25_153313) do
     t.boolean "anonymous", default: false
     t.integer "reports_count", default: 0
     t.text "image_url"
+    t.string "mood"
+    t.text "link_urls", default: [], array: true
+    t.text "media_urls", default: [], array: true
     t.index ["group_id"], name: "index_topics_on_group_id"
     t.index ["user_id"], name: "index_topics_on_user_id"
   end

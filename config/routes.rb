@@ -118,7 +118,11 @@ Rails.application.routes.draw do
           end
         end
         resources :members, only: [ :index, :create ]
-        resources :invites, only: [ :create ]
+        resources :invites, only: [ :create ] do
+          collection do 
+            post 'invite_multiple'
+          end
+        end
         resources :requests, only: [ :index, :create ] do 
           collection do 
             post 'reject'

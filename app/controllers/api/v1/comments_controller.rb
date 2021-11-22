@@ -17,7 +17,8 @@ class Api::V1::CommentsController < Api::V1::BaseController
     # If this is a topic comment, then even the admins/owner of the group can remove the comment.
     if @owner.class.name == "Topic"
       @comment = Comment.find_by_id(params[:id])
-      auth_destroy_action(@owner.group)
+      return_status = auth_destroy_action(@owner.group) if @comment.present?
+      return if return_status
     else
       @comment = @owner.comments.where(id: params[:id], user_id: @current_user.id).first
     end
@@ -40,7 +41,8 @@ private
 
   def auth_destroy_action(group)
     unless group.owner?(@current_user) || group.admin?(@current_user) || @comment.user_id == @current_user.id
-      render json: { errors: "You are not the owner of comment or owner/admin of this group" }, status: :unauthorized 
+      render json: { errors: "You are not the owner of comment or owner/admin of this group" }, status: :unauthorized
+      return true
     end
   end
 end

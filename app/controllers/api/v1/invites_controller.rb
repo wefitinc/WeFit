@@ -1,12 +1,22 @@
 class Api::V1::InvitesController < Api::V1::BaseController 
   before_action :authorize
-  before_action :find_user
+  before_action :find_user, except: [:invite_multiple]
   before_action :find_group
   before_action :check_membership
 
   # POST /groups/:id/invites
   def create
     @group.invites.where(user_id: @user.id, invited_by: @current_user.id).first_or_create
+    render json: { message: "Invited to the group!" }
+  end
+
+  # POST /groups/:id/invites/invite_multiple
+  def invite_multiple
+    params[:user_ids].each do |user_id|
+      user = User.find_by_hashid(user_id)
+      next unless user.present?
+      @group.invites.where(user_id: user.id, invited_by: @current_user.id).first_or_create
+    end
     render json: { message: "Invited to the group!" }
   end
 
