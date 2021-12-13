@@ -104,7 +104,7 @@ Rails.application.routes.draw do
 
       post '/groups/filter', to: 'groups#filter'
 
-      resources :groups, only: [:index, :show, :create, :destroy ] do
+      resources :groups do
         collection do
           get 'suggestions'
           post 'search'

@@ -1,13 +1,21 @@
 class Api::V1::GroupsController < Api::V1::BaseController
   before_action :authorize
-  before_action :set_group, only: [:show, :destroy, :leave, :admin, :remove_admin]
+  before_action :set_group, only: [:show, :destroy, :leave, :admin, :remove_admin, :update]
   before_action :set_user, only: [:admin, :remove_admin]
-  before_action :auth_group_action, only: [:destroy, :admin]
+  before_action :auth_group_action, only: [:destroy, :admin, :update]
   before_action :check_owner, only: [:leave]
 
   # GET /groups
   def index
   	render json: Group.all, current_user: @current_user
+  end
+
+  def update
+    if not @group.update(group_params) then
+      render json: { errors: @group.errors }, status: :unprocessable_entity
+    else
+      render json: @group
+    end
   end
 
   # GET /groups/suggestions
@@ -91,7 +99,7 @@ private
 
   def auth_group_action
     unless @group.user_id == @current_user.id || @group.admins.pluck(:user_id).include?(@current_user.id)
-      render json: { errors: "You are not the owner or admin of this group" }, status: :unauthorized 
+      render json: { errors: "You are not the owner or admin of this group" }, status: :unauthorized
     end
   end
 
