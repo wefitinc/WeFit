@@ -6,5 +6,7 @@ class MessageSerializer < ActiveModel::Serializer
   	:read,
   	:messageable_type,
   	:messageable_id,
+  	:user_location,
+  	:media_urls,
   	:created_at
 end

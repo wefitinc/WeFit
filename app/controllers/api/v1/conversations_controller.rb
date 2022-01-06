@@ -9,11 +9,12 @@ class Api::V1::ConversationsController < Api::V1::BaseController
   def index
     @conversations = @current_user.conversations.page(@page_param)
     # Render results
-    render json: { 
-      current_page: @conversations.current_page, 
-      total_pages:  @conversations.total_pages,
-      conversations: ActiveModelSerializers::SerializableResource.new(@conversations).as_json
-    }
+    # render json: { 
+    #   current_page: @conversations.current_page, 
+    #   total_pages:  @conversations.total_pages,
+    #   conversations: ActiveModelSerializers::SerializableResource.new(@conversations).as_json
+    # }
+    render 'index'
   end
 
   # POST /conversations

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_22_224840) do
+ActiveRecord::Schema.define(version: 2022_01_06_203310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -242,6 +242,8 @@ ActiveRecord::Schema.define(version: 2021_11_22_224840) do
     t.datetime "updated_at", null: false
     t.string "messageable_type", default: "Text", null: false
     t.integer "messageable_id"
+    t.jsonb "user_location"
+    t.text "media_urls", default: [], array: true
     t.index ["conversation_id"], name: "index_messages_on_conversation_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end

@@ -4,9 +4,10 @@ class Message < ApplicationRecord
 
  	# Different type of messages a user can send from messages screen:
 	# 1. Text (messageable_type: "Text", messageable_id: <>)
-	# 2. Image (messageable_type: "Image", messageable_id: <>)
-	# 3. Video (messageable_type: "Video", messageable_id: <>)
-	# 4. Location (messageable_type: "Location", messageable_id: <>)
+	# 2. Image (messageable_type: "Image", messageable_id: <>, media_urls: [])
+	# 3. Video (messageable_type: "Video", messageable_id: <>, media_urls: [])
+	# 4. Location (messageable_type: "Location", messageable_id: <>, user_location: {title: <>, address: <>, 
+	#    latitude: <>, longitude: <>})
 
 	# Sharing:
 	# 1. Share Group via message (messageable_type: "Group", messageable_id: <group_id>)
@@ -16,6 +17,5 @@ class Message < ApplicationRecord
 	# 5. Share post via message (messageable_type: "Post", messageable_id: <post_id>)
 
   validates :body,
-    presence: true,
     length: { maximum: 512 }
 end

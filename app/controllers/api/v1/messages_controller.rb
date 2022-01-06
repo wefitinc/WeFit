@@ -26,6 +26,7 @@ class Api::V1::MessagesController < Api::V1::BaseController
   def create
     # Create the new message
     @message = @conversation.messages.new(message_params)
+    byebug
     @message.user_id = @current_user.id
     # Save to DB
     if @message.save then
@@ -63,7 +64,7 @@ private
     params.permit(:last_message)
   end
   def message_params
-    params.require(:message).permit(:body, :messageable_type, :messageable_id)
+    params.require(:message).permit(:body, :messageable_type, :messageable_id, user_location: {}, media_urls: [])
   end
 
   # Update all messages that aren't written by this user to be read
